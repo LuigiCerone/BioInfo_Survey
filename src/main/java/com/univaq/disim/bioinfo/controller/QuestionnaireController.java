@@ -1,9 +1,12 @@
 package com.univaq.disim.bioinfo.controller;
 
 
+import com.univaq.disim.bioinfo.BusinessLayerException;
 import com.univaq.disim.bioinfo.model.Questionnaire;
 import com.univaq.disim.bioinfo.model.section.A1;
 import com.univaq.disim.bioinfo.repository.QuestionnaireRepository;
+import com.univaq.disim.bioinfo.service.interfaces.QuestionnaireService;
+import com.univaq.disim.bioinfo.service.interfaces.SectionA1Service;
 import org.bson.types.ObjectId;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,40 +20,42 @@ import java.util.List;
 
 @RestController
 @RequestMapping("questionnaire")
-public class QuestionnaireController {
+public class QuestionnaireController<QuestionnaireServiceImpl> {
     private static Logger LOGGER = LoggerFactory.getLogger(QuestionnaireController.class);
 
     @Autowired
-    private QuestionnaireRepository questionnaireRepository;
+    private QuestionnaireService questionnaireService;
+
+    @Autowired
+    private SectionA1Service sectionA1Service;
 
 
-    @GetMapping("/{id}")
-    public ResponseEntity<Questionnaire> getQuestionnaire(HttpServletRequest request, @PathVariable(value="id") String id){
-        Questionnaire q = questionnaireRepository.findBy_id(id);
+    @GetMapping("/{codeNumber}")
+    public ResponseEntity<Questionnaire> getQuestionnaire(HttpServletRequest request, @PathVariable(value="codeNumber") String codeNumber){
+        Questionnaire q = questionnaireService.findOneByCodeNumber(codeNumber);
         return new ResponseEntity<Questionnaire>(q, HttpStatus.OK);
     }
 
     @GetMapping("/")
     public ResponseEntity getAllQuestionnaires(HttpServletRequest request){
-        List<Questionnaire> q = questionnaireRepository.findAll();
+        List<Questionnaire> q = questionnaireService.findAll();
         return new ResponseEntity<>(q, HttpStatus.OK);
     }
 
     // ==================================================================================== SECTIONS
     // A1
-    @PostMapping("/{id}/a1")
-    public ResponseEntity insertA1(HttpServletRequest request, @RequestBody A1 a1, @PathVariable(value="id") String id){
-        A1 a1 = a1Repository.insert(id, a1);
-        return new ResponseEntity<>(a1, HttpStatus.CREATED);
+    @PostMapping("/{codeNumber}/a1")
+    public ResponseEntity insertA1(HttpServletRequest request, @RequestBody A1 a1, @PathVariable(value="codeNumber") String codeNumber) throws BusinessLayerException {
+        A1 a1Inserted = sectionA1Service.insert(codeNumber, a1);
+        return new ResponseEntity<>(a1Inserted, HttpStatus.CREATED);
     }
 
-//    @GetMapping("/{dbCodeNumber}/a1")
-//    public Response getA1(HttpServletRequest request, @PathVariable(value="dbCodeNumber") String dbCodeNumber){
-//        A1 a1Obj = a1Service.get(dbCodeNumber);
-//        Response<A1> response = new Response<>(HttpStatus.OK, request);
-//        response.setData(a1Obj);
-//        return response;
-//    }
+    @GetMapping("/{codeNumber}/a1")
+    public ResponseEntity getA1(HttpServletRequest request, @PathVariable(value="codeNumber") String codeNumber) throws BusinessLayerException {
+        A1 a1 = sectionA1Service.get(codeNumber);
+        return new ResponseEntity<>(a1, HttpStatus.OK);
+
+    }
 //
 //    @PatchMapping("/{dbCodeNumber}/a1")
 //    public Response updateA1(HttpServletRequest request, @RequestBody A1 a1, @PathVariable(value="dbCodeNumber") String dbCodeNumber){

@@ -9,12 +9,16 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule} from './material.module';
 import { AppRoutingModule } from './app.routing.module';
 import { SectionA1Component } from './section-a1/section-a1.component';
+import { HttpClientModule } from '@angular/common/http';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     SectionA1Component
+    LoginComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,

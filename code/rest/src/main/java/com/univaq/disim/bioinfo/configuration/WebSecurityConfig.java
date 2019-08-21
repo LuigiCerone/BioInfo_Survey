@@ -1,6 +1,6 @@
 package com.univaq.disim.bioinfo.configuration;
 
-import com.univaq.disim.bioinfo.service.AppUserDetailsService;
+import com.univaq.disim.bioinfo.service.AppUserDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -27,7 +27,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 
     @Autowired
-    AppUserDetailsService userDetailsService;
+    AppUserDetailsServiceImpl userDetailsService;
 
     @Autowired
     private JwtAuthEntryPoint unauthorizedHandler;

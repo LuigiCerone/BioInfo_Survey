@@ -1,11 +1,14 @@
 package com.univaq.disim.bioinfo.controller;
 
+import com.univaq.disim.bioinfo.BusinessLayerException;
 import com.univaq.disim.bioinfo.configuration.JwtProvider;
 import com.univaq.disim.bioinfo.configuration.JwtResponse;
 import com.univaq.disim.bioinfo.configuration.LoginForm;
 import com.univaq.disim.bioinfo.configuration.SignUpForm;
 import com.univaq.disim.bioinfo.model.User;
 import com.univaq.disim.bioinfo.repository.UserRepository;
+import com.univaq.disim.bioinfo.service.AppUserDetailsServiceImpl;
+import com.univaq.disim.bioinfo.service.interfaces.AppUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -26,7 +29,7 @@ public class AuthController {
     AuthenticationManager authenticationManager;
 
     @Autowired
-    UserRepository userRepository;
+    AppUserDetailsService appUserDetailsService;
 
     @Autowired
     PasswordEncoder encoder;
@@ -35,7 +38,7 @@ public class AuthController {
     JwtProvider jwtProvider;
 
     @PostMapping("/login")
-    public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginForm loginRequest) {
+    public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginForm loginRequest) throws BusinessLayerException {
 
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
@@ -47,11 +50,11 @@ public class AuthController {
         SecurityContextHolder.getContext().setAuthentication(authentication);
 
         String jwt = jwtProvider.generateJwtToken(authentication);
-        return ResponseEntity.ok(new JwtResponse(jwt));
+        return ResponseEntity.ok(new JwtResponse(jwt, appUserDetailsService.findOneByUsername(loginRequest.getUsername())));
     }
 
     @PostMapping("/signup")
-    public ResponseEntity<String> registerUser(@Valid @RequestBody SignUpForm signUpRequest) {
+    public ResponseEntity<String> registerUser(@Valid @RequestBody SignUpForm signUpRequest) throws BusinessLayerException {
 //        if(userRepository.existsByUsername(signUpRequest.getUsername())) {
 //            return new ResponseEntity<String>("Fail -> Username is already taken!",
 //                    HttpStatus.BAD_REQUEST);
@@ -64,11 +67,11 @@ public class AuthController {
 
         // Creating user's account
         User user = new User(signUpRequest.getUsername(), encoder.encode(signUpRequest.getPassword()),
-                "USER", signUpRequest.getName(), signUpRequest.getEmail());
+                signUpRequest.getRole(), signUpRequest.getName(), signUpRequest.getEmail());
 
 
-        userRepository.save(user);
+        appUserDetailsService.save(user);
 
-        return ResponseEntity.ok().body("User registered successfully!");
+        return ResponseEntity.ok().build();
     }
 }

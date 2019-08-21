@@ -11,13 +11,17 @@ import { HttpClientModule } from '@angular/common/http';
 import { HomeComponent } from './pages/home/home.component';
 import { QuestionnaireComponent } from './pages/questionnaire/questionnaire.component';
 import { SectionsModule } from './pages/questionnaire/sections.module';
+import { ProfileComponent } from './pages/profile/profile.component';
+import { NoAuthGuard } from './guards/no-auth.guard';
+import { RoleGuard } from './guards/role.guard';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     HomeComponent,
-    QuestionnaireComponent
+    QuestionnaireComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
@@ -28,7 +32,10 @@ import { SectionsModule } from './pages/questionnaire/sections.module';
     BrowserAnimationsModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [
+    NoAuthGuard,
+    RoleGuard
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

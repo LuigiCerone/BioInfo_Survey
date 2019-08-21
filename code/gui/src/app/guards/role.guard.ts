@@ -16,13 +16,10 @@ export class RoleGuard implements CanActivate {
     const user: User = JSON.parse(localStorage.getItem('currentUser'));
     const tokenPayload = decode(user.accessToken);
 
-    console.log(`sono qui con ${tokenPayload.role}`);
-
     if (
       !this.auth.currentUserValue || tokenPayload.role[0].authority !== expectedRole
     ) {
-      this.router.navigate(['login']);
-      console.log('bene');
+      this.router.navigate(['home']);
       return false;
     }
     return true;

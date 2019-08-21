@@ -1,3 +1,25 @@
+<mat-toolbar color="primary">
+  <span class="fill-remaining-space">
+    <button mat-icon-button [matMenuTriggerFor]="menu">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu" [overlapTrigger]="false">
+      <button mat-menu-item routerLink="home">
+        <mat-icon>home</mat-icon>
+        <span>Home</span>
+      </button>
+      <button mat-menu-item *ngIf="!(auth.currentUserSubject$ | async)" routerLink="login">
+        <mat-icon>keyboard_arrow_right</mat-icon>
+        <span>Login</span>
+      </button>
+      <button mat-menu-item *ngIf="auth.currentUserSubject$ | async" (click)="logout()" routerLink="home">
+        <mat-icon>exit_to_app</mat-icon>
+        <span>Logout</span>
+      </button>
+    </mat-menu>
+  </span>
+  <span class="fill-remaining-space">MelaNostrum</span>
+</mat-toolbar>
 <router-outlet></router-outlet>
 
 

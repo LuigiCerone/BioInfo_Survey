@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import {
   MatCardModule,
   MatInputModule,
-  MatButtonModule, MatSelectModule, MatOptionModule, MatStepperModule
+  MatButtonModule, MatSelectModule, MatOptionModule, MatStepperModule, MatMenu, MatMenuModule, MatIconModule, MatToolbarModule
 } from '@angular/material';
 
 const modules = [
@@ -12,7 +12,10 @@ const modules = [
   MatSelectModule,
   MatOptionModule,
   MatButtonModule,
-  MatStepperModule
+  MatStepperModule,
+  MatMenuModule,
+  MatIconModule,
+  MatToolbarModule
 ];
 
 @NgModule({

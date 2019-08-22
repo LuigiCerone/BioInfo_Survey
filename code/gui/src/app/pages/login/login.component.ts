@@ -21,7 +21,6 @@ export class LoginComponent implements OnInit {
   }
 
   submit() {
-    console.log('submit');
     this.authService.login(this.form.value.username, this.form.value.password).subscribe( (res) => {
       console.log(this.authService.currentUserValue);
       if (this.authService.currentUserValue.role === 'DOCTOR') {
@@ -29,9 +28,19 @@ export class LoginComponent implements OnInit {
       } else {
         this.router.navigate(['questionnaire']);
       }
+    }, err => {
+      console.error('Error:', err);
+      if (err.status && err.status === 401) {
+        this.error = 'Invalid credentials';
+      }
     });
   }
 
+  signup() {
+    this.authService.signup().subscribe( (res) => {
+      console.log(res);
+    });
+  }
 
   ngOnInit(): void {
   }

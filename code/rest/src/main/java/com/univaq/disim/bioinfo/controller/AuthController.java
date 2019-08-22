@@ -1,5 +1,6 @@
 package com.univaq.disim.bioinfo.controller;
 
+import com.fasterxml.jackson.databind.JsonNode;
 import com.univaq.disim.bioinfo.BusinessLayerException;
 import com.univaq.disim.bioinfo.configuration.JwtProvider;
 import com.univaq.disim.bioinfo.configuration.JwtResponse;
@@ -9,7 +10,10 @@ import com.univaq.disim.bioinfo.model.User;
 import com.univaq.disim.bioinfo.repository.UserRepository;
 import com.univaq.disim.bioinfo.service.AppUserDetailsServiceImpl;
 import com.univaq.disim.bioinfo.service.interfaces.AppUserDetailsService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -24,15 +28,14 @@ import javax.validation.Valid;
 @RestController
 @RequestMapping("/api/auth")
 public class AuthController {
+    private static Logger LOGGER = LoggerFactory.getLogger(AuthController.class);
+
 
     @Autowired
     AuthenticationManager authenticationManager;
 
     @Autowired
     AppUserDetailsService appUserDetailsService;
-
-    @Autowired
-    PasswordEncoder encoder;
 
     @Autowired
     JwtProvider jwtProvider;
@@ -54,7 +57,8 @@ public class AuthController {
     }
 
     @PostMapping("/signup")
-    public ResponseEntity<String> registerUser(@Valid @RequestBody SignUpForm signUpRequest) throws BusinessLayerException {
+    public ResponseEntity<?> registerUser(@RequestBody JsonNode json) throws BusinessLayerException {
+        LOGGER.debug(json.asText());
 //        if(userRepository.existsByUsername(signUpRequest.getUsername())) {
 //            return new ResponseEntity<String>("Fail -> Username is already taken!",
 //                    HttpStatus.BAD_REQUEST);
@@ -65,13 +69,9 @@ public class AuthController {
 //                    HttpStatus.BAD_REQUEST);
 //        }
 
-        // Creating user's account
-        User user = new User(signUpRequest.getUsername(), encoder.encode(signUpRequest.getPassword()),
-                signUpRequest.getRole(), signUpRequest.getName(), signUpRequest.getEmail());
+        User user = appUserDetailsService.generateAndSaveUser(json.get("role").textValue());
 
+        return new ResponseEntity<>(user, HttpStatus.CREATED);
 
-        appUserDetailsService.save(user);
-
-        return ResponseEntity.ok().build();
     }
 }

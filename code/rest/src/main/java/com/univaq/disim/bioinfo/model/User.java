@@ -30,22 +30,12 @@ public class User implements Serializable {
     @Nullable
     private String token;
 
-    @Field
-    @Nullable
-    private String name;
-
-    @Field
-    @NotNull
-    private String email;
-
     public User(){ }
 
-    public User(@NotNull String username, @NotNull String password, @NotNull String role, @Nullable String name, @NotNull String email) {
+    public User(@NotNull String username, @NotNull String password, @NotNull String role) {
         this.username = username;
         this.password = password;
         this.role = role;
-        this.name = name;
-        this.email = email;
     }
 
     public String getId() {
@@ -87,23 +77,6 @@ public class User implements Serializable {
 
     public void setToken(@Nullable String token) {
         this.token = token;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    @Nullable
-    public String getName() {
-        return name;
-    }
-
-    public void setName(@Nullable String name) {
-        this.name = name;
     }
 }
 

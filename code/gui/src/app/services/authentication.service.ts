@@ -10,7 +10,7 @@ import { User } from '../model/User';
 })
 export class AuthenticationService {
 
-  public currentUserSubject$: BehaviorSubject<User>;
+    public currentUserSubject$: BehaviorSubject<User>;
   public currentUser: Observable<User>;
 
   constructor(private http: HttpClient) {
@@ -22,8 +22,8 @@ export class AuthenticationService {
     return this.currentUserSubject$.value;
   }
 
-  login(username: string, password: string) {
-    return this.http.post<any>(REST_API.AUTH, { username, password })
+  login(username: string, password: string): Observable<User> {
+    return this.http.post<any>(REST_API.AUTH_LOGIN, { username, password })
       .pipe(map(result => {
         // login successful if there's a jwt token in the response
         if (result && result.accessToken) {
@@ -48,6 +48,11 @@ export class AuthenticationService {
     if (localStorage.getItem('currentUser')){
       const user: User = JSON.parse(localStorage.getItem('currentUser'));
       return user.accessToken;
-    } else return null;
+    } else { return null; }
+  }
+
+  signup(): Observable<any> {
+    // Ask the server for a pair username and password.
+    return this.http.get<any>(REST_API.AUTH_SIGNUP);
   }
 }

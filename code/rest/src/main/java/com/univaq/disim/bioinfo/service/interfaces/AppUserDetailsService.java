@@ -8,4 +8,5 @@ public interface AppUserDetailsService {
 
     public User save(User user) throws BusinessLayerException;
 
+    User generateAndSaveUser(String role);
 }

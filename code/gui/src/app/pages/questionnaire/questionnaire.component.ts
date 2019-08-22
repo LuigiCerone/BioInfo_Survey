@@ -16,12 +16,13 @@ export class QuestionnaireComponent implements OnInit {
               private questionnaireService: QuestionnaireService) { }
 
   ngOnInit() {
-    this.questionnaireService.getAllQuestionnaire().subscribe( (res) => {
+    // Get current logged in user and retrieve his/her questionnaire.
+    this.questionnaireService.getQuestionnaireForUser(this.authenticationService.currentUserValue.username).subscribe( (res) => {
       console.log(res);
-    })
+    });
   }
 
-  logout(){
+  logout() {
     this.authenticationService.logout();
     this.router.navigate(['home']);
   }

@@ -13,4 +13,8 @@ export class QuestionnaireService {
   getAllQuestionnaire(): Observable<any> {
     return this.http.get(REST_API.QUESTIONNAIRE);
   }
+
+  getQuestionnaireForUser(username: string): Observable<any> {
+    return this.http.get(`${REST_API.QUESTIONNAIRE_USER}/${username}`);
+  }
 }

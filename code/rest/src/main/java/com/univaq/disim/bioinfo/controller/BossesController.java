@@ -20,6 +20,7 @@ public class BossesController {
     public List getAllBosses() {
         return repository.findAll();
     }
+
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public Bosses getBossById(@PathVariable("id") ObjectId id) {
         return repository.findBy_id(id);

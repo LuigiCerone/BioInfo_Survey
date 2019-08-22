@@ -42,10 +42,17 @@ public class JwtProvider {
     }
 
     public String getUserNameFromJwtToken(String token) {
+        String s = Jwts.parser()
+                .setSigningKey(jwtSecret)
+                .parseClaimsJws(token)
+                .getBody().toString();
+
+        logger.debug(s);
+
         return Jwts.parser()
                 .setSigningKey(jwtSecret)
                 .parseClaimsJws(token)
-                .getBody().getSubject();
+                .getBody().get("username").toString();
     }
 
     public boolean validateJwtToken(String authToken) {

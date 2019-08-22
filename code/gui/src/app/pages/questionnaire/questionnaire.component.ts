@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from '../../services/authentication.service';
 import { Router } from '@angular/router';
+import { QuestionnaireService } from '../../services/questionnaire.service';
 
 @Component({
   selector: 'app-questionnaire',
@@ -10,9 +11,14 @@ import { Router } from '@angular/router';
 export class QuestionnaireComponent implements OnInit {
   isLinear = false;
 
-  constructor(private authenticationService: AuthenticationService, private router: Router) { }
+  constructor(private authenticationService: AuthenticationService,
+              private router: Router,
+              private questionnaireService: QuestionnaireService) { }
 
   ngOnInit() {
+    this.questionnaireService.getAllQuestionnaire().subscribe( (res) => {
+      console.log(res);
+    })
   }
 
   logout(){

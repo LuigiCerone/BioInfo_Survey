@@ -43,4 +43,11 @@ export class AuthenticationService {
     localStorage.removeItem('currentUser');
     this.currentUserSubject$.next(null);
   }
+
+  getAuthToken(): string {
+    if (localStorage.getItem('currentUser')){
+      const user: User = JSON.parse(localStorage.getItem('currentUser'));
+      return user.accessToken;
+    } else return null;
+  }
 }

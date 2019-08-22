@@ -14,6 +14,7 @@ import { SectionsModule } from './pages/questionnaire/sections.module';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { NoAuthGuard } from './guards/no-auth.guard';
 import { RoleGuard } from './guards/role.guard';
+import { httpInterceptorProviders } from './interceptors';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { RoleGuard } from './guards/role.guard';
   ],
   providers: [
     NoAuthGuard,
-    RoleGuard
+    RoleGuard,
+    httpInterceptorProviders
   ],
   bootstrap: [AppComponent]
 })

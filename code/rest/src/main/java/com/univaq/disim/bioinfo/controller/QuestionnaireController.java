@@ -19,7 +19,8 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @RestController
-@RequestMapping("questionnaire")
+@CrossOrigin(origins = "*", maxAge = 3600)
+@RequestMapping("/api/questionnaire")
 public class QuestionnaireController<QuestionnaireServiceImpl> {
     private static Logger LOGGER = LoggerFactory.getLogger(QuestionnaireController.class);
 
@@ -36,7 +37,7 @@ public class QuestionnaireController<QuestionnaireServiceImpl> {
         return new ResponseEntity<Questionnaire>(q, HttpStatus.OK);
     }
 
-    @GetMapping("/")
+    @RequestMapping(method = RequestMethod.GET)
     public ResponseEntity getAllQuestionnaires(HttpServletRequest request){
         List<Questionnaire> q = questionnaireService.findAll();
         return new ResponseEntity<>(q, HttpStatus.OK);

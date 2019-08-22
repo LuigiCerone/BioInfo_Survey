@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {Component, Input, OnInit} from '@angular/core';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {Options} from "../section-a1/section-a1.component";
 
 @Component({
   selector: 'app-section-a2',
@@ -7,14 +8,46 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
   styleUrls: ['./section-a2.component.css']
 })
 export class SectionA2Component implements OnInit {
-  secondFormGroup: FormGroup;
 
-  constructor(private formBuilder: FormBuilder) {}
+  form: FormGroup = new FormGroup({
+    years: new FormControl(''),
+    date: new FormControl(''),
+  });
+  sexOpt: Options[] = [
+    {value: 'male', viewValue: 'Male'},
+    {value: 'female', viewValue: 'Female'},
+  ];
+  ethnicityOpt: Options[] = [
+    {value: 'europe', viewValue: 'Europe'},
+    {value: 'north_africa', viewValue: 'North Africa'},
+    {value: 'north_africa', viewValue: 'North Africa'},
+    {value: 'middle_east', viewValue: 'Middle East'},
+    {value: 'jewish', viewValue: 'Jewish ancestry'},
+    {value: 'black', viewValue: 'Black or African American'},
+    {value: 'asian', viewValue: 'Asian'},
+    {value: 'hispanic', viewValue: 'Hispanic or Latino'},
+    {value: 'other', viewValue: 'Other'},
+  ];
+  
+  educationOpt: Options[] = [
+    {value: 'junior', viewValue: 'Up to junior high school (up to 14-16 yrs)'},
+    {value: 'high', viewValue: 'High school (up to 18-19 yrs)'},
+    {value: 'university', viewValue: 'University'},
+  ];
 
+  occupationOpt: Options[] = [
+    {value: 'employed', viewValue: 'Employed'},
+    {value: 'work_at_home', viewValue: 'Working at home'},
+    {value: 'unemployed', viewValue: 'Unemployed'},
+    {value: 'student', viewValue: 'Student'},
+    {value: 'retired', viewValue: 'Retired'},
+  ];
+  selectedValue = '';
+  constructor() {}
+  @Input() pattern: string | RegExp;
+  @Input() error: string | null;
   ngOnInit() {
-    this.secondFormGroup = this.formBuilder.group({
-      secondCtrl: ['', Validators.required]
-    });
+
   }
 
 }

@@ -16,7 +16,7 @@ public class SectionA1ServiceImpl implements SectionA1Service {
     QuestionnaireRepository questionnaireRepository;
 
     @Override
-    public A1 insert(String dbCodeNumber, A1 a1) throws BusinessLayerException {
+    public A1 insert(String username, String dbCodeNumber, A1 a1) throws BusinessLayerException {
         Questionnaire q = questionnaireRepository.findByDbCodeNumber(dbCodeNumber);
 
 
@@ -26,6 +26,7 @@ public class SectionA1ServiceImpl implements SectionA1Service {
 
         } else {
             q = new Questionnaire();
+            q.setOwnerUsername(username);
             q.setA1(a1);
             return questionnaireRepository.insert(q).getA1();
         }

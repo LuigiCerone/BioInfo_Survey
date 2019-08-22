@@ -10,4 +10,6 @@ public interface QuestionnaireRepository extends MongoRepository<Questionnaire, 
 
     @Query("{'a1.dbCodeNumber': {$regex : ?0, $options: 'i'} }")
     Questionnaire findByDbCodeNumber(String DbCodeNumber);
+
+    Questionnaire findOneByOwnerUsername(String ownerUsername);
 }

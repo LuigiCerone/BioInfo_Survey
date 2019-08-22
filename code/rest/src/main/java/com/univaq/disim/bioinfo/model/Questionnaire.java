@@ -16,6 +16,8 @@ public class Questionnaire {
     @Id
     private String id = UUID.randomUUID().toString();
 
+    @Field
+    private String ownerUsername;
 
     @Field
     private A1 a1;
@@ -66,6 +68,13 @@ public class Questionnaire {
         this.id = id;
     }
 
+    public String getOwnerUsername() {
+        return ownerUsername;
+    }
+
+    public void setOwnerUsername(String ownerUsername) {
+        this.ownerUsername = ownerUsername;
+    }
 
     public A1 getA1() {
         return a1;

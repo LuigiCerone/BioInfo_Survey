@@ -22,6 +22,11 @@ public class QuestionnaireServiceImpl implements QuestionnaireService {
     }
 
     @Override
+    public Questionnaire findOneByUsername(String ownerUsername) {
+        return questionnaireRepository.findOneByOwnerUsername(ownerUsername);
+    }
+
+    @Override
     public Questionnaire insert(Questionnaire q) {
         return questionnaireRepository.insert(q);
     }

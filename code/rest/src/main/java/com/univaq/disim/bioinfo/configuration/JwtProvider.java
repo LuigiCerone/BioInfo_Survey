@@ -23,6 +23,7 @@ public class JwtProvider {
     @Value("${security.app.jwtExpiration}")
     private int jwtExpiration;
 
+
     public String generateJwtToken(Authentication authentication) {
 
 //        UserPrinciple userPrincipal = (UserPrinciple) authentication.getPrincipal();
@@ -42,13 +43,6 @@ public class JwtProvider {
     }
 
     public String getUserNameFromJwtToken(String token) {
-        String s = Jwts.parser()
-                .setSigningKey(jwtSecret)
-                .parseClaimsJws(token)
-                .getBody().toString();
-
-        logger.debug(s);
-
         return Jwts.parser()
                 .setSigningKey(jwtSecret)
                 .parseClaimsJws(token)

@@ -5,7 +5,7 @@ import com.univaq.disim.bioinfo.model.section.A1;
 
 public interface SectionA1Service {
 
-    A1 insert(String documentId, A1 a1) throws BusinessLayerException;
+    A1 insert(String username, String documentId, A1 a1) throws BusinessLayerException;
 
     A1 get(String documentId) throws BusinessLayerException;
 

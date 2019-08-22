@@ -2,6 +2,7 @@ package com.univaq.disim.bioinfo.controller;
 
 
 import com.univaq.disim.bioinfo.BusinessLayerException;
+import com.univaq.disim.bioinfo.configuration.JwtProvider;
 import com.univaq.disim.bioinfo.model.Questionnaire;
 import com.univaq.disim.bioinfo.model.section.A1;
 import com.univaq.disim.bioinfo.repository.QuestionnaireRepository;
@@ -11,6 +12,7 @@ import org.bson.types.ObjectId;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.security.oauth2.resource.OAuth2ResourceServerProperties;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -30,6 +32,8 @@ public class QuestionnaireController<QuestionnaireServiceImpl> {
     @Autowired
     private SectionA1Service sectionA1Service;
 
+    @Autowired
+    private JwtProvider jwtProvider;
 
     @GetMapping("/{codeNumber}")
     public ResponseEntity<Questionnaire> getQuestionnaire(HttpServletRequest request, @PathVariable(value="codeNumber") String codeNumber){
@@ -43,11 +47,22 @@ public class QuestionnaireController<QuestionnaireServiceImpl> {
         return new ResponseEntity<>(q, HttpStatus.OK);
     }
 
+    @GetMapping("/user/{username}")
+    public ResponseEntity<Questionnaire> getQuestionnaireForUser(HttpServletRequest request, @PathVariable(value="username") String username){
+        Questionnaire q = questionnaireService.findOneByUsername(username);
+        return new ResponseEntity<Questionnaire>(q, HttpStatus.OK);
+    }
+
     // ==================================================================================== SECTIONS
     // A1
     @PostMapping("/{codeNumber}/a1")
-    public ResponseEntity insertA1(HttpServletRequest request, @RequestBody A1 a1, @PathVariable(value="codeNumber") String codeNumber) throws BusinessLayerException {
-        A1 a1Inserted = sectionA1Service.insert(codeNumber, a1);
+    public ResponseEntity insertA1(HttpServletRequest request,
+                                   @RequestBody A1 a1,
+                                   @PathVariable(value="codeNumber") String codeNumber,
+                                   @RequestHeader (name="Authorization") String token) throws BusinessLayerException {
+        // Decode token and get the username contained. There is also the word "Bearer" that we need to escape.
+        String username = this.jwtProvider.getUserNameFromJwtToken(token.substring(7));
+        A1 a1Inserted = sectionA1Service.insert(username, codeNumber, a1);
         return new ResponseEntity<>(a1Inserted, HttpStatus.CREATED);
     }
 

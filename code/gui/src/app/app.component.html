@@ -9,13 +9,13 @@
         <span>Home</span>
       </button>
 
-      <button mat-menu-item *ngIf="auth.currentUserSubject$.getValue()?.role !== 'DOCTOR' " routerLink="questionnaire">
-        <mat-icon>keyboard_arrow_right</mat-icon>
+      <button mat-menu-item *ngIf="auth.currentUserSubject$.getValue()?.role === 'CASE' " routerLink="questionnaire">
+        <mat-icon>question_answer</mat-icon>
         <span>Questionnaire</span>
       </button>
 
       <button mat-menu-item *ngIf="auth.currentUserSubject$.getValue()?.role === 'DOCTOR' " routerLink="profile">
-        <mat-icon>keyboard_arrow_right</mat-icon>
+        <mat-icon>list</mat-icon>
         <span>Profile</span>
       </button>
 

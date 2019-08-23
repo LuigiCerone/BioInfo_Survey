@@ -7,7 +7,7 @@
         <h3>1. Sex</h3>
         <mat-form-field >
           <mat-label>Sex defined at birth</mat-label>
-          <mat-select name="sex" required>
+          <mat-select formControlName="sex">
             <mat-option *ngFor="let option of sexOpt" [value]="option.value">
               {{option.viewValue}}
             </mat-option>
@@ -16,21 +16,18 @@
         <br>
         <h3>2. Enter the place of birth and date</h3>
         <mat-form-field>
-          <input matInput placeholder="City" name="city" required>
+          <input matInput placeholder="City" formControlName="city">
         </mat-form-field>
         <mat-form-field>
-          <input matInput placeholder="Provence" name="provence" required>
+          <input matInput placeholder="Provence" formControlName="provence">
         </mat-form-field>
         <mat-form-field>
-          <input matInput placeholder="Country" name="country" required>
+          <input matInput placeholder="Country" formControlName="country">
         </mat-form-field>
         <mat-form-field>
           <input placeholder="Date"
                  matInput
-                 name="date"
-                 formControlName="date"
-                 pattern = "[0-9]{2}[/][A-Z]{1}[a-z]{2}[/][0-9]{4}"
-                 required>
+                 formControlName="date">
           <mat-hint>
             Format DD/MMM/YYYY. Use a 3-letter abbreviation for month to avoid misinterpretation (US vs. European style)
           </mat-hint>
@@ -38,18 +35,18 @@
         <br><br>
         <h3>3. Enter the weight and height</h3>
         <mat-form-field>
-          <input placeholder="Height" matInput name="height" required>
+          <input placeholder="Height" matInput formControlName="height">
           <mat-hint>Cm</mat-hint>
         </mat-form-field>
         <mat-form-field>
-          <input placeholder="Weight" matInput name="weight" required>
+          <input placeholder="Weight" matInput formControlName="weight">
           <mat-hint>Kg</mat-hint>
         </mat-form-field>
         <br>
         <h3>4. Select your ethnicity</h3>
         <mat-form-field>
           <mat-label>Ethnicity</mat-label>
-          <mat-select name="ethnicity" required>
+          <mat-select formControlName="ethnicity">
             <mat-option *ngFor="let option of ethnicityOpt" [value]="option.value">
               {{option.viewValue}}
             </mat-option>
@@ -58,27 +55,27 @@
         </mat-form-field>
           <div *ngIf="selectedValue == 'other'">
             <mat-label>Specify</mat-label>
-            <input matInput>
+            <input matInput formControlName="other_ethnicity">
           </div>
         <br><br>
         <h3>5. Enter your residency</h3>
         <mat-form-field>
-          <input matInput placeholder="City" name="actCity" required>
+          <input matInput placeholder="City" formControlName="actCity" required>
         </mat-form-field>
         <mat-form-field>
-          <input matInput placeholder="Provence" name="actProvence" required>
+          <input matInput placeholder="Provence" formControlName="actProvence" required>
         </mat-form-field>
         <mat-form-field>
-          <input matInput placeholder="Country" name="actCountry" required>
+          <input matInput placeholder="Country" formControlName="actCountry" required>
         </mat-form-field>
         <mat-form-field>
-          <input matInput placeholder="From/To" formControlName="years" pattern = "[0-9]{4}[/][0-9]{4}" name="years" required>
+          <input matInput placeholder="From/To" formControlName="years">
         </mat-form-field>
         <br>
         <h3>6. Specify your level of education</h3>
         <mat-form-field>
           <mat-label>Education</mat-label>
-          <mat-select name="education" required>
+          <mat-select formControlName="education">
             <mat-option *ngFor="let option of educationOpt" [value]="option.value">
               {{option.viewValue}}
             </mat-option>
@@ -88,7 +85,7 @@
         <h3>7. Specify your current occupational status</h3>
         <mat-form-field>
           <mat-label>Occupation</mat-label>
-          <mat-select name="occupation" required>
+          <mat-select formControlName="occupation" required>
             <mat-option *ngFor="let option of occupationOpt" [value]="option.value">
               {{option.viewValue}}
             </mat-option>

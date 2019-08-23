@@ -10,8 +10,27 @@ import {Options} from "../section-a1/section-a1.component";
 export class SectionA2Component implements OnInit {
 
   form: FormGroup = new FormGroup({
-    years: new FormControl(''),
-    date: new FormControl(''),
+    sex: new FormControl('', [Validators.required]),
+    city: new FormControl('', [Validators.required]),
+    provence: new FormControl('', [Validators.required]),
+    country: new FormControl('', [Validators.required]),
+    date: new FormControl('', [
+      Validators.required,
+      Validators.pattern('[0-9]{2}[/][A-Z]{1}[a-z]{2}[/][0-9]{4}')
+    ]),
+    height: new FormControl('', [Validators.required]),
+    weight: new FormControl('', [Validators.required]),
+    ethnicity: new FormControl('', [Validators.required]),
+    otherEthnicity: new FormControl('' ),
+    actCity: new FormControl('', [Validators.required] ),
+    actProvence: new FormControl('', [Validators.required] ),
+    actCountry: new FormControl('', [Validators.required]),
+    years: new FormControl('', [
+      Validators.required,
+      Validators.pattern('[0-9]{4}[/][0-9]{4}')
+    ]),
+    education: new FormControl('', [Validators.required]),
+    occupation: new FormControl('', [Validators.required]),
   });
   sexOpt: Options[] = [
     {value: 'male', viewValue: 'Male'},
@@ -28,7 +47,7 @@ export class SectionA2Component implements OnInit {
     {value: 'hispanic', viewValue: 'Hispanic or Latino'},
     {value: 'other', viewValue: 'Other'},
   ];
-  
+
   educationOpt: Options[] = [
     {value: 'junior', viewValue: 'Up to junior high school (up to 14-16 yrs)'},
     {value: 'high', viewValue: 'High school (up to 18-19 yrs)'},

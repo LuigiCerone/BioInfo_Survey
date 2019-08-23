@@ -5,6 +5,7 @@ import { SectionA2Component } from './section-a2/section-a2.component';
 import { MaterialModule } from '../../material.module';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { SectionB1Component } from './section-b1/section-b1.component';
+import {MatRadioModule} from "@angular/material/radio";
 
 
 @NgModule({
@@ -12,7 +13,8 @@ import { SectionB1Component } from './section-b1/section-b1.component';
     CommonModule,
     MaterialModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    MatRadioModule
   ],
   exports: [
     SectionA1Component,

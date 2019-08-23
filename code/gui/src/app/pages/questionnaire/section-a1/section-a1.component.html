@@ -1,30 +1,29 @@
-<form [formGroup]="form">
+<form *ngIf="form" [formGroup]="form" (ngSubmit)="save()">
   <mat-card>
     <mat-card-title><h2>Section A.1</h2></mat-card-title>
     <mat-card-content>
-    <br>
-          <h3>1. Subject</h3>
-          <mat-form-field>
-            <mat-label>Select a subject type</mat-label>
-            <mat-select formControlName="subject">
-              <mat-option *ngFor="let option of subjectOpt" [value]="option.value">
-                {{option.viewValue}}
-              </mat-option>
-            </mat-select>
-          </mat-form-field>
-      <br>
-          <h3>2. Enter database code number</h3>
-          <mat-form-field>
-            <mat-label>Database code number</mat-label>
-            <input matInput formControlName="database">
-            <mat-hint>
-              Use numeric coding system.
-              First 2 numbers= country; second 2 numbers= center; M or C (melanoma case or control subject, respectively);
-              last 4 numbers= consecutive case/control number.
+      <h3>1. Subject</h3>
+      <mat-form-field>
+        <mat-label>Select a subject type</mat-label>
+        <mat-select formControlName="subject" [compareWith]="subjectSelected">
+          <mat-option *ngFor="let option of subjectOpt" [value]="option.value">
+            {{option.viewValue}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <br><br><br>
+      <h3>2. Enter database code number</h3>
+      <mat-form-field>
+        <mat-label>Database code number</mat-label>
+        <input matInput formControlName="database">
+        <mat-hint>
+          Use numeric coding system.
+          First 2 numbers= country; second 2 numbers= center; M or C (melanoma case or control subject, respectively);
+          last 4 numbers= consecutive case/control number.
 
-            </mat-hint>
-          </mat-form-field>
-      <br><br>
+        </mat-hint>
+      </mat-form-field>
+      <br><br><br>
       <h3>3. Enter the date of questionnaire administration and phenotyping</h3>
       <mat-form-field>
         <mat-label>Date</mat-label>
@@ -33,7 +32,7 @@
           Format DD/MMM/YYYY. Use a 3-letter abbreviation for month to avoid misinterpretation (US vs. European style)
         </mat-hint>
       </mat-form-field>
-      <br>
+      <br><br><br>
       <h3>4. Type of melanoma (if subject is a melanoma case)</h3>
       <mat-form-field>
         <mat-label>Type of melanoma</mat-label>
@@ -48,12 +47,12 @@
         <br><br>
         <div *ngIf="form.value.typeMelanoma === 'other'">
           <mat-label>Specify</mat-label>
-          <input matInput>
+          <input matInput formControlName="otherSpecification">
         </div>
       </mat-form-field>
-      <br><br>
-      <div>
-        <button mat-button matStepperNext>Next</button>
+      <br>
+      <div class="button">
+        <button type="submit" [disabled]="!form.valid" mat-raised-button color="primary" matStepperNext>Next</button>
       </div>
     </mat-card-content>
   </mat-card>

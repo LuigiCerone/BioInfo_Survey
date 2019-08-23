@@ -16,12 +16,12 @@ public class SectionA1ServiceImpl implements SectionA1Service {
     QuestionnaireRepository questionnaireRepository;
 
     @Override
-    public A1 insert(String username, String dbCodeNumber, A1 a1) throws BusinessLayerException {
-        Questionnaire q = questionnaireRepository.findByDbCodeNumber(dbCodeNumber);
+    public A1 insert(String username, A1 a1) throws BusinessLayerException {
+        Questionnaire q = questionnaireRepository.findOneByOwnerUsername(username);
 
 
         if (q != null) {
-            // There is an error, the db number is already in use.
+            // There is an error, the user has already inserted a questionnaire.
             throw new BusinessLayerException(HttpStatus.BAD_REQUEST, ErrorMessage.DB_CODE_NUMBER_ALREADY_IN_USE);
 
         } else {
@@ -33,10 +33,13 @@ public class SectionA1ServiceImpl implements SectionA1Service {
     }
 
     @Override
-    public A1 get(String dbCodeNumber) throws BusinessLayerException{
-        Questionnaire q = questionnaireRepository.findByDbCodeNumber(dbCodeNumber);
+    public A1 get(String username) throws BusinessLayerException{
+        Questionnaire q = questionnaireRepository.findOneByOwnerUsername(username);
 
-        if(q.getA1() == null){
+        if ( q == null){
+            return null;
+        }
+        if (q.getA1() == null){
             throw new BusinessLayerException(HttpStatus.NOT_FOUND, ErrorMessage.SECTION_MISSING);
         }
         return q.getA1();

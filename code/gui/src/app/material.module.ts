@@ -11,7 +11,7 @@ import {
   MatMenuModule,
   MatIconModule,
   MatToolbarModule,
-  MatDividerModule, MatDialogActions, MatDialogModule
+  MatDividerModule, MatDialogActions, MatDialogModule, MatRadioModule
 } from '@angular/material';
 
 const modules = [
@@ -26,6 +26,7 @@ const modules = [
   MatToolbarModule,
   MatDividerModule,
   MatDialogModule,
+  MatRadioModule
 ];
 
 @NgModule({

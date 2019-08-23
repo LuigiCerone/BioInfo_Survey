@@ -1,14 +1,11 @@
-<button mat-raised-button (click)="isLinear = !isLinear" id="toggle-linear">
-  {{!isLinear ? 'Enable linear mode' : 'Disable linear mode'}}
-</button>
-<mat-horizontal-stepper [linear]="isLinear" #stepper>
+<mat-horizontal-stepper linear="true" #stepper>
   <mat-step>
-    <app-section-a1 [a1]="this.a1"></app-section-a1>
+    <app-section-a1></app-section-a1>
   </mat-step>
   <mat-step>
     <app-section-a2></app-section-a2>
   </mat-step>
   <mat-step>
-    <app-section-b1></app-section-b1>
+<!--    <app-section-b1></app-section-b1>-->
   </mat-step>
 </mat-horizontal-stepper>

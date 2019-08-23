@@ -13,8 +13,7 @@ import {MatRadioModule} from "@angular/material/radio";
     CommonModule,
     MaterialModule,
     ReactiveFormsModule,
-    FormsModule,
-    MatRadioModule
+    FormsModule
   ],
   exports: [
     SectionA1Component,

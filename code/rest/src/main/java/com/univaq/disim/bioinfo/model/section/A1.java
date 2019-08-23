@@ -1,7 +1,9 @@
 package com.univaq.disim.bioinfo.model.section;
 
 import org.springframework.data.mongodb.core.mapping.Field;
+import org.springframework.lang.Nullable;
 
+import javax.validation.constraints.Null;
 import java.util.List;
 
 public class A1 {
@@ -21,6 +23,9 @@ public class A1 {
     @Field
     private String typeOfMelanoma;
 
+    @Nullable
+    @Field
+    private String otherSpecification;
 
     public A1(){ }
 
@@ -63,5 +68,14 @@ public class A1 {
 
     public void setTypeOfMelanoma(String typeOfMelanoma) {
         this.typeOfMelanoma = typeOfMelanoma;
+    }
+
+    @Nullable
+    public String getOtherSpecification() {
+        return otherSpecification;
+    }
+
+    public void setOtherSpecification(@Nullable String otherSpecification) {
+        this.otherSpecification = otherSpecification;
     }
 }

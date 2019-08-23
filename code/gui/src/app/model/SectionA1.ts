@@ -4,4 +4,5 @@ export class SectionA1{
   dateOfQuestionnaireAdministration: string;
   datesOfUpdateQuestionnaire: Array<string>;
   typeOfMelanoma: string;
+  otherSpecification: string;
 }

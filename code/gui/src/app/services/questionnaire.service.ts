@@ -14,7 +14,11 @@ export class QuestionnaireService {
     return this.http.get(REST_API.QUESTIONNAIRE);
   }
 
-  getQuestionnaireForUser(username: string): Observable<any> {
-    return this.http.get(`${REST_API.QUESTIONNAIRE_USER}/${username}`);
+  getQuestionnaireForUser(username: string, section: string): Observable<any> {
+    return this.http.get(`${REST_API.QUESTIONNAIRE_USER}/${username}/${section}`);
+  }
+
+  insertSection(username: string, section: string, data: any): Observable<any>{
+    return this.http.post(`${REST_API.QUESTIONNAIRE_USER}/${username}/${section}`, data);
   }
 }

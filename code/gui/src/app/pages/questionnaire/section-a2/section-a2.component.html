@@ -1,13 +1,104 @@
 <div>
-  <form [formGroup]="secondFormGroup">
-    <ng-template matStepLabel>Fill out your address</ng-template>
-    <mat-form-field>
-      <input matInput placeholder="Address" formControlName="secondCtrl" required>
-    </mat-form-field>
-    <div>
-      <button mat-button matStepperPrevious>Back</button>
-      <button mat-button matStepperNext>Next</button>
-    </div>
+  <form [formGroup]="form">
+    <mat-card>
+      <mat-card-title><h2>Section A.2</h2></mat-card-title>
+      <mat-card-content>
+        <br>
+        <h3>1. Sex</h3>
+        <mat-form-field >
+          <mat-label>Sex defined at birth</mat-label>
+          <mat-select name="sex" required>
+            <mat-option *ngFor="let option of sexOpt" [value]="option.value">
+              {{option.viewValue}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <br>
+        <h3>2. Enter the place of birth and date</h3>
+        <mat-form-field>
+          <input matInput placeholder="City" name="city" required>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Provence" name="provence" required>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Country" name="country" required>
+        </mat-form-field>
+        <mat-form-field>
+          <input placeholder="Date"
+                 matInput
+                 name="date"
+                 formControlName="date"
+                 pattern = "[0-9]{2}[/][A-Z]{1}[a-z]{2}[/][0-9]{4}"
+                 required>
+          <mat-hint>
+            Format DD/MMM/YYYY. Use a 3-letter abbreviation for month to avoid misinterpretation (US vs. European style)
+          </mat-hint>
+        </mat-form-field>
+        <br><br>
+        <h3>3. Enter the weight and height</h3>
+        <mat-form-field>
+          <input placeholder="Height" matInput name="height" required>
+          <mat-hint>Cm</mat-hint>
+        </mat-form-field>
+        <mat-form-field>
+          <input placeholder="Weight" matInput name="weight" required>
+          <mat-hint>Kg</mat-hint>
+        </mat-form-field>
+        <br>
+        <h3>4. Select your ethnicity</h3>
+        <mat-form-field>
+          <mat-label>Ethnicity</mat-label>
+          <mat-select name="ethnicity" required>
+            <mat-option *ngFor="let option of ethnicityOpt" [value]="option.value">
+              {{option.viewValue}}
+            </mat-option>
+          </mat-select>
+
+        </mat-form-field>
+          <div *ngIf="selectedValue == 'other'">
+            <mat-label>Specify</mat-label>
+            <input matInput>
+          </div>
+        <br><br>
+        <h3>5. Enter your residency</h3>
+        <mat-form-field>
+          <input matInput placeholder="City" name="actCity" required>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Provence" name="actProvence" required>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Country" name="actCountry" required>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="From/To" formControlName="years" pattern = "[0-9]{4}[/][0-9]{4}" name="years" required>
+        </mat-form-field>
+        <br>
+        <h3>6. Specify your level of education</h3>
+        <mat-form-field>
+          <mat-label>Education</mat-label>
+          <mat-select name="education" required>
+            <mat-option *ngFor="let option of educationOpt" [value]="option.value">
+              {{option.viewValue}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <br>
+        <h3>7. Specify your current occupational status</h3>
+        <mat-form-field>
+          <mat-label>Occupation</mat-label>
+          <mat-select name="occupation" required>
+            <mat-option *ngFor="let option of occupationOpt" [value]="option.value">
+              {{option.viewValue}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <div>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </mat-card-content>
+    </mat-card>
   </form>
 </div>
 

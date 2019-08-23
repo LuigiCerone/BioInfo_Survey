@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { SectionA1Component } from './section-a1/section-a1.component';
 import { SectionA2Component } from './section-a2/section-a2.component';
 import { MaterialModule } from '../../material.module';
-import { ReactiveFormsModule } from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { SectionB1Component } from './section-b1/section-b1.component';
 
 
@@ -11,7 +11,8 @@ import { SectionB1Component } from './section-b1/section-b1.component';
   imports: [
     CommonModule,
     MaterialModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FormsModule
   ],
   exports: [
     SectionA1Component,

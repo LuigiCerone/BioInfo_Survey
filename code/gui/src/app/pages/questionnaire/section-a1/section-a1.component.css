@@ -6,3 +6,11 @@
 .example-container > * {
   width: 100%;
 }
+
+.mat-form-field{
+  width: 50%;
+}
+
+.mat-card-content{
+  font-size: 17px;
+}

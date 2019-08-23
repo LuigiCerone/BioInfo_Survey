@@ -1,33 +1,59 @@
+<form [formGroup]="form">
+  <mat-card>
+    <mat-card-title><h2>Section A.1</h2></mat-card-title>
+    <mat-card-content>
+    <br>
+          <h3>1. Subject</h3>
+          <mat-form-field>
+            <mat-label>Select a subject type</mat-label>
+            <mat-select required>
+              <mat-option *ngFor="let option of subjectOpt" [value]="option.value">
+                {{option.viewValue}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+      <br>
+          <h3>2. Enter database code number</h3>
+          <mat-form-field>
+            <mat-label>Database code number</mat-label>
+            <input matInput formControlName="database" pattern = "[0-9]{4}[MC][0-9]{4}" required>
+            <mat-hint>
+              Use numeric coding system.
+              First 2 numbers= country; second 2 numbers= center; M or C (melanoma case or control subject, respectively);
+              last 4 numbers= consecutive case/control number.
 
-  <div>
-    <form [formGroup]="firstFormGroup">
-      <ng-template matStepLabel>Fill out your name</ng-template>
+            </mat-hint>
+          </mat-form-field>
+      <br><br>
+      <h3>3. Enter the date of questionnaire administration and phenotyping</h3>
       <mat-form-field>
-        <input matInput placeholder="Last name, First name" formControlName="firstCtrl" required>
+        <mat-label>Date</mat-label>
+        <input matInput formControlName="date" pattern = "[0-9]{2}[/][A-Z]{1}[a-z]{2}[/][0-9]{4}" required>
+        <mat-hint>
+          Format DD/MMM/YYYY. Use a 3-letter abbreviation for month to avoid misinterpretation (US vs. European style)
+        </mat-hint>
       </mat-form-field>
+      <br>
+      <h3>4. Type of melanoma (if subject is a melanoma case)</h3>
+      <mat-form-field>
+        <mat-label>Type of melanoma</mat-label>
+        <mat-select required [(ngModel)]="selectedValue">
+          <mat-option *ngFor="let option of melanomaOpt" [value]="option.value">
+            {{option.viewValue}}
+          </mat-option>
+        </mat-select>
+        <mat-hint>
+          Use a 3-letter abbreviation for month to avoid misinterpretation (US vs. European style)
+        </mat-hint>
+        <div *ngIf="selectedValue == 'other'">
+          <mat-label>Specify</mat-label>
+          <input matInput>
+        </div>
+      </mat-form-field>
+      <br><br>
       <div>
         <button mat-button matStepperNext>Next</button>
       </div>
-    </form>
-  </div>
-
-<!--  <mat-step [stepControl]="secondFormGroup">-->
-<!--    <form [formGroup]="secondFormGroup">-->
-<!--      <ng-template matStepLabel>Fill out your address</ng-template>-->
-<!--      <mat-form-field>-->
-<!--        <input matInput placeholder="Address" formControlName="secondCtrl" required>-->
-<!--      </mat-form-field>-->
-<!--      <div>-->
-<!--        <button mat-button matStepperPrevious>Back</button>-->
-<!--        <button mat-button matStepperNext>Next</button>-->
-<!--      </div>-->
-<!--    </form>-->
-<!--  </mat-step>-->
-<!--  <mat-step>-->
-<!--    <ng-template matStepLabel>Done</ng-template>-->
-<!--    You are now done.-->
-<!--    <div>-->
-<!--      <button mat-button matStepperPrevious>Back</button>-->
-<!--      <button mat-button (click)="stepper.reset()">Reset</button>-->
-<!--    </div>-->
-<!--  </mat-step>-->
+    </mat-card-content>
+  </mat-card>
+</form>

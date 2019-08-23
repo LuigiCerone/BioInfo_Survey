@@ -3,7 +3,7 @@
 </button>
 <mat-horizontal-stepper [linear]="isLinear" #stepper>
   <mat-step>
-    <app-section-a1></app-section-a1>
+    <app-section-a1 [a1]="this.a1"></app-section-a1>
   </mat-step>
   <mat-step>
     <app-section-a2></app-section-a2>
@@ -11,6 +11,4 @@
   <mat-step>
     <app-section-b1></app-section-b1>
   </mat-step>
-
 </mat-horizontal-stepper>
-<button mat-raised-button (click)="logout()">Logout</button>

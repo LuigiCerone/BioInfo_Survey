@@ -6,7 +6,7 @@
           <h3>1. Subject</h3>
           <mat-form-field>
             <mat-label>Select a subject type</mat-label>
-            <mat-select required>
+            <mat-select formControlName="subject">
               <mat-option *ngFor="let option of subjectOpt" [value]="option.value">
                 {{option.viewValue}}
               </mat-option>
@@ -16,7 +16,7 @@
           <h3>2. Enter database code number</h3>
           <mat-form-field>
             <mat-label>Database code number</mat-label>
-            <input matInput formControlName="database" pattern = "[0-9]{4}[MC][0-9]{4}" required>
+            <input matInput formControlName="database">
             <mat-hint>
               Use numeric coding system.
               First 2 numbers= country; second 2 numbers= center; M or C (melanoma case or control subject, respectively);
@@ -28,7 +28,7 @@
       <h3>3. Enter the date of questionnaire administration and phenotyping</h3>
       <mat-form-field>
         <mat-label>Date</mat-label>
-        <input matInput formControlName="date" pattern = "[0-9]{2}[/][A-Z]{1}[a-z]{2}[/][0-9]{4}" required>
+        <input matInput formControlName="date">
         <mat-hint>
           Format DD/MMM/YYYY. Use a 3-letter abbreviation for month to avoid misinterpretation (US vs. European style)
         </mat-hint>
@@ -37,7 +37,7 @@
       <h3>4. Type of melanoma (if subject is a melanoma case)</h3>
       <mat-form-field>
         <mat-label>Type of melanoma</mat-label>
-        <mat-select required [(ngModel)]="selectedValue">
+        <mat-select formControlName="typeMelanoma">
           <mat-option *ngFor="let option of melanomaOpt" [value]="option.value">
             {{option.viewValue}}
           </mat-option>
@@ -45,7 +45,8 @@
         <mat-hint>
           Use a 3-letter abbreviation for month to avoid misinterpretation (US vs. European style)
         </mat-hint>
-        <div *ngIf="selectedValue == 'other'">
+        <br><br>
+        <div *ngIf="form.value.typeMelanoma === 'other'">
           <mat-label>Specify</mat-label>
           <input matInput>
         </div>

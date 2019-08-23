@@ -1,23 +1,29 @@
-import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter, TemplateRef, ViewChild } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { AuthenticationService } from '../../services/authentication.service';
 import { Router } from '@angular/router';
-
+import { MatDialog } from '@angular/material';
+import { User } from '../../model/User';
+import * as JsPDF from 'jspdf';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent {
   form: FormGroup = new FormGroup({
     username: new FormControl(''),
     password: new FormControl(''),
   });
 
+  visible: boolean = false;
+  role: string;
+  @ViewChild('successDialog', {static: false}) successDialog: TemplateRef<any>;
   @Input() error: string | null;
+  newUser: User;
 
-  constructor(private authService: AuthenticationService, private router: Router){
+  constructor(private authService: AuthenticationService, private router: Router, private dialog: MatDialog){
   }
 
   submit() {
@@ -37,11 +43,28 @@ export class LoginComponent implements OnInit {
   }
 
   signup() {
-    this.authService.signup().subscribe( (res) => {
-      console.log(res);
+    this.authService.signup(this.role).subscribe( (user: User) => {
+      console.log(user);
+      this.newUser = user;
+      this.form.controls.username.setValue(this.newUser.username);
+      this.form.controls.password.setValue(this.newUser.password);
+
+
+      // Open dialog box with generated information.
+      this.dialog.open(this.successDialog);
     });
   }
 
-  ngOnInit(): void {
+  showSignup() {
+    this.visible = true;
   }
+
+  generatePDF(){
+    const doc = new JsPDF();
+    doc.text('User credentials', 10, 10);
+    doc.text(`USERNAME: ${this.newUser.username}`, 10, 20);
+    doc.text(`PASSWORD: ${this.newUser.password}`, 10, 30);
+    doc.save(`${this.newUser.username}.pdf`);
+  }
+
 }

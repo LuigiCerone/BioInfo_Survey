@@ -3,7 +3,15 @@ import { NgModule } from '@angular/core';
 import {
   MatCardModule,
   MatInputModule,
-  MatButtonModule, MatSelectModule, MatOptionModule, MatStepperModule, MatMenu, MatMenuModule, MatIconModule, MatToolbarModule
+  MatButtonModule,
+  MatSelectModule,
+  MatOptionModule,
+  MatStepperModule,
+  MatMenu,
+  MatMenuModule,
+  MatIconModule,
+  MatToolbarModule,
+  MatDividerModule, MatDialogActions, MatDialogModule
 } from '@angular/material';
 
 const modules = [
@@ -15,7 +23,9 @@ const modules = [
   MatStepperModule,
   MatMenuModule,
   MatIconModule,
-  MatToolbarModule
+  MatToolbarModule,
+  MatDividerModule,
+  MatDialogModule
 ];
 
 @NgModule({

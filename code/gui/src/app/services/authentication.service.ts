@@ -51,8 +51,8 @@ export class AuthenticationService {
     } else { return null; }
   }
 
-  signup(): Observable<any> {
+  signup(role: string): Observable<any> {
     // Ask the server for a pair username and password.
-    return this.http.get<any>(REST_API.AUTH_SIGNUP);
+    return this.http.post<any>(REST_API.AUTH_SIGNUP, { role });
   }
 }

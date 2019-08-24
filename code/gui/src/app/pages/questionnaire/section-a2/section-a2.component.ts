@@ -13,9 +13,8 @@ import { SectionA2 } from '../../../model/SectionA2';
   styleUrls: ['./section-a2.component.css']
 })
 export class SectionA2Component implements OnInit {
-
   form: FormGroup;
-
+  
   sexOpt: Options[] = [
     {value: 'male', viewValue: 'Male'},
     {value: 'female', viewValue: 'Female'},

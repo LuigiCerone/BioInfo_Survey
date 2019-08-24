@@ -1,0 +1,241 @@
+<div>
+  <form [formGroup]="form">
+    <mat-card>
+      <mat-card-title><h2>Section B.1</h2></mat-card-title>
+      <mat-card-content>
+        <br>
+        <h3>1. Occupational sun exposure</h3>
+        <mat-form-field >
+          <mat-label>Outdoor occupation with at least 4 hours/day spent outdoor in the sun</mat-label>
+          <mat-radio-group aria-label="Select yes or no" formControlName="occupationalSunExposure">
+            <mat-radio-button *ngFor="let option of yesNoOpt" [value]="option.value" >
+              {{option.viewValue}}
+            </mat-radio-button>
+          </mat-radio-group>
+          <mat-form-field *ngIf="form.value.occupationalSunExposure">
+            <input formControlName="occupationalSunExposureType" placeholder="Insert occupation">
+            <input formControlName="occupationalSunExposureHours" placeholder="How many hours per day?">
+            <input formControlName="occupationalSunExposureDays" placeholder="How many days per month?">
+            <input formControlName="occupationalSunExposureMonths" placeholder="How many months per year?">
+            <input formControlName="occupationalSunExposureYears" placeholder="How many years?">
+          </mat-form-field>
+        </mat-form-field>
+        <br>
+
+        <h3>2. Recreational sun exposure</h3>
+        <mat-form-field >
+          <mat-label>
+            Outdoor hobbies or physical activities–other than sunbathing–with at least 4 hours/day spent outdoor in the sun
+          </mat-label>
+          <mat-radio-group aria-label="Select yes or no" formControlName="recreationalSunExposure">
+            <mat-radio-button *ngFor="let option of yesNoOpt" [value]="option.value" >
+              {{option.viewValue}}
+            </mat-radio-button>
+          </mat-radio-group>
+          <mat-form-field *ngIf="form.value.recreationalSunExposure">
+            <input formControlName="recreationalSunExposureType" placeholder="Insert recreation">
+            <input formControlName="recreationalSunExposureHours" placeholder="How many hours per day?">
+            <input formControlName="recreationalSunExposureDays" placeholder="How many days per month?">
+            <input formControlName="recreationalSunExposureMonths" placeholder="How many months per year?">
+            <input formControlName="recreationalSunExposureYears" placeholder="How many years?">
+          </mat-form-field>
+        </mat-form-field>
+        <br>
+
+        <h3>3. Intermittent sun exposure</h3>
+        <mat-form-field >
+          <mat-label>
+            Sun exposure in spring and summer time, including vacation, during peak hours 11AM-4PM
+          </mat-label>
+          <mat-grid-list cols="3" rowHeight="1:1">
+            <mat-grid-tile>Age period</mat-grid-tile>
+            <mat-grid-tile>Weeks of vacation</mat-grid-tile>
+            <mat-grid-tile>Hours spent between 11AM - 4PM</mat-grid-tile>
+            <mat-grid-tile>Childhood (up to age 10 yrs)</mat-grid-tile>
+            <mat-grid-tile>
+              <input formControlName="intermittentExposureChildhoodWeeks">
+            </mat-grid-tile>
+            <mat-grid-tile>
+              <input formControlName="intermittentExposureChildhoodHours">
+            </mat-grid-tile>
+            <mat-grid-tile>Adolescence (11-18 yrs)</mat-grid-tile>
+            <mat-grid-tile>
+              <input formControlName="intermittentExposureAdolescenceWeeks">
+            </mat-grid-tile>
+            <mat-grid-tile>
+              <input formControlName="intermittentExposureAdolescenceHours">
+            </mat-grid-tile>
+            <mat-grid-tile>Adulthood (>17 yrs)</mat-grid-tile>
+            <mat-grid-tile>
+              <input formControlName="intermittentExposureAdulthoodWeeks">
+            </mat-grid-tile>
+            <mat-grid-tile>
+              <input formControlName="intermittentExposureAdulthoodHours">
+            </mat-grid-tile>
+            <!-- QUESTA È UNA DOMANDA CHE VA SPLITTATA FRA CASE E CONTROL -->
+            <mat-grid-tile>10 years before melanoma diagnosis (for cases) or last 10 years (for controls)</mat-grid-tile>
+            <mat-grid-tile>
+              <input formControlName="intermittentExposureDiagnosisWeeks">
+            </mat-grid-tile>
+            <mat-grid-tile>
+              <input formControlName="intermittentExposureDiagnosisHours">
+            </mat-grid-tile>
+
+          </mat-grid-list>
+        </mat-form-field>
+        <br>
+
+        <h3>4. Most recent intense intermittent sun exposure</h3>
+        <mat-form-field >
+          <!-- Anche qui dividere fra case e control -->
+          <mat-label>
+            Provide date or month of last time of intense intermittent sun exposure before
+            the diagnosis of melanoma (for cases)
+            or before this interview (for controls)
+          </mat-label>
+          <input placeholder ="Last intense sun exposure" formControlName="lastIntenseExposure">
+          <mat-hint>
+            Definition: Light brown small macules since childhood, on the face,
+            during summer time (disappear in winter)
+          </mat-hint>
+        </mat-form-field>
+        <br>
+
+        <h3>5. Severe sunburns</h3>
+        <mat-form-field >
+          <mat-label>
+            Suburns with erythema and pain for more than 2 days or with blisters
+          </mat-label>
+          <mat-radio-group aria-label="At age <18 years" formControlName="sunburnsLess18">
+            <mat-radio-button *ngFor="let option of yesNoNotKnownOpt" [value]="option.value">
+            {{option.viewValue}}
+            </mat-radio-button>
+          </mat-radio-group>
+          <input
+            *ngIf="form.value.sunburnsLess18 === 1"
+            placeholder="Specify how many"
+            formControlName="less18SunburnsNumber">
+
+          <mat-radio-group aria-label="At age > 17 years" formControlName="sunburnsGreather17">
+            <mat-radio-button *ngFor="let option of yesNoNotKnownOpt" [value]="option.value">
+              {{option.viewValue}}
+            </mat-radio-button>
+          </mat-radio-group>
+          <input
+            *ngIf="form.value.sunburnsGreather17 === 1"
+            placeholder="Specify how many"
+            formControlName="greather17SunburnsNumber">
+
+          <mat-radio-group aria-label="At site of melanoma" formControlName="sunburnsMelanomaSite">
+            <mat-radio-button *ngFor="let option of yesNoNotKnownOpt" [value]="option.value">
+              {{option.viewValue}}
+            </mat-radio-button>
+          </mat-radio-group>
+          <mat-radio-group aria-label="In the last 5 years" formControlName="sunburnsLast5">
+            <mat-radio-button *ngFor="let option of yesNoNotKnownOpt" [value]="option.value">
+              {{option.viewValue}}
+            </mat-radio-button>
+          </mat-radio-group>
+          <input
+            *ngIf="form.value.sunburnsLast5 === 1"
+            placeholder="Specify how many"
+            formControlName="last5SunburnsNumber">
+
+        </mat-form-field>
+        <br>
+        <mat-form-field>
+          <mat-grid-list cols="3" rowHeight="1:1">
+            <mat-grid-tile>Age period</mat-grid-tile>
+            <mat-grid-tile>Did you use sunscreens during the summertime?</mat-grid-tile>
+            <mat-grid-tile>Type of sunscreen used:</mat-grid-tile>
+            <mat-grid-tile>Childhood (up to age 10 yrs)</mat-grid-tile>
+            <mat-grid-tile>
+              <mat-select formControlName="sunscreenPercentageChildhood">
+                <mat-option *ngFor="let option of sunscreenPercentageOpt" [value]="option.value">
+                  {{option.viewValue}}
+                </mat-option>
+              </mat-select>
+            </mat-grid-tile>
+            <mat-grid-tile>
+              <mat-select formControlName="sunscreenTypeChildhood">
+                <mat-option *ngFor="let option of sunscreenTypeOpt" [value]="option.value">
+                  {{option.viewValue}}
+                </mat-option>
+              </mat-select>
+            </mat-grid-tile>
+            <mat-grid-tile>Adolescence (11-18 yrs)</mat-grid-tile>
+            <mat-grid-tile>
+              <mat-select formControlName="sunscreenPercentageAdolescence">
+                <mat-option *ngFor="let option of sunscreenPercentageOpt" [value]="option.value">
+                  {{option.viewValue}}
+                </mat-option>
+              </mat-select>
+            </mat-grid-tile>
+            <mat-grid-tile>
+              <mat-select formControlName="sunscreenTypeAdolescence">
+                <mat-option *ngFor="let option of sunscreenTypeOpt" [value]="option.value">
+                  {{option.viewValue}}
+                </mat-option>
+              </mat-select>
+            </mat-grid-tile>
+            <mat-grid-tile>Adulthood (>17 yrs)</mat-grid-tile>
+            <mat-grid-tile>
+              <mat-select formControlName="sunscreenPercentageAdulthood">
+                <mat-option *ngFor="let option of sunscreenPercentageOpt" [value]="option.value">
+                  {{option.viewValue}}
+                </mat-option>
+              </mat-select>
+            </mat-grid-tile>
+            <mat-grid-tile>
+              <mat-select formControlName="sunscreenTypeAdulthood">
+                <mat-option *ngFor="let option of sunscreenTypeOpt" [value]="option.value">
+                  {{option.viewValue}}
+                </mat-option>
+              </mat-select>
+            </mat-grid-tile>
+            <!-- QUESTA È UNA DOMANDA CHE VA SPLITTATA FRA CASE E CONTROL -->
+            <mat-grid-tile>10 years before melanoma diagnosis (for cases) or last 10 years (for controls)</mat-grid-tile>
+            <mat-grid-tile>
+              <mat-select formControlName="sunscreenPercentageMelanoma">
+                <mat-option *ngFor="let option of sunscreenPercentageOpt" [value]="option.value">
+                  {{option.viewValue}}
+                </mat-option>
+              </mat-select>
+            </mat-grid-tile>
+            <mat-grid-tile>
+              <mat-select formControlName="sunscreenTypeMelanoma">
+                <mat-option *ngFor="let option of sunscreenTypeOpt" [value]="option.value">
+                  {{option.viewValue}}
+                </mat-option>
+              </mat-select>
+            </mat-grid-tile>
+
+          </mat-grid-list>
+        </mat-form-field>
+        <br>
+
+        <h3>6. Sunlamps/sunbeds</h3>
+        <mat-form-field >
+          <mat-label>
+            Sunlamps/sunbeds
+          </mat-label>
+          <mat-radio-group aria-label="Select yes or no" formControlName="sunlamps">
+            <mat-radio-button *ngFor="let option of yesNoOpt" [value]="option.value" >
+              {{option.viewValue}}
+            </mat-radio-button>
+          </mat-radio-group>
+          <mat-form-field *ngIf="form.value.sunlamps">
+            <input formControlName="numberSunlamps" placeholder="Lifetime number of sessions">
+            <input formControlName="ageFirstSunlamps" placeholder="Age at first exposure">
+            <input formControlName="ageLastSunlamps" placeholder="Age at last exposure">
+          </mat-form-field>
+        </mat-form-field>
+
+        <div>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </form>
+</div>
+

@@ -3,7 +3,7 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {Options} from '../section-a1/section-a1.component';
 
 @Component({
-  selector: 'app-section-b1',
+  selector: 'app-section-b2',
   templateUrl: './section-b2.component.html',
   styleUrls: ['./section-b2.component.css']
 })

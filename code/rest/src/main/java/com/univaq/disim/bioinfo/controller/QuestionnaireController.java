@@ -6,10 +6,12 @@ import com.univaq.disim.bioinfo.configuration.JwtProvider;
 import com.univaq.disim.bioinfo.model.Questionnaire;
 import com.univaq.disim.bioinfo.model.section.A1;
 import com.univaq.disim.bioinfo.model.section.A2;
+import com.univaq.disim.bioinfo.model.section.B1;
 import com.univaq.disim.bioinfo.repository.QuestionnaireRepository;
 import com.univaq.disim.bioinfo.service.interfaces.QuestionnaireService;
 import com.univaq.disim.bioinfo.service.interfaces.SectionA1Service;
 import com.univaq.disim.bioinfo.service.interfaces.SectionA2Service;
+import com.univaq.disim.bioinfo.service.interfaces.SectionB1Service;
 import org.bson.types.ObjectId;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -36,6 +38,9 @@ public class QuestionnaireController<QuestionnaireServiceImpl> {
 
     @Autowired
     private SectionA2Service sectionA2Service;
+
+    @Autowired
+    private SectionB1Service sectionB1Service;
 
     @Autowired
     private JwtProvider jwtProvider;
@@ -95,6 +100,26 @@ public class QuestionnaireController<QuestionnaireServiceImpl> {
     public ResponseEntity<A2> getA2(HttpServletRequest request, @PathVariable(value="username") String username) throws BusinessLayerException {
         A2 a2 = sectionA2Service.get(username);
         return new ResponseEntity<A2>(a2, HttpStatus.OK);
+
+    }
+
+    // ==================================================================================== SECTIONS
+    // B1
+    @PostMapping("/user/{username}/b1")
+    public ResponseEntity insertB1(HttpServletRequest request,
+                                   @RequestBody B1 b1,
+                                   @PathVariable(value="username") String username,
+                                   @RequestHeader (name="Authorization") String token) throws BusinessLayerException {
+        // Decode token and get the username contained. There is also the word "Bearer" that we need to escape.
+        String token_username = this.jwtProvider.getUserNameFromJwtToken(token.substring(7));
+        B1 b1Inserted = sectionB1Service.insert(username, b1);
+        return new ResponseEntity<>(b1Inserted, HttpStatus.CREATED);
+    }
+
+    @GetMapping("/user/{username}/b1")
+    public ResponseEntity<B1> getB1(HttpServletRequest request, @PathVariable(value="username") String username) throws BusinessLayerException {
+        B1 b1 = sectionB1Service.get(username);
+        return new ResponseEntity<B1>(b1, HttpStatus.OK);
 
     }
 }

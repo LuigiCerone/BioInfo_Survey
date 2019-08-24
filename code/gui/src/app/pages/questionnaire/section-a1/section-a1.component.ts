@@ -38,7 +38,6 @@ export class SectionA1Component implements OnInit {
               private questionnaireService: QuestionnaireService) { }
 
   ngOnInit() {
-    console.log(`I've received: ${JSON.stringify(this.a1)}`);
     // Get current logged in user and retrieve his/her questionnaire.
     this.questionnaireService.getQuestionnaireForUser(this.authenticationService.currentUserValue.username, 'a1').subscribe( (section: SectionA1) => {
       console.log(section);

@@ -9,7 +9,7 @@ public interface SectionA1Service {
 
     A1 get(String username) throws BusinessLayerException;
 
-    A1 update(String documentId, A1 a1);
+    A1 update(String username, A1 a1) throws BusinessLayerException;
 
     void delete(String documentId);
 }

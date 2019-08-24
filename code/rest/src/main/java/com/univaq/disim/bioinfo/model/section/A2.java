@@ -36,7 +36,13 @@ public class A2 {
     private String ethnicity;
 
     @Field
-    private List<Residency> residencies;
+    private String cityOfResidence;
+
+    @Field
+    private String provinceOfResidence;
+
+    @Field
+    private String countryOfResidence;
 
     @Field
     private String education;
@@ -114,12 +120,28 @@ public class A2 {
         this.ethnicity = ethnicity;
     }
 
-    public List<Residency> getResidencies() {
-        return residencies;
+    public String getCityOfResidence() {
+        return cityOfResidence;
     }
 
-    public void setResidencies(List<Residency> residencies) {
-        this.residencies = residencies;
+    public void setCityOfResidence(String cityOfResidence) {
+        this.cityOfResidence = cityOfResidence;
+    }
+
+    public String getProvinceOfResidence() {
+        return provinceOfResidence;
+    }
+
+    public void setProvinceOfResidence(String provinceOfResidence) {
+        this.provinceOfResidence = provinceOfResidence;
+    }
+
+    public String getCountryOfResidence() {
+        return countryOfResidence;
+    }
+
+    public void setCountryOfResidence(String countryOfResidence) {
+        this.countryOfResidence = countryOfResidence;
     }
 
     public String getEducation() {

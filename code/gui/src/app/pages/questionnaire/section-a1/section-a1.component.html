@@ -15,7 +15,7 @@
       <h3>2. Enter database code number</h3>
       <mat-form-field>
         <mat-label>Database code number</mat-label>
-        <input matInput formControlName="database">
+        <input matInput formControlName="dbCodeNumber">
         <mat-hint>
           Use numeric coding system.
           First 2 numbers= country; second 2 numbers= center; M or C (melanoma case or control subject, respectively);
@@ -27,7 +27,7 @@
       <h3>3. Enter the date of questionnaire administration and phenotyping</h3>
       <mat-form-field>
         <mat-label>Date</mat-label>
-        <input matInput formControlName="date">
+        <input matInput formControlName="dateOfQuestionnaireAdministration">
         <mat-hint>
           Format DD/MMM/YYYY. Use a 3-letter abbreviation for month to avoid misinterpretation (US vs. European style)
         </mat-hint>
@@ -36,7 +36,7 @@
       <h3>4. Type of melanoma (if subject is a melanoma case)</h3>
       <mat-form-field>
         <mat-label>Type of melanoma</mat-label>
-        <mat-select formControlName="typeMelanoma">
+        <mat-select formControlName="typeOfMelanoma">
           <mat-option *ngFor="let option of melanomaOpt" [value]="option.value">
             {{option.viewValue}}
           </mat-option>

@@ -1,5 +1,5 @@
 <div>
-  <form [formGroup]="form">
+  <form *ngIf="form" [formGroup]="form" (ngSubmit)="save()">
     <mat-card>
       <mat-card-title><h2>Section A.2</h2></mat-card-title>
       <mat-card-content>
@@ -7,7 +7,7 @@
         <h3>1. Sex</h3>
         <mat-form-field >
           <mat-label>Sex defined at birth</mat-label>
-          <mat-select formControlName="sex">
+          <mat-select formControlName="sex" [compareWith]="sexSelected">
             <mat-option *ngFor="let option of sexOpt" [value]="option.value">
               {{option.viewValue}}
             </mat-option>
@@ -53,23 +53,20 @@
           </mat-select>
 
         </mat-form-field>
-          <div *ngIf="selectedValue == 'other'">
+        <div *ngIf="form.value.ethnicity === 'other'">
             <mat-label>Specify</mat-label>
-            <input matInput formControlName="other_ethnicity">
+            <input matInput formControlName="otherEthnicity">
           </div>
         <br><br>
         <h3>5. Enter your residency</h3>
         <mat-form-field>
-          <input matInput placeholder="City" formControlName="actualCity" required>
+          <input matInput placeholder="City" formControlName="cityOfResidence" required>
         </mat-form-field>
         <mat-form-field>
-          <input matInput placeholder="Provence" formControlName="actualProvence" required>
+          <input matInput placeholder="Provence" formControlName="provinceOfResidence" required>
         </mat-form-field>
         <mat-form-field>
-          <input matInput placeholder="Country" formControlName="actualCountry" required>
-        </mat-form-field>
-        <mat-form-field>
-          <input matInput placeholder="From/To" formControlName="years">
+          <input matInput placeholder="Country" formControlName="countryOfResidence" required>
         </mat-form-field>
         <br>
         <h3>6. Specify your level of education</h3>
@@ -85,14 +82,14 @@
         <h3>7. Specify your current occupational status</h3>
         <mat-form-field>
           <mat-label>Occupation</mat-label>
-          <mat-select formControlName="occupation" required>
+          <mat-select formControlName="currentOccupationalStatus" required>
             <mat-option *ngFor="let option of occupationOpt" [value]="option.value">
               {{option.viewValue}}
             </mat-option>
           </mat-select>
         </mat-form-field>
-        <div>
-          <button mat-button matStepperNext>Next</button>
+        <div class="button">
+          <button type="submit" [disabled]="!form.valid" mat-raised-button color="primary" matStepperNext>Next</button>
         </div>
       </mat-card-content>
     </mat-card>

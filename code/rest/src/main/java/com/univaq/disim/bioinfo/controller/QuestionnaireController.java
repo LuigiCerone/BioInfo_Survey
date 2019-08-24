@@ -5,9 +5,11 @@ import com.univaq.disim.bioinfo.BusinessLayerException;
 import com.univaq.disim.bioinfo.configuration.JwtProvider;
 import com.univaq.disim.bioinfo.model.Questionnaire;
 import com.univaq.disim.bioinfo.model.section.A1;
+import com.univaq.disim.bioinfo.model.section.A2;
 import com.univaq.disim.bioinfo.repository.QuestionnaireRepository;
 import com.univaq.disim.bioinfo.service.interfaces.QuestionnaireService;
 import com.univaq.disim.bioinfo.service.interfaces.SectionA1Service;
+import com.univaq.disim.bioinfo.service.interfaces.SectionA2Service;
 import org.bson.types.ObjectId;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -31,6 +33,9 @@ public class QuestionnaireController<QuestionnaireServiceImpl> {
 
     @Autowired
     private SectionA1Service sectionA1Service;
+
+    @Autowired
+    private SectionA2Service sectionA2Service;
 
     @Autowired
     private JwtProvider jwtProvider;
@@ -72,18 +77,24 @@ public class QuestionnaireController<QuestionnaireServiceImpl> {
         return new ResponseEntity<A1>(a1, HttpStatus.OK);
 
     }
-//
-//    @PatchMapping("/{dbCodeNumber}/a1")
-//    public Response updateA1(HttpServletRequest request, @RequestBody A1 a1, @PathVariable(value="dbCodeNumber") String dbCodeNumber){
-//        A1 a1Obj = a1Service.update(dbCodeNumber, a1);
-//        Response<A1> response = new Response<>(HttpStatus.OK, request);
-//        response.setData(a1Obj);
-//        return response;
-//    }
-//
-//    @DeleteMapping("/{dbCodeNumber}/a1")
-//    public Response deleteA1(HttpServletRequest request, @PathVariable(value="dbCodeNumber") String dbCodeNumber){
-//        a1Service.delete(dbCodeNumber);
-//        return new Response<>(HttpStatus.OK, request);
-//    }
+
+    // ==================================================================================== SECTIONS
+    // A2
+    @PostMapping("/user/{username}/a2")
+    public ResponseEntity insertA2(HttpServletRequest request,
+                                   @RequestBody A2 a2,
+                                   @PathVariable(value="username") String username,
+                                   @RequestHeader (name="Authorization") String token) throws BusinessLayerException {
+        // Decode token and get the username contained. There is also the word "Bearer" that we need to escape.
+        String token_username = this.jwtProvider.getUserNameFromJwtToken(token.substring(7));
+        A2 a2Inserted = sectionA2Service.insert(username, a2);
+        return new ResponseEntity<>(a2Inserted, HttpStatus.CREATED);
+    }
+
+    @GetMapping("/user/{username}/a2")
+    public ResponseEntity<A2> getA2(HttpServletRequest request, @PathVariable(value="username") String username) throws BusinessLayerException {
+        A2 a2 = sectionA2Service.get(username);
+        return new ResponseEntity<A2>(a2, HttpStatus.OK);
+
+    }
 }

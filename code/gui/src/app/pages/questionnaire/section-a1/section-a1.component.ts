@@ -17,7 +17,7 @@ export interface Options {
 })
 
 export class SectionA1Component implements OnInit {
-  public form: FormGroup;
+  private form: FormGroup;
 
   subjectOpt: Options[] = [
     {value: 'case', viewValue: 'Case'},
@@ -54,15 +54,15 @@ export class SectionA1Component implements OnInit {
   buildForm() {
     this.form = new FormGroup({
       subject: new FormControl(this.a1.subject , Validators.required),
-      database: new FormControl(this.a1.dbCodeNumber, [
+      dbCodeNumber: new FormControl(this.a1.dbCodeNumber, [
         Validators.required,
         Validators.pattern('[0-9]{4}[MC][0-9]{4}')
       ]),
-      date: new FormControl(this.a1.dateOfQuestionnaireAdministration, [
+      dateOfQuestionnaireAdministration: new FormControl(this.a1.dateOfQuestionnaireAdministration, [
         Validators.required,
         Validators.pattern('[0-9]{2}[/][A-Z]{1}[a-z]{2}[/][0-9]{4}')
       ]),
-      typeMelanoma: new FormControl(this.a1.typeOfMelanoma, Validators.required),
+      typeOfMelanoma: new FormControl(this.a1.typeOfMelanoma, Validators.required),
       otherSpecification: new FormControl(this.a1.otherSpecification)
     });
   }
@@ -73,12 +73,12 @@ export class SectionA1Component implements OnInit {
   }
 
   save() {
-    console.log(this.form);
+    this.a1 = new SectionA1(this.form);
 
-    // TODO
-    // this.questionnaireService.insertSection(this.authenticationService.currentUserValue.username, 'a1', this.form).subscribe( (res) => {
-    //   console.log(res);
-    // });
+    console.log(this.a1);
+    this.questionnaireService.insertSection(this.authenticationService.currentUserValue.username, 'a1', this.a1).subscribe( (res) => {
+      console.log(res);
+    });
   }
 
 }

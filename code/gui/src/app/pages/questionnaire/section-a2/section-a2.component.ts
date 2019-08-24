@@ -1,7 +1,6 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
-import {Options} from "../section-a1/section-a1.component";
-import { SectionA1 } from '../../../model/SectionA1';
+import {Component, OnInit} from '@angular/core';
+import { FormControl, FormGroup, Validators} from '@angular/forms';
+import {Options} from '../section-a1/section-a1.component';
 import { AuthenticationService } from '../../../services/authentication.service';
 import { Router } from '@angular/router';
 import { QuestionnaireService } from '../../../services/questionnaire.service';
@@ -14,7 +13,7 @@ import { SectionA2 } from '../../../model/SectionA2';
 })
 export class SectionA2Component implements OnInit {
   form: FormGroup;
-  
+
   sexOpt: Options[] = [
     {value: 'male', viewValue: 'Male'},
     {value: 'female', viewValue: 'Female'},

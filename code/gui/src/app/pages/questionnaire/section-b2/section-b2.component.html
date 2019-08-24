@@ -116,15 +116,15 @@
             placeholder="Specify how many"
             formControlName="less18SunburnsNumber">
 
-          <mat-radio-group aria-label="At age > 17 years" formControlName="sunburnsGreather17">
+          <mat-radio-group aria-label="At age > 17 years" formControlName="sunburnsGreater17">
             <mat-radio-button *ngFor="let option of yesNoNotKnownOpt" [value]="option.value">
               {{option.viewValue}}
             </mat-radio-button>
           </mat-radio-group>
           <input
-            *ngIf="form.value.sunburnsGreather17 === 1"
+            *ngIf="form.value.sunburnsGreater17 === 1"
             placeholder="Specify how many"
-            formControlName="greather17SunburnsNumber">
+            formControlName="greater17SunburnsNumber">
 
           <mat-radio-group aria-label="At site of melanoma" formControlName="sunburnsMelanomaSite">
             <mat-radio-button *ngFor="let option of yesNoNotKnownOpt" [value]="option.value">
@@ -232,7 +232,7 @@
         </mat-form-field>
 
         <div>
-          <button mat-button matStepperNext>Next</button>
+          <button type="submit" [disabled]="!form.valid" mat-raised-button color="primary" matStepperNext>Next</button>
         </div>
       </mat-card-content>
     </mat-card>

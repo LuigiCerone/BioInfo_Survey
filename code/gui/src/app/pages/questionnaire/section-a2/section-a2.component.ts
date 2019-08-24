@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
-import {Options} from "../section-a1/section-a1.component";
+import {Options} from '../section-a1/section-a1.component';
 
 @Component({
   selector: 'app-section-a2',
@@ -11,10 +11,10 @@ export class SectionA2Component implements OnInit {
 
   form: FormGroup = new FormGroup({
     sex: new FormControl('', [Validators.required]),
-    city: new FormControl('', [Validators.required]),
-    provence: new FormControl('', [Validators.required]),
-    country: new FormControl('', [Validators.required]),
-    date: new FormControl('', [
+    cityOfBirth: new FormControl('', [Validators.required]),
+    provinceOfBirth: new FormControl('', [Validators.required]),
+    countryOfBirth: new FormControl('', [Validators.required]),
+    dateOfBirth: new FormControl('', [
       Validators.required,
       Validators.pattern('[0-9]{2}[/][A-Z]{1}[a-z]{2}[/][0-9]{4}')
     ]),
@@ -22,9 +22,9 @@ export class SectionA2Component implements OnInit {
     weight: new FormControl('', [Validators.required]),
     ethnicity: new FormControl('', [Validators.required]),
     otherEthnicity: new FormControl('' ),
-    actCity: new FormControl('', [Validators.required] ),
-    actProvence: new FormControl('', [Validators.required] ),
-    actCountry: new FormControl('', [Validators.required]),
+    actualCity: new FormControl('', [Validators.required] ),
+    actualProvince: new FormControl('', [Validators.required] ),
+    actualCountry: new FormControl('', [Validators.required]),
     years: new FormControl('', [
       Validators.required,
       Validators.pattern('[0-9]{4}[/][0-9]{4}')

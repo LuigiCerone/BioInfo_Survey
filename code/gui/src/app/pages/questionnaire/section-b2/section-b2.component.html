@@ -1,11 +1,10 @@
 <div>
   <form [formGroup]="form">
     <mat-card>
-      <mat-card-title><h2>Section B.1</h2></mat-card-title>
+      <mat-card-title><h2>Section B.2</h2></mat-card-title>
       <mat-card-content>
         <br>
         <h3>1. Occupational sun exposure</h3>
-        <mat-form-field >
           <mat-label>Outdoor occupation with at least 4 hours/day spent outdoor in the sun</mat-label>
           <mat-radio-group aria-label="Select yes or no" formControlName="occupationalSunExposure">
             <mat-radio-button *ngFor="let option of yesNoOpt" [value]="option.value" >
@@ -19,11 +18,9 @@
             <input formControlName="occupationalSunExposureMonths" placeholder="How many months per year?">
             <input formControlName="occupationalSunExposureYears" placeholder="How many years?">
           </mat-form-field>
-        </mat-form-field>
         <br>
 
         <h3>2. Recreational sun exposure</h3>
-        <mat-form-field >
           <mat-label>
             Outdoor hobbies or physical activities–other than sunbathing–with at least 4 hours/day spent outdoor in the sun
           </mat-label>
@@ -39,7 +36,6 @@
             <input formControlName="recreationalSunExposureMonths" placeholder="How many months per year?">
             <input formControlName="recreationalSunExposureYears" placeholder="How many years?">
           </mat-form-field>
-        </mat-form-field>
         <br>
 
         <h3>3. Intermittent sun exposure</h3>
@@ -102,7 +98,6 @@
         <br>
 
         <h3>5. Severe sunburns</h3>
-        <mat-form-field >
           <mat-label>
             Suburns with erythema and pain for more than 2 days or with blisters
           </mat-label>
@@ -140,8 +135,6 @@
             *ngIf="form.value.sunburnsLast5 === 1"
             placeholder="Specify how many"
             formControlName="last5SunburnsNumber">
-
-        </mat-form-field>
         <br>
         <mat-form-field>
           <mat-grid-list cols="3" rowHeight="1:1">
@@ -215,7 +208,6 @@
         <br>
 
         <h3>6. Sunlamps/sunbeds</h3>
-        <mat-form-field >
           <mat-label>
             Sunlamps/sunbeds
           </mat-label>
@@ -229,7 +221,6 @@
             <input formControlName="ageFirstSunlamps" placeholder="Age at first exposure">
             <input formControlName="ageLastSunlamps" placeholder="Age at last exposure">
           </mat-form-field>
-        </mat-form-field>
 
         <div>
           <button type="submit" [disabled]="!form.valid" mat-raised-button color="primary" matStepperNext>Next</button>

@@ -120,7 +120,7 @@ export class SectionB2Component implements OnInit {
     this.b2 = new SectionB2(this.form);
 
     console.log(this.b2);
-    this.questionnaireService.insertSection(this.authenticationService.currentUserValue.username, 'b1', this.b2).subscribe( (res) => {
+    this.questionnaireService.insertSection(this.authenticationService.currentUserValue.username, 'b2', this.b2).subscribe( (res) => {
       console.log(res);
     });
   }

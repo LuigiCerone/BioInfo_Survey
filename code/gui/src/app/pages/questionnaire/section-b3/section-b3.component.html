@@ -1,0 +1,74 @@
+<div>
+  <form [formGroup]="form">
+    <mat-card>
+      <mat-card-title><h2>Section B.3</h2></mat-card-title>
+      <mat-card-content>
+        <br>
+        <h3>1. Smoking</h3>
+
+          <mat-label>Select your smoker status</mat-label>
+            <mat-select formControlName="smoker">
+              <mat-option *ngFor="let option of smokerOpt" [value]="option.value">
+                {{option.viewValue}}
+              </mat-option>
+            </mat-select>
+          <mat-form-field *ngIf="form.value.smoker">
+            <input formControlName="ageStartSmoking" placeholder="Age when you started smoking">
+            <input formControlName="yearsSmoking" placeholder="How many years have you been smoking?">
+            <h4>How much did/do you typically smoke </h4>
+            <input formControlName="packPerDay" placeholder="How many pack per day">
+            <input formControlName="halfPackPerDay" placeholder="How many half pack per day">
+            <input formControlName="occasionallySmoke" placeholder="Only occasionally">
+          </mat-form-field>
+
+        <br>
+
+        <h3>2. Have you received vitamin pills during the last year?</h3>
+            <mat-radio-group aria-label="Select yes or no" formControlName="everReceivedVitamins">
+              <mat-radio-button *ngFor="let option of yesNoOpt" [value]="option.value" >
+                {{option.viewValue}}
+              </mat-radio-button>
+            </mat-radio-group>
+            <mat-form-field *ngIf="form.value.everReceivedVitamins">
+              <mat-select formControlName="vitaminPills">
+                <mat-option *ngFor="let option of vitaminPeriodOpt" [value]="option.value">
+                  {{option.viewValue}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+        <br>
+
+        <h3>3. What type of vitamins did you receive and how often?</h3>
+        <mat-form-field *ngFor="let vitamin of vitaminType1">
+          <mat-label>
+            {{vitamin.viewValue}}
+          </mat-label>
+          <mat-select formControlName="{{vitamin.value}}">
+            <mat-option *ngFor="let option of vitaminPeriodOpt" [value]="option.value">
+              {{option.viewValue}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <br>
+
+        <h3>4. For how long did you receive vitamins?</h3>
+            <mat-form-field *ngFor="let vitamin of vitaminType2">
+              <mat-label>
+                {{vitamin.viewValue}}
+              </mat-label>
+              <mat-select formControlName="{{vitamin.value}}">
+                <mat-option *ngFor="let option of vitaminFrequenceOpt" [value]="option.value">
+                  {{option.viewValue}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+        <br>
+
+        <div>
+          <button type="submit" [disabled]="!form.valid" mat-raised-button color="primary" matStepperNext>Next</button>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </form>
+</div>
+

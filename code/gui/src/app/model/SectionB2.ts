@@ -99,8 +99,8 @@ export class SectionB2 {
       this.recreationalSunExposureMonths = '';
       this.recreationalSunExposureYears = '';
       this.intermittentSunExposure = '';
-      this.intermittentSunExposureChildhoodWeeks = '';
-      this.intermittentSunExposureChildhoodHours = '';
+      this.intermittentExposureChildhoodWeeks = '';
+      this.intermittentExposureChildhoodHours = '';
       this.intermittentExposureAdolescenceWeeks = '';
       this.intermittentExposureAdolescenceHours = '';
       this.intermittentExposureAdulthoodWeeks = '';

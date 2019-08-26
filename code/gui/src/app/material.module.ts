@@ -14,7 +14,7 @@ import {
   MatDialogModule,
   MatRadioModule,
   MatFormFieldModule,
-  MatGridListModule
+  MatGridListModule, MatTableModule, MatPaginatorModule
 } from '@angular/material';
 
 const modules = [
@@ -31,7 +31,9 @@ const modules = [
   MatDialogModule,
   MatRadioModule,
   MatFormFieldModule,
-  MatGridListModule
+  MatGridListModule,
+  MatTableModule,
+  MatPaginatorModule
 ];
 
 @NgModule({

@@ -1,10 +1,11 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {Options} from '../section-a1/section-a1.component';
-import {SectionB2} from '../../../model/SectionB2';
-import {AuthenticationService} from "../../../services/authentication.service";
-import {Router} from "@angular/router";
-import {QuestionnaireService} from "../../../services/questionnaire.service";
+import { IntermittentSunExposure, SectionB2, SevereSunBurns, SunscreenUse } from '../../../model/SectionB2';
+import {AuthenticationService} from '../../../services/authentication.service';
+import {Router} from '@angular/router';
+import {QuestionnaireService} from '../../../services/questionnaire.service';
+
 
 @Component({
   selector: 'app-section-b2',
@@ -57,62 +58,74 @@ export class SectionB2Component implements OnInit {
 
   buildForm() {
     this.form = new FormGroup({
-      occupationalSunExposure: new FormControl(this.b2.occupationalSunExposure, Validators.required),
-      occupationalSunExposureType: new FormControl(this.b2.occupationalSunExposureType),
-      occupationalSunExposureHours: new FormControl(this.b2.occupationalSunExposureHours, [
+      occupationalSunExposure: new FormControl(this.b2.occupationalSunExposure.isTrue, Validators.required),
+      occupationalSunExposureType: new FormControl(this.b2.occupationalSunExposure.occupation),
+      occupationalSunExposureHours: new FormControl(this.b2.occupationalSunExposure.hoursPerDay, [
         Validators.pattern('[0-9]{2}')
       ]),
-      occupationalSunExposureDays: new FormControl(this.b2.occupationalSunExposureDays, [
+      occupationalSunExposureDays: new FormControl(this.b2.occupationalSunExposure.daysPerMonth, [
         Validators.pattern('[0-9]{2}')
       ]),
-      occupationalSunExposureMonths: new FormControl(this.b2.occupationalSunExposureMonths, [
+      occupationalSunExposureMonths: new FormControl(this.b2.occupationalSunExposure.monthsPerYear, [
         Validators.pattern('[0-9]{2}')
       ]),
-      occupationalSunExposureYears: new FormControl(this.b2.occupationalSunExposureYears, [
+      occupationalSunExposureYears: new FormControl(this.b2.occupationalSunExposure.years, [
         Validators.pattern('[0-9]{2}')
       ]),
-      recreationalSunExposure: new FormControl(this.b2.recreationalSunExposure, Validators.required),
-      recreationalSunExposureType: new FormControl(this.b2.recreationalSunExposureType),
-      recreationalSunExposureHours: new FormControl(this.b2.recreationalSunExposureHours, [
+      recreationalSunExposure: new FormControl(this.b2.recreationalSunExposure.isTrue, Validators.required),
+      recreationalSunExposureType: new FormControl(this.b2.recreationalSunExposure.activity),
+      recreationalSunExposureHours: new FormControl(this.b2.recreationalSunExposure.hoursPerDay, [
         Validators.pattern('[0-9]{2}')
       ]),
-      recreationalSunExposureDays: new FormControl(this.b2.recreationalSunExposureDays, [
+      recreationalSunExposureDays: new FormControl(this.b2.recreationalSunExposure.daysPerMonth, [
         Validators.pattern('[0-9]{2}')
       ]),
-      recreationalSunExposureMonths: new FormControl(this.b2.recreationalSunExposureMonths, [
+      recreationalSunExposureMonths: new FormControl(this.b2.recreationalSunExposure.monthsPerYear, [
         Validators.pattern('[0-9]{2}')
       ]),
-      recreationalSunExposureYears: new FormControl(this.b2.recreationalSunExposureYears, [
+      recreationalSunExposureYears: new FormControl(this.b2.recreationalSunExposure.years, [
         Validators.pattern('[0-9]{2}')
       ]),
-      intermittentExposureChildhoodWeeks: new FormControl(this.b2.intermittentExposureChildhoodWeeks, Validators.required),
-      intermittentExposureChildhoodHours: new FormControl(this.b2.intermittentExposureChildhoodHours, Validators.required),
-      intermittentExposureAdolescenceWeeks: new FormControl(this.b2.intermittentExposureAdolescenceWeeks, Validators.required),
-      intermittentExposureAdolescenceHours: new FormControl(this.b2.intermittentExposureAdolescenceHours, Validators.required),
-      intermittentExposureAdulthoodWeeks: new FormControl(this.b2.intermittentExposureAdulthoodWeeks, Validators.required),
-      intermittentExposureAdulthoodHours: new FormControl(this.b2.intermittentExposureAdulthoodHours, Validators.required),
-      intermittentExposureDiagnosisWeeks: new FormControl(this.b2.intermittentExposureDiagnosisWeeks, Validators.required),
-      intermittentExposureDiagnosisHours: new FormControl(this.b2.intermittentExposureDiagnosisHours, Validators.required),
-      lastIntenseExposure: new FormControl(this.b2.lastIntenseExposure, Validators.required),
-      sunburnsLess18: new FormControl(this.b2.sunburnsLess18, Validators.required),
-      sunburnsGreater17: new FormControl(this.b2.sunburnsGreater17, Validators.required),
-      sunburnsMelanomaSite: new FormControl(this.b2.sunburnsMelanomaSite, Validators.required),
-      sunburnsLast5: new FormControl(this.b2.sunburnsLast5, Validators.required),
-      less18SunburnsNumber: new FormControl(this.b2.less18SunburnsNumber),
-      greater17SunburnsNumber: new FormControl(this.b2.greater17SunburnsNumber),
-      last5SunburnsNumber: new FormControl(this.b2.last5SunburnsNumber),
-      sunscreenPercentageChildhood: new FormControl(this.b2.sunscreenPercentageChildhood, Validators.required),
-      sunscreenTypeChildhood: new FormControl(this.b2.sunscreenTypeChildhood, Validators.required),
-      sunscreenPercentageAdolescence: new FormControl(this.b2.sunscreenPercentageAdolescence, Validators.required),
-      sunscreenTypeAdolescence: new FormControl(this.b2.sunscreenTypeAdolescence, Validators.required),
-      sunscreenPercentageAdulthood: new FormControl(this.b2.sunscreenPercentageAdulthood, Validators.required),
-      sunscreenTypeAdulthood: new FormControl(this.b2.sunscreenTypeAdulthood, Validators.required),
-      sunscreenPercentageMelanoma: new FormControl(this.b2.sunscreenPercentageMelanoma, Validators.required),
-      sunscreenTypeMelanoma: new FormControl(this.b2.sunscreenTypeMelanoma, Validators.required),
-      sunlamps: new FormControl(this.b2.sunlamps, Validators.required),
-      numberSunlamps: new FormControl(this.b2.numberSunlamps),
-      ageFirstSunlamps: new FormControl(this.b2.ageFirstSunlamps),
-      ageLastSunlamps: new FormControl(this.b2.ageLastSunlamps),
+
+      intermittentExposureChildhoodWeeks: new FormControl(this.b2.intermittentSunExposure.get(IntermittentSunExposure.KEY_CHILDHOOD).weeksOfVacation, Validators.required),
+      intermittentExposureChildhoodHours: new FormControl(this.b2.intermittentSunExposure.get(IntermittentSunExposure.KEY_CHILDHOOD).hoursSpentBetween11AMAnd4PM, Validators.required),
+      intermittentExposureAdolescenceWeeks: new FormControl(this.b2.intermittentSunExposure.get(IntermittentSunExposure.KEY_ADOLESCENCE).weeksOfVacation, Validators.required),
+      intermittentExposureAdolescenceHours: new FormControl(this.b2.intermittentSunExposure.get(IntermittentSunExposure.KEY_ADOLESCENCE).hoursSpentBetween11AMAnd4PM, Validators.required),
+      intermittentExposureAdulthoodWeeks: new FormControl(this.b2.intermittentSunExposure.get(IntermittentSunExposure.KEY_ADULTHOOD).weeksOfVacation, Validators.required),
+      intermittentExposureAdulthoodHours: new FormControl(this.b2.intermittentSunExposure.get(IntermittentSunExposure.KEY_ADULTHOOD).hoursSpentBetween11AMAnd4PM, Validators.required),
+      intermittentExposureDiagnosisWeeks: new FormControl(this.b2.intermittentSunExposure.get(IntermittentSunExposure.KEY_TEN_YEARS).weeksOfVacation, Validators.required),
+      intermittentExposureDiagnosisHours: new FormControl(this.b2.intermittentSunExposure.get(IntermittentSunExposure.KEY_TEN_YEARS).hoursSpentBetween11AMAnd4PM, Validators.required),
+
+      lastIntenseExposure: new FormControl(this.b2.mostRecentIntermittentSunExposure, Validators.required),
+
+      sunburnsLess18: new FormControl(this.b2.severeSunBurns.get(SevereSunBurns.KEY_MINOR_18).presence, Validators.required),
+      less18SunburnsNumber: new FormControl(this.b2.severeSunBurns.get(SevereSunBurns.KEY_MINOR_18).number),
+
+      sunburnsGreater18: new FormControl(this.b2.severeSunBurns.get(SevereSunBurns.KEY_GREATER_18).presence, Validators.required),
+      greater18SunburnsNumber: new FormControl(this.b2.severeSunBurns.get(SevereSunBurns.KEY_GREATER_18).number),
+
+      sunburnsMelanomaSite: new FormControl(this.b2.severeSunBurns.get(SevereSunBurns.KEY_AT_SITE).presence, Validators.required),
+
+      sunburnsLast5: new FormControl(this.b2.severeSunBurns.get(SevereSunBurns.KEY_LAST_5).presence, Validators.required),
+      last5SunburnsNumber: new FormControl(this.b2.severeSunBurns.get(SevereSunBurns.KEY_LAST_5).presence),
+
+      sunscreenPercentageChildhood: new FormControl(this.b2.sunscreenUses.get(SunscreenUse.KEY_CHILDHOOD).howOften, Validators.required),
+      sunscreenTypeChildhood: new FormControl(this.b2.sunscreenUses.get(SunscreenUse.KEY_CHILDHOOD).type, Validators.required),
+
+      sunscreenPercentageAdolescence: new FormControl(this.b2.sunscreenUses.get(SunscreenUse.KEY_ADOLESCENCE).howOften, Validators.required),
+      sunscreenTypeAdolescence: new FormControl(this.b2.sunscreenUses.get(SunscreenUse.KEY_ADOLESCENCE).type, Validators.required),
+
+      sunscreenPercentageAdulthood: new FormControl(this.b2.sunscreenUses.get(SunscreenUse.KEY_ADULTHOOD).howOften, Validators.required),
+      sunscreenTypeAdulthood: new FormControl(this.b2.sunscreenUses.get(SunscreenUse.KEY_ADULTHOOD).type, Validators.required),
+
+      sunscreenPercentageMelanoma: new FormControl(this.b2.sunscreenUses.get(SunscreenUse.KEY_TEN_YEARS).howOften, Validators.required),
+      sunscreenTypeMelanoma: new FormControl(this.b2.sunscreenUses.get(SunscreenUse.KEY_ADULTHOOD).type, Validators.required),
+
+
+      sunlamps: new FormControl(this.b2.sunlampsSunbeds.isTrue, Validators.required),
+      numberSunlamps: new FormControl(this.b2.sunlampsSunbeds.lifetimeNumberOfSession),
+      ageFirstSunlamps: new FormControl(this.b2.sunlampsSunbeds.ageAtFirstExposure),
+      ageLastSunlamps: new FormControl(this.b2.sunlampsSunbeds.ageAtLastExposure),
     });
   }
 

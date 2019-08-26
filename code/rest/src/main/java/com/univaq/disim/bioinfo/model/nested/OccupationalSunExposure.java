@@ -1,6 +1,8 @@
 package com.univaq.disim.bioinfo.model.nested;
 
 public class OccupationalSunExposure {
+    private boolean isTrue;
+
     private String occupation;
 
     private String hoursPerDay;
@@ -12,6 +14,14 @@ public class OccupationalSunExposure {
     private String years;
 
     public OccupationalSunExposure(){ }
+
+    public boolean isTrue() {
+        return isTrue;
+    }
+
+    public void setTrue(boolean aTrue) {
+        isTrue = aTrue;
+    }
 
     public String getOccupation() {
         return occupation;

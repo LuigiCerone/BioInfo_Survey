@@ -1,6 +1,7 @@
 package com.univaq.disim.bioinfo.model.nested;
 
 public class SunlampsSunbeds {
+    private boolean isTrue;
 
     private int lifetimeNumberOfSession;
 
@@ -9,6 +10,14 @@ public class SunlampsSunbeds {
     private int ageAtLastExposure;
 
     public SunlampsSunbeds(){ }
+
+    public boolean isTrue() {
+        return isTrue;
+    }
+
+    public void setTrue(boolean aTrue) {
+        isTrue = aTrue;
+    }
 
     public int getLifetimeNumberOfSession() {
         return lifetimeNumberOfSession;

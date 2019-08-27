@@ -1,74 +1,76 @@
 export class SectionB3 {
-  smoker: boolean;
-  ageStartSmoking: string;
-  yearsSmoking: string;
-  packPerDay: string;
-  halfPackPerDay: string;
-  occasionallySmoke: string;
-  everReceivedVitamins: string;
-  vitaminPills: string;
-  betaCarotene1: string;
-  vitaminA1: string;
-  vitaminB1: string;
-  vitaminC1: string;
-  vitaminE1: string;
-  vitaminD1: string;
-  multivitamins1: string;
-  betaCarotene2: string;
-  vitaminA2: string;
-  vitaminB2: string;
-  vitaminC2: string;
-  vitaminE2: string;
-  vitaminD2: string;
-  multivitamins2: string;
+
+  smoker: Smoker;
+  intakeOfVitaminesDuringLastYears: string;
+  vitamin: Map<string, Vitamin>;
 
   constructor(form?) {
     if (form) {
-      this.smoker = form.value.smoker;
-      this.ageStartSmoking = form.value.ageStartSmoking;
-      this.yearsSmoking = form.value.yearsSmoking;
-      this.packPerDay = form.value.packPerDay;
-      this.halfPackPerDay = form.value.halfPackPerDay;
-      this.occasionallySmoke = form.value.occasionallySmoke;
-      this.everReceivedVitamins = form.value.everReceivedVitamins;
-      this.vitaminPills = form.value.vitaminPills;
-      this.betaCarotene1 = form.value.betaCarotene1;
-      this.vitaminA1 = form.value.vitaminA1;
-      this.vitaminB1 = form.value.vitaminB1;
-      this.vitaminC1 = form.value.vitaminC1;
-      this.vitaminE1 = form.value.vitaminE1;
-      this.vitaminD1 = form.valuevitaminD1;
-      this.multivitamins1 = form.value.multivitamins1;
-      this.betaCarotene2 = form.value.betaCarotene2;
-      this.vitaminA2 = form.value.vitaminA2;
-      this.vitaminB2 = form.value.vitaminB2;
-      this.vitaminC2 = form.value.vitaminC2;
-      this.vitaminE2 = form.value.vitaminE2;
-      this.vitaminD2 = form.value.vitaminD2;
-      this.multivitamins2 = form.value.multivitamins2;
+      this.smoker = new Smoker(form.value.smoker);
+      this.intakeOfVitaminesDuringLastYears = form.value.intakeOfVitaminesDuringLastYears;
+      this.vitamin = new Map<string, Vitamin>();
+      this.vitamin.set(Vitamin.BETA_CAROTENE, new Vitamin(Vitamin.BETA_CAROTENE, form.value.received, form.value.period));
+      this.vitamin.set(Vitamin.VITAMIN_A, new Vitamin(Vitamin.VITAMIN_A, form.value.received, form.value.period));
+      this.vitamin.set(Vitamin.VITAMIN_C, new Vitamin(Vitamin.VITAMIN_C, form.value.received, form.value.period));
+      this.vitamin.set(Vitamin.VITAMIN_E, new Vitamin(Vitamin.VITAMIN_E, form.value.received, form.value.period));
+      this.vitamin.set(Vitamin.VITAMIN_D, new Vitamin(Vitamin.VITAMIN_D, form.value.received, form.value.period));
+      this.vitamin.set(Vitamin.MULTIVITAMINS, new Vitamin(Vitamin.MULTIVITAMINS, form.value.received, form.value.period));
     } else {
-      this.smoker = false;
-      this.ageStartSmoking = '';
-      this.yearsSmoking = '';
-      this.packPerDay = '';
-      this.halfPackPerDay = '';
-      this.occasionallySmoke = '';
-      this.everReceivedVitamins = '';
-      this.vitaminPills = '';
-      this.betaCarotene1 = '';
-      this.vitaminA1 = '';
-      this.vitaminB1 = '';
-      this.vitaminC1 = '';
-      this.vitaminE1 = '';
-      this.vitaminD1 = '';
-      this.multivitamins1 = '';
-      this.betaCarotene2 = '';
-      this.vitaminA2 = '';
-      this.vitaminB2 = '';
-      this.vitaminC2 = '';
-      this.vitaminE2 = '';
-      this.vitaminD2 = '';
-      this.multivitamins2 = '';
+      this.smoker = new Smoker();
+      this.intakeOfVitaminesDuringLastYears = '';
+      this.vitamin = new Map<string, Vitamin>();
+      this.vitamin.set(Vitamin.BETA_CAROTENE, new Vitamin(Vitamin.BETA_CAROTENE));
+      this.vitamin.set(Vitamin.VITAMIN_A, new Vitamin(Vitamin.VITAMIN_A));
+      this.vitamin.set(Vitamin.VITAMIN_C, new Vitamin(Vitamin.VITAMIN_C));
+      this.vitamin.set(Vitamin.VITAMIN_E, new Vitamin(Vitamin.VITAMIN_E));
+      this.vitamin.set(Vitamin.VITAMIN_D, new Vitamin(Vitamin.VITAMIN_D));
+      this.vitamin.set(Vitamin.MULTIVITAMINS, new Vitamin(Vitamin.MULTIVITAMINS));
+    }
+  }
+}
+
+class Smoker {
+  howOften: string;
+  ageWhenStartedSmoking: number;
+  howLongHaveYouBeenSmoking: string;
+  howMuchTipicallySmoke: string;
+
+  constructor(form?) {
+    if (form) {
+      this.howOften = form.value.smoker.howOften;
+      this.ageWhenStartedSmoking = form.value.smoker.ageWhenStartedSmoking;
+      this.howLongHaveYouBeenSmoking = form.value.smoker.howLongHaveYouBeenSmoking;
+      this.howMuchTipicallySmoke = form.value.smoker.howMuchTipicallySmoke;
+    } else {
+      this.howOften = '';
+      this.ageWhenStartedSmoking = 0;
+      this.howLongHaveYouBeenSmoking = '';
+      this.howMuchTipicallySmoke = '';
+    }
+  }
+}
+
+class Vitamin {
+  public static BETA_CAROTENE = 'betaCarotene';
+  public static VITAMIN_A = 'vitaminA';
+  public static VITAMIN_C = 'vitaminC';
+  public static VITAMIN_E = 'vitaminE';
+  public static VITAMIN_D = 'vitaminD';
+  public static MULTIVITAMINS = 'multivitamins';
+
+  name: string;
+  howOften: string;
+  howLong: string;
+
+  constructor(name: string, form1?, form2?) {
+    if (form1 && form2) {
+      this.name = name;
+      this.howOften = form1.value.name;
+      this.howLong = form2.value.name;
+    } else {
+      this.name = name;
+      this.howOften = '';
+      this.howLong = '';
     }
   }
 }

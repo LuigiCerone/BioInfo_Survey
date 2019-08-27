@@ -15,6 +15,7 @@ import { ProfileComponent } from './pages/profile/profile.component';
 import { NoAuthGuard } from './guards/no-auth.guard';
 import { RoleGuard } from './guards/role.guard';
 import { httpInterceptorProviders } from './interceptors';
+import { NgxJsonViewerModule } from 'ngx-json-viewer';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { httpInterceptorProviders } from './interceptors';
     SectionsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    NgxJsonViewerModule
   ],
   providers: [
     NoAuthGuard,

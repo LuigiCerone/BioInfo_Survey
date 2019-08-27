@@ -11,3 +11,7 @@ table {
 .container {
   padding: 10px;
 }
+
+.custom-width-800 {
+  width: 800px !important;
+}

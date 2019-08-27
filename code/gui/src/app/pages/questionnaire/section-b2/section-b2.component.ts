@@ -130,6 +130,8 @@ export class SectionB2Component implements OnInit {
   }
 
   save() {
+    console.log(this.form);
+
     this.b2 = new SectionB2(this.form);
 
     console.log(this.b2);

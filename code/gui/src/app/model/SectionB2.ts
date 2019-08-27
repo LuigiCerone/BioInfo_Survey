@@ -82,12 +82,12 @@ class OccupationalSunExposure {
 
   constructor(form?) {
     if (form) {
-      this.isTrue = form.value.occupationalSunExposure.isTrue;
-      this.occupation = form.value.occupationalSunExposure.occupation;
-      this.hoursPerDay = form.value.occupationalSunExposure.hoursPerDay;
-      this.daysPerMonth = form.value.occupationalSunExposure.daysPerMonth;
-      this.monthsPerYear = form.value.occupationalSunExposure.monthsPerYear;
-      this.years = form.value.occupationalSunExposure.years;
+      this.isTrue = form.isTrue;
+      this.occupation = form.occupation;
+      this.hoursPerDay = form.hoursPerDay;
+      this.daysPerMonth = form.daysPerMonth;
+      this.monthsPerYear = form.monthsPerYear;
+      this.years = form.years;
     } else {
       this.isTrue = false;
       this.occupation = '';
@@ -109,12 +109,12 @@ class RecreationalSunExposure {
 
   constructor(form?) {
     if (form) {
-      this.isTrue = form.value.recreationalSunExposure.isTrue;
-      this.activity = form.value.recreationalSunExposure.activity;
-      this.hoursPerDay = form.value.recreationalSunExposure.hoursPerDay;
-      this.daysPerMonth = form.value.recreationalSunExposure.daysPerMonth;
-      this.monthsPerYear = form.value.recreationalSunExposure.monthsPerYear;
-      this.years = form.value.recreationalSunExposure.years;
+      this.isTrue = form.isTrue;
+      this.activity = form.activity;
+      this.hoursPerDay = form.hoursPerDay;
+      this.daysPerMonth = form.daysPerMonth;
+      this.monthsPerYear = form.monthsPerYear;
+      this.years = form.years;
     } else {
       this.isTrue = false;
       this.activity = '';
@@ -139,8 +139,8 @@ class IntermittentSunExposure {
   constructor(agePeriod: string, form?) {
     if (form) {
       this.agePeriod = agePeriod;
-      this.weeksOfVacation = form.value.intermittentSunExposure.agePeriod.weeksOfVacation;
-      this.hoursSpentBetween11AMAnd4PM = form.value.intermittentSunExposure.agePeriod.hoursSpentBetween11AMAnd4PM;
+      this.weeksOfVacation = form.weeksOfVacation;
+      this.hoursSpentBetween11AMAnd4PM = form.hoursSpentBetween11AMAnd4PM;
     } else {
       this.agePeriod = agePeriod;
       this.weeksOfVacation = '';
@@ -158,11 +158,11 @@ class SevereSunBurns {
   constructor(period: string, form?) {
     if (form) {
       this.period = period;
-      this.presence = form.value.severeSunBurns.period.presence;
-      this.number = form.value.severeSunBurns.period.number;
+      this.presence = form.presence;
+      this.number = form.number;
     } else {
       this.period = period;
-      this.presence = '';
+      this.presence = 0;
       this.number = 0;
     }
   }
@@ -170,7 +170,7 @@ class SevereSunBurns {
   // It can be: at age <18 yrs, at age ≥18 yrs, at site of melanoma, in the last 5 yrs
   period: string;
   // It can be: yes, no, not known
-  presence: string;
+  presence: number;
   // Number of sun burns
   number: number;
 }
@@ -191,8 +191,8 @@ class SunscreenUse {
   constructor(agePeriod: string, form?) {
     if (form) {
       this.agePeriod = agePeriod;
-      this.howOften = form.value.intermittentSunExposure.agePeriod.howOften;
-      this.type = form.value.intermittentSunExposure.agePeriod.type;
+      this.howOften = form.howOften;
+      this.type = form.type;
     } else {
       this.agePeriod = agePeriod;
       this.howOften = '';
@@ -209,10 +209,10 @@ class SunlampsSunbeds {
 
   constructor(form?) {
     if (form) {
-      this.isTrue = form.value.sunlampsSunbeds.isTrue;
-      this.lifetimeNumberOfSession = form.value.sunlampsSunbeds.lifetimeNumberOfSession;
-      this.ageAtFirstExposure = form.value.sunlampsSunbeds.ageAtFirstExposure;
-      this.ageAtLastExposure = form.value.sunlampsSunbeds.ageAtLastExposure;
+      this.isTrue = form.isTrue;
+      this.lifetimeNumberOfSession = form.lifetimeNumberOfSession;
+      this.ageAtFirstExposure = form.ageAtFirstExposure;
+      this.ageAtLastExposure = form.ageAtLastExposure;
     } else {
       this.isTrue = false;
       this.lifetimeNumberOfSession = 0;

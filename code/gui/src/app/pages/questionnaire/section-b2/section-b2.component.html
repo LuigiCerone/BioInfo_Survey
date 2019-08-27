@@ -8,12 +8,11 @@
         <mat-label>Outdoor occupation with at least 4 hours/day spent outdoor in the sun</mat-label>
         <br>
         <mat-radio-group aria-label="Select yes or no" formControlName="occupationalSunExposure">
-          <mat-radio-button *ngFor="let option of yesNoOpt" [value]="option.value">
-            {{option.viewValue}}
-            <!--            TODO Center -->
-          </mat-radio-button>
+          <mat-radio-button value="1">Yes</mat-radio-button>
+          <mat-radio-button value="0">No</mat-radio-button>
+          <!--            TODO Center -->
         </mat-radio-group>
-        <div *ngIf="form.value.occupationalSunExposure">
+        <div *ngIf="form.value.occupationalSunExposure == 1">
           <mat-form-field>
             <input matInput formControlName="occupationalSunExposureType" placeholder="Insert occupation">
           </mat-form-field>
@@ -37,11 +36,11 @@
         </mat-label>
         <br>
         <mat-radio-group aria-label="Select yes or no" formControlName="recreationalSunExposure">
-          <mat-radio-button *ngFor="let option of yesNoOpt" [value]="option.value" >
-            {{option.viewValue}}
-          </mat-radio-button>
+          <mat-radio-button value="1">Yes</mat-radio-button>
+          <mat-radio-button value="0">No</mat-radio-button>
+          <!--            TODO Center -->
         </mat-radio-group>
-        <div *ngIf="form.value.recreationalSunExposure">
+        <div *ngIf="form.value.recreationalSunExposure == 1">
           <mat-form-field>
             <input matInput formControlName="recreationalSunExposureType" placeholder="Insert recreation">
           </mat-form-field>
@@ -103,7 +102,7 @@
               </mat-form-field>
             </mat-grid-tile>
             <!-- QUESTA È UNA DOMANDA CHE VA SPLITTATA FRA CASE E CONTROL -->
-            <mat-grid-tile>10 years before melanoma diagnosis (for cases) or last 10 years (for controls)</mat-grid-tile>
+            <mat-grid-tile class="padding">10 years before melanoma diagnosis (for cases) or last 10 years (for controls)</mat-grid-tile>
             <mat-grid-tile>
               <mat-form-field>
                 <input matInput formControlName="intermittentExposureDiagnosisWeeks">
@@ -139,49 +138,48 @@
           Suburns with erythema and pain for more than 2 days or with blisters
         </div>
         <br>
-          <mat-radio-group aria-label="At age <18 years" formControlName="sunburnsLess18">
-            <mat-radio-button *ngFor="let option of yesNoNotKnownOpt" [value]="option.value">
-              {{option.viewValue}}
-            </mat-radio-button>
-          </mat-radio-group>
+        <mat-radio-group aria-label="At age <18 years" formControlName="sunburnsLess18">
+          <mat-radio-button value="1">Yes</mat-radio-button>
+          <mat-radio-button value="0">No</mat-radio-button>
+          <mat-radio-button value="2">Not known</mat-radio-button>
+          <!--            TODO Center -->
+        </mat-radio-group>
         <br>
-        <mat-form-field>
+        <mat-form-field *ngIf="form.value.sunburnsLess18 == 1">
           <input matInput
-                 *ngIf="form.value.sunburnsLess18 !== null"
                  placeholder="Specify how many"
                  formControlName="less18SunburnsNumber">
         </mat-form-field>
         <h4> At age >= 18 years</h4>
         <mat-radio-group aria-label="At age >= 18 years" formControlName="sunburnsGreater18">
-          <mat-radio-button *ngFor="let option of yesNoNotKnownOpt" [value]="option.value">
-            {{option.viewValue}}
-          </mat-radio-button>
+          <mat-radio-button value="1">Yes</mat-radio-button>
+          <mat-radio-button value="0">No</mat-radio-button>
+          <mat-radio-button value="2">Not known</mat-radio-button>
+          <!--            TODO Center -->
         </mat-radio-group>
         <br>
-        <mat-form-field>
+        <mat-form-field  *ngIf="form.value.sunburnsGreater18 == 1">
           <input matInput
-                 *ngIf="form.value.sunburnsGreater18 !== null"
                  placeholder="Specify how many"
                  formControlName="greater18SunburnsNumber">
         </mat-form-field>
         <br>
         <h4> At site of melanoma</h4>
         <mat-radio-group aria-label="At site of melanoma" formControlName="sunburnsMelanomaSite">
-          <mat-radio-button *ngFor="let option of yesNoNotKnownOpt" [value]="option.value">
-            {{option.viewValue}}
-          </mat-radio-button>
+          <mat-radio-button value="1">Yes</mat-radio-button>
+          <mat-radio-button value="0">No</mat-radio-button>
+          <mat-radio-button value="2">Not known</mat-radio-button>
         </mat-radio-group>
         <br>
         <h4> In the last 5 years</h4>
         <mat-radio-group aria-label="In the last 5 years" formControlName="sunburnsLast5">
-          <mat-radio-button *ngFor="let option of yesNoNotKnownOpt" [value]="option.value">
-            {{option.viewValue}}
-          </mat-radio-button>
+          <mat-radio-button value="1">Yes</mat-radio-button>
+          <mat-radio-button value="0">No</mat-radio-button>
+          <mat-radio-button value="2">Not known</mat-radio-button>
         </mat-radio-group>
         <br>
-        <mat-form-field>
+        <mat-form-field *ngIf="form.value.sunburnsLast5 == 1">
           <input matInput
-                 *ngIf="form.value.sunburnsLast5 !== null"
                  placeholder="Specify how many"
                  formControlName="last5SunburnsNumber">
           <br>
@@ -241,7 +239,7 @@
               </mat-select>
             </mat-grid-tile>
             <!-- QUESTA È UNA DOMANDA CHE VA SPLITTATA FRA CASE E CONTROL -->
-            <mat-grid-tile>10 years before melanoma diagnosis (for cases) or last 10 years (for controls)</mat-grid-tile>
+            <mat-grid-tile class="padding">10 years before melanoma diagnosis (for cases) or last 10 years (for controls)</mat-grid-tile>
             <mat-grid-tile>
               <mat-select placeholder="Select a percentage" formControlName="sunscreenPercentageMelanoma">
                 <mat-option *ngFor="let option of sunscreenPercentageOpt" [value]="option.value">
@@ -266,11 +264,10 @@
           Sunlamps/sunbeds
         </mat-label>
         <mat-radio-group aria-label="Select yes or no" formControlName="sunlamps">
-          <mat-radio-button *ngFor="let option of yesNoOpt" [value]="option.value" >
-            {{option.viewValue}}
-          </mat-radio-button>
+          <mat-radio-button value="1">Yes</mat-radio-button>
+          <mat-radio-button value="0">No</mat-radio-button>
         </mat-radio-group>
-        <div *ngIf="form.value.sunlamps">
+        <div *ngIf="form.value.sunlamps == 1">
           <mat-form-field>
             <input matInput formControlName="numberSunlamps" placeholder="Lifetime number of sessions">
           </mat-form-field>
@@ -281,7 +278,6 @@
             <input matInput formControlName="ageLastSunlamps" placeholder="Age at last exposure">
           </mat-form-field>
         </div>
-
         <div>
           <button type="submit" [disabled]="!form.valid" mat-raised-button color="primary" matStepperNext>Next</button>
         </div>

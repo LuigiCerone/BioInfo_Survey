@@ -1,0 +1,153 @@
+<div>
+  <form [formGroup]="form">
+    <mat-card>
+      <mat-card-title><h2>Section C.1</h2></mat-card-title>
+      <mat-card-content>
+        <br>
+        <h3>1. Medical diagnosis</h3>
+          <mat-form-field>
+            <mat-label>
+              History of medical (non-cancer) diagnoses
+            </mat-label>
+            <input matInput formControlName="diagnosesName" placeholder="Insert diagnoses name">
+            <input matInput formControlName="diagnosesCode" placeholder="Insert diagnoses ICD-10 code">
+          </mat-form-field>
+        <br>
+
+        <h3>2. Previous and concomitant treatments </h3>
+        <mat-form-field>
+          <mat-label>
+            Record all medications and time of drug exposure
+          </mat-label>
+          <input matInput formControlName="treatmentName" placeholder="Insert treatment name">
+          <input matInput formControlName="treatmentStartingTime" placeholder="Insert date of treatment's start">
+          <input matInput formControlName="treatmentEndingTime" placeholder="Insert date of treatment's end">
+        </mat-form-field>
+        <br>
+
+        <h3>3. Pregnancy history</h3>
+        <mat-form-field>
+          <input matInput type="number" formControlName="numberPregnancy" placeholder="No. of full-term pregnancies">
+          <input matInput formControlName="dateOfBirth" placeholder="Date of birth of first child">
+          <input matInput type="number" formControlName="numberOfMiscarriages" placeholder="No. of miscarriages">
+        </mat-form-field>
+        <br>
+        <h4>Did melanoma occur during pregnancy?</h4>
+        <mat-radio-group aria-label="Select yes or no" formControlName="melanomaDuringPregnancy">
+          <mat-radio-button value="1">Yes</mat-radio-button>
+          <mat-radio-button value="0">No</mat-radio-button>
+        </mat-radio-group>
+        <br>
+        <h4>Did melanoma occur before pregnancy?</h4>
+        <mat-radio-group aria-label="Select yes or no" formControlName="melanomaBeforePregnancy">
+          <mat-radio-button value="1">Yes</mat-radio-button>
+          <mat-radio-button value="0">No</mat-radio-button>
+        </mat-radio-group>
+        <br>
+        <input *ngIf="form.value.melanomaBeforePregnancy"
+               matInput
+               placeholder="How many years before pregnancy?"
+               formControlName="yearsBeforePregnancy">
+        <br>
+        <h4>Did melanoma occur after pregnancy?</h4>
+        <mat-radio-group aria-label="Select yes or no" formControlName="melanomaAfterPregnancy">
+          <mat-radio-button value="1">Yes</mat-radio-button>
+          <mat-radio-button value="0">No</mat-radio-button>
+        </mat-radio-group>
+        <br>
+        <input *ngIf="form.value.melanomaAfterPregnancy"
+               matInput
+               placeholder="How many years after pregnancy?"
+               formControlName="yearsAfterPregnancy">
+        <br>
+        <h4>History of hormone-assisted pregnancy (IVF) before diagnosis</h4>
+        <mat-radio-group aria-label="Select yes or no" formControlName="hormoneAssisted">
+          <mat-radio-button value="1">Yes</mat-radio-button>
+          <mat-radio-button value="0">No</mat-radio-button>
+        </mat-radio-group>
+        <br>
+
+        <h3>4. Lifetime history of non-melanoma skin cancer, KSC </h3>
+          <h4>
+            Basal Cell Carcinoma
+          </h4>
+        <input type="number" formControlName="numberOfLifetimeBcc" placeholder="Insert the number of BCC">
+
+        <br>
+          <div *ngIf="form.value.numberOfLifetimeBcc">
+            <h4>
+              Before or after melanoma diagnosis?
+            </h4>
+            <mat-radio-group aria-label="Select yes or no" formControlName="lifetimeBccAfterOrBefore">
+              <mat-radio-button value="1">After</mat-radio-button>
+              <mat-radio-button value="0">Before</mat-radio-button>
+            </mat-radio-group>
+            <br>
+            <input matInput placeholder="Insert site" formControlName="siteOfLifetimeBcc">
+            <input matInput placeholder="Date of diagnosis" formControlName="dateOfLifetimeBcc">
+          </div>
+        <br>
+        <h4>
+          Invasive Squamous Cell Carcinoma
+        </h4>
+        <input type="number" formControlName="numberOfLifetimeIscc" placeholder="Insert the number of ISCC">
+        <br>
+        <div *ngIf="form.value.numberOfLifetimeIscc">
+          <h4>
+            Before or after melanoma diagnosis?
+          </h4>
+          <mat-radio-group aria-label="Select yes or no" formControlName="lifetimeIsccAfterOrBefore">
+            <mat-radio-button value="1">After</mat-radio-button>
+            <mat-radio-button value="0">Before</mat-radio-button>
+          </mat-radio-group>
+          <br>
+          <input matInput placeholder="Insert site" formControlName="siteOfLifetimeIscc">
+          <input matInput placeholder="Date of diagnosis" formControlName="dateOfLifetimeIscc">
+        </div>
+        <br>
+        <h4>
+          In situ Squamous Cell Carcinoma
+        </h4>
+        <input type="number" formControlName="numberOfLifetimeSscc" placeholder="Insert the number of SSCC">
+        <br>
+        <div *ngIf="form.value.numberOfLifetimeSscc">
+          <mat-form-field>
+            <mat-label>
+              Choose the type of SSCC
+            </mat-label>
+            <mat-select formControlName="typeOfLifetimeSscc">
+              <mat-option *ngFor="let option of lifetimeSsccOpt" [value]="option.value">
+                {{option.viewValue}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <h4>
+            Before or after melanoma diagnosis?
+          </h4>
+          <mat-radio-group aria-label="Select yes or no" formControlName="lifetimeSsccAfterOrBefore">
+            <mat-radio-button value="1">After</mat-radio-button>
+            <mat-radio-button value="0">Before</mat-radio-button>
+          </mat-radio-group>
+          <br>
+          <input matInput placeholder="Insert site" formControlName="siteOfLifetimeSscc">
+          <input matInput placeholder="Date of diagnosis" formControlName="dateOfLifetimeSscc">
+        </div>
+        <br>
+
+        <br>
+        <h3>5. Other non-cutaneous neoplasia</h3>
+          <mat-form-field>
+            <mat-label>Specify</mat-label>
+            <input matInput formControlName="otherNeoplasiaType" placeholder="Insert type of neoplasia">
+            <input matInput formControlName="otherNeoplasiaAge" placeholder="Insert age at diagnosis">
+            <input matInput formControlName="otherNeoplasiaYear" placeholder="Insert year at diagnosis">
+          </mat-form-field>
+
+        <div>
+          <button type="submit" [disabled]="!form.valid" mat-raised-button color="primary" matStepperNext>Next</button>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </form>
+</div>
+

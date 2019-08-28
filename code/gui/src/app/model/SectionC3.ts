@@ -1,5 +1,3 @@
-import {FormsModule} from "@angular/forms";
-
 export class SectionC3 {
   familyHistoryOfMelanomaList: FamilyHistory;
   germlineStatus: string;

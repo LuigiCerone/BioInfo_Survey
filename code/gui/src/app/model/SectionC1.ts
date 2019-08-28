@@ -80,27 +80,27 @@ class ClinicallyAtypicalNevi {
 }
 
 class CongenitalNevi {
-  numberOfMediumSizedNevi: number;
+  presenceOfMediumSizedNevi: boolean;
   siteOfMediumSizedNevi: string;
-  numberOfLargeSizedNevi: number;
+  presenceOfLargeSizedNevi: boolean;
   siteOfLargeSizedNevi: string;
-  numberOfGiantNevi: number;
+  presenceOfGiantNevi: boolean;
   siteOfGiantSizedNevi: string;
 
   constructor(form?) {
     if (form) {
-      this.numberOfMediumSizedNevi = form.value.CongenitalNevi.numberOfMediumSizedNevi;
+      this.presenceOfMediumSizedNevi = form.value.CongenitalNevi.numberOfMediumSizedNevi;
       this.siteOfMediumSizedNevi = form.value.CongenitalNevi.siteOfMediumSizedNevi;
-      this.numberOfLargeSizedNevi = form.value.CongenitalNevi.numberOfLargeSizedNevi;
+      this.presenceOfLargeSizedNevi = form.value.CongenitalNevi.numberOfLargeSizedNevi;
       this.siteOfLargeSizedNevi = form.value.CongenitalNevi.siteOfLargeSizedNevi;
-      this.numberOfGiantNevi = form.value.CongenitalNevi.numberOfGiantNevi;
+      this.presenceOfGiantNevi = form.value.CongenitalNevi.numberOfGiantNevi;
       this.siteOfGiantSizedNevi = form.value.CongenitalNevi.siteOfGiantSizedNevi;
     } else {
-      this.numberOfMediumSizedNevi = 0;
+      this.presenceOfMediumSizedNevi = false;
       this.siteOfMediumSizedNevi = '';
-      this.numberOfLargeSizedNevi = 0;
+      this.presenceOfLargeSizedNevi = false;
       this.siteOfLargeSizedNevi = '';
-      this.numberOfGiantNevi = 0;
+      this.presenceOfGiantNevi = false;
       this.siteOfGiantSizedNevi = '';
     }
   }

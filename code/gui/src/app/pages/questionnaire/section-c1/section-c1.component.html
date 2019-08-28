@@ -1,0 +1,273 @@
+<div>
+  <form [formGroup]="form">
+    <mat-card>
+      <mat-card-title><h2>Section C.1</h2></mat-card-title>
+      <mat-card-content>
+        <br>
+        <h3>1. Solar Lentigines</h3>
+
+          <mat-label>
+            Permanent multiple macular pigmented lesions, aggregated,
+            in areas of chronic sun exposure, do not disappear in winter
+          </mat-label>
+            <mat-select formControlName="solarLentigines.howMany">
+              <mat-option *ngFor="let option of lentiginesOpt" [value]="option.value">
+                {{option.viewValue}}
+              </mat-option>
+            </mat-select>
+        <h4>At site of melanoma?</h4>
+        <mat-radio-group aria-label="Select yes or no" formControlName="solarLentigines.atSiteOfMelanoma">
+          <mat-radio-button value="1">Yes</mat-radio-button>
+          <mat-radio-button value="0">No</mat-radio-button>
+        </mat-radio-group>
+        <br>
+
+        <h3>2. Nevi count</h3>
+        <div>
+          <p>
+            Consider nevi >2 mm and include all nevi (common, clinically atypical, and congenital)
+          </p>
+          <mat-grid-list cols="3" rowHeight="6:1">
+            <mat-grid-tile>Site</mat-grid-tile>
+            <mat-grid-tile>Number (left)</mat-grid-tile>
+            <mat-grid-tile>Number (right)</mat-grid-tile>
+            <mat-grid-tile>Scalp</mat-grid-tile>
+            <mat-grid-tile>
+              <mat-form-field>
+                <input matInput formControlName="neviCount.leftZoneNumber">
+              </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile>
+              <mat-form-field>
+                <input matInput formControlName="intermittentExposureChildhoodHours">
+              </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile>Face (including ears)</mat-grid-tile>
+            <mat-grid-tile>
+              <mat-form-field>
+                <input matInput formControlName="intermittentExposureAdolescenceWeeks">
+              </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile>
+              <mat-form-field>
+                <input matInput formControlName="intermittentExposureAdolescenceHours">
+              </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile>Neck</mat-grid-tile>
+            <mat-grid-tile>
+              <mat-form-field>
+                <input matInput formControlName="intermittentExposureAdulthoodWeeks">
+              </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile>
+              <mat-form-field>
+                <input matInput formControlName="intermittentExposureAdulthoodHours">
+              </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile class="padding">Anterior thorax + abdomen</mat-grid-tile>
+            <mat-grid-tile>
+              <mat-form-field>
+                <input matInput formControlName="intermittentExposureDiagnosisWeeks">
+              </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile>
+              <mat-form-field>
+                <input matInput formControlName="intermittentExposureDiagnosisHours">
+              </mat-form-field>
+            </mat-grid-tile>
+          <mat-grid-tile class="padding">Back</mat-grid-tile>
+          <mat-grid-tile>
+            <mat-form-field>
+              <input matInput formControlName="intermittentExposureDiagnosisWeeks">
+            </mat-form-field>
+          </mat-grid-tile>
+          <mat-grid-tile>
+            <mat-form-field>
+              <input matInput formControlName="intermittentExposureDiagnosisHours">
+            </mat-form-field>
+          </mat-grid-tile>
+            <mat-grid-tile class="padding">Upper extremities including deltoid</mat-grid-tile>
+            <mat-grid-tile>
+              <mat-form-field>
+                <input matInput formControlName="intermittentExposureDiagnosisWeeks">
+              </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile>
+              <mat-form-field>
+                <input matInput formControlName="intermittentExposureDiagnosisHours">
+              </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile>
+              <mat-form-field>
+                <input matInput formControlName="intermittentExposureDiagnosisHours">
+              </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile class="padding">Lower extremities including gluteus</mat-grid-tile>
+            <mat-grid-tile>
+              <mat-form-field>
+                <input matInput formControlName="intermittentExposureDiagnosisWeeks">
+              </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile>
+              <mat-form-field>
+                <input matInput formControlName="intermittentExposureDiagnosisHours">
+              </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile class="padding">Palms</mat-grid-tile>
+            <mat-grid-tile>
+              <mat-form-field>
+                <input matInput formControlName="intermittentExposureDiagnosisWeeks">
+              </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile>
+              <mat-form-field>
+                <input matInput formControlName="intermittentExposureDiagnosisHours">
+              </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile class="padding">Soles</mat-grid-tile>
+            <mat-grid-tile>
+              <mat-form-field>
+                <input matInput formControlName="intermittentExposureDiagnosisWeeks">
+              </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile>
+              <mat-form-field>
+                <input matInput formControlName="intermittentExposureDiagnosisHours">
+              </mat-form-field>
+            </mat-grid-tile>
+          </mat-grid-list>
+        </div>
+        <br>
+
+        <h3>3. Nevi count < 2mm</h3>
+        <mat-form-field>
+          <mat-label>
+            How many nevi of dimension less then 2mm?
+          </mat-label>
+          <mat-select formControlName="neviCountLessThan2mm">
+            <mat-option *ngFor="let option of neviLess2mmOpt" [value]="option.value">
+              {{option.viewValue}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <br>
+
+        <h3>4. Clinically atypical nevi</h3>
+              <mat-label>
+                Macular (i.e. flat) component in at least part of the lesion (mandatory)
+                and at least 3 of the following criteria.
+              </mat-label>
+              <input matInput type="number" formControlName="clinicallyAtypicalNevi.howMany">
+              <h4>At site of melanoma?</h4>
+              <mat-radio-group aria-label="Select yes or no" formControlName="clinicallyAtypicalNevi.atSiteOfMelanoma">
+                <mat-radio-button value="1">Yes</mat-radio-button>
+                <mat-radio-button value="0">No</mat-radio-button>
+              </mat-radio-group>
+        <br>
+        <h3>5. Congenital nevi</h3>
+          <h4>
+            Medium sized (1.5 – 19.9 cm )
+          </h4>
+          <mat-radio-group aria-label="Select yes or no" formControlName="cnMediumSized">
+            <mat-radio-button value="1">Yes</mat-radio-button>
+            <mat-radio-button value="0">No</mat-radio-button>
+          </mat-radio-group>
+          <h4>At site of melanoma?</h4>
+          <mat-radio-group *ngIf="form.value.cnMediumSized" aria-label="Select yes or no" formControlName="cnMediumSizedAtSiteOfMelanoma">
+            <mat-radio-button value="1">Yes</mat-radio-button>
+            <mat-radio-button value="0">No</mat-radio-button>
+          </mat-radio-group>
+        <br>
+        <h4>
+          Large sized ( greater than 19.9cm )
+        </h4>
+        <mat-radio-group aria-label="Select yes or no" formControlName="cnLargeSized">
+          <mat-radio-button value="1">Yes</mat-radio-button>
+          <mat-radio-button value="0">No</mat-radio-button>
+        </mat-radio-group>
+        <h4>At site of melanoma?</h4>
+        <mat-radio-group *ngIf="form.value.cnLargeSized" aria-label="Select yes or no" formControlName="cnLargeSizedAtSiteOfMelanoma">
+          <mat-radio-button value="1">Yes</mat-radio-button>
+          <mat-radio-button value="0">No</mat-radio-button>
+        </mat-radio-group>
+        <br>
+        <h4>
+          Giant sized ( greater than 39.9cm )
+        </h4>
+        <mat-radio-group aria-label="Select yes or no" formControlName="cnGiantSized">
+          <mat-radio-button value="1">Yes</mat-radio-button>
+          <mat-radio-button value="0">No</mat-radio-button>
+        </mat-radio-group>
+        <h4>At site of melanoma?</h4>
+        <mat-radio-group *ngIf="form.value.cnGiantSized" aria-label="Select yes or no" formControlName="cnGiantSizedAtSiteOfMelanoma">
+          <mat-radio-button value="1">Yes</mat-radio-button>
+          <mat-radio-button value="0">No</mat-radio-button>
+        </mat-radio-group>
+        <br>
+        <h3>6. Blue nevi</h3>
+        <mat-radio-group aria-label="Select yes or no" formControlName="blueNevi">
+          <mat-radio-button value="1">Yes</mat-radio-button>
+          <mat-radio-button value="0">No</mat-radio-button>
+        </mat-radio-group>
+        <br>
+        <input *ngIf="form.value.blueNevi" type="number" placeholder="Insert how many" formControlName="numberOfBlueNevi">
+        <br>
+
+        <h3>7. Actinic keratoses</h3>
+        <mat-radio-group aria-label="Select yes or no" formControlName="actinicKeratoses">
+          <mat-radio-button value="1">Yes</mat-radio-button>
+          <mat-radio-button value="0">No</mat-radio-button>
+        </mat-radio-group>
+        <br>
+        <input matInput *ngIf="form.value.actinicKeratoses" placeholder="Insert the site" formControlName="siteOfActinicKeratoses">
+        <mat-form-field>
+          <mat-label>
+            Choose the predominant type of distribution
+          </mat-label>
+          <mat-select formControlName="neviCountLessThan2mm">
+            <mat-option *ngFor="let option of distributionOpt" [value]="option.value">
+              {{option.viewValue}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <br>
+
+        <h3>8. Current non-melanoma skin cancer, KSC</h3>
+        <h4>Basal Cell Carcinoma</h4>
+        <mat-radio-group aria-label="Select yes or no" formControlName="bcc">
+          <mat-radio-button value="1">Yes</mat-radio-button>
+          <mat-radio-button value="0">No</mat-radio-button>
+        </mat-radio-group>
+        <br>
+        <input matInput *ngIf="form.value.bcc" placeholder="Insert the site" formControlName="siteOfBcc">
+        <input matInput *ngIf="form.value.bcc" type="number" placeholder="Insert the number" formControlName="numberOfBcc">
+        <br>
+
+        <h4>Invasive Squamous Cell Carcinoma</h4>
+        <mat-radio-group aria-label="Select yes or no" formControlName="iscc">
+          <mat-radio-button value="1">Yes</mat-radio-button>
+          <mat-radio-button value="0">No</mat-radio-button>
+        </mat-radio-group>
+        <br>
+        <input matInput *ngIf="form.value.iscc" placeholder="Insert the site" formControlName="siteOfIscc">
+        <input matInput *ngIf="form.value.iscc" type="number" placeholder="Insert the number" formControlName="numberOfIscc">
+        <br>
+
+        <h4>In situ Squamous Cell Carcinoma</h4>
+        <mat-radio-group aria-label="Select yes or no" formControlName="sscc">
+          <mat-radio-button value="1">Yes</mat-radio-button>
+          <mat-radio-button value="0">No</mat-radio-button>
+        </mat-radio-group>
+        <br>
+        <input matInput *ngIf="form.value.sscc" placeholder="Insert the site" formControlName="siteOfSscc">
+        <input matInput *ngIf="form.value.sscc" type="number" placeholder="Insert the number" formControlName="numberOfSscc">
+        <br>
+
+        <div>
+          <button type="submit" [disabled]="!form.valid" mat-raised-button color="primary" matStepperNext>Next</button>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </form>
+</div>
+

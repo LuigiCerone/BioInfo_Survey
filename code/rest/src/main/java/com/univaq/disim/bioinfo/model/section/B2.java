@@ -3,6 +3,7 @@ package com.univaq.disim.bioinfo.model.section;
 import com.univaq.disim.bioinfo.model.nested.*;
 import org.springframework.data.mongodb.core.mapping.Field;
 
+import java.util.HashMap;
 import java.util.List;
 
 public class B2 {
@@ -15,17 +16,17 @@ public class B2 {
     private RecreationalSunExposure recreationalSunExposure;
 
     @Field
-    private List<IntermittentSunExposure> intermittentSunExposure;
+    private HashMap<String, Object> intermittentSunExposure;
 
     //It should be a date
     @Field
     private String mostRecentIntermittentSunExposure;
 
     @Field
-    private List<SevereSunBurns> severeSunBurns;
+    private HashMap<String, SevereSunBurns> severeSunBurns;
 
     @Field
-    private List<SunscreenUse> sunscreenUses;
+    private HashMap<String, SunscreenUse> sunscreenUses;
 
     // It can be Never, <50% of time exposure, >50% of time exposure, Always, Not known
     //TODO: it's an optional answer
@@ -68,11 +69,11 @@ public class B2 {
         this.recreationalSunExposure = recreationalSunExposure;
     }
 
-    public List<IntermittentSunExposure> getIntermittentSunExposure() {
+    public HashMap<String, Object> getIntermittentSunExposure() {
         return intermittentSunExposure;
     }
 
-    public void setIntermittentSunExposure(List<IntermittentSunExposure> intermittentSunExposure) {
+    public void setIntermittentSunExposure(HashMap<String, Object> intermittentSunExposure) {
         this.intermittentSunExposure = intermittentSunExposure;
     }
 
@@ -84,19 +85,19 @@ public class B2 {
         this.mostRecentIntermittentSunExposure = mostRecentIntermittentSunExposure;
     }
 
-    public List<SevereSunBurns> getSevereSunBurns() {
+    public HashMap<String,SevereSunBurns> getSevereSunBurns() {
         return severeSunBurns;
     }
 
-    public void setSevereSunBurns(List<SevereSunBurns> severeSunBurns) {
+    public void setSevereSunBurns(HashMap<String,SevereSunBurns> severeSunBurns) {
         this.severeSunBurns = severeSunBurns;
     }
 
-    public List<SunscreenUse> getSunscreenUses() {
+    public HashMap<String, SunscreenUse> getSunscreenUses() {
         return sunscreenUses;
     }
 
-    public void setSunscreenUses(List<SunscreenUse> sunscreenUses) {
+    public void setSunscreenUses(HashMap<String, SunscreenUse> sunscreenUses) {
         this.sunscreenUses = sunscreenUses;
     }
 

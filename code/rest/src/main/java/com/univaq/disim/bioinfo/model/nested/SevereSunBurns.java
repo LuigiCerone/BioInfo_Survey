@@ -22,7 +22,7 @@ public class SevereSunBurns {
         this.period = period;
     }
 
-    public String getPrecence() {
+    public String getPresence() {
         return presence;
     }
 

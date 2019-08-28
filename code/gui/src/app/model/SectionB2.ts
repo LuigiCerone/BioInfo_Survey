@@ -1,10 +1,10 @@
 class SectionB2 {
   occupationalSunExposure: OccupationalSunExposure;
   recreationalSunExposure: RecreationalSunExposure;
-  intermittentSunExposure: Map<string, IntermittentSunExposure>;
+  intermittentSunExposure: object;
   mostRecentIntermittentSunExposure: string;
-  severeSunBurns: Map<string, SevereSunBurns>;
-  sunscreenUses: Map<string, SunscreenUse>;
+  severeSunBurns: object;
+  sunscreenUses: object;
   sunlampsSunbeds: SunlampsSunbeds;
   // sunProtectionOtherThanSunscreenUseHat: string; // Opt.
   // sunProtectionOtherThanSunscreenUseClothing: string; // Opt.
@@ -14,57 +14,53 @@ class SectionB2 {
 
   constructor(form?) {
     if (form) {
-      this.occupationalSunExposure = new OccupationalSunExposure(form.value.occupationalSunExposure);
+      this.occupationalSunExposure = new OccupationalSunExposure(form.value);
       this.recreationalSunExposure = new RecreationalSunExposure(form.value.recreationalSunExposure);
 
-      this.intermittentSunExposure = new Map<string, IntermittentSunExposure>();
-      this.intermittentSunExposure.set(IntermittentSunExposure.KEY_CHILDHOOD,
-        new IntermittentSunExposure(IntermittentSunExposure.KEY_CHILDHOOD, form.value.intermittentSunExposure.childhood));
-      this.intermittentSunExposure.set(IntermittentSunExposure.KEY_ADOLESCENCE,
-        new IntermittentSunExposure(IntermittentSunExposure.KEY_ADOLESCENCE, form.value.intermittentSunExposure.adolescence));
-      this.intermittentSunExposure.set(IntermittentSunExposure.KEY_ADULTHOOD,
-        new IntermittentSunExposure(IntermittentSunExposure.KEY_ADULTHOOD, form.value.intermittentSunExposure.adulthood));
-      this.intermittentSunExposure.set(IntermittentSunExposure.KEY_TEN_YEARS,
-        new IntermittentSunExposure(IntermittentSunExposure.KEY_TEN_YEARS, form.value.intermittentSunExposure.tenYears));
+      this.intermittentSunExposure = {};
+      this.intermittentSunExposure[IntermittentSunExposure.KEY_CHILDHOOD] = new IntermittentSunExposure(IntermittentSunExposure.KEY_CHILDHOOD, form.value);
+      this.intermittentSunExposure[IntermittentSunExposure.KEY_ADOLESCENCE] = new IntermittentSunExposure(IntermittentSunExposure.KEY_ADOLESCENCE, form.value);
+      this.intermittentSunExposure[IntermittentSunExposure.KEY_ADULTHOOD] = new IntermittentSunExposure(IntermittentSunExposure.KEY_ADULTHOOD, form.value);
+      this.intermittentSunExposure[IntermittentSunExposure.KEY_TEN_YEARS] = new IntermittentSunExposure(IntermittentSunExposure.KEY_TEN_YEARS, form.value);
 
-      this.mostRecentIntermittentSunExposure = form.value.mostRecentIntermittentSunExposure;
+      this.mostRecentIntermittentSunExposure = form.value.lastIntenseExposure;
 
-      this.severeSunBurns = new Map<string, SevereSunBurns>();
-      this.severeSunBurns.set(SevereSunBurns.KEY_MINOR_18, new SevereSunBurns(SevereSunBurns.KEY_MINOR_18, form.value.severeSunBurns.minor18));
-      this.severeSunBurns.set(SevereSunBurns.KEY_GREATER_18, new SevereSunBurns(SevereSunBurns.KEY_GREATER_18, form.value.severeSunBurns.greater18));
-      this.severeSunBurns.set(SevereSunBurns.KEY_AT_SITE, new SevereSunBurns(SevereSunBurns.KEY_AT_SITE, form.value.severeSunBurns.atSite));
-      this.severeSunBurns.set(SevereSunBurns.KEY_LAST_5, new SevereSunBurns(SevereSunBurns.KEY_LAST_5, form.value.severeSunBurns.last5));
+      this.severeSunBurns = {};
+      this.severeSunBurns[SevereSunBurns.KEY_MINOR_18] = new SevereSunBurns(SevereSunBurns.KEY_MINOR_18, form.value);
+      this.severeSunBurns[SevereSunBurns.KEY_GREATER_18] = new SevereSunBurns(SevereSunBurns.KEY_GREATER_18, form.value);
+      this.severeSunBurns[SevereSunBurns.KEY_AT_SITE] = new SevereSunBurns(SevereSunBurns.KEY_AT_SITE, form.value);
+      this.severeSunBurns[SevereSunBurns.KEY_LAST_5] = new SevereSunBurns(SevereSunBurns.KEY_LAST_5, form.value);
 
-      this.sunscreenUses = new Map<string, SunscreenUse>();
-      this.sunscreenUses.set(SunscreenUse.KEY_CHILDHOOD, new SunscreenUse(SunscreenUse.KEY_CHILDHOOD, form.value.sunscreenUses.childhood));
-      this.sunscreenUses.set(SunscreenUse.KEY_ADOLESCENCE, new SunscreenUse(SunscreenUse.KEY_ADOLESCENCE, form.value.sunscreenUses.adolescence));
-      this.sunscreenUses.set(SunscreenUse.KEY_ADULTHOOD, new SunscreenUse(SunscreenUse.KEY_ADULTHOOD, form.value.sunscreenUses.adulthood));
-      this.sunscreenUses.set(SunscreenUse.KEY_TEN_YEARS, new SunscreenUse(SunscreenUse.KEY_TEN_YEARS, form.value.sunscreenUses.tenYears));
+      this.sunscreenUses = {};
+      this.sunscreenUses[SunscreenUse.KEY_CHILDHOOD] = new SunscreenUse(SunscreenUse.KEY_CHILDHOOD, form.value);
+      this.sunscreenUses[SunscreenUse.KEY_ADOLESCENCE] = new SunscreenUse(SunscreenUse.KEY_ADOLESCENCE, form.value);
+      this.sunscreenUses[SunscreenUse.KEY_ADULTHOOD] = new SunscreenUse(SunscreenUse.KEY_ADULTHOOD, form.value);
+      this.sunscreenUses[SunscreenUse.KEY_TEN_YEARS] = new SunscreenUse(SunscreenUse.KEY_TEN_YEARS, form.value);
 
-      this.sunlampsSunbeds = new SunlampsSunbeds(form.value.sunlampsSunbeds);
+      this.sunlampsSunbeds = new SunlampsSunbeds(form.value);
     } else {
       this.occupationalSunExposure = new OccupationalSunExposure();
       this.recreationalSunExposure = new RecreationalSunExposure();
 
-      this.intermittentSunExposure = new Map<string, IntermittentSunExposure>();
-      this.intermittentSunExposure.set(IntermittentSunExposure.KEY_CHILDHOOD, new IntermittentSunExposure(IntermittentSunExposure.KEY_CHILDHOOD));
-      this.intermittentSunExposure.set(IntermittentSunExposure.KEY_ADOLESCENCE, new IntermittentSunExposure(IntermittentSunExposure.KEY_ADOLESCENCE));
-      this.intermittentSunExposure.set(IntermittentSunExposure.KEY_ADULTHOOD, new IntermittentSunExposure(IntermittentSunExposure.KEY_ADULTHOOD));
-      this.intermittentSunExposure.set(IntermittentSunExposure.KEY_TEN_YEARS, new IntermittentSunExposure(IntermittentSunExposure.KEY_TEN_YEARS));
+      this.intermittentSunExposure = {};
+      this.intermittentSunExposure[IntermittentSunExposure.KEY_CHILDHOOD] = new IntermittentSunExposure(IntermittentSunExposure.KEY_CHILDHOOD);
+      this.intermittentSunExposure[IntermittentSunExposure.KEY_ADOLESCENCE] = new IntermittentSunExposure(IntermittentSunExposure.KEY_ADOLESCENCE);
+      this.intermittentSunExposure[IntermittentSunExposure.KEY_ADULTHOOD] = new IntermittentSunExposure(IntermittentSunExposure.KEY_ADULTHOOD);
+      this.intermittentSunExposure[IntermittentSunExposure.KEY_TEN_YEARS] = new IntermittentSunExposure(IntermittentSunExposure.KEY_TEN_YEARS);
 
       this.mostRecentIntermittentSunExposure = '';
 
-      this.severeSunBurns = new Map<string, SevereSunBurns>();
-      this.severeSunBurns.set(SevereSunBurns.KEY_MINOR_18, new SevereSunBurns(SevereSunBurns.KEY_MINOR_18));
-      this.severeSunBurns.set(SevereSunBurns.KEY_GREATER_18, new SevereSunBurns(SevereSunBurns.KEY_GREATER_18));
-      this.severeSunBurns.set(SevereSunBurns.KEY_AT_SITE, new SevereSunBurns(SevereSunBurns.KEY_AT_SITE));
-      this.severeSunBurns.set(SevereSunBurns.KEY_LAST_5, new SevereSunBurns(SevereSunBurns.KEY_LAST_5));
+      this.severeSunBurns = {};
+      this.severeSunBurns[SevereSunBurns.KEY_MINOR_18] = new SevereSunBurns(SevereSunBurns.KEY_MINOR_18);
+      this.severeSunBurns[SevereSunBurns.KEY_GREATER_18] = new SevereSunBurns(SevereSunBurns.KEY_GREATER_18);
+      this.severeSunBurns[SevereSunBurns.KEY_AT_SITE] = new SevereSunBurns(SevereSunBurns.KEY_AT_SITE);
+      this.severeSunBurns[SevereSunBurns.KEY_LAST_5] = new SevereSunBurns(SevereSunBurns.KEY_LAST_5);
 
-      this.sunscreenUses = new Map<string, SunscreenUse>();
-      this.sunscreenUses.set(SunscreenUse.KEY_CHILDHOOD, new SunscreenUse(SunscreenUse.KEY_CHILDHOOD));
-      this.sunscreenUses.set(SunscreenUse.KEY_ADOLESCENCE, new SunscreenUse(SunscreenUse.KEY_ADOLESCENCE));
-      this.sunscreenUses.set(SunscreenUse.KEY_ADULTHOOD, new SunscreenUse(SunscreenUse.KEY_ADULTHOOD));
-      this.sunscreenUses.set(SunscreenUse.KEY_TEN_YEARS, new SunscreenUse(SunscreenUse.KEY_TEN_YEARS));
+      this.sunscreenUses = {};
+      this.sunscreenUses[SunscreenUse.KEY_CHILDHOOD] = new SunscreenUse(SunscreenUse.KEY_CHILDHOOD);
+      this.sunscreenUses[SunscreenUse.KEY_ADOLESCENCE] = new SunscreenUse(SunscreenUse.KEY_ADOLESCENCE);
+      this.sunscreenUses[SunscreenUse.KEY_ADULTHOOD] = new SunscreenUse(SunscreenUse.KEY_ADULTHOOD);
+      this.sunscreenUses[SunscreenUse.KEY_TEN_YEARS] = new SunscreenUse(SunscreenUse.KEY_TEN_YEARS);
 
       this.sunlampsSunbeds = new SunlampsSunbeds();
 
@@ -73,7 +69,7 @@ class SectionB2 {
 }
 
 class OccupationalSunExposure {
-  isTrue: boolean;
+  true: boolean;
   occupation: string;
   hoursPerDay: string;
   daysPerMonth: string;
@@ -82,14 +78,14 @@ class OccupationalSunExposure {
 
   constructor(form?) {
     if (form) {
-      this.isTrue = form.isTrue;
-      this.occupation = form.occupation;
-      this.hoursPerDay = form.hoursPerDay;
-      this.daysPerMonth = form.daysPerMonth;
-      this.monthsPerYear = form.monthsPerYear;
-      this.years = form.years;
+      this.true = form.occupationalSunExposure;
+      this.occupation = form.occupationalSunExposureType;
+      this.hoursPerDay = form.occupationalSunExposureHours;
+      this.daysPerMonth = form.occupationalSunExposureDays;
+      this.monthsPerYear = form.occupationalSunExposureMonths;
+      this.years = form.occupationalSunExposureYears;
     } else {
-      this.isTrue = false;
+      this.true = false;
       this.occupation = '';
       this.hoursPerDay = '';
       this.daysPerMonth = '';
@@ -100,7 +96,7 @@ class OccupationalSunExposure {
 }
 
 class RecreationalSunExposure {
-  isTrue: boolean;
+  true: boolean;
   activity: string;
   hoursPerDay: string;
   daysPerMonth: string;
@@ -109,14 +105,14 @@ class RecreationalSunExposure {
 
   constructor(form?) {
     if (form) {
-      this.isTrue = form.isTrue;
-      this.activity = form.activity;
-      this.hoursPerDay = form.hoursPerDay;
-      this.daysPerMonth = form.daysPerMonth;
-      this.monthsPerYear = form.monthsPerYear;
-      this.years = form.years;
+      this.true = form.recreationalSunExposure;
+      this.activity = form.recreationalSunExposureType;
+      this.hoursPerDay = form.recreationalSunExposureHours;
+      this.daysPerMonth = form.recreationalSunExposureDays;
+      this.monthsPerYear = form.recreationalSunExposureMonths;
+      this.years = form.recreationalSunExposureYears;
     } else {
-      this.isTrue = false;
+      this.true = false;
       this.activity = '';
       this.hoursPerDay = '';
       this.daysPerMonth = '';
@@ -139,8 +135,24 @@ class IntermittentSunExposure {
   constructor(agePeriod: string, form?) {
     if (form) {
       this.agePeriod = agePeriod;
-      this.weeksOfVacation = form.weeksOfVacation;
-      this.hoursSpentBetween11AMAnd4PM = form.hoursSpentBetween11AMAnd4PM;
+      switch (agePeriod) {
+        case IntermittentSunExposure.KEY_CHILDHOOD:
+          this.weeksOfVacation = form.intermittentExposureChildhoodWeeks;
+          this.hoursSpentBetween11AMAnd4PM = form.intermittentExposureChildhoodHours;
+          break;
+        case IntermittentSunExposure.KEY_ADOLESCENCE:
+          this.weeksOfVacation = form.intermittentExposureAdolescenceWeeks;
+          this.hoursSpentBetween11AMAnd4PM = form.intermittentExposureAdolescenceHours;
+          break;
+        case IntermittentSunExposure.KEY_ADULTHOOD:
+          this.weeksOfVacation = form.intermittentExposureAdulthoodWeeks;
+          this.hoursSpentBetween11AMAnd4PM = form.intermittentExposureAdulthoodHours;
+          break;
+        case IntermittentSunExposure.KEY_TEN_YEARS:
+          this.weeksOfVacation = form.intermittentExposureDiagnosisWeeks;
+          this.hoursSpentBetween11AMAnd4PM = form.intermittentExposureDiagnosisHours;
+          break;
+      }
     } else {
       this.agePeriod = agePeriod;
       this.weeksOfVacation = '';
@@ -158,8 +170,24 @@ class SevereSunBurns {
   constructor(period: string, form?) {
     if (form) {
       this.period = period;
-      this.presence = form.presence;
-      this.number = form.number;
+      switch (period) {
+        case SevereSunBurns.KEY_MINOR_18:
+          this.presence = form.sunburnsLess18;
+          this.number = form.less18SunburnsNumber;
+          break;
+        case SevereSunBurns.KEY_GREATER_18:
+          this.presence = form.sunburnsGreater18;
+          this.number = form.greater18SunburnsNumber;
+          break;
+        case SevereSunBurns.KEY_AT_SITE:
+          this.presence = form.sunburnsMelanomaSite;
+          this.number = 0;
+          break;
+        case SevereSunBurns.KEY_LAST_5:
+          this.presence = form.sunburnsLast5;
+          this.number = form.last5SunburnsNumber;
+          break;
+      }
     } else {
       this.period = period;
       this.presence = 0;
@@ -191,8 +219,24 @@ class SunscreenUse {
   constructor(agePeriod: string, form?) {
     if (form) {
       this.agePeriod = agePeriod;
-      this.howOften = form.howOften;
-      this.type = form.type;
+      switch (agePeriod) {
+        case SunscreenUse.KEY_CHILDHOOD:
+          this.howOften = form.sunscreenPercentageChildhood;
+          this.type = form.sunscreenTypeChildhood;
+          break;
+        case SunscreenUse.KEY_ADOLESCENCE:
+          this.howOften = form.sunscreenPercentageAdolescence;
+          this.type = form.sunscreenTypeAdolescence;
+          break;
+        case SunscreenUse.KEY_ADULTHOOD:
+          this.howOften = form.sunscreenPercentageAdulthood;
+          this.type = form.sunscreenTypeAdulthood;
+          break;
+        case SunscreenUse.KEY_TEN_YEARS:
+          this.howOften = form.sunscreenPercentageMelanoma;
+          this.type = form.sunscreenTypeMelanoma;
+          break;
+      }
     } else {
       this.agePeriod = agePeriod;
       this.howOften = '';
@@ -202,19 +246,19 @@ class SunscreenUse {
 }
 
 class SunlampsSunbeds {
-  isTrue: boolean;
+  true: boolean;
   lifetimeNumberOfSession: number;
   ageAtFirstExposure: number;
   ageAtLastExposure: number;
 
   constructor(form?) {
     if (form) {
-      this.isTrue = form.isTrue;
-      this.lifetimeNumberOfSession = form.lifetimeNumberOfSession;
-      this.ageAtFirstExposure = form.ageAtFirstExposure;
-      this.ageAtLastExposure = form.ageAtLastExposure;
+      this.true = form.sunlamps;
+      this.lifetimeNumberOfSession = form.numberSunlamps;
+      this.ageAtFirstExposure = form.ageFirstSunlamps;
+      this.ageAtLastExposure = form.ageLastSunlamps;
     } else {
-      this.isTrue = false;
+      this.true = false;
       this.lifetimeNumberOfSession = 0;
       this.ageAtFirstExposure = 0;
       this.ageAtLastExposure = 0;

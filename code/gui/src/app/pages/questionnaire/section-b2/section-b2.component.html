@@ -8,8 +8,8 @@
         <mat-label>Outdoor occupation with at least 4 hours/day spent outdoor in the sun</mat-label>
         <br>
         <mat-radio-group aria-label="Select yes or no" formControlName="occupationalSunExposure">
-          <mat-radio-button value="1">Yes</mat-radio-button>
-          <mat-radio-button value="0">No</mat-radio-button>
+          <mat-radio-button [value]=true>Yes</mat-radio-button>
+          <mat-radio-button [value]=false>No</mat-radio-button>
           <!--            TODO Center -->
         </mat-radio-group>
         <div *ngIf="form.value.occupationalSunExposure == 1">
@@ -36,8 +36,8 @@
         </mat-label>
         <br>
         <mat-radio-group aria-label="Select yes or no" formControlName="recreationalSunExposure">
-          <mat-radio-button value="1">Yes</mat-radio-button>
-          <mat-radio-button value="0">No</mat-radio-button>
+          <mat-radio-button [value]=true>Yes</mat-radio-button>
+          <mat-radio-button [value]=false>No</mat-radio-button>
           <!--            TODO Center -->
         </mat-radio-group>
         <div *ngIf="form.value.recreationalSunExposure == 1">
@@ -138,6 +138,7 @@
           Suburns with erythema and pain for more than 2 days or with blisters
         </div>
         <br>
+        <h4> At age < 18 years</h4>
         <mat-radio-group aria-label="At age <18 years" formControlName="sunburnsLess18">
           <mat-radio-button value="1">Yes</mat-radio-button>
           <mat-radio-button value="0">No</mat-radio-button>
@@ -264,8 +265,8 @@
           Sunlamps/sunbeds
         </mat-label>
         <mat-radio-group aria-label="Select yes or no" formControlName="sunlamps">
-          <mat-radio-button value="1">Yes</mat-radio-button>
-          <mat-radio-button value="0">No</mat-radio-button>
+          <mat-radio-button [value]=true>Yes</mat-radio-button>
+          <mat-radio-button [value]=false>No</mat-radio-button>
         </mat-radio-group>
         <div *ngIf="form.value.sunlamps == 1">
           <mat-form-field>

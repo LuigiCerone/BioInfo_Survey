@@ -15,37 +15,28 @@ import {QuestionnaireService} from '../../../services/questionnaire.service';
 export class SectionB2Component implements OnInit {
   form: FormGroup;
 
-  yesNoOpt: Options[] = [
-    {value: '1', viewValue: 'Yes'},
-    {value: '0', viewValue: 'No'},
-  ];
-  yesNoNotKnownOpt: Options[] = [
-    {value: '1', viewValue: 'Yes'},
-    {value: '0', viewValue: 'No'},
-    {value: '2', viewValue: 'Not known'},
-  ];
-
   sunscreenPercentageOpt: Options[] = [
-    {value: 'never', viewValue: 'Never'},
-    {value: 'less-50', viewValue: '< 50% of time exposure'},
-    {value: 'more-50', viewValue: '> 50% of time exposure'},
-    {value: 'always', viewValue: 'Always'},
-    {value: '0', viewValue: 'Not know'},
+    { value: 'never', viewValue: 'Never' },
+    { value: 'less-50', viewValue: '< 50% of time exposure' },
+    { value: 'more-50', viewValue: '> 50% of time exposure' },
+    { value: 'always', viewValue: 'Always' },
+    { value: '0', viewValue: 'Not know' },
   ];
   sunscreenTypeOpt: Options[] = [
-    {value: 'less-20', viewValue: 'SPF<20'},
-    {value: 'more-20', viewValue: 'SPF>20'},
-    {value: '0', viewValue: 'Not know'},
+    { value: 'less-20', viewValue: 'SPF<20' },
+    { value: 'more-20', viewValue: 'SPF>20' },
+    { value: '0', viewValue: 'Not know' },
   ];
 
   private b2: SectionB2;
 
   constructor(private authenticationService: AuthenticationService,
               private router: Router,
-              private questionnaireService: QuestionnaireService) {}
+              private questionnaireService: QuestionnaireService) {
+  }
 
   ngOnInit() {
-    this.questionnaireService.getQuestionnaireForUser(this.authenticationService.currentUserValue.username, 'b2').subscribe( (section: SectionB2) => {
+    this.questionnaireService.getQuestionnaireForUser(this.authenticationService.currentUserValue.username, 'b2').subscribe((section: SectionB2) => {
       console.log(section);
       if (section) {
         this.b2 = section;
@@ -58,71 +49,71 @@ export class SectionB2Component implements OnInit {
 
   buildForm() {
     this.form = new FormGroup({
-      occupationalSunExposure: new FormControl(this.b2.occupationalSunExposure.isTrue, Validators.required),
+      occupationalSunExposure: new FormControl(this.b2.occupationalSunExposure.true, Validators.required),
       occupationalSunExposureType: new FormControl(this.b2.occupationalSunExposure.occupation),
       occupationalSunExposureHours: new FormControl(this.b2.occupationalSunExposure.hoursPerDay, [
-        Validators.pattern('[0-9]{2}')
+        Validators.pattern('[0-9]{1,2}')
       ]),
       occupationalSunExposureDays: new FormControl(this.b2.occupationalSunExposure.daysPerMonth, [
-        Validators.pattern('[0-9]{2}')
+        Validators.pattern('[0-9]{1,2}')
       ]),
       occupationalSunExposureMonths: new FormControl(this.b2.occupationalSunExposure.monthsPerYear, [
-        Validators.pattern('[0-9]{2}')
+        Validators.pattern('[0-9]{1,2}')
       ]),
       occupationalSunExposureYears: new FormControl(this.b2.occupationalSunExposure.years, [
-        Validators.pattern('[0-9]{2}')
+        Validators.pattern('[0-9]{1,2}')
       ]),
-      recreationalSunExposure: new FormControl(this.b2.recreationalSunExposure.isTrue, Validators.required),
+      recreationalSunExposure: new FormControl(this.b2.recreationalSunExposure.true, Validators.required),
       recreationalSunExposureType: new FormControl(this.b2.recreationalSunExposure.activity),
       recreationalSunExposureHours: new FormControl(this.b2.recreationalSunExposure.hoursPerDay, [
-        Validators.pattern('[0-9]{2}')
+        Validators.pattern('[0-9]{1,2}')
       ]),
       recreationalSunExposureDays: new FormControl(this.b2.recreationalSunExposure.daysPerMonth, [
-        Validators.pattern('[0-9]{2}')
+        Validators.pattern('[0-9]{1,2}')
       ]),
       recreationalSunExposureMonths: new FormControl(this.b2.recreationalSunExposure.monthsPerYear, [
-        Validators.pattern('[0-9]{2}')
+        Validators.pattern('[0-9]{1,2}')
       ]),
       recreationalSunExposureYears: new FormControl(this.b2.recreationalSunExposure.years, [
-        Validators.pattern('[0-9]{2}')
+        Validators.pattern('[0-9]{1,2}')
       ]),
 
-      intermittentExposureChildhoodWeeks: new FormControl(this.b2.intermittentSunExposure.get(IntermittentSunExposure.KEY_CHILDHOOD).weeksOfVacation, Validators.required),
-      intermittentExposureChildhoodHours: new FormControl(this.b2.intermittentSunExposure.get(IntermittentSunExposure.KEY_CHILDHOOD).hoursSpentBetween11AMAnd4PM, Validators.required),
-      intermittentExposureAdolescenceWeeks: new FormControl(this.b2.intermittentSunExposure.get(IntermittentSunExposure.KEY_ADOLESCENCE).weeksOfVacation, Validators.required),
-      intermittentExposureAdolescenceHours: new FormControl(this.b2.intermittentSunExposure.get(IntermittentSunExposure.KEY_ADOLESCENCE).hoursSpentBetween11AMAnd4PM, Validators.required),
-      intermittentExposureAdulthoodWeeks: new FormControl(this.b2.intermittentSunExposure.get(IntermittentSunExposure.KEY_ADULTHOOD).weeksOfVacation, Validators.required),
-      intermittentExposureAdulthoodHours: new FormControl(this.b2.intermittentSunExposure.get(IntermittentSunExposure.KEY_ADULTHOOD).hoursSpentBetween11AMAnd4PM, Validators.required),
-      intermittentExposureDiagnosisWeeks: new FormControl(this.b2.intermittentSunExposure.get(IntermittentSunExposure.KEY_TEN_YEARS).weeksOfVacation, Validators.required),
-      intermittentExposureDiagnosisHours: new FormControl(this.b2.intermittentSunExposure.get(IntermittentSunExposure.KEY_TEN_YEARS).hoursSpentBetween11AMAnd4PM, Validators.required),
+      intermittentExposureChildhoodWeeks: new FormControl(this.b2.intermittentSunExposure[IntermittentSunExposure.KEY_CHILDHOOD].weeksOfVacation, Validators.required),
+      intermittentExposureChildhoodHours: new FormControl(this.b2.intermittentSunExposure[IntermittentSunExposure.KEY_CHILDHOOD].hoursSpentBetween11AMAnd4PM, Validators.required),
+      intermittentExposureAdolescenceWeeks: new FormControl(this.b2.intermittentSunExposure[IntermittentSunExposure.KEY_ADOLESCENCE].weeksOfVacation, Validators.required),
+      intermittentExposureAdolescenceHours: new FormControl(this.b2.intermittentSunExposure[IntermittentSunExposure.KEY_ADOLESCENCE].hoursSpentBetween11AMAnd4PM, Validators.required),
+      intermittentExposureAdulthoodWeeks: new FormControl(this.b2.intermittentSunExposure[IntermittentSunExposure.KEY_ADULTHOOD].weeksOfVacation, Validators.required),
+      intermittentExposureAdulthoodHours: new FormControl(this.b2.intermittentSunExposure[IntermittentSunExposure.KEY_ADULTHOOD].hoursSpentBetween11AMAnd4PM, Validators.required),
+      intermittentExposureDiagnosisWeeks: new FormControl(this.b2.intermittentSunExposure[IntermittentSunExposure.KEY_TEN_YEARS].weeksOfVacation, Validators.required),
+      intermittentExposureDiagnosisHours: new FormControl(this.b2.intermittentSunExposure[IntermittentSunExposure.KEY_TEN_YEARS].hoursSpentBetween11AMAnd4PM, Validators.required),
 
       lastIntenseExposure: new FormControl(this.b2.mostRecentIntermittentSunExposure, Validators.required),
 
-      sunburnsLess18: new FormControl(this.b2.severeSunBurns.get(SevereSunBurns.KEY_MINOR_18).presence, Validators.required),
-      less18SunburnsNumber: new FormControl(this.b2.severeSunBurns.get(SevereSunBurns.KEY_MINOR_18).number),
+      sunburnsLess18: new FormControl(this.b2.severeSunBurns[SevereSunBurns.KEY_MINOR_18].presence, Validators.required),
+      less18SunburnsNumber: new FormControl(this.b2.severeSunBurns[SevereSunBurns.KEY_MINOR_18].number),
 
-      sunburnsGreater18: new FormControl(this.b2.severeSunBurns.get(SevereSunBurns.KEY_GREATER_18).presence, Validators.required),
-      greater18SunburnsNumber: new FormControl(this.b2.severeSunBurns.get(SevereSunBurns.KEY_GREATER_18).number),
+      sunburnsGreater18: new FormControl(this.b2.severeSunBurns[SevereSunBurns.KEY_GREATER_18].presence, Validators.required),
+      greater18SunburnsNumber: new FormControl(this.b2.severeSunBurns[SevereSunBurns.KEY_GREATER_18].number),
 
-      sunburnsMelanomaSite: new FormControl(this.b2.severeSunBurns.get(SevereSunBurns.KEY_AT_SITE).presence, Validators.required),
+      sunburnsMelanomaSite: new FormControl(this.b2.severeSunBurns[SevereSunBurns.KEY_AT_SITE].presence, Validators.required),
 
-      sunburnsLast5: new FormControl(this.b2.severeSunBurns.get(SevereSunBurns.KEY_LAST_5).presence, Validators.required),
-      last5SunburnsNumber: new FormControl(this.b2.severeSunBurns.get(SevereSunBurns.KEY_LAST_5).presence),
+      sunburnsLast5: new FormControl(this.b2.severeSunBurns[SevereSunBurns.KEY_LAST_5].presence, Validators.required),
+      last5SunburnsNumber: new FormControl(this.b2.severeSunBurns[SevereSunBurns.KEY_LAST_5].presence),
 
-      sunscreenPercentageChildhood: new FormControl(this.b2.sunscreenUses.get(SunscreenUse.KEY_CHILDHOOD).howOften, Validators.required),
-      sunscreenTypeChildhood: new FormControl(this.b2.sunscreenUses.get(SunscreenUse.KEY_CHILDHOOD).type, Validators.required),
+      sunscreenPercentageChildhood: new FormControl(this.b2.sunscreenUses[SunscreenUse.KEY_CHILDHOOD].howOften, Validators.required),
+      sunscreenTypeChildhood: new FormControl(this.b2.sunscreenUses[SunscreenUse.KEY_CHILDHOOD].type, Validators.required),
 
-      sunscreenPercentageAdolescence: new FormControl(this.b2.sunscreenUses.get(SunscreenUse.KEY_ADOLESCENCE).howOften, Validators.required),
-      sunscreenTypeAdolescence: new FormControl(this.b2.sunscreenUses.get(SunscreenUse.KEY_ADOLESCENCE).type, Validators.required),
+      sunscreenPercentageAdolescence: new FormControl(this.b2.sunscreenUses[SunscreenUse.KEY_ADOLESCENCE].howOften, Validators.required),
+      sunscreenTypeAdolescence: new FormControl(this.b2.sunscreenUses[SunscreenUse.KEY_ADOLESCENCE].type, Validators.required),
 
-      sunscreenPercentageAdulthood: new FormControl(this.b2.sunscreenUses.get(SunscreenUse.KEY_ADULTHOOD).howOften, Validators.required),
-      sunscreenTypeAdulthood: new FormControl(this.b2.sunscreenUses.get(SunscreenUse.KEY_ADULTHOOD).type, Validators.required),
+      sunscreenPercentageAdulthood: new FormControl(this.b2.sunscreenUses[SunscreenUse.KEY_ADULTHOOD].howOften, Validators.required),
+      sunscreenTypeAdulthood: new FormControl(this.b2.sunscreenUses[SunscreenUse.KEY_ADULTHOOD].type, Validators.required),
 
-      sunscreenPercentageMelanoma: new FormControl(this.b2.sunscreenUses.get(SunscreenUse.KEY_TEN_YEARS).howOften, Validators.required),
-      sunscreenTypeMelanoma: new FormControl(this.b2.sunscreenUses.get(SunscreenUse.KEY_ADULTHOOD).type, Validators.required),
+      sunscreenPercentageMelanoma: new FormControl(this.b2.sunscreenUses[SunscreenUse.KEY_TEN_YEARS].howOften, Validators.required),
+      sunscreenTypeMelanoma: new FormControl(this.b2.sunscreenUses[SunscreenUse.KEY_TEN_YEARS].type, Validators.required),
 
 
-      sunlamps: new FormControl(this.b2.sunlampsSunbeds.isTrue, Validators.required),
+      sunlamps: new FormControl(this.b2.sunlampsSunbeds.true, Validators.required),
       numberSunlamps: new FormControl(this.b2.sunlampsSunbeds.lifetimeNumberOfSession),
       ageFirstSunlamps: new FormControl(this.b2.sunlampsSunbeds.ageAtFirstExposure),
       ageLastSunlamps: new FormControl(this.b2.sunlampsSunbeds.ageAtLastExposure),
@@ -135,8 +126,27 @@ export class SectionB2Component implements OnInit {
     this.b2 = new SectionB2(this.form);
 
     console.log(this.b2);
-    this.questionnaireService.insertSection(this.authenticationService.currentUserValue.username, 'b2', this.b2).subscribe( (res) => {
+    // this.b2.intermittentSunExposure = this.transformMap(this.b2.intermittentSunExposure);
+    // this.b2.severeSunBurns = this.transformMap(this.b2.severeSunBurns);
+    // this.b2.sunscreenUses = this.transformMap(this.b2.sunscreenUses);
+
+    // console.log('after');
+    // console.log(this.b2);
+
+    this.questionnaireService.insertSection(this.authenticationService.currentUserValue.username, 'b2', this.b2).subscribe((res) => {
       console.log(res);
     });
+  }
+
+  transformMap(map) {
+    const out = Object.create(null);
+    map.forEach((value, key) => {
+      if (value instanceof Map) {
+        out[ key ] = this.transformMap(value);
+      } else {
+        out[ key ] = value;
+      }
+    });
+    return out;
   }
 }

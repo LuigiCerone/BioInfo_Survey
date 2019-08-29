@@ -13,7 +13,10 @@ public class B3 {
     //It can be: Never,	1-3 days/month, 1-3 days/week, 4-6 days/week, Everyday
     // TODO: it can be optional
     @Field
-    private String intakeOfVitaminesDuringLastYears;
+    private Boolean intakeOfVitaminesDuringLastYears;
+    @Field
+    private String frequencyOfVitaminsDuringLastYears;
+
 
     // The following attribute incorporate questions 17 and 18 of session B
     // TODO: it can be optional
@@ -28,12 +31,20 @@ public class B3 {
         this.smoking = smoking;
     }
 
-    public String getIntakeOfVitaminesDuringLastYears() {
+    public Boolean getIntakeOfVitaminesDuringLastYears() {
         return intakeOfVitaminesDuringLastYears;
     }
 
-    public void setIntakeOfVitaminesDuringLastYears(String intakeOfVitaminesDuringLastYears) {
+    public void setIntakeOfVitaminesDuringLastYears(Boolean intakeOfVitaminesDuringLastYears) {
         this.intakeOfVitaminesDuringLastYears = intakeOfVitaminesDuringLastYears;
+    }
+
+    public String getFrequencyOfVitaminsDuringLastYears() {
+        return frequencyOfVitaminsDuringLastYears;
+    }
+
+    public void setFrequencyOfVitaminsDuringLastYears(String frequencyOfVitaminsDuringLastYears) {
+        this.frequencyOfVitaminsDuringLastYears = frequencyOfVitaminsDuringLastYears;
     }
 
     public List<Vitamin> getVitamins() {

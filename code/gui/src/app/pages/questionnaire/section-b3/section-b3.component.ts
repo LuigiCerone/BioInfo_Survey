@@ -1,7 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {Options} from '../section-a1/section-a1.component';
-import {SectionB3} from '../../../model/SectionB3';
+import { SectionB3, Vitamin } from '../../../model/SectionB3';
 import {AuthenticationService} from "../../../services/authentication.service";
 import {Router} from "@angular/router";
 import {QuestionnaireService} from "../../../services/questionnaire.service";
@@ -81,26 +81,29 @@ export class SectionB3Component implements OnInit {
      this.form = new FormGroup({
        smoker: new FormControl(this.b3.smoker, [Validators.required]),
        ageWhenStartedSmoking: new FormControl(this.b3.smoker.ageWhenStartedSmoking, [Validators.required]),
-       yearsSmoking: new FormControl(this.b3.yearsSmoking, [Validators.required]),
-       packPerDay: new FormControl(this.b3.packPerDay, [Validators.required]),
-       halfPackPerDay: new FormControl(this.b3.halfPackPerDay, [Validators.required]),
-       occasionallySmoke: new FormControl(this.b3.occasionallySmoke, [Validators.required]),
-       everReceivedVitamins: new FormControl(this.b3.everReceivedVitamins, [Validators.required]),
-       vitaminPills: new FormControl(this.b3.vitaminPills, [Validators.required]),
-       betaCarotene1: new FormControl(this.b3.betaCarotene1 ),
-       vitaminA1: new FormControl(this.b3.vitaminA1, [Validators.required] ),
-       vitaminB1: new FormControl(this.b3.vitaminB1, [Validators.required] ),
-       vitaminC1: new FormControl(this.b3.vitaminC1, [Validators.required]),
-       vitaminE1: new FormControl(this.b3.vitaminE1, [Validators.required]),
-       vitaminD1: new FormControl(this.b3.vitaminD1, [Validators.required]),
-       multivitamins1: new FormControl(this.b3.multivitamins1, [Validators.required]),
-       betaCarotene2: new FormControl(this.b3.betaCarotene1 ),
-       vitaminA2: new FormControl(this.b3.vitaminA2, [Validators.required] ),
-       vitaminB2: new FormControl(this.b3.vitaminB2, [Validators.required] ),
-       vitaminC2: new FormControl(this.b3.vitaminC2, [Validators.required]),
-       vitaminE2: new FormControl(this.b3.vitaminE2, [Validators.required]),
-       vitaminD2: new FormControl(this.b3.vitaminD2, [Validators.required]),
-       multivitamins2: new FormControl(this.b3.multivitamins2, [Validators.required]),
+       howLongHaveYouBeenSmoking: new FormControl(this.b3.smoker.howLongHaveYouBeenSmoking, [Validators.required]),
+       howMuchTipicallySmoke: new FormControl(this.b3.smoker.howMuchTipicallySmoke, [Validators.required]),
+
+       intakeOfVitaminesDuringLastYears: new FormControl(this.b3.intakeOfVitaminesDuringLastYears, [Validators.required]),
+       frequencyOfVitaminsDuringLastYears: new FormControl(this.b3.frequencyOfVitaminsDuringLastYears, [Validators.required]),
+
+       howOftenBetaCarotene: new FormControl(this.b3.vitamin[Vitamin.BETA_CAROTENE].howOften),
+       howLongBetaCarotene: new FormControl(this.b3.vitamin[Vitamin.BETA_CAROTENE].howLong ),
+
+       howOftenVitaminA: new FormControl(this.b3.vitamin[Vitamin.VITAMIN_A].howOften, [Validators.required] ),
+       howLongVitaminA: new FormControl(this.b3.vitamin[Vitamin.VITAMIN_A].howLong, [Validators.required] ),
+
+       howOftenVitaminC: new FormControl(this.b3.vitamin[Vitamin.VITAMIN_C].howOften, [Validators.required]),
+       howLongVitaminC: new FormControl(this.b3.vitamin[Vitamin.VITAMIN_C].howLong, [Validators.required]),
+
+       howOftenVitaminE: new FormControl(this.b3.vitamin[Vitamin.VITAMIN_E].howOften, [Validators.required]),
+       howLongVitaminE: new FormControl(this.b3.vitamin[Vitamin.VITAMIN_E].howLong, [Validators.required]),
+
+       howOftenVitaminD: new FormControl(this.b3.vitamin[Vitamin.VITAMIN_D].howOften, [Validators.required]),
+       howLongVitaminD: new FormControl(this.b3.vitamin[Vitamin.VITAMIN_D].howLong, [Validators.required]),
+
+       howOftenMultivitamins: new FormControl(this.b3.vitamin[Vitamin.MULTIVITAMINS].howOften, [Validators.required]),
+       howLongMultivitamins: new FormControl(this.b3.vitamin[Vitamin.MULTIVITAMINS].howLong, [Validators.required]),
        });
   }
 

@@ -5,39 +5,44 @@
       <mat-card-content>
         <br>
         <h3>1. Smoking</h3>
+        <mat-form-field>
           <mat-label>Select your smoker status</mat-label>
-            <mat-select formControlName="smoker">
-              <mat-option *ngFor="let option of smokerOpt" [value]="option.value">
-                {{option.viewValue}}
-              </mat-option>
-            </mat-select>
+          <mat-select formControlName="smoker">
+            <mat-option *ngFor="let option of smokerOpt" [value]="option.value">
+              {{option.viewValue}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
 
-          <mat-form-field *ngIf="form.value.smoker">
-            <input formControlName="ageWhenStartedSmoking" placeholder="Age when you started smoking">
-            <input formControlName="howLongHaveYouBeenSmoking" placeholder="How many years have you been smoking?">
-            <h4>How much did/do you typically smoke </h4>
-            <mat-select placeholder="Select a quantity" formControlName="howMuchTipicallySmoke">
-              <mat-option *ngFor="let option of smokeQuantityOpt" [value]="option.value">
-                {{option.viewValue}}
-              </mat-option>
-            </mat-select>
+        <div *ngIf="form.value.smoker">
+          <mat-form-field>
+            <input matInput formControlName="ageWhenStartedSmoking" placeholder="Age when you started smoking">
           </mat-form-field>
+          <mat-form-field>
+            <input matInput formControlName="howLongHaveYouBeenSmoking" placeholder="How many years have you been smoking?">
+          </mat-form-field>
+          <h4>How much did/do you typically smoke </h4>
+          <mat-select placeholder="Select a quantity" formControlName="howMuchTipicallySmoke">
+            <mat-option *ngFor="let option of smokeQuantityOpt" [value]="option.value">
+              {{option.viewValue}}
+            </mat-option>
+          </mat-select>
+        </div>
 
         <br>
 
         <h3>2. Have you received vitamin pills during the last year?</h3>
-            <mat-radio-group aria-label="Select yes or no" formControlName="intakeOfVitaminesDuringLastYears">
-              <mat-radio-button *ngFor="let option of yesNoOpt" [value]="option.value" >
-                {{option.viewValue}}
-              </mat-radio-button>
-            </mat-radio-group>
-            <mat-form-field *ngIf="form.value.intakeOfVitaminesDuringLastYears">
-              <mat-select formControlName="vitaminPills">
-                <mat-option *ngFor="let option of vitaminPeriodOpt" [value]="option.value">
-                  {{option.viewValue}}
-                </mat-option>
-              </mat-select>
-            </mat-form-field>
+        <mat-radio-group aria-label="Select yes or no" formControlName="intakeOfVitaminesDuringLastYears">
+          <mat-radio-button [value]=true>Yes</mat-radio-button>
+          <mat-radio-button [value]=false>No</mat-radio-button>
+        </mat-radio-group>
+        <mat-form-field *ngIf="form.value.frequencyOfVitaminsDuringLastYears">
+          <mat-select formControlName="frequencyOfVitaminsDuringLastYears">
+            <mat-option *ngFor="let option of vitaminPeriodOpt" [value]="option.value">
+              {{option.viewValue}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
         <br>
 
         <h3>3. What type of vitamins did you receive and how often?</h3>
@@ -54,16 +59,16 @@
         <br>
 
         <h3>4. For how long did you receive vitamins?</h3>
-            <mat-form-field *ngFor="let vitamin of vitaminType2">
-              <mat-label>
-                {{vitamin.viewValue}}
-              </mat-label>
-              <mat-select formControlName="{{vitamin.value}}">
-                <mat-option *ngFor="let option of vitaminFrequenceOpt" [value]="option.value">
-                  {{option.viewValue}}
-                </mat-option>
-              </mat-select>
-            </mat-form-field>
+        <mat-form-field *ngFor="let vitamin of vitaminType2">
+          <mat-label>
+            {{vitamin.viewValue}}
+          </mat-label>
+          <mat-select formControlName="{{vitamin.value}}">
+            <mat-option *ngFor="let option of vitaminFrequenceOpt" [value]="option.value">
+              {{option.viewValue}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
         <br>
 
         <div class="button">

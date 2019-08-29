@@ -1,13 +1,15 @@
-export class SectionB3 {
+class SectionB3 {
 
   smoker: Smoker;
-  intakeOfVitaminesDuringLastYears: string;
+  intakeOfVitaminesDuringLastYears: boolean;
+  frequencyOfVitaminsDuringLastYears: string;
   vitamin: object;
 
   constructor(form?) {
     if (form) {
       this.smoker = new Smoker(form.value);
       this.intakeOfVitaminesDuringLastYears = form.value.intakeOfVitaminesDuringLastYears;
+      this.frequencyOfVitaminsDuringLastYears = form.value.frequencyOfVitaminsDuringLastYears;
       this.vitamin = {};
       this.vitamin[Vitamin.BETA_CAROTENE] = new Vitamin(Vitamin.BETA_CAROTENE, form.value);
       this.vitamin[Vitamin.VITAMIN_A] = new Vitamin(Vitamin.VITAMIN_A, form.value);
@@ -17,7 +19,8 @@ export class SectionB3 {
       this.vitamin[Vitamin.MULTIVITAMINS] = new Vitamin(Vitamin.MULTIVITAMINS, form.value);
     } else {
       this.smoker = new Smoker();
-      this.intakeOfVitaminesDuringLastYears = '';
+      this.intakeOfVitaminesDuringLastYears = false;
+      this.frequencyOfVitaminsDuringLastYears = '';
       this.vitamin = {};
       this.vitamin[Vitamin.BETA_CAROTENE] = new Vitamin(Vitamin.BETA_CAROTENE);
       this.vitamin[Vitamin.VITAMIN_A] = new Vitamin(Vitamin.VITAMIN_A);
@@ -76,19 +79,19 @@ class Vitamin {
           break;
         case Vitamin.VITAMIN_C:
           this.howOften = form.howOftenVitaminC;
-          this.howLong = form.howOftenVitaminC;
+          this.howLong = form.howLongVitaminC;
           break;
         case Vitamin.VITAMIN_E:
           this.howOften = form.howOftenVitaminE;
-          this.howLong = form.howOftenVitaminE;
+          this.howLong = form.howLongVitaminE;
           break;
         case Vitamin.VITAMIN_D:
           this.howOften = form.howOftenVitaminD;
-          this.howLong = form.howOftenVitaminD;
+          this.howLong = form.howLongVitaminD;
           break;
         case Vitamin.MULTIVITAMINS:
           this.howOften = form.howOftenMultivitamins;
-          this.howLong = form.howOftenMultivitamins;
+          this.howLong = form.howLongMultivitamins;
           break;
       }
     } else {
@@ -98,3 +101,5 @@ class Vitamin {
     }
   }
 }
+
+export { SectionB3, Vitamin };

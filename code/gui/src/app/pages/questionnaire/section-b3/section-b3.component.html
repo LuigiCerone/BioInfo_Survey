@@ -36,7 +36,7 @@
           <mat-radio-button [value]=true>Yes</mat-radio-button>
           <mat-radio-button [value]=false>No</mat-radio-button>
         </mat-radio-group>
-        <mat-form-field *ngIf="form.value.frequencyOfVitaminsDuringLastYears">
+        <mat-form-field *ngIf="form.value.intakeOfVitaminesDuringLastYears">
           <mat-select formControlName="frequencyOfVitaminsDuringLastYears">
             <mat-option *ngFor="let option of vitaminPeriodOpt" [value]="option.value">
               {{option.viewValue}}

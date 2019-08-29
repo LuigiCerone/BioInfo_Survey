@@ -79,10 +79,10 @@ export class SectionB3Component implements OnInit {
 
   buildForm() {
      this.form = new FormGroup({
-       smoker: new FormControl(this.b3.smoker, [Validators.required]),
-       ageWhenStartedSmoking: new FormControl(this.b3.smoker.ageWhenStartedSmoking, [Validators.required]),
-       howLongHaveYouBeenSmoking: new FormControl(this.b3.smoker.howLongHaveYouBeenSmoking, [Validators.required]),
-       howMuchTipicallySmoke: new FormControl(this.b3.smoker.howMuchTipicallySmoke, [Validators.required]),
+       smoker: new FormControl(this.b3.smoker.howOften, [Validators.required]),
+       ageWhenStartedSmoking: new FormControl(this.b3.smoker.ageWhenStartedSmoking),
+       howLongHaveYouBeenSmoking: new FormControl(this.b3.smoker.howLongHaveYouBeenSmoking),
+       howMuchTipicallySmoke: new FormControl(this.b3.smoker.howMuchTipicallySmoke),
 
        intakeOfVitaminesDuringLastYears: new FormControl(this.b3.intakeOfVitaminesDuringLastYears, [Validators.required]),
        frequencyOfVitaminsDuringLastYears: new FormControl(this.b3.frequencyOfVitaminsDuringLastYears, [Validators.required]),
@@ -90,20 +90,20 @@ export class SectionB3Component implements OnInit {
        howOftenBetaCarotene: new FormControl(this.b3.vitamin[Vitamin.BETA_CAROTENE].howOften),
        howLongBetaCarotene: new FormControl(this.b3.vitamin[Vitamin.BETA_CAROTENE].howLong ),
 
-       howOftenVitaminA: new FormControl(this.b3.vitamin[Vitamin.VITAMIN_A].howOften, [Validators.required] ),
-       howLongVitaminA: new FormControl(this.b3.vitamin[Vitamin.VITAMIN_A].howLong, [Validators.required] ),
+       howOftenVitaminA: new FormControl(this.b3.vitamin[Vitamin.VITAMIN_A].howOften  ),
+       howLongVitaminA: new FormControl(this.b3.vitamin[Vitamin.VITAMIN_A].howLong),
 
-       howOftenVitaminC: new FormControl(this.b3.vitamin[Vitamin.VITAMIN_C].howOften, [Validators.required]),
-       howLongVitaminC: new FormControl(this.b3.vitamin[Vitamin.VITAMIN_C].howLong, [Validators.required]),
+       howOftenVitaminC: new FormControl(this.b3.vitamin[Vitamin.VITAMIN_C].howOften),
+       howLongVitaminC: new FormControl(this.b3.vitamin[Vitamin.VITAMIN_C].howLong),
 
-       howOftenVitaminE: new FormControl(this.b3.vitamin[Vitamin.VITAMIN_E].howOften, [Validators.required]),
-       howLongVitaminE: new FormControl(this.b3.vitamin[Vitamin.VITAMIN_E].howLong, [Validators.required]),
+       howOftenVitaminE: new FormControl(this.b3.vitamin[Vitamin.VITAMIN_E].howOften),
+       howLongVitaminE: new FormControl(this.b3.vitamin[Vitamin.VITAMIN_E].howLong),
 
-       howOftenVitaminD: new FormControl(this.b3.vitamin[Vitamin.VITAMIN_D].howOften, [Validators.required]),
-       howLongVitaminD: new FormControl(this.b3.vitamin[Vitamin.VITAMIN_D].howLong, [Validators.required]),
+       howOftenVitaminD: new FormControl(this.b3.vitamin[Vitamin.VITAMIN_D].howOften),
+       howLongVitaminD: new FormControl(this.b3.vitamin[Vitamin.VITAMIN_D].howLong),
 
-       howOftenMultivitamins: new FormControl(this.b3.vitamin[Vitamin.MULTIVITAMINS].howOften, [Validators.required]),
-       howLongMultivitamins: new FormControl(this.b3.vitamin[Vitamin.MULTIVITAMINS].howLong, [Validators.required]),
+       howOftenMultivitamins: new FormControl(this.b3.vitamin[Vitamin.MULTIVITAMINS].howOften),
+       howLongMultivitamins: new FormControl(this.b3.vitamin[Vitamin.MULTIVITAMINS].howLong),
        });
   }
 

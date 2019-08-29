@@ -4,11 +4,12 @@ import com.univaq.disim.bioinfo.model.nested.Smoking;
 import com.univaq.disim.bioinfo.model.nested.Vitamin;
 import org.springframework.data.mongodb.core.mapping.Field;
 
+import java.util.HashMap;
 import java.util.List;
 
 public class B3 {
     @Field
-    private Smoking smoking;
+    private Smoking smoker;
 
     //It can be: Never,	1-3 days/month, 1-3 days/week, 4-6 days/week, Everyday
     // TODO: it can be optional
@@ -21,14 +22,14 @@ public class B3 {
     // The following attribute incorporate questions 17 and 18 of session B
     // TODO: it can be optional
     @Field
-    private List<Vitamin> vitamins;
+    private HashMap<String, Vitamin> vitamin;
 
-    public Smoking getSmoking() {
-        return smoking;
+    public Smoking getSmoker() {
+        return smoker;
     }
 
-    public void setSmoking(Smoking smoking) {
-        this.smoking = smoking;
+    public void setSmoker(Smoking smoker) {
+        this.smoker = smoker;
     }
 
     public Boolean getIntakeOfVitaminesDuringLastYears() {
@@ -46,12 +47,12 @@ public class B3 {
     public void setFrequencyOfVitaminsDuringLastYears(String frequencyOfVitaminsDuringLastYears) {
         this.frequencyOfVitaminsDuringLastYears = frequencyOfVitaminsDuringLastYears;
     }
-
-    public List<Vitamin> getVitamins() {
-        return this.vitamins;
+    
+    public HashMap<String, Vitamin> getVitamin() {
+        return vitamin;
     }
 
-    public void setVitamins(List<Vitamin> vitamins) {
-        this.vitamins = vitamins;
+    public void setVitamin(HashMap<String, Vitamin> vitamin) {
+        this.vitamin = vitamin;
     }
 }

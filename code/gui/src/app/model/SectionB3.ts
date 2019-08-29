@@ -75,7 +75,7 @@ class Vitamin {
           break;
         case Vitamin.VITAMIN_A:
           this.howOften = form.howOftenVitaminA;
-          this.howLong = form.howLongVitaminaA;
+          this.howLong = form.howLongVitaminA;
           break;
         case Vitamin.VITAMIN_C:
           this.howOften = form.howOftenVitaminC;

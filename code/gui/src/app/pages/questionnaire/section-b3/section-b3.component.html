@@ -14,7 +14,7 @@
           </mat-select>
         </mat-form-field>
 
-        <div *ngIf="form.value.smoker">
+        <div *ngIf="form.value.smoker && form.value.smoker !== '0'">
           <mat-form-field>
             <input matInput formControlName="ageWhenStartedSmoking" placeholder="Age when you started smoking">
           </mat-form-field>
@@ -72,7 +72,7 @@
         <br>
 
         <div class="button">
-          <button type="submit" [disabled]="!form.valid" mat-raised-button color="primary" matStepperNext>Next</button>
+          <button type="submit" [disabled]="form.valid" mat-raised-button color="primary" matStepperNext>Next</button>
         </div>
       </mat-card-content>
     </mat-card>

@@ -20,6 +20,12 @@ export class SectionB3Component implements OnInit {
     {value: '2', viewValue: 'Current smoker'},
   ];
 
+  smokeQuantityOpt: Options[] = [
+    {value: 'pack', viewValue: 'One pack/day or more'},
+    {value: 'half', viewValue: 'Up to half pack/day'},
+    {value: 'occasionally', viewValue: 'Only occasionally'},
+  ];
+
   vitaminPeriodOpt: Options[] = [
     {value: 'never', viewValue: 'Never'},
     {value: '1_3_day/months', viewValue: '1-2 days / month'},
@@ -29,20 +35,20 @@ export class SectionB3Component implements OnInit {
   ];
 
   vitaminType1: Options[] = [
-    {value: 'betaCarotene1', viewValue: 'Beta-Carotene'},
-    {value: 'vitaminA1', viewValue: 'Vitamin A'},
-    {value: 'vitaminC1', viewValue: 'Vitamin C'},
-    {value: 'vitaminE1', viewValue: 'Vitamin E'},
-    {value: 'vitaminD1', viewValue: 'Vitamin D'},
-    {value: 'multivitamins1', viewValue: 'Multivitamins'},
+    {value: 'howOftenBetaCarotene', viewValue: 'Beta-Carotene'},
+    {value: 'howOftenVitaminA', viewValue: 'Vitamin A'},
+    {value: 'howOftenVitaminC', viewValue: 'Vitamin C'},
+    {value: 'howOftenVitaminE', viewValue: 'Vitamin E'},
+    {value: 'howOftenVitaminD', viewValue: 'Vitamin D'},
+    {value: 'howOftenMultivitamins', viewValue: 'Multivitamins'},
   ];
   vitaminType2: Options[] = [
-    {value: 'betaCarotene2', viewValue: 'Beta-Carotene'},
-    {value: 'vitaminA2', viewValue: 'Vitamin A'},
-    {value: 'vitaminC2', viewValue: 'Vitamin C'},
-    {value: 'vitaminE2', viewValue: 'Vitamin E'},
-    {value: 'vitaminD2', viewValue: 'Vitamin D'},
-    {value: 'multivitamins2', viewValue: 'Multivitamins'},
+    {value: 'howLongBetaCarotene', viewValue: 'Beta-Carotene'},
+    {value: 'howLongVitaminA', viewValue: 'Vitamin A'},
+    {value: 'howLongVitaminC', viewValue: 'Vitamin C'},
+    {value: 'howLongVitaminE', viewValue: 'Vitamin E'},
+    {value: 'howLongVitaminD', viewValue: 'Vitamin D'},
+    {value: 'howLongMultivitamins', viewValue: 'Multivitamins'},
   ];
 
   vitaminFrequenceOpt: Options[] = [
@@ -67,35 +73,35 @@ export class SectionB3Component implements OnInit {
       } else {
         this.b3 = new SectionB3();
       }
-      // this.buildForm();
+      this.buildForm();
     });
   }
 
   buildForm() {
-    // this.form = new FormGroup({
-    //   smoker: new FormControl(this.b3.smoker, [Validators.required]),
-    //   ageStartSmoking: new FormControl(this.b3.ageStartSmoking, [Validators.required]),
-    //   yearsSmoking: new FormControl(this.b3.yearsSmoking, [Validators.required]),
-    //   packPerDay: new FormControl(this.b3.packPerDay, [Validators.required]),
-    //   halfPackPerDay: new FormControl(this.b3.halfPackPerDay, [Validators.required]),
-    //   occasionallySmoke: new FormControl(this.b3.occasionallySmoke, [Validators.required]),
-    //   everReceivedVitamins: new FormControl(this.b3.everReceivedVitamins, [Validators.required]),
-    //   vitaminPills: new FormControl(this.b3.vitaminPills, [Validators.required]),
-    //   betaCarotene1: new FormControl(this.b3.betaCarotene1 ),
-    //   vitaminA1: new FormControl(this.b3.vitaminA1, [Validators.required] ),
-    //   vitaminB1: new FormControl(this.b3.vitaminB1, [Validators.required] ),
-    //   vitaminC1: new FormControl(this.b3.vitaminC1, [Validators.required]),
-    //   vitaminE1: new FormControl(this.b3.vitaminE1, [Validators.required]),
-    //   vitaminD1: new FormControl(this.b3.vitaminD1, [Validators.required]),
-    //   multivitamins1: new FormControl(this.b3.multivitamins1, [Validators.required]),
-    //   betaCarotene2: new FormControl(this.b3.betaCarotene1 ),
-    //   vitaminA2: new FormControl(this.b3.vitaminA2, [Validators.required] ),
-    //   vitaminB2: new FormControl(this.b3.vitaminB2, [Validators.required] ),
-    //   vitaminC2: new FormControl(this.b3.vitaminC2, [Validators.required]),
-    //   vitaminE2: new FormControl(this.b3.vitaminE2, [Validators.required]),
-    //   vitaminD2: new FormControl(this.b3.vitaminD2, [Validators.required]),
-    //   multivitamins2: new FormControl(this.b3.multivitamins2, [Validators.required]),
-    //   });
+     this.form = new FormGroup({
+       smoker: new FormControl(this.b3.smoker, [Validators.required]),
+       ageWhenStartedSmoking: new FormControl(this.b3.smoker.ageWhenStartedSmoking, [Validators.required]),
+       yearsSmoking: new FormControl(this.b3.yearsSmoking, [Validators.required]),
+       packPerDay: new FormControl(this.b3.packPerDay, [Validators.required]),
+       halfPackPerDay: new FormControl(this.b3.halfPackPerDay, [Validators.required]),
+       occasionallySmoke: new FormControl(this.b3.occasionallySmoke, [Validators.required]),
+       everReceivedVitamins: new FormControl(this.b3.everReceivedVitamins, [Validators.required]),
+       vitaminPills: new FormControl(this.b3.vitaminPills, [Validators.required]),
+       betaCarotene1: new FormControl(this.b3.betaCarotene1 ),
+       vitaminA1: new FormControl(this.b3.vitaminA1, [Validators.required] ),
+       vitaminB1: new FormControl(this.b3.vitaminB1, [Validators.required] ),
+       vitaminC1: new FormControl(this.b3.vitaminC1, [Validators.required]),
+       vitaminE1: new FormControl(this.b3.vitaminE1, [Validators.required]),
+       vitaminD1: new FormControl(this.b3.vitaminD1, [Validators.required]),
+       multivitamins1: new FormControl(this.b3.multivitamins1, [Validators.required]),
+       betaCarotene2: new FormControl(this.b3.betaCarotene1 ),
+       vitaminA2: new FormControl(this.b3.vitaminA2, [Validators.required] ),
+       vitaminB2: new FormControl(this.b3.vitaminB2, [Validators.required] ),
+       vitaminC2: new FormControl(this.b3.vitaminC2, [Validators.required]),
+       vitaminE2: new FormControl(this.b3.vitaminE2, [Validators.required]),
+       vitaminD2: new FormControl(this.b3.vitaminD2, [Validators.required]),
+       multivitamins2: new FormControl(this.b3.multivitamins2, [Validators.required]),
+       });
   }
 
   save() {

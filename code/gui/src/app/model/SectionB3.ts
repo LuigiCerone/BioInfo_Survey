@@ -2,29 +2,29 @@ export class SectionB3 {
 
   smoker: Smoker;
   intakeOfVitaminesDuringLastYears: string;
-  vitamin: Map<string, Vitamin>;
+  vitamin: object;
 
   constructor(form?) {
     if (form) {
-      this.smoker = new Smoker(form.value.smoker);
+      this.smoker = new Smoker(form.value);
       this.intakeOfVitaminesDuringLastYears = form.value.intakeOfVitaminesDuringLastYears;
-      this.vitamin = new Map<string, Vitamin>();
-      this.vitamin.set(Vitamin.BETA_CAROTENE, new Vitamin(Vitamin.BETA_CAROTENE, form.value.received, form.value.period));
-      this.vitamin.set(Vitamin.VITAMIN_A, new Vitamin(Vitamin.VITAMIN_A, form.value.received, form.value.period));
-      this.vitamin.set(Vitamin.VITAMIN_C, new Vitamin(Vitamin.VITAMIN_C, form.value.received, form.value.period));
-      this.vitamin.set(Vitamin.VITAMIN_E, new Vitamin(Vitamin.VITAMIN_E, form.value.received, form.value.period));
-      this.vitamin.set(Vitamin.VITAMIN_D, new Vitamin(Vitamin.VITAMIN_D, form.value.received, form.value.period));
-      this.vitamin.set(Vitamin.MULTIVITAMINS, new Vitamin(Vitamin.MULTIVITAMINS, form.value.received, form.value.period));
+      this.vitamin = {};
+      this.vitamin[Vitamin.BETA_CAROTENE] = new Vitamin(Vitamin.BETA_CAROTENE, form.value);
+      this.vitamin[Vitamin.VITAMIN_A] = new Vitamin(Vitamin.VITAMIN_A, form.value);
+      this.vitamin[Vitamin.VITAMIN_C] = new Vitamin(Vitamin.VITAMIN_C, form.value);
+      this.vitamin[Vitamin.VITAMIN_E] = new Vitamin(Vitamin.VITAMIN_E, form.value);
+      this.vitamin[Vitamin.VITAMIN_D] = new Vitamin(Vitamin.VITAMIN_D, form.value);
+      this.vitamin[Vitamin.MULTIVITAMINS] = new Vitamin(Vitamin.MULTIVITAMINS, form.value);
     } else {
       this.smoker = new Smoker();
       this.intakeOfVitaminesDuringLastYears = '';
-      this.vitamin = new Map<string, Vitamin>();
-      this.vitamin.set(Vitamin.BETA_CAROTENE, new Vitamin(Vitamin.BETA_CAROTENE));
-      this.vitamin.set(Vitamin.VITAMIN_A, new Vitamin(Vitamin.VITAMIN_A));
-      this.vitamin.set(Vitamin.VITAMIN_C, new Vitamin(Vitamin.VITAMIN_C));
-      this.vitamin.set(Vitamin.VITAMIN_E, new Vitamin(Vitamin.VITAMIN_E));
-      this.vitamin.set(Vitamin.VITAMIN_D, new Vitamin(Vitamin.VITAMIN_D));
-      this.vitamin.set(Vitamin.MULTIVITAMINS, new Vitamin(Vitamin.MULTIVITAMINS));
+      this.vitamin = {};
+      this.vitamin[Vitamin.BETA_CAROTENE] = new Vitamin(Vitamin.BETA_CAROTENE);
+      this.vitamin[Vitamin.VITAMIN_A] = new Vitamin(Vitamin.VITAMIN_A);
+      this.vitamin[Vitamin.VITAMIN_C] = new Vitamin(Vitamin.VITAMIN_C);
+      this.vitamin[Vitamin.VITAMIN_E] = new Vitamin(Vitamin.VITAMIN_E);
+      this.vitamin[Vitamin.VITAMIN_D] = new Vitamin(Vitamin.VITAMIN_D);
+      this.vitamin[Vitamin.MULTIVITAMINS] = new Vitamin(Vitamin.MULTIVITAMINS);
     }
   }
 }
@@ -37,10 +37,10 @@ class Smoker {
 
   constructor(form?) {
     if (form) {
-      this.howOften = form.value.smoker.howOften;
-      this.ageWhenStartedSmoking = form.value.smoker.ageWhenStartedSmoking;
-      this.howLongHaveYouBeenSmoking = form.value.smoker.howLongHaveYouBeenSmoking;
-      this.howMuchTipicallySmoke = form.value.smoker.howMuchTipicallySmoke;
+      this.howOften = form.smoker;
+      this.ageWhenStartedSmoking = form.ageWhenStartedSmoking;
+      this.howLongHaveYouBeenSmoking = form.howLongHaveYouBeenSmoking;
+      this.howMuchTipicallySmoke = form.howMuchTipicallySmoke;
     } else {
       this.howOften = '';
       this.ageWhenStartedSmoking = 0;
@@ -62,11 +62,35 @@ class Vitamin {
   howOften: string;
   howLong: string;
 
-  constructor(name: string, form1?, form2?) {
-    if (form1 && form2) {
+  constructor(name: string, form?) {
+    if (form) {
       this.name = name;
-      this.howOften = form1.value.name;
-      this.howLong = form2.value.name;
+      switch (name) {
+        case Vitamin.BETA_CAROTENE:
+          this.howOften = form.howOftenBetaCarotene;
+          this.howLong = form.howLongBetaCarotene;
+          break;
+        case Vitamin.VITAMIN_A:
+          this.howOften = form.howOftenVitaminA;
+          this.howLong = form.howLongVitaminaA;
+          break;
+        case Vitamin.VITAMIN_C:
+          this.howOften = form.howOftenVitaminC;
+          this.howLong = form.howOftenVitaminC;
+          break;
+        case Vitamin.VITAMIN_E:
+          this.howOften = form.howOftenVitaminE;
+          this.howLong = form.howOftenVitaminE;
+          break;
+        case Vitamin.VITAMIN_D:
+          this.howOften = form.howOftenVitaminD;
+          this.howLong = form.howOftenVitaminD;
+          break;
+        case Vitamin.MULTIVITAMINS:
+          this.howOften = form.howOftenMultivitamins;
+          this.howLong = form.howOftenMultivitamins;
+          break;
+      }
     } else {
       this.name = name;
       this.howOften = '';

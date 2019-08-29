@@ -1,11 +1,10 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {Options} from '../section-a1/section-a1.component';
-import {SectionB3} from '../../../model/SectionB3';
 import {AuthenticationService} from '../../../services/authentication.service';
 import {Router} from '@angular/router';
 import {QuestionnaireService} from '../../../services/questionnaire.service';
-import {SectionC1} from '../../../model/SectionC1';
+import {SectionC1, NeviCount, CurrentNonMelanomaSkinCancers} from '../../../model/SectionC1';
 
 @Component({
   selector: 'app-section-c1',
@@ -73,36 +72,66 @@ export class SectionC1Component implements OnInit {
       } else {
         this.c1 = new SectionC1();
       }
-      // this.buildForm();
+      this.buildForm();
     });
   }
 
-  // buildForm() {
-  //   this.form = new FormGroup({
-  //     smoker: new FormControl(this.b3.smoker, [Validators.required]),
-  //     ageStartSmoking: new FormControl(this.b3.ageStartSmoking, [Validators.required]),
-  //     yearsSmoking: new FormControl(this.b3.yearsSmoking, [Validators.required]),
-  //     packPerDay: new FormControl(this.b3.packPerDay, [Validators.required]),
-  //     halfPackPerDay: new FormControl(this.b3.halfPackPerDay, [Validators.required]),
-  //     occasionallySmoke: new FormControl(this.b3.occasionallySmoke, [Validators.required]),
-  //     everReceivedVitamins: new FormControl(this.b3.everReceivedVitamins, [Validators.required]),
-  //     vitaminPills: new FormControl(this.b3.vitaminPills, [Validators.required]),
-  //     betaCarotene1: new FormControl(this.b3.betaCarotene1 ),
-  //     vitaminA1: new FormControl(this.b3.vitaminA1, [Validators.required] ),
-  //     vitaminB1: new FormControl(this.b3.vitaminB1, [Validators.required] ),
-  //     vitaminC1: new FormControl(this.b3.vitaminC1, [Validators.required]),
-  //     vitaminE1: new FormControl(this.b3.vitaminE1, [Validators.required]),
-  //     vitaminD1: new FormControl(this.b3.vitaminD1, [Validators.required]),
-  //     multivitamins1: new FormControl(this.b3.multivitamins1, [Validators.required]),
-  //     betaCarotene2: new FormControl(this.b3.betaCarotene1 ),
-  //     vitaminA2: new FormControl(this.b3.vitaminA2, [Validators.required] ),
-  //     vitaminB2: new FormControl(this.b3.vitaminB2, [Validators.required] ),
-  //     vitaminC2: new FormControl(this.b3.vitaminC2, [Validators.required]),
-  //     vitaminE2: new FormControl(this.b3.vitaminE2, [Validators.required]),
-  //     vitaminD2: new FormControl(this.b3.vitaminD2, [Validators.required]),
-  //     multivitamins2: new FormControl(this.b3.multivitamins2, [Validators.required]),
-  //     });
-  // }
+   buildForm() {
+     this.form = new FormGroup({
+       howManySolarLentigines: new FormControl(this.c1.solarLentigines.howMany, [Validators.required]),
+       solarLentiginesAtSiteOfMelanoma: new FormControl(this.c1.solarLentigines.atSiteOfMelanoma,
+         [Validators.required]),
+       neviCountLeftScalp: new FormControl(this.c1.neviCountGreatherThan2mm[NeviCount.KEY_SCALP].leftZoneNumber),
+       neviCountRightScalp: new FormControl(this.c1.neviCountGreatherThan2mm[NeviCount.KEY_SCALP].rightZoneNumber),
+       neviCountLeftFace: new FormControl(this.c1.neviCountGreatherThan2mm[NeviCount.KEY_FACE].leftZoneNumber),
+       neviCountRightFace: new FormControl(this.c1.neviCountGreatherThan2mm[NeviCount.KEY_FACE].rightZoneNumber),
+       neviCountLeftNeck: new FormControl(this.c1.neviCountGreatherThan2mm[NeviCount.KEY_NECK].leftZoneNumber),
+       neviCountRightNeck: new FormControl(this.c1.neviCountGreatherThan2mm[NeviCount.KEY_NECK].rightZoneNumber),
+       neviCountLeftAbdomen: new FormControl(this.c1.neviCountGreatherThan2mm[NeviCount.KEY_ABDOMEN].leftZoneNumber ),
+       neviCountRightAbdomen: new FormControl(this.c1.neviCountGreatherThan2mm[NeviCount.KEY_ABDOMEN].rightZoneNumber),
+       neviCountLeftBack: new FormControl(this.c1.neviCountGreatherThan2mm[NeviCount.KEY_BACK].leftZoneNumber,
+         [Validators.required] ),
+       neviCountRightBack: new FormControl(this.c1.neviCountGreatherThan2mm[NeviCount.KEY_BACK].rightZoneNumber,
+         [Validators.required]),
+       neviCountLeftDeltoid: new FormControl(this.c1.neviCountGreatherThan2mm[NeviCount.KEY_DELTOID].leftZoneNumber,
+         [Validators.required]),
+       neviCountRightDeltoid: new FormControl(this.c1.neviCountGreatherThan2mm[NeviCount.KEY_DELTOID].rightZoneNumber,
+         [Validators.required]),
+       neviCountLeftGluteus: new FormControl(this.c1.neviCountGreatherThan2mm[NeviCount.KEY_GLUTEUS].leftZoneNumber),
+       neviCountRightGluteus: new FormControl(this.c1.neviCountGreatherThan2mm[NeviCount.KEY_GLUTEUS].rightZoneNumber ),
+       neviCountLeftPalms: new FormControl(this.c1.neviCountGreatherThan2mm[NeviCount.KEY_PALMS].leftZoneNumber),
+       neviCountRightPalms: new FormControl(this.c1.neviCountGreatherThan2mm[NeviCount.KEY_PALMS].rightZoneNumber),
+       neviCountLeftSoles: new FormControl(this.c1.neviCountGreatherThan2mm[NeviCount.KEY_SOLES].leftZoneNumber),
+       neviCountRightSoles: new FormControl(this.c1.neviCountGreatherThan2mm[NeviCount.KEY_SOLES].rightZoneNumber),
+       neviCountLessThan2mm: new FormControl(this.c1.neviCountLessThan2mm, [Validators.required]),
+       howManyClinicallyAtypicalNevi: new FormControl(this.c1.clinicallyAtypicalNevi.howMany, [Validators.required]),
+       clinicallyAtypicalNeviAtSiteOfMelanoma: new FormControl(this.c1.clinicallyAtypicalNevi.atSiteOfMelanoma,
+         [Validators.required]),
+       presenceOfMediumSizedNevi: new FormControl(this.c1.congenitalNevi.presenceOfMediumSizedNevi, [Validators.required]),
+       siteOfMediumSizedNevi: new FormControl(this.c1.congenitalNevi.siteOfMediumSizedNevi),
+       presenceOfLargeSizedNevi: new FormControl(this.c1.congenitalNevi.presenceOfLargeSizedNevi, [Validators.required]),
+       siteOfLargeSizedNevi: new FormControl(this.c1.congenitalNevi.siteOfLargeSizedNevi),
+       presenceOfGiantNevi: new FormControl(this.c1.congenitalNevi.presenceOfGiantNevi, [Validators.required]),
+       siteOfGiantSizedNevi: new FormControl(this.c1.congenitalNevi.siteOfGiantSizedNevi),
+       blueNeviPresence: new FormControl(this.c1.blueNevi.presence, [Validators.required]),
+       numberOfBlueNevi: new FormControl(this.c1.blueNevi.number),
+       actinicKeratosesPresence: new FormControl(this.c1.actinicKeratoses.presence, [Validators.required]),
+       actinicKeratosesSite: new FormControl(this.c1.actinicKeratoses.site),
+       actinicKeratosesTypeOfDistribution: new FormControl(this.c1.actinicKeratoses.typeOfDistribution),
+       bCCPresence: new FormControl(this.c1.currentNonMelanomaSkinCancers[CurrentNonMelanomaSkinCancers.KEY_BCC].presence,
+         [Validators.required]),
+       bCCSite: new FormControl(this.c1.currentNonMelanomaSkinCancers[CurrentNonMelanomaSkinCancers.KEY_BCC].site),
+       bCCNumber: new FormControl(this.c1.currentNonMelanomaSkinCancers[CurrentNonMelanomaSkinCancers.KEY_BCC].number),
+       iSCCPresence: new FormControl(this.c1.currentNonMelanomaSkinCancers[CurrentNonMelanomaSkinCancers.KEY_ISCC].presence,
+         [Validators.required]),
+       iSCCSite: new FormControl(this.c1.currentNonMelanomaSkinCancers[CurrentNonMelanomaSkinCancers.KEY_ISCC].site),
+       iSCCNumber: new FormControl(this.c1.currentNonMelanomaSkinCancers[CurrentNonMelanomaSkinCancers.KEY_ISCC].number),
+       sSCCPresence: new FormControl(this.c1.currentNonMelanomaSkinCancers[CurrentNonMelanomaSkinCancers.KEY_SSCC].presence,
+         [Validators.required]),
+       sSCCSite: new FormControl(this.c1.currentNonMelanomaSkinCancers[CurrentNonMelanomaSkinCancers.KEY_SSCC].site),
+       sSCCNumber: new FormControl(this.c1.currentNonMelanomaSkinCancers[CurrentNonMelanomaSkinCancers.KEY_BCC].number),
+       });
+   }
 
   save() {
     this.c1 = new SectionC1(this.form);

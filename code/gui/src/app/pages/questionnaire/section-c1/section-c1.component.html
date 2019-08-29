@@ -10,13 +10,13 @@
             Permanent multiple macular pigmented lesions, aggregated,
             in areas of chronic sun exposure, do not disappear in winter
           </mat-label>
-            <mat-select formControlName="solarLentigines.howMany">
+            <mat-select formControlName="howManySolarLentigines">
               <mat-option *ngFor="let option of lentiginesOpt" [value]="option.value">
                 {{option.viewValue}}
               </mat-option>
             </mat-select>
         <h4>At site of melanoma?</h4>
-        <mat-radio-group aria-label="Select yes or no" formControlName="solarLentigines.atSiteOfMelanoma">
+        <mat-radio-group aria-label="Select yes or no" formControlName="solarLentiginesAtSiteOfMelanoma">
           <mat-radio-button value="1">Yes</mat-radio-button>
           <mat-radio-button value="0">No</mat-radio-button>
         </mat-radio-group>
@@ -34,105 +34,100 @@
             <mat-grid-tile>Scalp</mat-grid-tile>
             <mat-grid-tile>
               <mat-form-field>
-                <input matInput formControlName="neviCount.leftZoneNumber">
+                <input matInput formControlName="neviCountLeftScalp">
               </mat-form-field>
             </mat-grid-tile>
             <mat-grid-tile>
               <mat-form-field>
-                <input matInput formControlName="intermittentExposureChildhoodHours">
+                <input matInput formControlName="neviCountRightScalp">
               </mat-form-field>
             </mat-grid-tile>
             <mat-grid-tile>Face (including ears)</mat-grid-tile>
             <mat-grid-tile>
               <mat-form-field>
-                <input matInput formControlName="intermittentExposureAdolescenceWeeks">
+                <input matInput formControlName="neviCountLeftFace">
               </mat-form-field>
             </mat-grid-tile>
             <mat-grid-tile>
               <mat-form-field>
-                <input matInput formControlName="intermittentExposureAdolescenceHours">
+                <input matInput formControlName="neviCountRightFace">
               </mat-form-field>
             </mat-grid-tile>
             <mat-grid-tile>Neck</mat-grid-tile>
             <mat-grid-tile>
               <mat-form-field>
-                <input matInput formControlName="intermittentExposureAdulthoodWeeks">
+                <input matInput formControlName="neviCountLeftNeck">
               </mat-form-field>
             </mat-grid-tile>
             <mat-grid-tile>
               <mat-form-field>
-                <input matInput formControlName="intermittentExposureAdulthoodHours">
+                <input matInput formControlName="neviCountRightNeck">
               </mat-form-field>
             </mat-grid-tile>
             <mat-grid-tile class="padding">Anterior thorax + abdomen</mat-grid-tile>
             <mat-grid-tile>
               <mat-form-field>
-                <input matInput formControlName="intermittentExposureDiagnosisWeeks">
+                <input matInput formControlName="neviCountLeftAbdomen">
               </mat-form-field>
             </mat-grid-tile>
             <mat-grid-tile>
               <mat-form-field>
-                <input matInput formControlName="intermittentExposureDiagnosisHours">
+                <input matInput formControlName="neviCountRightAbdomen">
               </mat-form-field>
             </mat-grid-tile>
           <mat-grid-tile class="padding">Back</mat-grid-tile>
           <mat-grid-tile>
             <mat-form-field>
-              <input matInput formControlName="intermittentExposureDiagnosisWeeks">
+              <input matInput formControlName="neviCountLeftBack">
             </mat-form-field>
           </mat-grid-tile>
           <mat-grid-tile>
             <mat-form-field>
-              <input matInput formControlName="intermittentExposureDiagnosisHours">
+              <input matInput formControlName="neviCountRightBack">
             </mat-form-field>
           </mat-grid-tile>
             <mat-grid-tile class="padding">Upper extremities including deltoid</mat-grid-tile>
             <mat-grid-tile>
               <mat-form-field>
-                <input matInput formControlName="intermittentExposureDiagnosisWeeks">
+                <input matInput formControlName="neviCountLeftDeltoid">
               </mat-form-field>
             </mat-grid-tile>
             <mat-grid-tile>
               <mat-form-field>
-                <input matInput formControlName="intermittentExposureDiagnosisHours">
-              </mat-form-field>
-            </mat-grid-tile>
-            <mat-grid-tile>
-              <mat-form-field>
-                <input matInput formControlName="intermittentExposureDiagnosisHours">
+                <input matInput formControlName="neviCountRightDeltoid">
               </mat-form-field>
             </mat-grid-tile>
             <mat-grid-tile class="padding">Lower extremities including gluteus</mat-grid-tile>
             <mat-grid-tile>
               <mat-form-field>
-                <input matInput formControlName="intermittentExposureDiagnosisWeeks">
+                <input matInput formControlName="neviCountLeftGluteus">
               </mat-form-field>
             </mat-grid-tile>
             <mat-grid-tile>
               <mat-form-field>
-                <input matInput formControlName="intermittentExposureDiagnosisHours">
+                <input matInput formControlName="neviCountRightGluteus">
               </mat-form-field>
             </mat-grid-tile>
             <mat-grid-tile class="padding">Palms</mat-grid-tile>
             <mat-grid-tile>
               <mat-form-field>
-                <input matInput formControlName="intermittentExposureDiagnosisWeeks">
+                <input matInput formControlName="neviCountLeftPalms">
               </mat-form-field>
             </mat-grid-tile>
             <mat-grid-tile>
               <mat-form-field>
-                <input matInput formControlName="intermittentExposureDiagnosisHours">
+                <input matInput formControlName="neviCountRightPalms">
               </mat-form-field>
             </mat-grid-tile>
             <mat-grid-tile class="padding">Soles</mat-grid-tile>
             <mat-grid-tile>
               <mat-form-field>
-                <input matInput formControlName="intermittentExposureDiagnosisWeeks">
+                <input matInput formControlName="neviCountLeftSoles">
               </mat-form-field>
             </mat-grid-tile>
             <mat-grid-tile>
               <mat-form-field>
-                <input matInput formControlName="intermittentExposureDiagnosisHours">
+                <input matInput formControlName="neviCountRightSoles">
               </mat-form-field>
             </mat-grid-tile>
           </mat-grid-list>
@@ -157,9 +152,9 @@
                 Macular (i.e. flat) component in at least part of the lesion (mandatory)
                 and at least 3 of the following criteria.
               </mat-label>
-              <input matInput type="number" formControlName="clinicallyAtypicalNevi.howMany">
+              <input matInput type="number" formControlName="howManyClinicallyAtypicalNevi">
               <h4>At site of melanoma?</h4>
-              <mat-radio-group aria-label="Select yes or no" formControlName="clinicallyAtypicalNevi.atSiteOfMelanoma">
+              <mat-radio-group aria-label="Select yes or no" formControlName="clinicallyAtypicalNeviAtSiteOfMelanoma">
                 <mat-radio-button value="1">Yes</mat-radio-button>
                 <mat-radio-button value="0">No</mat-radio-button>
               </mat-radio-group>
@@ -168,12 +163,12 @@
           <h4>
             Medium sized (1.5 – 19.9 cm )
           </h4>
-          <mat-radio-group aria-label="Select yes or no" formControlName="cnMediumSized">
+          <mat-radio-group aria-label="Select yes or no" formControlName="presenceOfMediumSizedNevi">
             <mat-radio-button value="1">Yes</mat-radio-button>
             <mat-radio-button value="0">No</mat-radio-button>
           </mat-radio-group>
           <h4>At site of melanoma?</h4>
-          <mat-radio-group *ngIf="form.value.cnMediumSized" aria-label="Select yes or no" formControlName="cnMediumSizedAtSiteOfMelanoma">
+          <mat-radio-group *ngIf="form.value.presenceOfMediumSizedNevi" aria-label="Select yes or no" formControlName="siteOfMediumSizedNevi">
             <mat-radio-button value="1">Yes</mat-radio-button>
             <mat-radio-button value="0">No</mat-radio-button>
           </mat-radio-group>
@@ -181,12 +176,12 @@
         <h4>
           Large sized ( greater than 19.9cm )
         </h4>
-        <mat-radio-group aria-label="Select yes or no" formControlName="cnLargeSized">
+        <mat-radio-group aria-label="Select yes or no" formControlName="presenceOfLargeSizedNevi">
           <mat-radio-button value="1">Yes</mat-radio-button>
           <mat-radio-button value="0">No</mat-radio-button>
         </mat-radio-group>
         <h4>At site of melanoma?</h4>
-        <mat-radio-group *ngIf="form.value.cnLargeSized" aria-label="Select yes or no" formControlName="cnLargeSizedAtSiteOfMelanoma">
+        <mat-radio-group *ngIf="form.value.presenceOfLargeSizedNevi" aria-label="Select yes or no" formControlName="siteOfLargeSizedNevi">
           <mat-radio-button value="1">Yes</mat-radio-button>
           <mat-radio-button value="0">No</mat-radio-button>
         </mat-radio-group>
@@ -194,18 +189,18 @@
         <h4>
           Giant sized ( greater than 39.9cm )
         </h4>
-        <mat-radio-group aria-label="Select yes or no" formControlName="cnGiantSized">
+        <mat-radio-group aria-label="Select yes or no" formControlName="presenceOfGiantNevi">
           <mat-radio-button value="1">Yes</mat-radio-button>
           <mat-radio-button value="0">No</mat-radio-button>
         </mat-radio-group>
         <h4>At site of melanoma?</h4>
-        <mat-radio-group *ngIf="form.value.cnGiantSized" aria-label="Select yes or no" formControlName="cnGiantSizedAtSiteOfMelanoma">
+        <mat-radio-group *ngIf="form.value.presenceOfGiantNevi" aria-label="Select yes or no" formControlName="siteOfGiantSizedNevi">
           <mat-radio-button value="1">Yes</mat-radio-button>
           <mat-radio-button value="0">No</mat-radio-button>
         </mat-radio-group>
         <br>
         <h3>6. Blue nevi</h3>
-        <mat-radio-group aria-label="Select yes or no" formControlName="blueNevi">
+        <mat-radio-group aria-label="Select yes or no" formControlName="blueNeviPresence">
           <mat-radio-button value="1">Yes</mat-radio-button>
           <mat-radio-button value="0">No</mat-radio-button>
         </mat-radio-group>
@@ -214,17 +209,17 @@
         <br>
 
         <h3>7. Actinic keratoses</h3>
-        <mat-radio-group aria-label="Select yes or no" formControlName="actinicKeratoses">
+        <mat-radio-group aria-label="Select yes or no" formControlName="actinicKeratosesPresence">
           <mat-radio-button value="1">Yes</mat-radio-button>
           <mat-radio-button value="0">No</mat-radio-button>
         </mat-radio-group>
         <br>
-        <input matInput *ngIf="form.value.actinicKeratoses" placeholder="Insert the site" formControlName="siteOfActinicKeratoses">
+        <input matInput *ngIf="form.value.actinicKeratoses" placeholder="Insert the site" formControlName="actinicKeratosesSite">
         <mat-form-field>
           <mat-label>
             Choose the predominant type of distribution
           </mat-label>
-          <mat-select formControlName="neviCountLessThan2mm">
+          <mat-select formControlName="actinicKeratosesTypeOfDistribution">
             <mat-option *ngFor="let option of distributionOpt" [value]="option.value">
               {{option.viewValue}}
             </mat-option>
@@ -234,33 +229,33 @@
 
         <h3>8. Current non-melanoma skin cancer, KSC</h3>
         <h4>Basal Cell Carcinoma</h4>
-        <mat-radio-group aria-label="Select yes or no" formControlName="bcc">
+        <mat-radio-group aria-label="Select yes or no" formControlName="bCCPresence">
           <mat-radio-button value="1">Yes</mat-radio-button>
           <mat-radio-button value="0">No</mat-radio-button>
         </mat-radio-group>
         <br>
-        <input matInput *ngIf="form.value.bcc" placeholder="Insert the site" formControlName="siteOfBcc">
-        <input matInput *ngIf="form.value.bcc" type="number" placeholder="Insert the number" formControlName="numberOfBcc">
+        <input matInput *ngIf="form.value.bcc" placeholder="Insert the site" formControlName="bCCSite">
+        <input matInput *ngIf="form.value.bcc" type="number" placeholder="Insert the number" formControlName="bCCNumber">
         <br>
 
         <h4>Invasive Squamous Cell Carcinoma</h4>
-        <mat-radio-group aria-label="Select yes or no" formControlName="iscc">
+        <mat-radio-group aria-label="Select yes or no" formControlName="iSCCPresence">
           <mat-radio-button value="1">Yes</mat-radio-button>
           <mat-radio-button value="0">No</mat-radio-button>
         </mat-radio-group>
         <br>
-        <input matInput *ngIf="form.value.iscc" placeholder="Insert the site" formControlName="siteOfIscc">
-        <input matInput *ngIf="form.value.iscc" type="number" placeholder="Insert the number" formControlName="numberOfIscc">
+        <input matInput *ngIf="form.value.iscc" placeholder="Insert the site" formControlName="iSCCSite">
+        <input matInput *ngIf="form.value.iscc" type="number" placeholder="Insert the number" formControlName="iSCCNumber">
         <br>
 
         <h4>In situ Squamous Cell Carcinoma</h4>
-        <mat-radio-group aria-label="Select yes or no" formControlName="sscc">
+        <mat-radio-group aria-label="Select yes or no" formControlName="sSCCPresence">
           <mat-radio-button value="1">Yes</mat-radio-button>
           <mat-radio-button value="0">No</mat-radio-button>
         </mat-radio-group>
         <br>
-        <input matInput *ngIf="form.value.sscc" placeholder="Insert the site" formControlName="siteOfSscc">
-        <input matInput *ngIf="form.value.sscc" type="number" placeholder="Insert the number" formControlName="numberOfSscc">
+        <input matInput *ngIf="form.value.sscc" placeholder="Insert the site" formControlName="sSCCSite">
+        <input matInput *ngIf="form.value.sscc" type="number" placeholder="Insert the number" formControlName="sSCCNumber">
         <br>
 
         <div>

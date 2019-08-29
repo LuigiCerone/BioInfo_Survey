@@ -13,23 +13,25 @@
               </mat-option>
             </mat-select>
           <mat-form-field *ngIf="form.value.smoker">
-            <input formControlName="ageStartSmoking" placeholder="Age when you started smoking">
-            <input formControlName="yearsSmoking" placeholder="How many years have you been smoking?">
+            <input formControlName="ageWhenStartedSmoking" placeholder="Age when you started smoking">
+            <input formControlName="howLongHaveYouBeenSmoking" placeholder="How many years have you been smoking?">
             <h4>How much did/do you typically smoke </h4>
-            <input formControlName="packPerDay" placeholder="How many pack per day">
-            <input formControlName="halfPackPerDay" placeholder="How many half pack per day">
-            <input formControlName="occasionallySmoke" placeholder="Only occasionally">
+            <mat-select placeholder="Select a quantity" formControlName="howMuchTipicallySmoke">
+              <mat-option *ngFor="let option of smokeQuantityOpt" [value]="option.value">
+                {{option.viewValue}}
+              </mat-option>
+            </mat-select>
           </mat-form-field>
 
         <br>
 
         <h3>2. Have you received vitamin pills during the last year?</h3>
-            <mat-radio-group aria-label="Select yes or no" formControlName="everReceivedVitamins">
+            <mat-radio-group aria-label="Select yes or no" formControlName="intakeOfVitaminesDuringLastYears">
               <mat-radio-button *ngFor="let option of yesNoOpt" [value]="option.value" >
                 {{option.viewValue}}
               </mat-radio-button>
             </mat-radio-group>
-            <mat-form-field *ngIf="form.value.everReceivedVitamins">
+            <mat-form-field *ngIf="form.value.intakeOfVitaminesDuringLastYears">
               <mat-select formControlName="vitaminPills">
                 <mat-option *ngFor="let option of vitaminPeriodOpt" [value]="option.value">
                   {{option.viewValue}}

@@ -47,7 +47,7 @@ public class B3 {
     public void setFrequencyOfVitaminsDuringLastYears(String frequencyOfVitaminsDuringLastYears) {
         this.frequencyOfVitaminsDuringLastYears = frequencyOfVitaminsDuringLastYears;
     }
-    
+
     public HashMap<String, Vitamin> getVitamin() {
         return vitamin;
     }

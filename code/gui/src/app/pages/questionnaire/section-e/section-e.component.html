@@ -1,0 +1,26 @@
+<form *ngIf="form" [formGroup]="form" (ngSubmit)="save()">
+  <mat-card>
+    <mat-card-title><h2>Section E</h2></mat-card-title>
+    <mat-card-content>
+      <h3>1. Were you able to respond to the questions of this Section?</h3>
+      <mat-form-field>
+        <mat-label>Difficulty</mat-label>
+        <mat-select formControlName="complexityOfTheQuestionnaire">
+          <mat-option *ngFor="let option of complexityOpt" [value]="option.value">
+            {{option.viewValue}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <br><br>
+      <h3>2. Which questions of this Section did you consider difficult to fill in?</h3>
+      <mat-form-field>
+        <mat-label>Leave empty if none, otherwise fill with the questions' number</mat-label>
+        <input matInput formControlName="difficultQuestions">
+      </mat-form-field>
+      <br>
+      <div class="button">
+        <button type="submit" [disabled]="!form.valid" mat-raised-button color="primary" matStepperNext>Next</button>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</form>

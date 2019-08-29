@@ -1,22 +1,32 @@
-export class SectionC2 {
+class SectionC2 {
   medicalDiagnoses: MedicalDiagnosis;
   previousAndConcomitantTreatments: Treatment;
   pregnancyHistory: PregnancyHistory;
-  lifetimeHistoryOfNonMelanomaSkinCancer: NonMelanomaSkinCancer;
+  lifetimeHistoryOfNonMelanomaSkinCancer: {};
   nonCutaneousNeoplasias: NonCutaneousNeoplasia;
 
   constructor(form?) {
     if (form) {
-      this.medicalDiagnoses = new MedicalDiagnosis(form.value.medicalDiagnoses);
-      this.previousAndConcomitantTreatments = new Treatment(form.value.previousAndConcomitantTreatments);
-      this.pregnancyHistory = new PregnancyHistory(form.value.pregnancyHistory);
-      this.lifetimeHistoryOfNonMelanomaSkinCancer = new NonMelanomaSkinCancer(form.value.lifetimeHistoryOfNonMelanomaSkinCancer);
-      this.nonCutaneousNeoplasias = new NonCutaneousNeoplasia(form.value.nonCutaneousNeoplasias);
+      this.medicalDiagnoses = new MedicalDiagnosis(form.value);
+      this.previousAndConcomitantTreatments = new Treatment(form.value);
+      this.pregnancyHistory = new PregnancyHistory(form.value);
+
+      this.lifetimeHistoryOfNonMelanomaSkinCancer = {};
+      this.lifetimeHistoryOfNonMelanomaSkinCancer[NonMelanomaSkinCancer.KEY_BCC] = new NonMelanomaSkinCancer(NonMelanomaSkinCancer.KEY_BCC, form.value);
+      this.lifetimeHistoryOfNonMelanomaSkinCancer[NonMelanomaSkinCancer.KEY_SCC] = new NonMelanomaSkinCancer(NonMelanomaSkinCancer.KEY_SCC, form.value);
+      this.lifetimeHistoryOfNonMelanomaSkinCancer[NonMelanomaSkinCancer.KEY_IN_SITU_SCC] = new NonMelanomaSkinCancer(NonMelanomaSkinCancer.KEY_IN_SITU_SCC, form.value);
+
+      this.nonCutaneousNeoplasias = new NonCutaneousNeoplasia(form.value);
     } else {
       this.medicalDiagnoses = new MedicalDiagnosis();
       this.previousAndConcomitantTreatments = new Treatment();
       this.pregnancyHistory = new PregnancyHistory();
-      this.lifetimeHistoryOfNonMelanomaSkinCancer = new NonMelanomaSkinCancer();
+
+      this.lifetimeHistoryOfNonMelanomaSkinCancer = {};
+      this.lifetimeHistoryOfNonMelanomaSkinCancer[NonMelanomaSkinCancer.KEY_BCC] = new NonMelanomaSkinCancer(NonMelanomaSkinCancer.KEY_BCC);
+      this.lifetimeHistoryOfNonMelanomaSkinCancer[NonMelanomaSkinCancer.KEY_SCC] = new NonMelanomaSkinCancer(NonMelanomaSkinCancer.KEY_SCC);
+      this.lifetimeHistoryOfNonMelanomaSkinCancer[NonMelanomaSkinCancer.KEY_IN_SITU_SCC] = new NonMelanomaSkinCancer(NonMelanomaSkinCancer.KEY_IN_SITU_SCC);
+
       this.nonCutaneousNeoplasias = new NonCutaneousNeoplasia();
     }
   }
@@ -28,8 +38,8 @@ class MedicalDiagnosis {
 
   constructor(form?) {
     if (form) {
-      this.diagnosisName = form.value.medicalDiagnoses.diagnosisName;
-      this.ICD10Code = form.value.medicalDiagnoses.ICD10Code;
+      this.diagnosisName = form.diagnosisName;
+      this.ICD10Code = form.ICD10Code;
     } else {
       this.diagnosisName = '';
       this.ICD10Code = '';
@@ -44,9 +54,9 @@ class Treatment {
 
   constructor(form?) {
     if (form) {
-      this.treatmentName = form.value.treatment.treatmentName;
-      this.treatmentStartingTime = form.value.treatment.treatmentStartingTime;
-      this.treatmentEndingTime = form.value.treatment.treatmentEndingTime;
+      this.treatmentName = form.treatmentName;
+      this.treatmentStartingTime = form.treatmentStartingTime;
+      this.treatmentEndingTime = form.treatmentEndingTime;
     } else {
       this.treatmentName = '';
       this.treatmentStartingTime = '';
@@ -68,15 +78,15 @@ class PregnancyHistory {
 
   constructor(form?) {
     if (form) {
-      this.numberOfFullTermPregnancies = form.value.pregnancyHistory.numberOfFullTermPregnancies;
-      this.dateOfBirthOfChildren = form.value.pregnancyHistory.dateOfBirthOfChildren;
-      this.numberOfMiscarriages = form.value.pregnancyHistory.numberOfMiscarriages;
-      this.melanomaOccurDuringPregnancy = form.value.pregnancyHistory.melanomaOccurDuringPregnancy;
-      this.melanomaOccurBeforePregnancy = form.value.pregnancyHistory.melanomaOccurBeforePregnancy;
-      this.howManyYearsBeforePregnancy = form.value.pregnancyHistory.howManyYearsBeforePregnancy;
-      this.melanomaOccurAfterPregnancy = form.value.pregnancyHistory.melanomaOccurAfterPregnancy;
-      this.howManyYearsAfterPregnancy = form.value.pregnancyHistory.howManyYearsAfterPregnancy;
-      this.IVFBeforeDiagnosis = form.value.pregnancyHistory.IVFBeforeDiagnosis;
+      this.numberOfFullTermPregnancies = form.numberOfFullTermPregnancies;
+      this.dateOfBirthOfChildren = form.dateOfBirthOfChildren;
+      this.numberOfMiscarriages = form.numberOfMiscarriages;
+      this.melanomaOccurDuringPregnancy = form.melanomaOccurDuringPregnancy;
+      this.melanomaOccurBeforePregnancy = form.melanomaOccurBeforePregnancy;
+      this.howManyYearsBeforePregnancy = form.howManyYearsBeforePregnancy;
+      this.melanomaOccurAfterPregnancy = form.melanomaOccurAfterPregnancy;
+      this.howManyYearsAfterPregnancy = form.howManyYearsAfterPregnancy;
+      this.IVFBeforeDiagnosis = form.IVFBeforeDiagnosis;
     } else {
       this.numberOfFullTermPregnancies = 0;
       this.dateOfBirthOfChildren = [];
@@ -92,19 +102,39 @@ class PregnancyHistory {
 }
 
 class NonMelanomaSkinCancer {
+  public static KEY_BCC = 'bcc';
+  public static KEY_SCC = 'scc';
+  public static KEY_IN_SITU_SCC = 'in_scc';
+
   type: string;
   number: number;
   when: string;
   site: string;
   dateOfDiagnosis: string;
 
-  constructor(form?) {
+  constructor(key: string, form?) {
     if (form) {
-      this.type = form.value.nonMelanomaSkinCancer.type;
-      this.number = form.value.nonMelanomaSkinCancer.number;
-      this.when = form.value.nonMelanomaSkinCancer.when;
-      this.site = form.value.nonMelanomaSkinCancer.site;
-      this.dateOfDiagnosis = form.value.nonMelanomaSkinCancer.dateOfDiagnosis;
+      switch (key) {
+        case NonMelanomaSkinCancer.KEY_BCC:
+          this.number = form.numberBcc;
+          this.when = form.whenBcc;
+          this.site = form.siteBcc;
+          this.dateOfDiagnosis = form.dateOfDiagnosisBcc;
+          break;
+        case NonMelanomaSkinCancer.KEY_SCC:
+          this.number = form.numberScc;
+          this.when = form.whenScc;
+          this.site = form.siteScc;
+          this.dateOfDiagnosis = form.dateOfDiagnosisScc;
+          break;
+        case NonMelanomaSkinCancer.KEY_IN_SITU_SCC:
+          this.type = form.typeInScc;
+          this.number = form.numberInScc;
+          this.when = form.whenInScc;
+          this.site = form.siteInScc;
+          this.dateOfDiagnosis = form.dateOfDiagnosisInScc;
+          break;
+      }
     } else {
       this.type = '';
       this.number = 0;
@@ -122,9 +152,9 @@ class NonCutaneousNeoplasia {
 
   constructor(form?) {
     if (form) {
-      this.type = form.value.nonCutaneousNeoplasia.type;
-      this.ageOfDiagnosis = form.value.nonCutaneousNeoplasia.ageOfDiagnosis;
-      this.yearOfDiagnoses = form.value.nonCutaneousNeoplasia.yearOfDiagnoses;
+      this.type = form.typeNonCutaneous;
+      this.ageOfDiagnosis = form.ageOfDiagnosis;
+      this.yearOfDiagnoses = form.yearOfDiagnoses;
     } else {
       this.type = '';
       this.ageOfDiagnosis = '';
@@ -132,3 +162,5 @@ class NonCutaneousNeoplasia {
     }
   }
 }
+
+export { SectionC2, NonMelanomaSkinCancer };

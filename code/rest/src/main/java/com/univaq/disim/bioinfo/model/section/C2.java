@@ -3,6 +3,7 @@ package com.univaq.disim.bioinfo.model.section;
 import com.univaq.disim.bioinfo.model.nested.*;
 import org.springframework.data.mongodb.core.mapping.Field;
 
+import java.util.HashMap;
 import java.util.List;
 
 public class C2 {
@@ -17,7 +18,7 @@ public class C2 {
     private PregnanciesInfo pregnancyHistory;
 
     @Field
-    private List<NonMelanomaSkinCancer> lifetimeHistoryOfNonMelanomaSkinCancer;
+    private HashMap<String, NonMelanomaSkinCancer> lifetimeHistoryOfNonMelanomaSkinCancer;
 
     @Field
     private List<NonCutaneousNeoplasia> nonCutaneousNeoplasias;
@@ -48,11 +49,11 @@ public class C2 {
         this.pregnancyHistory = pregnancyHistory;
     }
 
-    public List<NonMelanomaSkinCancer> getLifetimeHistoryOfNonMelanomaSkinCAncer() {
+    public HashMap<String, NonMelanomaSkinCancer> getLifetimeHistoryOfNonMelanomaSkinCancer() {
         return lifetimeHistoryOfNonMelanomaSkinCancer;
     }
 
-    public void setLifetimeHistoryOfNonMelanomaSkinCAncer(List<NonMelanomaSkinCancer> lifetimeHistoryOfNonMelanomaSkinCancer) {
+    public void setLifetimeHistoryOfNonMelanomaSkinCancer(HashMap<String, NonMelanomaSkinCancer> lifetimeHistoryOfNonMelanomaSkinCancer) {
         this.lifetimeHistoryOfNonMelanomaSkinCancer = lifetimeHistoryOfNonMelanomaSkinCancer;
     }
 

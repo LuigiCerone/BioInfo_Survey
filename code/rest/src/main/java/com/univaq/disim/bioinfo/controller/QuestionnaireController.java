@@ -44,6 +44,15 @@ public class QuestionnaireController<QuestionnaireServiceImpl> {
     private SectionB3Service sectionB3Service;
 
     @Autowired
+    private SectionEService sectionEService;
+
+    @Autowired
+    private SectionC1Service sectionC1Service;
+
+    @Autowired
+    private SectionC2Service sectionC2Service;
+
+    @Autowired
     private JwtProvider jwtProvider;
 
     @GetMapping("/{codeNumber}")
@@ -159,5 +168,62 @@ public class QuestionnaireController<QuestionnaireServiceImpl> {
     public ResponseEntity<B3> getB3(HttpServletRequest request, @PathVariable(value="username") String username) throws BusinessLayerException {
         B3 b3 = sectionB3Service.get(username);
         return new ResponseEntity<B3>(b3, HttpStatus.OK);
+    }
+
+    // ==================================================================================== SECTION
+    // Be
+    @PostMapping("/user/{username}/be")
+    public ResponseEntity upsertBe(HttpServletRequest request,
+                                   @RequestBody E be,
+                                   @PathVariable(value="username") String username,
+                                   @RequestHeader (name="Authorization") String token) throws BusinessLayerException {
+        // Decode token and get the username contained. There is also the word "Bearer" that we need to escape.
+        String token_username = this.jwtProvider.getUserNameFromJwtToken(token.substring(7));
+        E beInserted = sectionEService.insert(username, be, 'B');
+        return new ResponseEntity<>(beInserted, HttpStatus.CREATED);
+    }
+
+    @GetMapping("/user/{username}/be")
+    public ResponseEntity<E> getBe(HttpServletRequest request, @PathVariable(value="username") String username) throws BusinessLayerException {
+        E be = sectionEService.get(username, 'B');
+        return new ResponseEntity<E>(be, HttpStatus.OK);
+    }
+
+    // ==================================================================================== SECTION
+    // C1
+    @PostMapping("/user/{username}/c1")
+    public ResponseEntity upsertC1(HttpServletRequest request,
+                                   @RequestBody C1 c1,
+                                   @PathVariable(value="username") String username,
+                                   @RequestHeader (name="Authorization") String token) throws BusinessLayerException {
+        // Decode token and get the username contained. There is also the word "Bearer" that we need to escape.
+        String token_username = this.jwtProvider.getUserNameFromJwtToken(token.substring(7));
+        C1 c1Inserted = sectionC1Service.insert(username, c1);
+        return new ResponseEntity<>(c1Inserted, HttpStatus.CREATED);
+    }
+
+    @GetMapping("/user/{username}/c1")
+    public ResponseEntity<C1> getC1(HttpServletRequest request, @PathVariable(value="username") String username) throws BusinessLayerException {
+        C1 c1 = sectionC1Service.get(username);
+        return new ResponseEntity<C1>(c1, HttpStatus.OK);
+    }
+
+    // ==================================================================================== SECTION
+    // C2
+    @PostMapping("/user/{username}/c2")
+    public ResponseEntity upsertC2(HttpServletRequest request,
+                                   @RequestBody C2 c2,
+                                   @PathVariable(value="username") String username,
+                                   @RequestHeader (name="Authorization") String token) throws BusinessLayerException {
+        // Decode token and get the username contained. There is also the word "Bearer" that we need to escape.
+        String token_username = this.jwtProvider.getUserNameFromJwtToken(token.substring(7));
+        C2 c2Inserted = sectionC2Service.insert(username, c2);
+        return new ResponseEntity<>(c2Inserted, HttpStatus.CREATED);
+    }
+
+    @GetMapping("/user/{username}/c2")
+    public ResponseEntity<C2> getC2(HttpServletRequest request, @PathVariable(value="username") String username) throws BusinessLayerException {
+        C2 c2 = sectionC2Service.get(username);
+        return new ResponseEntity<C2>(c2, HttpStatus.OK);
     }
 }

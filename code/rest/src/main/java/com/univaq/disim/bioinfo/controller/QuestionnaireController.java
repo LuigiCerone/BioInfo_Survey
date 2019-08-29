@@ -155,7 +155,7 @@ public class QuestionnaireController<QuestionnaireServiceImpl> {
         return new ResponseEntity<>(b3Inserted, HttpStatus.CREATED);
     }
 
-    @GetMapping("/user/{username}/b2")
+    @GetMapping("/user/{username}/b3")
     public ResponseEntity<B3> getB3(HttpServletRequest request, @PathVariable(value="username") String username) throws BusinessLayerException {
         B3 b3 = sectionB3Service.get(username);
         return new ResponseEntity<B3>(b3, HttpStatus.OK);

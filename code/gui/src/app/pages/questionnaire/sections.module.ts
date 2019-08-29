@@ -7,7 +7,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { SectionB1Component } from './section-b1/section-b1.component';
 import { SectionB2Component } from './section-b2/section-b2.component';
 import { SectionB3Component } from './section-b3/section-b3.component';
-import { SectionC1Component } from './section-b3/section-c1.component';
+import { SectionC1Component } from './section-c1/section-c1.component';
 
 
 

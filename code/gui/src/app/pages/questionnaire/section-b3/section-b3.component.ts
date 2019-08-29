@@ -14,10 +14,6 @@ import {QuestionnaireService} from "../../../services/questionnaire.service";
 export class SectionB3Component implements OnInit {
   form: FormGroup;
 
-  yesNoOpt: Options[] = [
-    {value: '1', viewValue: 'Yes'},
-    {value: '0', viewValue: 'No'},
-  ];
   smokerOpt: Options[] = [
     {value: '0', viewValue: 'Never'},
     {value: '1', viewValue: 'Former smoker (quit one year before diagnosis or earlier)'},

@@ -27,3 +27,9 @@
 .padding{
   padding: 10px;
 }
+
+.button {
+  display: flex;
+  justify-content: flex-end;
+}
+

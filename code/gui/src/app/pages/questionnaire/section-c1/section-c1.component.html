@@ -10,15 +10,18 @@
             Permanent multiple macular pigmented lesions, aggregated,
             in areas of chronic sun exposure, do not disappear in winter
           </mat-label>
-            <mat-select formControlName="howManySolarLentigines">
+        <br>
+          <mat-form-field>
+            <mat-select formControlName="howManySolarLentigines" placeholder="Select an option">
               <mat-option *ngFor="let option of lentiginesOpt" [value]="option.value">
                 {{option.viewValue}}
               </mat-option>
             </mat-select>
+          </mat-form-field>
         <h4>At site of melanoma?</h4>
         <mat-radio-group aria-label="Select yes or no" formControlName="solarLentiginesAtSiteOfMelanoma">
-          <mat-radio-button value="1">Yes</mat-radio-button>
-          <mat-radio-button value="0">No</mat-radio-button>
+          <mat-radio-button [value]=true>Yes</mat-radio-button>
+          <mat-radio-button [value]=false>No</mat-radio-button>
         </mat-radio-group>
         <br>
 
@@ -152,11 +155,13 @@
                 Macular (i.e. flat) component in at least part of the lesion (mandatory)
                 and at least 3 of the following criteria.
               </mat-label>
-              <input matInput type="number" formControlName="howManyClinicallyAtypicalNevi">
+               <mat-form-field>
+                <input matInput type="number" formControlName="howManyClinicallyAtypicalNevi">
+               </mat-form-field>
               <h4>At site of melanoma?</h4>
               <mat-radio-group aria-label="Select yes or no" formControlName="clinicallyAtypicalNeviAtSiteOfMelanoma">
-                <mat-radio-button value="1">Yes</mat-radio-button>
-                <mat-radio-button value="0">No</mat-radio-button>
+                <mat-radio-button [value]=true>Yes</mat-radio-button>
+                <mat-radio-button [value]=false>No</mat-radio-button>
               </mat-radio-group>
         <br>
         <h3>5. Congenital nevi</h3>
@@ -164,58 +169,69 @@
             Medium sized (1.5 – 19.9 cm )
           </h4>
           <mat-radio-group aria-label="Select yes or no" formControlName="presenceOfMediumSizedNevi">
-            <mat-radio-button value="1">Yes</mat-radio-button>
-            <mat-radio-button value="0">No</mat-radio-button>
+            <mat-radio-button [value]=true>Yes</mat-radio-button>
+            <mat-radio-button [value]=false>No</mat-radio-button>
           </mat-radio-group>
-          <h4>At site of melanoma?</h4>
-          <mat-radio-group *ngIf="form.value.presenceOfMediumSizedNevi" aria-label="Select yes or no" formControlName="siteOfMediumSizedNevi">
-            <mat-radio-button value="1">Yes</mat-radio-button>
-            <mat-radio-button value="0">No</mat-radio-button>
-          </mat-radio-group>
+          <div  *ngIf="form.value.presenceOfMediumSizedNevi">
+            <h4>At site of melanoma?</h4>
+            <mat-radio-group aria-label="Select yes or no" formControlName="siteOfMediumSizedNevi">
+              <mat-radio-button [value]=true>Yes</mat-radio-button>
+              <mat-radio-button [value]=false>No</mat-radio-button>
+            </mat-radio-group>
+          </div>
         <br>
         <h4>
           Large sized ( greater than 19.9cm )
         </h4>
         <mat-radio-group aria-label="Select yes or no" formControlName="presenceOfLargeSizedNevi">
-          <mat-radio-button value="1">Yes</mat-radio-button>
-          <mat-radio-button value="0">No</mat-radio-button>
+          <mat-radio-button [value]=true>Yes</mat-radio-button>
+          <mat-radio-button [value]=false>No</mat-radio-button>
         </mat-radio-group>
-        <h4>At site of melanoma?</h4>
-        <mat-radio-group *ngIf="form.value.presenceOfLargeSizedNevi" aria-label="Select yes or no" formControlName="siteOfLargeSizedNevi">
-          <mat-radio-button value="1">Yes</mat-radio-button>
-          <mat-radio-button value="0">No</mat-radio-button>
-        </mat-radio-group>
+        <div *ngIf="form.value.presenceOfLargeSizedNevi">
+          <h4>At site of melanoma?</h4>
+          <mat-radio-group aria-label="Select yes or no" formControlName="siteOfLargeSizedNevi">
+            <mat-radio-button [value]=true>Yes</mat-radio-button>
+            <mat-radio-button [value]=false>No</mat-radio-button>
+          </mat-radio-group>
+        </div>
         <br>
         <h4>
           Giant sized ( greater than 39.9cm )
         </h4>
         <mat-radio-group aria-label="Select yes or no" formControlName="presenceOfGiantNevi">
-          <mat-radio-button value="1">Yes</mat-radio-button>
-          <mat-radio-button value="0">No</mat-radio-button>
+          <mat-radio-button [value]=true>Yes</mat-radio-button>
+          <mat-radio-button [value]=false>No</mat-radio-button>
         </mat-radio-group>
-        <h4>At site of melanoma?</h4>
-        <mat-radio-group *ngIf="form.value.presenceOfGiantNevi" aria-label="Select yes or no" formControlName="siteOfGiantSizedNevi">
-          <mat-radio-button value="1">Yes</mat-radio-button>
-          <mat-radio-button value="0">No</mat-radio-button>
-        </mat-radio-group>
+        <div *ngIf="form.value.presenceOfGiantNevi">
+          <h4>At site of melanoma?</h4>
+          <mat-radio-group aria-label="Select yes or no" formControlName="siteOfGiantSizedNevi">
+            <mat-radio-button [value]=true>Yes</mat-radio-button>
+            <mat-radio-button [value]=false>No</mat-radio-button>
+          </mat-radio-group>
+        </div>
         <br>
         <h3>6. Blue nevi</h3>
         <mat-radio-group aria-label="Select yes or no" formControlName="blueNeviPresence">
-          <mat-radio-button value="1">Yes</mat-radio-button>
-          <mat-radio-button value="0">No</mat-radio-button>
+          <mat-radio-button [value]=true>Yes</mat-radio-button>
+          <mat-radio-button [value]=false>No</mat-radio-button>
         </mat-radio-group>
         <br>
-        <input *ngIf="form.value.blueNevi" type="number" placeholder="Insert how many" formControlName="numberOfBlueNevi">
+        <mat-form-field  *ngIf="form.value.blueNeviPresence">
+          <h4>Insert the number</h4>
+          <input matInput type="number" formControlName="numberOfBlueNevi">
+        </mat-form-field>
         <br>
 
         <h3>7. Actinic keratoses</h3>
         <mat-radio-group aria-label="Select yes or no" formControlName="actinicKeratosesPresence">
-          <mat-radio-button value="1">Yes</mat-radio-button>
-          <mat-radio-button value="0">No</mat-radio-button>
+          <mat-radio-button [value]=true>Yes</mat-radio-button>
+          <mat-radio-button [value]=false>No</mat-radio-button>
         </mat-radio-group>
         <br>
-        <input matInput *ngIf="form.value.actinicKeratoses" placeholder="Insert the site" formControlName="actinicKeratosesSite">
-        <mat-form-field>
+        <mat-form-field *ngIf="form.value.actinicKeratosesPresence">
+          <input matInput placeholder="Insert the site" formControlName="actinicKeratosesSite">
+        </mat-form-field>
+        <mat-form-field *ngIf="form.value.actinicKeratosesPresence">
           <mat-label>
             Choose the predominant type of distribution
           </mat-label>
@@ -230,32 +246,47 @@
         <h3>8. Current non-melanoma skin cancer, KSC</h3>
         <h4>Basal Cell Carcinoma</h4>
         <mat-radio-group aria-label="Select yes or no" formControlName="bCCPresence">
-          <mat-radio-button value="1">Yes</mat-radio-button>
-          <mat-radio-button value="0">No</mat-radio-button>
+          <mat-radio-button [value]=true>Yes</mat-radio-button>
+          <mat-radio-button [value]=false>No</mat-radio-button>
         </mat-radio-group>
         <br>
-        <input matInput *ngIf="form.value.bcc" placeholder="Insert the site" formControlName="bCCSite">
-        <input matInput *ngIf="form.value.bcc" type="number" placeholder="Insert the number" formControlName="bCCNumber">
+        <mat-form-field *ngIf="form.value.bCCPresence" >
+          <input placeholder="Insert the site" formControlName="bCCSite">
+        </mat-form-field>
+        <mat-form-field *ngIf="form.value.bCCPresence" >
+          <h4>Insert the number</h4>
+          <input type="number" formControlName="bCCNumber">
+        </mat-form-field>
         <br>
 
         <h4>Invasive Squamous Cell Carcinoma</h4>
         <mat-radio-group aria-label="Select yes or no" formControlName="iSCCPresence">
-          <mat-radio-button value="1">Yes</mat-radio-button>
-          <mat-radio-button value="0">No</mat-radio-button>
+          <mat-radio-button [value]=true>Yes</mat-radio-button>
+          <mat-radio-button [value]=false>No</mat-radio-button>
         </mat-radio-group>
         <br>
-        <input matInput *ngIf="form.value.iscc" placeholder="Insert the site" formControlName="iSCCSite">
-        <input matInput *ngIf="form.value.iscc" type="number" placeholder="Insert the number" formControlName="iSCCNumber">
+        <mat-form-field *ngIf="form.value.iSCCPresence">
+          <input  placeholder="Insert the site" formControlName="iSCCSite">
+        </mat-form-field>
+        <mat-form-field *ngIf="form.value.iSCCPresence">
+          <h4>Insert the number</h4>
+          <input type="number" formControlName="iSCCNumber">
+        </mat-form-field>
         <br>
 
         <h4>In situ Squamous Cell Carcinoma</h4>
         <mat-radio-group aria-label="Select yes or no" formControlName="sSCCPresence">
-          <mat-radio-button value="1">Yes</mat-radio-button>
-          <mat-radio-button value="0">No</mat-radio-button>
+          <mat-radio-button [value]=true>Yes</mat-radio-button>
+          <mat-radio-button [value]=false>No</mat-radio-button>
         </mat-radio-group>
         <br>
-        <input matInput *ngIf="form.value.sscc" placeholder="Insert the site" formControlName="sSCCSite">
-        <input matInput *ngIf="form.value.sscc" type="number" placeholder="Insert the number" formControlName="sSCCNumber">
+        <mat-form-field *ngIf="form.value.sSCCPresence">
+          <input matInput  placeholder="Insert the site" formControlName="sSCCSite">
+        </mat-form-field>
+        <mat-form-field *ngIf="form.value.sSCCPresence">
+          <h4>Insert the number</h4>
+          <input matInput type="number" formControlName="sSCCNumber">
+        </mat-form-field>
         <br>
 
         <div>

@@ -1,0 +1,219 @@
+<div>
+  <form *ngIf="form" [formGroup]="form" (ngSubmit)="save()">
+    <mat-card>
+      <mat-card-title><h2>Section C.3</h2></mat-card-title>
+      <mat-card-content>
+        <br>
+        <h3>1. Family history of melanoma</h3>
+        <p>
+          Is there a component of patient's family (up to third degree relatives) whom a melanoma has been diagnosed?
+        </p>
+        <mat-radio-group aria-label="Select yes or no" formControlName="presenceMelanomaRelatives">
+          <mat-radio-button value="1">Yes</mat-radio-button>
+          <mat-radio-button value="0">No</mat-radio-button>
+          <mat-radio-button value="2">Don't know</mat-radio-button>
+          <mat-radio-button value="3">Other</mat-radio-button>
+        </mat-radio-group>
+        <mat-form-field>
+          <input *ngIf="form.value.presenceMelanomaRelatives === 3" matInput formControlName="specifyOtherPresence" placeholder="Specify">
+        </mat-form-field>
+        <div *ngIf="form.value.presenceMelanomaRelatives === 1">
+          <mat-select formControlName="relativesMelanomaType">
+            <mat-option *ngFor="let option of relativesMelanomaTypeOpt" [value]="option.value">
+              {{option.viewValue}}
+            </mat-option>
+          </mat-select>
+          <h4>Define relative's side</h4>
+          <mat-radio-group aria-label="Select yes or no" formControlName="relativeSide">
+            <mat-radio-button value="1">Maternal</mat-radio-button>
+            <mat-radio-button value="0">Paternal</mat-radio-button>
+          </mat-radio-group>
+          <br>
+          <h4>Indicate relative's degree</h4>
+          <mat-radio-group aria-label="Select yes or no" formControlName="relativeDegree">
+            <mat-radio-button value="1">First</mat-radio-button>
+            <mat-radio-button value="2">Second</mat-radio-button>
+            <mat-radio-button value="3">Third</mat-radio-button>
+          </mat-radio-group>
+          <br>
+          <mat-form-field>
+            <input matInput formControlName="ageAtDiagnosis" placeholder="Specify age at diagnosis">
+          </mat-form-field>
+        </div>
+        <br>
+
+        <h3>2. Germline status</h3>
+        <mat-select formControlName="germlineStatus">
+          <mat-option *ngFor="let option of germlineStatusOpt" [value]="option.value">
+            {{option.viewValue}}
+          </mat-option>
+        </mat-select>
+        <mat-form-field>
+          <input *ngIf="form.value.germlineStatus === 'other'"
+                 matInput
+                 formControlName="ICD10Code"
+                 placeholder="Specify">
+        </mat-form-field>
+        <br>
+        <h3>3. Family history of other cancers</h3>
+        <mat-form-field>
+          <mat-label>Exclude NMSC and melanoma</mat-label>
+          <input matInput formControlName="otherCancerTypes" placeholder="Type of cancer">
+        </mat-form-field>
+        <h4>Define relative's side</h4>
+        <mat-radio-group aria-label="Select yes or no" formControlName="relativeSide">
+          <mat-radio-button value="1">Maternal</mat-radio-button>
+          <mat-radio-button value="0">Paternal</mat-radio-button>
+        </mat-radio-group>
+        <br>
+        <h4>Indicate relative's degree</h4>
+        <mat-radio-group aria-label="Select yes or no" formControlName="relativeSide">
+          <mat-radio-button value="1">First</mat-radio-button>
+          <mat-radio-button value="2">Second</mat-radio-button>
+          <mat-radio-button value="3">Third</mat-radio-button>
+        </mat-radio-group>
+        <br>
+        <br>
+        <h4>Did melanoma occur during pregnancy?</h4>
+        <mat-radio-group aria-label="Select yes or no" formControlName="melanomaOccurDuringPregnancy">
+          <mat-radio-button value="1">Yes</mat-radio-button>
+          <mat-radio-button value="0">No</mat-radio-button>
+        </mat-radio-group>
+        <br>
+        <h4>Did melanoma occur before pregnancy?</h4>
+        <mat-radio-group aria-label="Select yes or no" formControlName="melanomaOccurBeforePregnancy">
+          <mat-radio-button value="1">Yes</mat-radio-button>
+          <mat-radio-button value="0">No</mat-radio-button>
+        </mat-radio-group>
+        <br>
+        <mat-form-field *ngIf="form.value.melanomaBeforePregnancy">
+          <input
+            matInput
+            placeholder="How many years before pregnancy?"
+            formControlName="howManyYearsBeforePregnancy">
+        </mat-form-field>
+        <br>
+        <h4>Did melanoma occur after pregnancy?</h4>
+        <mat-radio-group aria-label="Select yes or no" formControlName="melanomaOccurAfterPregnancy">
+          <mat-radio-button value="1">Yes</mat-radio-button>
+          <mat-radio-button value="0">No</mat-radio-button>
+        </mat-radio-group>
+        <br>
+        <mat-form-field *ngIf="form.value.melanomaAfterPregnancy">
+          <input
+            matInput
+            placeholder="How many years after pregnancy?"
+            formControlName="howManyYearsAfterPregnancy">
+        </mat-form-field>
+        <br>
+        <h4>History of hormone-assisted pregnancy (IVF) before diagnosis</h4>
+        <mat-radio-group aria-label="Select yes or no" formControlName="IVFBeforeDiagnosis">
+          <mat-radio-button value="1">Yes</mat-radio-button>
+          <mat-radio-button value="0">No</mat-radio-button>
+        </mat-radio-group>
+        <br>
+
+        <h3>4. Lifetime history of non-melanoma skin cancer, KSC </h3>
+        <h4>
+          Basal Cell Carcinoma
+        </h4>
+        <mat-form-field>
+          <input matInput type="number" formControlName="numberBcc" placeholder="Insert the number of BCC">
+        </mat-form-field>
+
+        <br>
+        <div *ngIf="form.value.numberBcc">
+          <h4>
+            Before or after melanoma diagnosis?
+          </h4>
+          <mat-radio-group aria-label="Select yes or no" formControlName="whenBcc">
+            <mat-radio-button value="1">After</mat-radio-button>
+            <mat-radio-button value="0">Before</mat-radio-button>
+          </mat-radio-group>
+          <br>
+          <mat-form-field>
+            <input matInput placeholder="Insert site" formControlName="siteBcc">
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput placeholder="Date of diagnosis" formControlName="dateOfDiagnosisBcc">
+          </mat-form-field>
+        </div>
+        <br>
+        <h4>
+          Invasive Squamous Cell Carcinoma
+        </h4>
+        <mat-form-field>
+          <input matInput type="number" formControlName="numberScc" placeholder="Insert the number of ISCC">
+        </mat-form-field>
+        <br>
+        <div *ngIf="form.value.numberScc">
+          <h4>
+            Before or after melanoma diagnosis?
+          </h4>
+          <mat-radio-group aria-label="Select yes or no" formControlName="whenScc">
+            <mat-radio-button value="1">After</mat-radio-button>
+            <mat-radio-button value="0">Before</mat-radio-button>
+          </mat-radio-group>
+          <br>
+          <mat-form-field>
+            <input matInput placeholder="Insert site" formControlName="siteScc">
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput placeholder="Date of diagnosis" formControlName="dateOfDiagnosisScc">
+          </mat-form-field>
+        </div>
+        <br>
+        <h4>
+          In situ Squamous Cell Carcinoma
+        </h4>
+        <input matInput type="number" formControlName="numberInScc" placeholder="Insert the number of SSCC">
+        <br>
+        <div *ngIf="form.value.numberInScc">
+          <mat-form-field>
+            <mat-label>
+              Choose the type of SSCC
+            </mat-label>
+            <mat-select formControlName="typeInScc">
+              <mat-option *ngFor="let option of lifetimeSsccOpt" [value]="option.value">
+                {{option.viewValue}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <h4>
+            Before or after melanoma diagnosis?
+          </h4>
+          <mat-radio-group aria-label="Select yes or no" formControlName="whenInScc">
+            <mat-radio-button value="1">After</mat-radio-button>
+            <mat-radio-button value="0">Before</mat-radio-button>
+          </mat-radio-group>
+          <br>
+          <mat-form-field>
+            <input matInput placeholder="Insert site" formControlName="siteInScc">
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput placeholder="Date of diagnosis" formControlName="dateOfDiagnosisInScc">
+          </mat-form-field>
+        </div>
+        <br>
+
+        <br>
+        <h3>5. Other non-cutaneous neoplasia</h3>
+        <mat-label>Specify</mat-label>
+        <mat-form-field>
+          <input matInput formControlName="typeNonCutaneous" placeholder="Insert type of neoplasia">
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput formControlName="ageOfDiagnosis" placeholder="Insert age at diagnosis">
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput formControlName="yearOfDiagnoses" placeholder="Insert year at diagnosis">
+        </mat-form-field>
+
+        <div class="button">
+          <button type="submit" [disabled]="!form.valid" mat-raised-button color="primary" matStepperNext>Next</button>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </form>
+</div>
+

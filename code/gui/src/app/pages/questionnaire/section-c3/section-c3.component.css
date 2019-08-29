@@ -16,3 +16,20 @@
   height: 80%;
 }
 
+.mat-radio-button{
+  padding-right: 5px;
+}
+
+.mat-select {
+  width: 70%;
+}
+
+.padding{
+  padding: 10px;
+}
+
+.button {
+  display: flex;
+  justify-content: flex-end;
+}
+

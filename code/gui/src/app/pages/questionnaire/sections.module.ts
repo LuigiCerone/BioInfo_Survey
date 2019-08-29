@@ -10,6 +10,8 @@ import { SectionB3Component } from './section-b3/section-b3.component';
 import { SectionC1Component } from './section-c1/section-c1.component';
 import { SectionEComponent } from './section-e/section-e.component';
 import { SectionC2Component } from './section-c2/section-c2.component';
+import { SectionC3Component } from './section-c3/section-c3.component';
+import { SectionDComponent } from './section-d/section-d.component';
 
 
 
@@ -29,6 +31,8 @@ import { SectionC2Component } from './section-c2/section-c2.component';
     SectionEComponent,
     SectionC1Component,
     SectionC2Component,
+    SectionC3Component,
+    SectionDComponent,
   ],
   declarations: [
     SectionA1Component,
@@ -38,7 +42,9 @@ import { SectionC2Component } from './section-c2/section-c2.component';
     SectionB3Component,
     SectionEComponent,
     SectionC1Component,
-    SectionC2Component
+    SectionC2Component,
+    SectionC3Component,
+    SectionDComponent,
   ]
 })
 export class SectionsModule { }

@@ -34,15 +34,15 @@ class SectionC2 {
 
 class MedicalDiagnosis {
   diagnosisName: string;
-  ICD10Code: string;
+  icd10Code: string;
 
   constructor(form?) {
     if (form) {
       this.diagnosisName = form.diagnosisName;
-      this.ICD10Code = form.ICD10Code;
+      this.icd10Code = form.icd10Code;
     } else {
       this.diagnosisName = '';
-      this.ICD10Code = '';
+      this.icd10Code = '';
     }
   }
 }
@@ -67,14 +67,14 @@ class Treatment {
 
 class PregnancyHistory {
   numberOfFullTermPregnancies: number;
-  dateOfBirthOfChildren: string[];
+  dateOfBirthOfChildren: string;
   numberOfMiscarriages: number;
   melanomaOccurDuringPregnancy: boolean;
   melanomaOccurBeforePregnancy: boolean;
   howManyYearsBeforePregnancy: string;
   melanomaOccurAfterPregnancy: boolean;
   howManyYearsAfterPregnancy: string;
-  IVFBeforeDiagnosis: boolean;
+  ivfbeforeDiagnosis: boolean;
 
   constructor(form?) {
     if (form) {
@@ -86,17 +86,17 @@ class PregnancyHistory {
       this.howManyYearsBeforePregnancy = form.howManyYearsBeforePregnancy;
       this.melanomaOccurAfterPregnancy = form.melanomaOccurAfterPregnancy;
       this.howManyYearsAfterPregnancy = form.howManyYearsAfterPregnancy;
-      this.IVFBeforeDiagnosis = form.IVFBeforeDiagnosis;
+      this.ivfbeforeDiagnosis = form.ivfbeforeDiagnosis;
     } else {
       this.numberOfFullTermPregnancies = 0;
-      this.dateOfBirthOfChildren = [];
+      this.dateOfBirthOfChildren = '';
       this.numberOfMiscarriages = 0;
       this.melanomaOccurDuringPregnancy = false;
       this.melanomaOccurBeforePregnancy = false;
       this.howManyYearsBeforePregnancy = '';
       this.melanomaOccurAfterPregnancy = false;
       this.howManyYearsAfterPregnancy = '';
-      this.IVFBeforeDiagnosis = false;
+      this.ivfbeforeDiagnosis = false;
     }
   }
 }

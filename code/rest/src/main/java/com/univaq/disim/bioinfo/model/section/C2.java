@@ -7,12 +7,14 @@ import java.util.HashMap;
 import java.util.List;
 
 public class C2 {
+    // TODO Alcuni campi si devono trasformare in liste.
+
     @Field
-    private List<MedicalDiagnosis> medicalDiagnoses;
+    private MedicalDiagnosis medicalDiagnoses;
 
     //TODO: Optional
     @Field
-    private List<Treatment> previousAndConcomitantTreatments;
+    private Treatment previousAndConcomitantTreatments;
 
     @Field
     private PregnanciesInfo pregnancyHistory;
@@ -21,23 +23,23 @@ public class C2 {
     private HashMap<String, NonMelanomaSkinCancer> lifetimeHistoryOfNonMelanomaSkinCancer;
 
     @Field
-    private List<NonCutaneousNeoplasia> nonCutaneousNeoplasias;
+    private NonCutaneousNeoplasia nonCutaneousNeoplasias;
 
     public C2(){ }
 
-    public List<MedicalDiagnosis> getMedicalDiagnoses() {
+    public MedicalDiagnosis getMedicalDiagnoses() {
         return medicalDiagnoses;
     }
 
-    public void setMedicalDiagnoses(List<MedicalDiagnosis> medicalDiagnoses) {
+    public void setMedicalDiagnoses(MedicalDiagnosis medicalDiagnoses) {
         this.medicalDiagnoses = medicalDiagnoses;
     }
 
-    public List<Treatment> getPreviousAndConcomitantTreatments() {
+    public Treatment getPreviousAndConcomitantTreatments() {
         return previousAndConcomitantTreatments;
     }
 
-    public void setPreviousAndConcomitantTreatments(List<Treatment> previousAndConcomitantTreatments) {
+    public void setPreviousAndConcomitantTreatments(Treatment previousAndConcomitantTreatments) {
         this.previousAndConcomitantTreatments = previousAndConcomitantTreatments;
     }
 
@@ -57,11 +59,11 @@ public class C2 {
         this.lifetimeHistoryOfNonMelanomaSkinCancer = lifetimeHistoryOfNonMelanomaSkinCancer;
     }
 
-    public List<NonCutaneousNeoplasia> getNonCutaneousNeoplasias() {
+    public NonCutaneousNeoplasia getNonCutaneousNeoplasias() {
         return nonCutaneousNeoplasias;
     }
 
-    public void setNonCutaneousNeoplasias(List<NonCutaneousNeoplasia> nonCutaneousNeoplasias) {
+    public void setNonCutaneousNeoplasias(NonCutaneousNeoplasia nonCutaneousNeoplasias) {
         this.nonCutaneousNeoplasias = nonCutaneousNeoplasias;
     }
 }

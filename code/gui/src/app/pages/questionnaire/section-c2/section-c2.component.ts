@@ -43,7 +43,7 @@ export class SectionC2Component implements OnInit {
   buildForm() {
     this.form = new FormGroup({
       diagnosisName: new FormControl(this.c2.medicalDiagnoses.diagnosisName, [Validators.required]),
-      ICD10Code: new FormControl(this.c2.medicalDiagnoses.ICD10Code, [Validators.required]),
+      icd10Code: new FormControl(this.c2.medicalDiagnoses.icd10Code, [Validators.required]),
 
       treatmentName: new FormControl(this.c2.previousAndConcomitantTreatments.treatmentName, [Validators.required]),
       treatmentStartingTime: new FormControl(this.c2.previousAndConcomitantTreatments.treatmentStartingTime, [Validators.required]),
@@ -54,30 +54,30 @@ export class SectionC2Component implements OnInit {
       numberOfMiscarriages: new FormControl(this.c2.pregnancyHistory.numberOfMiscarriages, [Validators.required]),
       melanomaOccurDuringPregnancy: new FormControl(this.c2.pregnancyHistory.melanomaOccurDuringPregnancy, [Validators.required]),
       melanomaOccurBeforePregnancy: new FormControl(this.c2.pregnancyHistory.melanomaOccurBeforePregnancy, [Validators.required]),
-      howManyYearsBeforePregnancy: new FormControl(this.c2.pregnancyHistory.howManyYearsBeforePregnancy, [Validators.required]),
+      howManyYearsBeforePregnancy: new FormControl(this.c2.pregnancyHistory.howManyYearsBeforePregnancy),
       melanomaOccurAfterPregnancy: new FormControl(this.c2.pregnancyHistory.melanomaOccurAfterPregnancy, [Validators.required]),
-      howManyYearsAfterPregnancy: new FormControl(this.c2.pregnancyHistory.howManyYearsAfterPregnancy, [Validators.required]),
-      IVFBeforeDiagnosis: new FormControl(this.c2.pregnancyHistory.IVFBeforeDiagnosis, [Validators.required]),
+      howManyYearsAfterPregnancy: new FormControl(this.c2.pregnancyHistory.howManyYearsAfterPregnancy),
+      ivfbeforeDiagnosis: new FormControl(this.c2.pregnancyHistory.ivfbeforeDiagnosis, [Validators.required]),
 
       numberBcc: new FormControl(this.c2.lifetimeHistoryOfNonMelanomaSkinCancer[NonMelanomaSkinCancer.KEY_BCC].number, [Validators.required]),
-      whenBcc: new FormControl(this.c2.lifetimeHistoryOfNonMelanomaSkinCancer[NonMelanomaSkinCancer.KEY_BCC].when, [Validators.required]),
-      siteBcc: new FormControl(this.c2.lifetimeHistoryOfNonMelanomaSkinCancer[NonMelanomaSkinCancer.KEY_BCC].site, [Validators.required]),
-      dateOfDiagnosisBcc: new FormControl(this.c2.lifetimeHistoryOfNonMelanomaSkinCancer[NonMelanomaSkinCancer.KEY_BCC].dateOfDiagnosis, [Validators.required]),
+      whenBcc: new FormControl(this.c2.lifetimeHistoryOfNonMelanomaSkinCancer[NonMelanomaSkinCancer.KEY_BCC].when),
+      siteBcc: new FormControl(this.c2.lifetimeHistoryOfNonMelanomaSkinCancer[NonMelanomaSkinCancer.KEY_BCC].site),
+      dateOfDiagnosisBcc: new FormControl(this.c2.lifetimeHistoryOfNonMelanomaSkinCancer[NonMelanomaSkinCancer.KEY_BCC].dateOfDiagnosis),
 
       numberScc: new FormControl(this.c2.lifetimeHistoryOfNonMelanomaSkinCancer[NonMelanomaSkinCancer.KEY_SCC].number, [Validators.required]),
-      whenScc: new FormControl(this.c2.lifetimeHistoryOfNonMelanomaSkinCancer[NonMelanomaSkinCancer.KEY_SCC].when, [Validators.required]),
-      siteScc: new FormControl(this.c2.lifetimeHistoryOfNonMelanomaSkinCancer[NonMelanomaSkinCancer.KEY_SCC].site, [Validators.required]),
-      dateOfDiagnosisScc: new FormControl(this.c2.lifetimeHistoryOfNonMelanomaSkinCancer[NonMelanomaSkinCancer.KEY_SCC].dateOfDiagnosis, [Validators.required]),
+      whenScc: new FormControl(this.c2.lifetimeHistoryOfNonMelanomaSkinCancer[NonMelanomaSkinCancer.KEY_SCC].when),
+      siteScc: new FormControl(this.c2.lifetimeHistoryOfNonMelanomaSkinCancer[NonMelanomaSkinCancer.KEY_SCC].site),
+      dateOfDiagnosisScc: new FormControl(this.c2.lifetimeHistoryOfNonMelanomaSkinCancer[NonMelanomaSkinCancer.KEY_SCC].dateOfDiagnosis),
 
-      typeInScc: new FormControl(this.c2.lifetimeHistoryOfNonMelanomaSkinCancer[NonMelanomaSkinCancer.KEY_IN_SITU_SCC].type, [Validators.required]),
       numberInScc: new FormControl(this.c2.lifetimeHistoryOfNonMelanomaSkinCancer[NonMelanomaSkinCancer.KEY_IN_SITU_SCC].number, [Validators.required]),
-      whenInScc: new FormControl(this.c2.lifetimeHistoryOfNonMelanomaSkinCancer[NonMelanomaSkinCancer.KEY_IN_SITU_SCC].when, [Validators.required]),
-      siteInScc: new FormControl(this.c2.lifetimeHistoryOfNonMelanomaSkinCancer[NonMelanomaSkinCancer.KEY_IN_SITU_SCC].site, [Validators.required]),
-      dateOfDiagnosisInScc: new FormControl(this.c2.lifetimeHistoryOfNonMelanomaSkinCancer[NonMelanomaSkinCancer.KEY_IN_SITU_SCC].dateOfDiagnosis, [Validators.required]),
+      typeInScc: new FormControl(this.c2.lifetimeHistoryOfNonMelanomaSkinCancer[NonMelanomaSkinCancer.KEY_IN_SITU_SCC].type),
+      whenInScc: new FormControl(this.c2.lifetimeHistoryOfNonMelanomaSkinCancer[NonMelanomaSkinCancer.KEY_IN_SITU_SCC].when),
+      siteInScc: new FormControl(this.c2.lifetimeHistoryOfNonMelanomaSkinCancer[NonMelanomaSkinCancer.KEY_IN_SITU_SCC].site),
+      dateOfDiagnosisInScc: new FormControl(this.c2.lifetimeHistoryOfNonMelanomaSkinCancer[NonMelanomaSkinCancer.KEY_IN_SITU_SCC].dateOfDiagnosis),
 
-      typeNonCutaneous: new FormControl(this.c2.nonCutaneousNeoplasias.type, [Validators.required]),
-      ageOfDiagnosis: new FormControl(this.c2.nonCutaneousNeoplasias.ageOfDiagnosis, [Validators.required]),
-      yearOfDiagnoses: new FormControl(this.c2.nonCutaneousNeoplasias.yearOfDiagnoses, [Validators.required]),
+      typeNonCutaneous: new FormControl(this.c2.nonCutaneousNeoplasias.type),
+      ageOfDiagnosis: new FormControl(this.c2.nonCutaneousNeoplasias.ageOfDiagnosis),
+      yearOfDiagnoses: new FormControl(this.c2.nonCutaneousNeoplasias.yearOfDiagnoses),
     });
   }
 

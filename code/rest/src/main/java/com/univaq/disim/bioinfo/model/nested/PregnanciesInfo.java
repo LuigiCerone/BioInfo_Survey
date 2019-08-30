@@ -5,7 +5,8 @@ import java.util.List;
 public class PregnanciesInfo {
     private int numberOfFullTermPregnancies;
 
-    private List<String> dateOfBirthOfChildren;
+    // TODO E' una lista.
+    private String dateOfBirthOfChildren;
 
     private int numberOfMiscarriages;
 
@@ -31,11 +32,11 @@ public class PregnanciesInfo {
         this.numberOfFullTermPregnancies = numberOfFullTermPregnancies;
     }
 
-    public List<String> getDateOfBirthOfChildren() {
+    public String getDateOfBirthOfChildren() {
         return dateOfBirthOfChildren;
     }
 
-    public void setDateOfBirthOfChildren(List<String> dateOfBirthOfChildren) {
+    public void setDateOfBirthOfChildren(String dateOfBirthOfChildren) {
         this.dateOfBirthOfChildren = dateOfBirthOfChildren;
     }
 

@@ -50,7 +50,7 @@ export class SectionB2Component implements OnInit {
   buildForm() {
     this.form = new FormGroup({
       occupationalSunExposure: new FormControl(this.b2.occupationalSunExposure.true, Validators.required),
-      occupationalSunExposureType: new FormControl(this.b2.occupationalSunExposure.occupation),
+      occupationalSunExposureType: new FormControl(this.b2.occupationalSunExposure.occupation, Validators.pattern('[a-zA-Z]*')),
       occupationalSunExposureHours: new FormControl(this.b2.occupationalSunExposure.hoursPerDay, [
         Validators.pattern('[0-9]{1,2}')
       ]),
@@ -78,27 +78,27 @@ export class SectionB2Component implements OnInit {
         Validators.pattern('[0-9]{1,2}')
       ]),
 
-      intermittentExposureChildhoodWeeks: new FormControl(this.b2.intermittentSunExposure[IntermittentSunExposure.KEY_CHILDHOOD].weeksOfVacation, Validators.required),
-      intermittentExposureChildhoodHours: new FormControl(this.b2.intermittentSunExposure[IntermittentSunExposure.KEY_CHILDHOOD].hoursSpentBetween11AMAnd4PM, Validators.required),
-      intermittentExposureAdolescenceWeeks: new FormControl(this.b2.intermittentSunExposure[IntermittentSunExposure.KEY_ADOLESCENCE].weeksOfVacation, Validators.required),
-      intermittentExposureAdolescenceHours: new FormControl(this.b2.intermittentSunExposure[IntermittentSunExposure.KEY_ADOLESCENCE].hoursSpentBetween11AMAnd4PM, Validators.required),
-      intermittentExposureAdulthoodWeeks: new FormControl(this.b2.intermittentSunExposure[IntermittentSunExposure.KEY_ADULTHOOD].weeksOfVacation, Validators.required),
-      intermittentExposureAdulthoodHours: new FormControl(this.b2.intermittentSunExposure[IntermittentSunExposure.KEY_ADULTHOOD].hoursSpentBetween11AMAnd4PM, Validators.required),
-      intermittentExposureDiagnosisWeeks: new FormControl(this.b2.intermittentSunExposure[IntermittentSunExposure.KEY_TEN_YEARS].weeksOfVacation, Validators.required),
-      intermittentExposureDiagnosisHours: new FormControl(this.b2.intermittentSunExposure[IntermittentSunExposure.KEY_TEN_YEARS].hoursSpentBetween11AMAnd4PM, Validators.required),
+      intermittentExposureChildhoodWeeks: new FormControl(this.b2.intermittentSunExposure[IntermittentSunExposure.KEY_CHILDHOOD].weeksOfVacation, Validators.pattern('[0-9]{1,3}')),
+      intermittentExposureChildhoodHours: new FormControl(this.b2.intermittentSunExposure[IntermittentSunExposure.KEY_CHILDHOOD].hoursSpentBetween11AMAnd4PM, Validators.pattern('[0-9]{1,3}')),
+      intermittentExposureAdolescenceWeeks: new FormControl(this.b2.intermittentSunExposure[IntermittentSunExposure.KEY_ADOLESCENCE].weeksOfVacation, Validators.pattern('[0-9]{1,3}')),
+      intermittentExposureAdolescenceHours: new FormControl(this.b2.intermittentSunExposure[IntermittentSunExposure.KEY_ADOLESCENCE].hoursSpentBetween11AMAnd4PM, Validators.pattern('[0-9]{1,3}')),
+      intermittentExposureAdulthoodWeeks: new FormControl(this.b2.intermittentSunExposure[IntermittentSunExposure.KEY_ADULTHOOD].weeksOfVacation, Validators.pattern('[0-9]{1,3}')),
+      intermittentExposureAdulthoodHours: new FormControl(this.b2.intermittentSunExposure[IntermittentSunExposure.KEY_ADULTHOOD].hoursSpentBetween11AMAnd4PM, Validators.pattern('[0-9]{1,3}')),
+      intermittentExposureDiagnosisWeeks: new FormControl(this.b2.intermittentSunExposure[IntermittentSunExposure.KEY_TEN_YEARS].weeksOfVacation, Validators.pattern('[0-9]{1,3}')),
+      intermittentExposureDiagnosisHours: new FormControl(this.b2.intermittentSunExposure[IntermittentSunExposure.KEY_TEN_YEARS].hoursSpentBetween11AMAnd4PM, Validators.pattern('[0-9]{1,3}')),
 
       lastIntenseExposure: new FormControl(this.b2.mostRecentIntermittentSunExposure, Validators.required),
 
       sunburnsLess18: new FormControl(this.b2.severeSunBurns[SevereSunBurns.KEY_MINOR_18].presence, Validators.required),
-      less18SunburnsNumber: new FormControl(this.b2.severeSunBurns[SevereSunBurns.KEY_MINOR_18].number),
+      less18SunburnsNumber: new FormControl(this.b2.severeSunBurns[SevereSunBurns.KEY_MINOR_18].number, Validators.pattern('[0-9]{1,2}')),
 
       sunburnsGreater18: new FormControl(this.b2.severeSunBurns[SevereSunBurns.KEY_GREATER_18].presence, Validators.required),
-      greater18SunburnsNumber: new FormControl(this.b2.severeSunBurns[SevereSunBurns.KEY_GREATER_18].number),
+      greater18SunburnsNumber: new FormControl(this.b2.severeSunBurns[SevereSunBurns.KEY_GREATER_18].number, Validators.pattern('[0-9]{1,2}')),
 
       sunburnsMelanomaSite: new FormControl(this.b2.severeSunBurns[SevereSunBurns.KEY_AT_SITE].presence, Validators.required),
 
       sunburnsLast5: new FormControl(this.b2.severeSunBurns[SevereSunBurns.KEY_LAST_5].presence, Validators.required),
-      last5SunburnsNumber: new FormControl(this.b2.severeSunBurns[SevereSunBurns.KEY_LAST_5].presence),
+      last5SunburnsNumber: new FormControl(this.b2.severeSunBurns[SevereSunBurns.KEY_LAST_5].number, Validators.pattern('[0-9]{1,2}')),
 
       sunscreenPercentageChildhood: new FormControl(this.b2.sunscreenUses[SunscreenUse.KEY_CHILDHOOD].howOften, Validators.required),
       sunscreenTypeChildhood: new FormControl(this.b2.sunscreenUses[SunscreenUse.KEY_CHILDHOOD].type, Validators.required),
@@ -114,9 +114,9 @@ export class SectionB2Component implements OnInit {
 
 
       sunlamps: new FormControl(this.b2.sunlampsSunbeds.true, Validators.required),
-      numberSunlamps: new FormControl(this.b2.sunlampsSunbeds.lifetimeNumberOfSession),
-      ageFirstSunlamps: new FormControl(this.b2.sunlampsSunbeds.ageAtFirstExposure),
-      ageLastSunlamps: new FormControl(this.b2.sunlampsSunbeds.ageAtLastExposure),
+      numberSunlamps: new FormControl(this.b2.sunlampsSunbeds.lifetimeNumberOfSession, Validators.pattern('[0-9]{1,3}')),
+      ageFirstSunlamps: new FormControl(this.b2.sunlampsSunbeds.ageAtFirstExposure, Validators.pattern('[0-9]{1,3}')),
+      ageLastSunlamps: new FormControl(this.b2.sunlampsSunbeds.ageAtLastExposure, Validators.pattern('[0-9]{1,3}')),
     });
   }
 

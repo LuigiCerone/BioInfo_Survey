@@ -42,7 +42,6 @@ export class SectionC3Component implements OnInit {
   private melanomaFamily = new MatTableDataSource(new Array<FamilyHistory>());
   @ViewChild('melanomaDialog', {static: false}) melanomaDialog: TemplateRef<any>;
 
-
   constructor(private authenticationService: AuthenticationService,
               private router: Router,
               private questionnaireService: QuestionnaireService,
@@ -68,11 +67,11 @@ export class SectionC3Component implements OnInit {
       germlineStatus: new FormControl(this.c3.germlineStatus),
 
       presenceCancer: new FormControl(this.c3.familyHistoryOfOtherCancer.presence, [Validators.required]),
-      typeCancer: new FormControl(this.c3.familyHistoryOfOtherCancer.other),
+      typeCancer: new FormControl(this.c3.familyHistoryOfOtherCancer.other, Validators.pattern('[a-zA-Z]*')),
       otherCancer: new FormControl(this.c3.familyHistoryOfOtherCancer.type),
       sideOfAffectedRelativeCancer: new FormControl(this.c3.familyHistoryOfOtherCancer.sideOfAffectedRelative),
       degreeOfRelativeCancer: new FormControl(this.c3.familyHistoryOfOtherCancer.degreeOfRelative),
-      ageAtDiagnosisCancer: new FormControl(this.c3.familyHistoryOfOtherCancer.ageAtDiagnosis)
+      ageAtDiagnosisCancer: new FormControl(this.c3.familyHistoryOfOtherCancer.ageAtDiagnosis, Validators.pattern('[0-9]{1,3}'))
     });
   }
 
@@ -109,17 +108,16 @@ export class SectionC3Component implements OnInit {
 
     // Init form for adding new melanoma relatives.
     this.formMelanoma = new FormGroup({
-      otherMelanoma: new FormControl(''),
+      otherMelanoma: new FormControl('', Validators.pattern('[a-zA-Z]*')),
       typeMelanoma: new FormControl('', Validators.required),
       sideOfAffectedRelativeMelanoma: new FormControl('', Validators.required),
       degreeOfRelativeMelanoma: new FormControl('', Validators.required),
-      ageAtDiagnosisMelanoma: new FormControl('', Validators.required)
+      ageAtDiagnosisMelanoma: new FormControl('', [Validators.required, Validators.pattern('[0-9]{1,3}')])
     });
   }
 
   removeMelanomaParent(event, element) {
     event.stopPropagation();
-
     const index = this.c3.familyHistoryOfMelanomaList.indexOf(element);
     if (index > -1) {
       this.c3.familyHistoryOfMelanomaList.splice(index, 1);

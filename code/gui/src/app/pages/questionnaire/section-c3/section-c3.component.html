@@ -18,7 +18,7 @@
           <input matInput formControlName="otherMelanoma" placeholder="Specify">
         </mat-form-field>
         <div *ngIf="form.value.presenceMelanoma === '1'">
-          <button mat-raised-button (click)="openMelanomaModal()">Open modal</button>
+          <button type="button" mat-raised-button (click)="openMelanomaModal()">Open modal</button>
 
         </div>
         <br>
@@ -86,7 +86,6 @@
     </mat-card>
   </form>
 </div>
-
 
 <ng-template #melanomaDialog class="mat-dialog-container custom-width-800">
   <h2 matDialogTitle>Parents with melanoma</h2>

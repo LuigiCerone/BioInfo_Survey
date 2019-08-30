@@ -33,3 +33,12 @@
   justify-content: flex-end;
 }
 
+table {
+  width: 100%;
+}
+
+.custom-width-800 {
+  width: 800px !important;
+}
+
+

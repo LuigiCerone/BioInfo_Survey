@@ -23,7 +23,9 @@ export class ProfileComponent implements OnInit{
   @ViewChild('viewerDialog', {static: false}) viewerDialog: TemplateRef<any>;
   private selectedQuestionnaire: Questionnaire;
 
-  constructor(private authenticationService: AuthenticationService, private questionnaireService: QuestionnaireService, private dialog: MatDialog) {
+  constructor(private authenticationService: AuthenticationService,
+              private questionnaireService: QuestionnaireService,
+              private dialog: MatDialog) {
   }
 
   applyFilter(filterValue: string) {

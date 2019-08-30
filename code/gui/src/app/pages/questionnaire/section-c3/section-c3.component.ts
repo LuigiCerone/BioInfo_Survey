@@ -1,10 +1,12 @@
-import {Component, OnInit} from '@angular/core';
+import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {Options} from '../section-a1/section-a1.component';
 import {AuthenticationService} from '../../../services/authentication.service';
 import {Router} from '@angular/router';
 import {QuestionnaireService} from '../../../services/questionnaire.service';
-import { SectionC3 } from '../../../model/SectionC3';
+import { FamilyHistory, SectionC3 } from '../../../model/SectionC3';
+import { Questionnaire } from '../../../model/Questionnaire';
+import { MatDialog, MatTableDataSource } from '@angular/material';
 
 @Component({
   selector: 'app-section-c3',
@@ -13,6 +15,7 @@ import { SectionC3 } from '../../../model/SectionC3';
 })
 export class SectionC3Component implements OnInit {
   form: FormGroup;
+  formMelanoma: FormGroup;
 
   relativesMelanomaTypeOpt: Options[] = [
     {value: 'cutaneous', viewValue: 'Cutaneous'},
@@ -22,7 +25,7 @@ export class SectionC3Component implements OnInit {
   ];
 
   germlineStatusOpt: Options[] = [
-    {value: 'not', viewValue: 'Not tested'},
+    {value: 'not_tested', viewValue: 'Not tested'},
     {value: 'CDKN2A', viewValue: 'CDKN2A'},
     {value: 'CDK4', viewValue: 'CDK4'},
     {value: 'BAP-1', viewValue: 'BAP-1'},
@@ -35,9 +38,15 @@ export class SectionC3Component implements OnInit {
 
   private c3: SectionC3;
 
+  displayedColumns: string[] = ['side', 'degree', 'age', 'actions'];
+  private melanomaFamily = new MatTableDataSource(new Array<FamilyHistory>());
+  @ViewChild('melanomaDialog', {static: false}) melanomaDialog: TemplateRef<any>;
+
+
   constructor(private authenticationService: AuthenticationService,
               private router: Router,
-              private questionnaireService: QuestionnaireService) {}
+              private questionnaireService: QuestionnaireService,
+              private dialog: MatDialog) {}
 
   ngOnInit() {
     this.questionnaireService.getQuestionnaireForUser(this.authenticationService.currentUserValue.username, 'c3').subscribe( (section: SectionC3) => {
@@ -48,17 +57,22 @@ export class SectionC3Component implements OnInit {
         this.c3 = new SectionC3();
       }
       this.buildForm();
+      this.buildFormMelanoma();
     });
   }
 
   buildForm() {
     this.form = new FormGroup({
-      presenceMelanomaRelatives: new FormControl(this.c3.familyHistoryOfMelanomaList.presence, [Validators.required]),
-      specifyOtherPresence: new FormControl(this.c3.familyHistoryOfMelanomaList.other, [Validators.required]),
-      relativesMelanomaType: new FormControl(this.c3.familyHistoryOfMelanomaList.type, [Validators.required]),
-      relativeSide: new FormControl(this.c3.familyHistoryOfMelanomaList.sideOfAffectedRelative, [Validators.required]),
-      relativeDegree: new FormControl(this.c3.familyHistoryOfMelanomaList.degreeOfRelative, [Validators.required]),
-      ageAtDiagnosis: new FormControl(this.c3.familyHistoryOfMelanomaList.ageAtDiagnosis, [Validators.required]),
+      presenceMelanoma: new FormControl(this.c3.familyHistoryOfMelanomaList[0].presence, [Validators.required]),
+
+      germlineStatus: new FormControl(this.c3.germlineStatus),
+
+      presenceCancer: new FormControl(this.c3.familyHistoryOfOtherCancer.presence, [Validators.required]),
+      typeCancer: new FormControl(this.c3.familyHistoryOfOtherCancer.other),
+      otherCancer: new FormControl(this.c3.familyHistoryOfOtherCancer.type),
+      sideOfAffectedRelativeCancer: new FormControl(this.c3.familyHistoryOfOtherCancer.sideOfAffectedRelative),
+      degreeOfRelativeCancer: new FormControl(this.c3.familyHistoryOfOtherCancer.degreeOfRelative),
+      ageAtDiagnosisCancer: new FormControl(this.c3.familyHistoryOfOtherCancer.ageAtDiagnosis)
     });
   }
 
@@ -69,5 +83,50 @@ export class SectionC3Component implements OnInit {
     this.questionnaireService.insertSection(this.authenticationService.currentUserValue.username, 'c3', this.c3).subscribe( (res) => {
       console.log(res);
     });
+  }
+
+  addMelanomaParent() {
+    console.log(`la lista prima: ${JSON.stringify(this.c3.familyHistoryOfMelanomaList)}`);
+    const newParent: FamilyHistory = new FamilyHistory('M', this.formMelanoma);
+    this.c3.familyHistoryOfMelanomaList.push(newParent);
+
+    // Update table data.
+    this.melanomaFamily.data = this.c3.familyHistoryOfMelanomaList;
+
+    console.log(`la lista dopo: ${JSON.stringify(this.c3.familyHistoryOfMelanomaList)}`);
+    // Clear form inputs.
+    this.formMelanoma.reset();
+  }
+
+  buildFormMelanoma() {
+
+    // Init table for melanoma.
+    if (this.c3 && this.c3.familyHistoryOfMelanomaList) {
+      this.melanomaFamily.data = this.c3.familyHistoryOfMelanomaList;
+    } else {
+      this.melanomaFamily.data = new Array<FamilyHistory>();
+    }
+
+    // Init form for adding new melanoma relatives.
+    this.formMelanoma = new FormGroup({
+      otherMelanoma: new FormControl(''),
+      typeMelanoma: new FormControl('', Validators.required),
+      sideOfAffectedRelativeMelanoma: new FormControl('', Validators.required),
+      degreeOfRelativeMelanoma: new FormControl('', Validators.required),
+      ageAtDiagnosisMelanoma: new FormControl('', Validators.required)
+    });
+  }
+
+  removeMelanomaParent(event, element) {
+    event.stopPropagation();
+
+    const index = this.c3.familyHistoryOfMelanomaList.indexOf(element);
+    if (index > -1) {
+      this.c3.familyHistoryOfMelanomaList.splice(index, 1);
+    }
+  }
+
+  openMelanomaModal() {
+    this.dialog.open(this.melanomaDialog);
   }
 }

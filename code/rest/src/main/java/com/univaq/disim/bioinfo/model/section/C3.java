@@ -17,7 +17,7 @@ public class C3 {
     private String germlineStatus;
 
     @Field
-    private List<FamilyHistory> familyHistoryOfOtherCancer;
+    private FamilyHistory familyHistoryOfOtherCancer;
 
 
     public C3(){ }
@@ -30,19 +30,19 @@ public class C3 {
         this.familyHistoryOfMelanomaList = familyHistoryOfMelanomaList;
     }
 
+    public FamilyHistory getFamilyHistoryOfOtherCancer() {
+        return familyHistoryOfOtherCancer;
+    }
+
+    public void setFamilyHistoryOfOtherCancer(FamilyHistory familyHistoryOfOtherCancer) {
+        this.familyHistoryOfOtherCancer = familyHistoryOfOtherCancer;
+    }
+
     public String getGermlineStatus() {
         return germlineStatus;
     }
 
     public void setGermlineStatus(String germlineStatus) {
         this.germlineStatus = germlineStatus;
-    }
-
-    public List<FamilyHistory> getFamilyHistoryOfOtherCancer() {
-        return familyHistoryOfOtherCancer;
-    }
-
-    public void setFamilyHistoryOfOtherCancer(List<FamilyHistory> familyHistoryOfOtherCancer) {
-        this.familyHistoryOfOtherCancer = familyHistoryOfOtherCancer;
     }
 }

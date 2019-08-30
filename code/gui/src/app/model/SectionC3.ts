@@ -1,17 +1,19 @@
-export class SectionC3 {
-  familyHistoryOfMelanomaList: FamilyHistory;
+class SectionC3 {
+  familyHistoryOfMelanomaList: Array<FamilyHistory>;
   germlineStatus: string;
   familyHistoryOfOtherCancer: FamilyHistory;
 
   constructor(form?) {
     if (form) {
-      this.familyHistoryOfMelanomaList = new FamilyHistory(form);
+      this.familyHistoryOfMelanomaList = new Array<FamilyHistory>();
+      this.familyHistoryOfMelanomaList.push(new FamilyHistory('M', form));
       this.germlineStatus = form.value.germlineStatus;
-      this.familyHistoryOfOtherCancer = new FamilyHistory(form);
+      this.familyHistoryOfOtherCancer = new FamilyHistory('C', form);
     } else {
-      this.familyHistoryOfMelanomaList = new FamilyHistory();
+      this.familyHistoryOfMelanomaList = new Array<FamilyHistory>();
+      this.familyHistoryOfMelanomaList.push(new FamilyHistory('M'));
       this.germlineStatus = '';
-      this.familyHistoryOfOtherCancer = new FamilyHistory();
+      this.familyHistoryOfOtherCancer = new FamilyHistory('C');
     }
   }
 }
@@ -24,14 +26,21 @@ class FamilyHistory {
   degreeOfRelative: string;
   ageAtDiagnosis: string;
 
-  constructor(form?) {
-    if (form) {
-      this.presence = form.value.presenceMelanomaRelatives;
-      this.other = form.value.specifyOtherPresence;
-      this.type = form.value.relativesMelanomaType;
-      this.sideOfAffectedRelative = form.value.relativeSide;
-      this.degreeOfRelative = form.value.relativeDegree;
-      this.ageAtDiagnosis = form.value.ageAtDiagnosis;
+  constructor(fieldType: string, form?) {
+    if (form && fieldType === 'M')  {
+      this.presence = form.value.presenceMelanoma;
+      this.other = form.value.otherMelanoma;
+      this.type = form.value.typeMelanoma;
+      this.sideOfAffectedRelative = form.value.sideOfAffectedRelativeMelanoma;
+      this.degreeOfRelative = form.value.degreeOfRelativeMelanoma;
+      this.ageAtDiagnosis = form.value.ageAtDiagnosisMelanoma;
+    } else if  (form && fieldType === 'C')  {
+      this.presence = form.value.presenceCancer;
+      this.other = form.value.typeCancer;
+      this.type = form.value.otherCancer;
+      this.sideOfAffectedRelative = form.value.sideOfAffectedRelativeCancer;
+      this.degreeOfRelative = form.value.degreeOfRelativeCancer;
+      this.ageAtDiagnosis = form.value.ageAtDiagnosisCancer;
     } else {
       this.presence = '';
       this.other = '';
@@ -42,3 +51,5 @@ class FamilyHistory {
     }
   }
 }
+
+export { SectionC3, FamilyHistory };

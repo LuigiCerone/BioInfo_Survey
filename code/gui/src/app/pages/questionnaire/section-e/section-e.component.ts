@@ -20,6 +20,10 @@ export interface Options {
 export class SectionEComponent implements OnInit {
   private form: FormGroup;
 
+  // The following attribute is used for specifying which subsection is evaluated.
+  @Input()
+  section: string;
+
   complexityOpt: Options[] = [
     {value: 'all', viewValue: 'All questions'},
     {value: 'most', viewValue: 'Most questions'},
@@ -34,8 +38,10 @@ export class SectionEComponent implements OnInit {
               private questionnaireService: QuestionnaireService) { }
 
   ngOnInit() {
+    console.log(`Evaluation for section: ${this.section}`);
+
     // Get current logged in user and retrieve his/her questionnaire.
-    this.questionnaireService.getQuestionnaireForUser(this.authenticationService.currentUserValue.username, 'be').subscribe( (section: SectionE) => {
+    this.questionnaireService.getQuestionnaireForUser(this.authenticationService.currentUserValue.username, `${this.section}e`).subscribe( (section: SectionE) => {
       console.log(section);
       if (section) {
         this.e = section;
@@ -58,7 +64,7 @@ export class SectionEComponent implements OnInit {
     this.e = new SectionE(this.form);
 
     console.log(this.e);
-    this.questionnaireService.insertSection(this.authenticationService.currentUserValue.username, 'be', this.e).subscribe( (res) => {
+    this.questionnaireService.insertSection(this.authenticationService.currentUserValue.username, `${this.section}e`, this.e).subscribe( (res) => {
       console.log(res);
     });
   }

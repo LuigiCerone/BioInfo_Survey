@@ -53,6 +53,9 @@ public class QuestionnaireController<QuestionnaireServiceImpl> {
     private SectionC2Service sectionC2Service;
 
     @Autowired
+    private SectionC3Service sectionC3Service;
+
+    @Autowired
     private JwtProvider jwtProvider;
 
     @GetMapping("/{codeNumber}")
@@ -225,5 +228,43 @@ public class QuestionnaireController<QuestionnaireServiceImpl> {
     public ResponseEntity<C2> getC2(HttpServletRequest request, @PathVariable(value="username") String username) throws BusinessLayerException {
         C2 c2 = sectionC2Service.get(username);
         return new ResponseEntity<C2>(c2, HttpStatus.OK);
+    }
+
+    // ==================================================================================== SECTION
+    // C3
+    @PostMapping("/user/{username}/c3")
+    public ResponseEntity upsertC3(HttpServletRequest request,
+                                   @RequestBody C3 c3,
+                                   @PathVariable(value="username") String username,
+                                   @RequestHeader (name="Authorization") String token) throws BusinessLayerException {
+        // Decode token and get the username contained. There is also the word "Bearer" that we need to escape.
+        String token_username = this.jwtProvider.getUserNameFromJwtToken(token.substring(7));
+        C3 c3Inserted = sectionC3Service.insert(username, c3);
+        return new ResponseEntity<>(c3Inserted, HttpStatus.CREATED);
+    }
+
+    @GetMapping("/user/{username}/c3")
+    public ResponseEntity<C3> getC3(HttpServletRequest request, @PathVariable(value="username") String username) throws BusinessLayerException {
+        C3 c3 = sectionC3Service.get(username);
+        return new ResponseEntity<C3>(c3, HttpStatus.OK);
+    }
+
+    // ==================================================================================== SECTION
+    // Ce
+    @PostMapping("/user/{username}/ce")
+    public ResponseEntity upsertCe(HttpServletRequest request,
+                                   @RequestBody E ce,
+                                   @PathVariable(value="username") String username,
+                                   @RequestHeader (name="Authorization") String token) throws BusinessLayerException {
+        // Decode token and get the username contained. There is also the word "Bearer" that we need to escape.
+        String token_username = this.jwtProvider.getUserNameFromJwtToken(token.substring(7));
+        E ceInserted = sectionEService.insert(username, ce, 'C');
+        return new ResponseEntity<>(ceInserted, HttpStatus.CREATED);
+    }
+
+    @GetMapping("/user/{username}/ce")
+    public ResponseEntity<E> getCe(HttpServletRequest request, @PathVariable(value="username") String username) throws BusinessLayerException {
+        E ce = sectionEService.get(username, 'C');
+        return new ResponseEntity<E>(ce, HttpStatus.OK);
     }
 }

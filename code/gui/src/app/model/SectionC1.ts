@@ -12,19 +12,19 @@ class SectionC1 {
     if (form) {
       this.solarLentigines = new SolarLentigines(form.value);
       this.neviCountGreatherThan2mm = {};
-      this.neviCountGreatherThan2mm[NeviCount.KEY_SCALP] = new NeviCount(NeviCount.KEY_SCALP, form);
-      this.neviCountGreatherThan2mm[NeviCount.KEY_NECK] = new NeviCount(NeviCount.KEY_NECK, form);
-      this.neviCountGreatherThan2mm[NeviCount.KEY_PALMS] = new NeviCount(NeviCount.KEY_PALMS, form);
-      this.neviCountGreatherThan2mm[NeviCount.KEY_GLUTEUS] = new NeviCount(NeviCount.KEY_GLUTEUS, form);
-      this.neviCountGreatherThan2mm[NeviCount.KEY_DELTOID] = new NeviCount(NeviCount.KEY_DELTOID, form);
-      this.neviCountGreatherThan2mm[NeviCount.KEY_ABDOMEN] = new NeviCount(NeviCount.KEY_ABDOMEN, form);
-      this.neviCountGreatherThan2mm[NeviCount.KEY_BACK] = new NeviCount(NeviCount.KEY_BACK, form);
-      this.neviCountGreatherThan2mm[NeviCount.KEY_FACE] = new NeviCount(NeviCount.KEY_FACE, form);
-      this.neviCountGreatherThan2mm[NeviCount.KEY_SOLES] = new NeviCount(NeviCount.KEY_SOLES, form);
+      this.neviCountGreatherThan2mm[NeviCount.KEY_SCALP] = new NeviCount(NeviCount.KEY_SCALP, form.value);
+      this.neviCountGreatherThan2mm[NeviCount.KEY_NECK] = new NeviCount(NeviCount.KEY_NECK, form.value);
+      this.neviCountGreatherThan2mm[NeviCount.KEY_PALMS] = new NeviCount(NeviCount.KEY_PALMS, form.value);
+      this.neviCountGreatherThan2mm[NeviCount.KEY_GLUTEUS] = new NeviCount(NeviCount.KEY_GLUTEUS, form.value);
+      this.neviCountGreatherThan2mm[NeviCount.KEY_DELTOID] = new NeviCount(NeviCount.KEY_DELTOID, form.value);
+      this.neviCountGreatherThan2mm[NeviCount.KEY_ABDOMEN] = new NeviCount(NeviCount.KEY_ABDOMEN, form.value);
+      this.neviCountGreatherThan2mm[NeviCount.KEY_BACK] = new NeviCount(NeviCount.KEY_BACK, form.value);
+      this.neviCountGreatherThan2mm[NeviCount.KEY_FACE] = new NeviCount(NeviCount.KEY_FACE, form.value);
+      this.neviCountGreatherThan2mm[NeviCount.KEY_SOLES] = new NeviCount(NeviCount.KEY_SOLES, form.value);
       this.neviCountLessThan2mm = form.value.neviCountLessThan2mm;
       this.clinicallyAtypicalNevi = new ClinicallyAtypicalNevi(form.value);
       this.congenitalNevi = new CongenitalNevi(form.value);
-      this.blueNevi = new BlueNevi(form);
+      this.blueNevi = new BlueNevi(form.value);
       this.actinicKeratoses = new ActinicKeratoses(form.value);
       this.currentNonMelanomaSkinCancers = {};
       this.currentNonMelanomaSkinCancers[CurrentNonMelanomaSkinCancers.KEY_BCC] =
@@ -96,40 +96,40 @@ class NeviCount {
       this.site = site;
       switch (site) {
         case NeviCount.KEY_NECK:
-          this.leftZoneNumber = form.value.neviCountLeftNeck;
-          this.rightZoneNumber = form.value.neviCountRightNeck;
+          this.leftZoneNumber = form.neviCountLeftNeck;
+          this.rightZoneNumber = form.neviCountRightNeck;
           break;
         case NeviCount.KEY_SCALP:
-          this.leftZoneNumber = form.value.neviCountLeftScalp;
-          this.rightZoneNumber = form.value.neviCountRightScalp;
+          this.leftZoneNumber = form.neviCountLeftScalp;
+          this.rightZoneNumber = form.neviCountRightScalp;
           break;
         case NeviCount.KEY_FACE:
-          this.leftZoneNumber = form.value.neviCountLeftFace;
-          this.rightZoneNumber = form.value.neviCountRightFace;
+          this.leftZoneNumber = form.neviCountLeftFace;
+          this.rightZoneNumber = form.neviCountRightFace;
           break;
         case NeviCount.KEY_ABDOMEN:
-          this.leftZoneNumber = form.value.neviCountLeftAbdomen;
-          this.rightZoneNumber = form.value.neviCountRightAbdomen;
+          this.leftZoneNumber = form.neviCountLeftAbdomen;
+          this.rightZoneNumber = form.neviCountRightAbdomen;
           break;
         case NeviCount.KEY_BACK:
-          this.leftZoneNumber = form.value.neviCountLeftBack;
-          this.rightZoneNumber = form.value.neviCountRightBack;
+          this.leftZoneNumber = form.neviCountLeftBack;
+          this.rightZoneNumber = form.neviCountRightBack;
           break;
         case NeviCount.KEY_DELTOID:
-          this.leftZoneNumber = form.value.neviCountLeftDeltoid;
-          this.rightZoneNumber = form.value.neviCountRightDeltoid;
+          this.leftZoneNumber = form.neviCountLeftDeltoid;
+          this.rightZoneNumber = form.neviCountRightDeltoid;
           break;
         case NeviCount.KEY_GLUTEUS:
-          this.leftZoneNumber = form.value.neviCountLeftGluteus;
-          this.rightZoneNumber = form.value.neviCountRightGluteus;
+          this.leftZoneNumber = form.neviCountLeftGluteus;
+          this.rightZoneNumber = form.neviCountRightGluteus;
           break;
         case NeviCount.KEY_PALMS:
-          this.leftZoneNumber = form.value.neviCountLeftPalms;
-          this.rightZoneNumber = form.value.neviCountRightPalms;
+          this.leftZoneNumber = form.neviCountLeftPalms;
+          this.rightZoneNumber = form.neviCountRightPalms;
           break;
         case NeviCount.KEY_SOLES:
-          this.leftZoneNumber = form.value.neviCountLeftSoles;
-          this.rightZoneNumber = form.value.neviCountRightSoles;
+          this.leftZoneNumber = form.neviCountLeftSoles;
+          this.rightZoneNumber = form.neviCountRightSoles;
           break;
       }
 
@@ -166,12 +166,12 @@ class CongenitalNevi {
 
   constructor(form?) {
     if (form) {
-      this.presenceOfMediumSizedNevi = form.value.presenceOfMediumSizedNevi;
-      this.siteOfMediumSizedNevi = form.value.siteOfMediumSizedNevi;
-      this.presenceOfLargeSizedNevi = form.value.presenceOfLargeSizedNevi;
-      this.siteOfLargeSizedNevi = form.value.siteOfLargeSizedNevi;
-      this.presenceOfGiantNevi = form.value.presenceOfGiantNevi;
-      this.siteOfGiantSizedNevi = form.value.siteOfGiantSizedNevi;
+      this.presenceOfMediumSizedNevi = form.presenceOfMediumSizedNevi;
+      this.siteOfMediumSizedNevi = form.siteOfMediumSizedNevi;
+      this.presenceOfLargeSizedNevi = form.presenceOfLargeSizedNevi;
+      this.siteOfLargeSizedNevi = form.siteOfLargeSizedNevi;
+      this.presenceOfGiantNevi = form.presenceOfGiantNevi;
+      this.siteOfGiantSizedNevi = form.siteOfGiantSizedNevi;
     } else {
       this.presenceOfMediumSizedNevi = false;
       this.siteOfMediumSizedNevi = '';
@@ -189,8 +189,8 @@ class BlueNevi {
 
   constructor(form?) {
     if (form) {
-      this.presence = form.value.blueNeviPresence;
-      this.number = form.value.blueNeviNumber;
+      this.presence = form.blueNeviPresence;
+      this.number = form.blueNeviNumber;
     } else {
       this.presence = false;
       this.number = 0;
@@ -205,9 +205,9 @@ class ActinicKeratoses {
 
   constructor(form?) {
     if (form) {
-      this.presence = form.value.actinicKeratosesPresence;
-      this.site = form.value.actinicKeratosesSite;
-      this.typeOfDistribution = form.value.actinicKeratosesTypeOfDistribution;
+      this.presence = form.actinicKeratosesPresence;
+      this.site = form.actinicKeratosesSite;
+      this.typeOfDistribution = form.actinicKeratosesTypeOfDistribution;
     } else {
       this.presence = false;
       this.site = '';

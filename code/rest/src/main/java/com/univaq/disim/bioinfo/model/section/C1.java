@@ -3,6 +3,7 @@ package com.univaq.disim.bioinfo.model.section;
 import com.univaq.disim.bioinfo.model.nested.*;
 import org.springframework.data.mongodb.core.mapping.Field;
 
+import java.util.HashMap;
 import java.util.List;
 
 public class C1 {
@@ -11,7 +12,7 @@ public class C1 {
     private SolarLentigines solarLentigines;
 
     @Field
-    private List<NeviCount> neviCountGreatherThan2mm;
+    private HashMap<String, NeviCount> neviCountGreatherThan2mm;
 
     // It can be: 0, 1-50, 51-100, 101-200, >200
     //TODO: it is an optional answer
@@ -27,13 +28,13 @@ public class C1 {
     // if the number is grather than 0 then it means also yes, otherwise no
     //TODO: it is an optional answer
     @Field
-    private int blueNevi;
+    private BlueNevi blueNevi;
 
     @Field
     private ActinicKeratoses actinicKeratoses;
 
     @Field
-    private List<CurrentNonMelanomaSkinCancer> currentNonMelanomaSkinCancers;
+    private HashMap<String, CurrentNonMelanomaSkinCancer> currentNonMelanomaSkinCancers;
 
     public C1(){ }
 
@@ -45,11 +46,11 @@ public class C1 {
         this.solarLentigines = solarLentigines;
     }
 
-    public List<NeviCount> getNeviCountGreatherThan2mm() {
+    public HashMap<String, NeviCount> getNeviCountGreatherThan2mm() {
         return neviCountGreatherThan2mm;
     }
 
-    public void setNeviCountGreatherThan2mm(List<NeviCount> neviCountGreatherThan2mm) {
+    public void setNeviCountGreatherThan2mm(HashMap<String, NeviCount> neviCountGreatherThan2mm) {
         this.neviCountGreatherThan2mm = neviCountGreatherThan2mm;
     }
 
@@ -77,11 +78,11 @@ public class C1 {
         this.congenitalNevi = congenitalNevi;
     }
 
-    public int getBlueNevi() {
+    public BlueNevi getBlueNevi() {
         return blueNevi;
     }
 
-    public void setBlueNevi(int blueNevi) {
+    public void setBlueNevi(BlueNevi blueNevi) {
         this.blueNevi = blueNevi;
     }
 
@@ -93,11 +94,11 @@ public class C1 {
         this.actinicKeratoses = actinicKeratoses;
     }
 
-    public List<CurrentNonMelanomaSkinCancer> getCurrentNonMelanomaSkinCancers() {
+    public HashMap<String, CurrentNonMelanomaSkinCancer> getCurrentNonMelanomaSkinCancers() {
         return currentNonMelanomaSkinCancers;
     }
 
-    public void setCurrentNonMelanomaSkinCancers(List<CurrentNonMelanomaSkinCancer> currentNonMelanomaSkinCancers) {
+    public void setCurrentNonMelanomaSkinCancers(HashMap<String, CurrentNonMelanomaSkinCancer> currentNonMelanomaSkinCancers) {
         this.currentNonMelanomaSkinCancers = currentNonMelanomaSkinCancers;
     }
 }

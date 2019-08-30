@@ -1,5 +1,5 @@
 <div>
-  <form [formGroup]="form">
+  <form *ngIf="form" [formGroup]="form" (ngSubmit)="save()">
     <mat-card>
       <mat-card-title><h2>Section C.1</h2></mat-card-title>
       <mat-card-content>
@@ -251,11 +251,11 @@
         </mat-radio-group>
         <br>
         <mat-form-field *ngIf="form.value.bCCPresence" >
-          <input placeholder="Insert the site" formControlName="bCCSite">
+          <input matInput placeholder="Insert the site" formControlName="bCCSite">
         </mat-form-field>
         <mat-form-field *ngIf="form.value.bCCPresence" >
           <h4>Insert the number</h4>
-          <input type="number" formControlName="bCCNumber">
+          <input matInput type="number" formControlName="bCCNumber">
         </mat-form-field>
         <br>
 
@@ -266,11 +266,11 @@
         </mat-radio-group>
         <br>
         <mat-form-field *ngIf="form.value.iSCCPresence">
-          <input  placeholder="Insert the site" formControlName="iSCCSite">
+          <input  matInput placeholder="Insert the site" formControlName="iSCCSite">
         </mat-form-field>
         <mat-form-field *ngIf="form.value.iSCCPresence">
           <h4>Insert the number</h4>
-          <input type="number" formControlName="iSCCNumber">
+          <input matInput type="number" formControlName="iSCCNumber">
         </mat-form-field>
         <br>
 

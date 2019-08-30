@@ -136,7 +136,7 @@
             <mat-radio-button [value]="false" value="absent">Absent</mat-radio-button>
             <mat-radio-button [value]="true" value="present">Present</mat-radio-button>
           </mat-radio-group>
-          <mat-form-field *nfIf="form.value.associatedNevus">
+          <mat-form-field *ngIf="form.value.associatedNevus">
             <input matInput placeholder="Specify type" formControlName="associatedNevusType">
           </mat-form-field>
           <br>

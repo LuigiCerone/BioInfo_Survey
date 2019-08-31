@@ -1,5 +1,5 @@
 <div>
-  <form *ngIf="form" [formGroup]="form" (ngSubmit)="save()">
+  <form id="2" *ngIf="form" [formGroup]="form" (ngSubmit)="save()">
     <mat-card>
       <mat-card-title><h2>Section C.3</h2></mat-card-title>
       <mat-card-content>
@@ -12,14 +12,9 @@
           <mat-radio-button value="1">Yes</mat-radio-button>
           <mat-radio-button value="0">No</mat-radio-button>
           <mat-radio-button value="2">Don't know</mat-radio-button>
-          <mat-radio-button value="3">Other</mat-radio-button>
         </mat-radio-group>
-        <mat-form-field *ngIf="form.value.presenceMelanoma === '3'">
-          <input matInput formControlName="otherMelanoma" placeholder="Specify">
-        </mat-form-field>
         <div *ngIf="form.value.presenceMelanoma === '1'">
-          <button mat-raised-button (click)="openMelanomaModal()">Open modal</button>
-
+          <button type="button" mat-raised-button (click)="openMelanomaModal()">Open modal</button>
         </div>
         <br>
 
@@ -32,12 +27,6 @@
             </mat-option>
           </mat-select>
         </mat-form-field>
-        <!--        <mat-form-field>-->
-        <!--          <input *ngIf="form.value.germlineStatus === 'other'"-->
-        <!--                 matInput-->
-        <!--                 formControlName="icd10Code"-->
-        <!--                 placeholder="Specify">-->
-        <!--        </mat-form-field>-->
         <br>
         <h3>3. Family history of other cancers</h3>
         <p>
@@ -47,35 +36,9 @@
           <mat-radio-button value="1">Yes</mat-radio-button>
           <mat-radio-button value="0">No</mat-radio-button>
           <mat-radio-button value="2">Don't know</mat-radio-button>
-          <mat-radio-button value="3">Other</mat-radio-button>
         </mat-radio-group>
-        <mat-form-field *ngIf="form.value.presenceCancer === '3'">
-          <input matInput formControlName="otherCancer" placeholder="Specify">
-        </mat-form-field>
         <div *ngIf="form.value.presenceCancer === '1'">
-          <br><br>
-          <mat-form-field>
-            <mat-label>Type of cancer (Exclude NMSC and melanoma)</mat-label>
-            <input matInput formControlName="typeCancer" placeholder="Type of cancer">
-          </mat-form-field>
-          <h4>Define relative's side</h4>
-          <mat-radio-group aria-label="Select yes or no" formControlName="sideOfAffectedRelativeCancer">
-            <mat-radio-button value="1">Maternal</mat-radio-button>
-            <mat-radio-button value="0">Paternal</mat-radio-button>
-          </mat-radio-group>
-          <br>
-          <h4>Indicate relative's degree</h4>
-          <mat-radio-group aria-label="Select yes or no" formControlName="degreeOfRelativeCancer">
-            <mat-radio-button value="1">First</mat-radio-button>
-            <mat-radio-button value="2">Second</mat-radio-button>
-            <mat-radio-button value="3">Third</mat-radio-button>
-          </mat-radio-group>
-          <br>
-          <h4>Indicate age of diagnosis</h4>
-          <mat-form-field>
-            <mat-label>Indicate age of diagnosis</mat-label>
-            <input matInput formControlName="ageAtDiagnosisCancer" placeholder="Specify age at diagnosis">
-          </mat-form-field>
+          <button type="button" mat-raised-button (click)="openCancerModal()">Open modal</button>
         </div>
         <br>
         <br>
@@ -90,41 +53,42 @@
 
 <ng-template #melanomaDialog class="mat-dialog-container custom-width-800">
   <h2 matDialogTitle>Parents with melanoma</h2>
-  <div matDialogContent class="custom-width-800">
-    <br>
-    <table mat-table [dataSource]="melanomaFamily" class="mat-elevation-z8">
+  <form (ngSubmit)="addMelanomaParent()" [formGroup]="formMelanoma">
 
-      <!-- Side Column -->
-      <ng-container matColumnDef="side">
-        <th mat-header-cell *matHeaderCellDef> Relative side </th>
-        <td mat-cell *matCellDef="let element"> {{element.sideOfAffectedRelative }} </td>
-      </ng-container>
+    <div matDialogContent class="custom-width-800">
+      <br>
+      <table mat-table [dataSource]="melanomaFamily" class="mat-elevation-z8">
 
-      <!-- Degree Column -->
-      <ng-container matColumnDef="degree">
-        <th mat-header-cell *matHeaderCellDef> Relative degree </th>
-        <td mat-cell *matCellDef="let element"> {{element.degreeOfRelative}} </td>
-      </ng-container>
+        <!-- Side Column -->
+        <ng-container matColumnDef="side">
+          <th mat-header-cell *matHeaderCellDef> Relative side </th>
+          <td mat-cell *matCellDef="let element"> {{element.sideOfAffectedRelative }} </td>
+        </ng-container>
 
-      <!-- Age Column -->
-      <ng-container matColumnDef="age">
-        <th mat-header-cell *matHeaderCellDef> Age </th>
-        <td mat-cell *matCellDef="let element"> {{element.ageAtDiagnosis}} </td>
-      </ng-container>
+        <!-- Degree Column -->
+        <ng-container matColumnDef="degree">
+          <th mat-header-cell *matHeaderCellDef> Relative degree </th>
+          <td mat-cell *matCellDef="let element"> {{element.degreeOfRelative}} </td>
+        </ng-container>
 
-      <!-- Buttons Column -->
-      <ng-container matColumnDef="actions">
-        <th mat-header-cell *matHeaderCellDef> Actions </th>
-        <td mat-cell *matCellDef="let element">
-          <button mat-button color="primary" matTooltip="Remove" (click)="removeMelanomaParent($event, element)"><mat-icon>delete</mat-icon></button>
-        </td>
-      </ng-container>
+        <!-- Age Column -->
+        <ng-container matColumnDef="age">
+          <th mat-header-cell *matHeaderCellDef> Age </th>
+          <td mat-cell *matCellDef="let element"> {{element.ageAtDiagnosis}} </td>
+        </ng-container>
 
-      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-    </table>
-    <br><br>
-    <form (submit)="addMelanomaParent()" [formGroup]="formMelanoma">
+        <!-- Buttons Column -->
+        <ng-container matColumnDef="actions">
+          <th mat-header-cell *matHeaderCellDef> Actions </th>
+          <td mat-cell *matCellDef="let element">
+            <button mat-button color="primary" matTooltip="Remove" (click)="removeMelanomaParent($event, element)"><mat-icon>delete</mat-icon></button>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+      <br><br>
       <mat-form-field>
         <mat-label>Insert type of melanoma</mat-label>
         <mat-select formControlName="typeMelanoma">
@@ -151,20 +115,90 @@
         <mat-label>Indicate age of diagnosis</mat-label>
         <input matInput formControlName="ageAtDiagnosisMelanoma" placeholder="Specify age at diagnosis">
       </mat-form-field>
-      <div class="button">
-        <button type="submit" [disabled]="!formMelanoma.valid" mat-raised-button color="primary" matStepperNext>Add relative</button>
-      </div>
-    </form>
-  </div>
-  <mat-dialog-actions align="end">
-    <!--    <button mat-raised-button color="accent" (click)="generatePDF()">-->
-    <!--      <mat-icon>arrow_downward</mat-icon>-->
-    <!--      <span>Download as PDF</span>-->
-    <!--    </button>-->
-    <button mat-raised-button color="primary" matDialogClose>
-      <mat-icon>close</mat-icon>
-      <span>Close</span>
-    </button>
-  </mat-dialog-actions>
+    </div>
+    <mat-dialog-actions align="end">
+      <button type="submit" [disabled]="!formMelanoma.valid" mat-raised-button color="primary" matStepperNext>
+        Add relative
+      </button>
+      <button mat-raised-button color="primary" matDialogClose>
+        <mat-icon>close</mat-icon>
+        <span>Close</span>
+      </button>
+    </mat-dialog-actions>
+  </form>
 </ng-template>
 
+
+<ng-template #cancerDialog class="mat-dialog-container custom-width-800">
+  <h2 matDialogTitle>Parents with cancer</h2>
+  <form id="1" (ngSubmit)="addCancerParent()" [formGroup]="formCancer">
+    <div matDialogContent class="custom-width-800">
+      <br>
+      <table mat-table [dataSource]="cancerFamily" class="mat-elevation-z8">
+
+        <!-- Side Column -->
+        <ng-container matColumnDef="side">
+          <th mat-header-cell *matHeaderCellDef> Relative side </th>
+          <td mat-cell *matCellDef="let element"> {{element.sideOfAffectedRelative }} </td>
+        </ng-container>
+
+        <!-- Degree Column -->
+        <ng-container matColumnDef="degree">
+          <th mat-header-cell *matHeaderCellDef> Relative degree </th>
+          <td mat-cell *matCellDef="let element"> {{element.degreeOfRelative}} </td>
+        </ng-container>
+
+        <!-- Age Column -->
+        <ng-container matColumnDef="age">
+          <th mat-header-cell *matHeaderCellDef> Age </th>
+          <td mat-cell *matCellDef="let element"> {{element.ageAtDiagnosis}} </td>
+        </ng-container>
+
+        <!-- Buttons Column -->
+        <ng-container matColumnDef="actions">
+          <th mat-header-cell *matHeaderCellDef> Actions </th>
+          <td mat-cell *matCellDef="let element">
+            <button mat-button color="primary" matTooltip="Remove" (click)="removeCancerParent($event, element)">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns1"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns1;"></tr>
+      </table>
+      <br><br>
+      <mat-form-field>
+        <mat-label>Type of cancer (Exclude NMSC and melanoma)</mat-label>
+        <input matInput formControlName="typeCancer" placeholder="Type of cancer">
+      </mat-form-field>
+      <h4>Define relative's side</h4>
+      <mat-radio-group aria-label="Select yes or no" formControlName="sideOfAffectedRelativeCancer">
+        <mat-radio-button value="maternal">Maternal</mat-radio-button>
+        <mat-radio-button value="paternal">Paternal</mat-radio-button>
+      </mat-radio-group>
+      <br>
+      <h4>Indicate relative's degree</h4>
+      <mat-radio-group aria-label="Select yes or no" formControlName="degreeOfRelativeCancer">
+        <mat-radio-button value="1">First</mat-radio-button>
+        <mat-radio-button value="2">Second</mat-radio-button>
+        <mat-radio-button value="3">Third</mat-radio-button>
+      </mat-radio-group>
+      <br>
+      <h4>Indicate age of diagnosis</h4>
+      <mat-form-field>
+        <mat-label>Indicate age of diagnosis</mat-label>
+        <input matInput formControlName="ageAtDiagnosisCancer" placeholder="Specify age at diagnosis">
+      </mat-form-field>
+    </div>
+    <mat-dialog-actions align="end">
+      <button type="submit" [disabled]="!formCancer.valid" mat-raised-button color="primary" matStepperNext>
+        Add relative
+      </button>
+      <button mat-raised-button color="primary" matDialogClose>
+        <mat-icon>close</mat-icon>
+        <span>Close</span>
+      </button>
+    </mat-dialog-actions>
+  </form>
+</ng-template>

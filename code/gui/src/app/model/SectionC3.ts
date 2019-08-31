@@ -1,26 +1,28 @@
 class SectionC3 {
+  presenceFamilyHistoryOfMelanomaList: string;
   familyHistoryOfMelanomaList: Array<FamilyHistory>;
   germlineStatus: string;
-  familyHistoryOfOtherCancer: FamilyHistory;
+  presenceFamilyHistoryOfOtherCancer: string;
+  familyHistoryOfOtherCancer: Array<FamilyHistory>;
 
-  constructor(form?) {
-    if (form) {
-      this.familyHistoryOfMelanomaList = new Array<FamilyHistory>();
-      this.familyHistoryOfMelanomaList.push(new FamilyHistory('M', form));
+  constructor(form?, list1?, list2?) {
+    if (form && list1 && list2) {
+      this.presenceFamilyHistoryOfMelanomaList = form.value.presenceMelanoma;
+      this.familyHistoryOfMelanomaList = list1;
       this.germlineStatus = form.value.germlineStatus;
-      this.familyHistoryOfOtherCancer = new FamilyHistory('C', form);
+      this.presenceFamilyHistoryOfOtherCancer = form.value.presenceCancer;
+      this.familyHistoryOfOtherCancer = list2;
     } else {
+      this.presenceFamilyHistoryOfMelanomaList = '';
       this.familyHistoryOfMelanomaList = new Array<FamilyHistory>();
-      this.familyHistoryOfMelanomaList.push(new FamilyHistory('M'));
       this.germlineStatus = '';
-      this.familyHistoryOfOtherCancer = new FamilyHistory('C');
+      this.presenceFamilyHistoryOfOtherCancer = '';
+      this.familyHistoryOfOtherCancer = new Array<FamilyHistory>();
     }
   }
 }
 
 class FamilyHistory {
-  presence: string;
-  other: '';
   type: string;
   sideOfAffectedRelative: string;
   degreeOfRelative: string;
@@ -28,22 +30,16 @@ class FamilyHistory {
 
   constructor(fieldType: string, form?) {
     if (form && fieldType === 'M')  {
-      this.presence = form.value.presenceMelanoma;
-      this.other = form.value.otherMelanoma;
       this.type = form.value.typeMelanoma;
       this.sideOfAffectedRelative = form.value.sideOfAffectedRelativeMelanoma;
       this.degreeOfRelative = form.value.degreeOfRelativeMelanoma;
       this.ageAtDiagnosis = form.value.ageAtDiagnosisMelanoma;
     } else if  (form && fieldType === 'C')  {
-      this.presence = form.value.presenceCancer;
-      this.other = form.value.typeCancer;
       this.type = form.value.otherCancer;
       this.sideOfAffectedRelative = form.value.sideOfAffectedRelativeCancer;
       this.degreeOfRelative = form.value.degreeOfRelativeCancer;
       this.ageAtDiagnosis = form.value.ageAtDiagnosisCancer;
     } else {
-      this.presence = '';
-      this.other = '';
       this.type = '';
       this.sideOfAffectedRelative = '';
       this.degreeOfRelative = '';

@@ -1,9 +1,6 @@
 package com.univaq.disim.bioinfo.model.nested;
 
 public class FamilyHistory {
-    // It can be YES/NO/Not known/Other (specify: _____)
-    private String presence;
-
     private String type;
 
     // It can be maternal or paternal side
@@ -16,14 +13,6 @@ public class FamilyHistory {
 
 
     public FamilyHistory(){ }
-
-    public String getPresence() {
-        return presence;
-    }
-
-    public void setPresence(String presence) {
-        this.presence = presence;
-    }
 
     public String getType() {
         return type;

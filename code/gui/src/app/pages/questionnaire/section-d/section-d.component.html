@@ -1,5 +1,5 @@
 <div>
-  <form [formGroup]="form">
+  <form *ngIf="form" [formGroup]="form">
     <mat-card>
       <mat-card-title><h2>Section D</h2></mat-card-title>
       <mat-card-content>
@@ -41,30 +41,24 @@
         <br>
 
         <h3>4. Skin exam by physician</h3>
-              <mat-label>
-                How often did a physician examine your skin in the past 3 yrs?
-              </mat-label>
-               <mat-form-field>
-                 <mat-select formControlName="skinExamByPhysician">
-                   <mat-option *ngFor="let option of skinExamPhysicianOpt" [value]="option.value">
-                     {{option.viewValue}}
-                   </mat-option>
-                 </mat-select>
-               </mat-form-field>
-              <h4>At site of melanoma?</h4>
-              <mat-radio-group aria-label="Select yes or no" formControlName="clinicallyAtypicalNeviAtSiteOfMelanoma">
-                <mat-radio-button [value]=true>Yes</mat-radio-button>
-                <mat-radio-button [value]=false>No</mat-radio-button>
-              </mat-radio-group>
-        <br>
+        <mat-label>
+          How often did a physician examine your skin in the past 3 yrs?
+        </mat-label>
+        <mat-form-field>
+          <mat-select formControlName="skinExamByPhysician">
+            <mat-option *ngFor="let option of skinExamPhysicianOpt" [value]="option.value">
+              {{option.viewValue}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
         <h3>5. Multiple primary melanoma (MPM) – concurrent or previous</h3>
         <mat-radio-group aria-label="Select yes or no" formControlName="presenceOfMPM">
           <mat-radio-button [value]=true>Yes</mat-radio-button>
           <mat-radio-button [value]=false>No</mat-radio-button>
         </mat-radio-group>
-          <mat-form-field *ngIf="form.value.presenceOfMPM">
-            <input matInput placeholder="Number of primaries" formControlName="numberOfMPM">
-          </mat-form-field>
+        <mat-form-field *ngIf="form.value.presenceOfMPM">
+          <input matInput placeholder="Number of primaries" formControlName="numberOfMPM">
+        </mat-form-field>
         <br>
         <h3>6. Date of diagnosis</h3>
         <mat-form-field>

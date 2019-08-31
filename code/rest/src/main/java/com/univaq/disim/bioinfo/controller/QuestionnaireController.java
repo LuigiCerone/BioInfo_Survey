@@ -1,6 +1,7 @@
 package com.univaq.disim.bioinfo.controller;
 
 
+import com.fasterxml.jackson.databind.JsonNode;
 import com.univaq.disim.bioinfo.BusinessLayerException;
 import com.univaq.disim.bioinfo.configuration.JwtProvider;
 import com.univaq.disim.bioinfo.model.Questionnaire;
@@ -54,6 +55,9 @@ public class QuestionnaireController<QuestionnaireServiceImpl> {
 
     @Autowired
     private SectionC3Service sectionC3Service;
+
+    @Autowired
+    private SectionDService sectionDService;
 
     @Autowired
     private JwtProvider jwtProvider;
@@ -266,5 +270,47 @@ public class QuestionnaireController<QuestionnaireServiceImpl> {
     public ResponseEntity<E> getCe(HttpServletRequest request, @PathVariable(value="username") String username) throws BusinessLayerException {
         E ce = sectionEService.get(username, 'C');
         return new ResponseEntity<E>(ce, HttpStatus.OK);
+    }
+
+    // ==================================================================================== SECTION
+    // D
+    @PostMapping("/user/{username}/d/{type}")
+    public ResponseEntity upsertD(HttpServletRequest request,
+                                   @RequestBody D d,
+                                   @PathVariable(value="username") String username,
+                                   @PathVariable(value="type") int type,
+                                   @RequestHeader (name="Authorization") String token) throws BusinessLayerException {
+        // Decode token and get the username contained. There is also the word "Bearer" that we need to escape.
+        String token_username = this.jwtProvider.getUserNameFromJwtToken(token.substring(7));
+        D d3Inserted = sectionDService.insert(username, d, type);
+        return new ResponseEntity<>(d3Inserted, HttpStatus.CREATED);
+    }
+
+    @GetMapping("/user/{username}/d/{type}")
+    public ResponseEntity<D> getD(HttpServletRequest request,
+                                  @PathVariable(value="username") String username,
+                                  @PathVariable(value="type") int type
+                            ) throws BusinessLayerException {
+        D d = sectionDService.get(username, type);
+        return new ResponseEntity<D>(d, HttpStatus.OK);
+    }
+
+    // ==================================================================================== SECTION
+    // D number
+    @PostMapping("/user/{username}/d")
+    public ResponseEntity upsertNumberD(HttpServletRequest request,
+                                  @RequestBody JsonNode json,
+                                  @PathVariable(value="username") String username,
+                                  @RequestHeader (name="Authorization") String token) throws BusinessLayerException {
+        // Decode token and get the username contained. There is also the word "Bearer" that we need to escape.
+        int numberInserted = sectionDService.insertNumber(username, json.get("number").asInt());
+        return new ResponseEntity<>(numberInserted, HttpStatus.CREATED);
+    }
+
+    @GetMapping("/user/{username}/d")
+    public ResponseEntity<Integer> getNumber(HttpServletRequest request,
+                                  @PathVariable(value="username") String username) throws BusinessLayerException {
+        int n = sectionDService.getNumber(username);
+        return new ResponseEntity<Integer>(n, HttpStatus.OK);
     }
 }

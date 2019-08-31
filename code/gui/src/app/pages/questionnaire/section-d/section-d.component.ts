@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {Options} from '../section-a1/section-a1.component';
 import {AuthenticationService} from '../../../services/authentication.service';
@@ -13,6 +13,9 @@ import {SectionD} from '../../../model/SectionD';
 })
 export class SectionDComponent implements OnInit {
   form: FormGroup;
+
+  @Input()
+  type: number;
 
   detectionOpt: Options[] = [
     {value: 'patient', viewValue: 'Patient'},
@@ -131,7 +134,7 @@ export class SectionDComponent implements OnInit {
               private questionnaireService: QuestionnaireService) {}
 
   ngOnInit() {
-    this.questionnaireService.getQuestionnaireForUser(this.authenticationService.currentUserValue.username, 'd').subscribe( (section: SectionD) => {
+    this.questionnaireService.getQuestionnaireForUser(this.authenticationService.currentUserValue.username, `d/${this.type}`).subscribe( (section: SectionD) => {
       console.log(section);
       if (section) {
         this.d = section;

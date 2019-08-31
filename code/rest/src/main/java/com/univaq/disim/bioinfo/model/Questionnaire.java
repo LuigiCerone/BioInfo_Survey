@@ -6,7 +6,9 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 @Document
@@ -50,10 +52,13 @@ public class Questionnaire {
     private E ce;
 
     @Field
-    private List<D> d;
+    private HashMap<Integer, D> d;
 
     @JsonIgnore
     private String _class;
+
+    @Field
+    private int numberOfMPM;
 
     public Questionnaire(){
 
@@ -156,12 +161,16 @@ public class Questionnaire {
         this.ce = ce;
     }
 
-    public List<D> getD() {
+    public HashMap<Integer, D> getD() {
         return d;
     }
 
-    public void setD(List<D> d) {
+    public void setD(HashMap<Integer, D> d) {
         this.d = d;
+    }
+
+    public D addD(int key, D value) {
+        return this.d.put(key, value);
     }
 
     public String get_class() {
@@ -170,5 +179,13 @@ public class Questionnaire {
 
     public void set_class(String _class) {
         this._class = _class;
+    }
+
+    public int getNumberOfMPM() {
+        return numberOfMPM;
+    }
+
+    public void setNumberOfMPM(int numberOfMPM) {
+        this.numberOfMPM = numberOfMPM;
     }
 }

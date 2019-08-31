@@ -21,7 +21,7 @@ public class D {
     // It can be Never, Once, Once/year, More than once/year
     //TODO: optional
     @Field
-    private String selfSkinExam;
+    private int selfSkinExam;
 
     // It can be Never, Once, Once/year, More than once/year,Do not recall a physician ever examining my skin
     //TODO: optional
@@ -29,8 +29,7 @@ public class D {
     private String skinExamByPhysician;
 
     //if 0 then no, if >0 then yes
-    @Field
-    private String numberOfMPM;
+
 
     @Field
     private String dateOfDiagnosis;
@@ -96,11 +95,11 @@ public class D {
         this.detectionOfMelanoma = detectionOfMelanoma;
     }
 
-    public String getSelfSkinExam() {
+    public int getSelfSkinExam() {
         return selfSkinExam;
     }
 
-    public void setSelfSkinExam(String selfSkinExam) {
+    public void setSelfSkinExam(int selfSkinExam) {
         this.selfSkinExam = selfSkinExam;
     }
 
@@ -110,14 +109,6 @@ public class D {
 
     public void setSkinExamByPhysician(String skinExamByPhysician) {
         this.skinExamByPhysician = skinExamByPhysician;
-    }
-
-    public String getNumberOfMPM() {
-        return numberOfMPM;
-    }
-
-    public void setNumberOfMPM(String numberOfMPM) {
-        this.numberOfMPM = numberOfMPM;
     }
 
     public Boolean getPrimaryTumorKnown() {

@@ -46,7 +46,6 @@ export class SectionC3Component implements OnInit {
   @ViewChild('melanomaDialog', {static: false}) melanomaDialog: TemplateRef<any>;
   @ViewChild('cancerDialog', {static: false}) cancerDialog: TemplateRef<any>;
 
-
   constructor(private authenticationService: AuthenticationService,
               private router: Router,
               private questionnaireService: QuestionnaireService,
@@ -69,9 +68,7 @@ export class SectionC3Component implements OnInit {
   buildForm() {
     this.form = new FormGroup({
       presenceMelanoma: new FormControl(this.c3.presenceFamilyHistoryOfMelanomaList, [Validators.required]),
-
       germlineStatus: new FormControl(this.c3.germlineStatus),
-
       presenceCancer: new FormControl(this.c3.presenceFamilyHistoryOfOtherCancer, [Validators.required]),
     });
   }
@@ -112,13 +109,12 @@ export class SectionC3Component implements OnInit {
       typeMelanoma: new FormControl('', Validators.required),
       sideOfAffectedRelativeMelanoma: new FormControl('', Validators.required),
       degreeOfRelativeMelanoma: new FormControl('', Validators.required),
-      ageAtDiagnosisMelanoma: new FormControl('', Validators.required)
+      ageAtDiagnosisMelanoma: new FormControl('', [Validators.required, Validators.pattern('[0-9]{1,3}')])
     });
   }
 
   removeMelanomaParent(event, element) {
     event.stopPropagation();
-
     const index = this.c3.familyHistoryOfMelanomaList.indexOf(element);
     if (index > -1) {
       // Remove element.

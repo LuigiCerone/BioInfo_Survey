@@ -170,6 +170,9 @@ public class Questionnaire {
     }
 
     public D addD(int key, D value) {
+        if (this.d == null) {
+            this.d = new HashMap<>();
+        }
         return this.d.put(key, value);
     }
 

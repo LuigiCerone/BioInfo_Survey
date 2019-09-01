@@ -11,7 +11,7 @@ public class D {
 
     // if the list is empty than there aren't case of this type
     @Field
-    private String preExistingPigmentedLesionAtTheSameSiteOfMelanoma;
+    private boolean preExistingPigmentedLesionAtTheSameSiteOfMelanoma;
 
     // It can be Patient, Relative/Spouse/Friend, Physician , Other
     //TODO: optional
@@ -21,15 +21,15 @@ public class D {
     // It can be Never, Once, Once/year, More than once/year
     //TODO: optional
     @Field
-    private int selfSkinExam;
+    private String selfSkinExam;
 
     // It can be Never, Once, Once/year, More than once/year,Do not recall a physician ever examining my skin
     //TODO: optional
     @Field
     private String skinExamByPhysician;
 
-    //if 0 then no, if >0 then yes
-
+    @Field
+    private Boolean presenceOfMPM;
 
     @Field
     private String dateOfDiagnosis;
@@ -79,11 +79,19 @@ public class D {
         this.dateOfDiagnosis = dateOfDiagnosis;
     }
 
-    public String getPreExistingPigmentedLesionAtTheSameSiteOfMelanoma() {
+    public Boolean getPresenceOfMPM() {
+        return presenceOfMPM;
+    }
+
+    public void setPresenceOfMPM(Boolean presenceOfMPM) {
+        this.presenceOfMPM = presenceOfMPM;
+    }
+
+    public boolean isPreExistingPigmentedLesionAtTheSameSiteOfMelanoma() {
         return preExistingPigmentedLesionAtTheSameSiteOfMelanoma;
     }
 
-    public void setPreExistingPigmentedLesionAtTheSameSiteOfMelanoma(String preExistingPigmentedLesionAtTheSameSiteOfMelanoma) {
+    public void setPreExistingPigmentedLesionAtTheSameSiteOfMelanoma(boolean preExistingPigmentedLesionAtTheSameSiteOfMelanoma) {
         this.preExistingPigmentedLesionAtTheSameSiteOfMelanoma = preExistingPigmentedLesionAtTheSameSiteOfMelanoma;
     }
 
@@ -95,11 +103,12 @@ public class D {
         this.detectionOfMelanoma = detectionOfMelanoma;
     }
 
-    public int getSelfSkinExam() {
+
+    public String getSelfSkinExam() {
         return selfSkinExam;
     }
 
-    public void setSelfSkinExam(int selfSkinExam) {
+    public void setSelfSkinExam(String selfSkinExam) {
         this.selfSkinExam = selfSkinExam;
     }
 

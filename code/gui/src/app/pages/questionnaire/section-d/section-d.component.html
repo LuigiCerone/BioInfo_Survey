@@ -1,5 +1,5 @@
 <div>
-  <form *ngIf="form" [formGroup]="form">
+  <form *ngIf="form" [formGroup]="form" (ngSubmit)="save()">
     <mat-card>
       <mat-card-title><h2>Section D</h2></mat-card-title>
       <mat-card-content>
@@ -12,13 +12,16 @@
         </mat-radio-group>
         <mat-form-field *ngIf="form.value.preExistingPigmentedLesionAtTheSameSiteOfMelanoma">
           <input matInput
-                 placeholder="ow long (No. of yrs) was the pre-existing pigmented lesion present?"
+                 placeholder="How long (No. of yrs) was the pre-existing pigmented lesion present?"
                  formControlName="durationPreExistingPigmentedLesionAtTheSameSiteOfMelanoma">
         </mat-form-field>
         <br>
 
         <h3>2. Detection of melanoma</h3>
         <mat-form-field>
+          <mat-label>
+            Detection of melanoma
+          </mat-label>
           <mat-select formControlName="detectionOfMelanoma">
             <mat-option *ngFor="let option of detectionOpt" [value]="option.value">
               {{option.viewValue}}
@@ -56,9 +59,6 @@
           <mat-radio-button [value]=true>Yes</mat-radio-button>
           <mat-radio-button [value]=false>No</mat-radio-button>
         </mat-radio-group>
-        <mat-form-field *ngIf="form.value.presenceOfMPM">
-          <input matInput placeholder="Number of primaries" formControlName="numberOfMPM">
-        </mat-form-field>
         <br>
         <h3>6. Date of diagnosis</h3>
         <mat-form-field>
@@ -76,6 +76,9 @@
 
           <h3>8. Site</h3>
           <mat-form-field>
+            <mat-label>
+              Specify the site
+            </mat-label>
             <mat-select formControlName="site">
               <mat-option *ngFor="let option of siteOpt" [value]="option.value">
                 {{option.viewValue}}
@@ -90,6 +93,9 @@
           <br>
           <h3>10. Other main histopathologic features</h3>
           <mat-form-field>
+            <mat-label>
+              Other main histopathologic features
+            </mat-label>
             <mat-select formControlName="site">
               <mat-option *ngFor="let option of subtypeHistoOpt" [value]="option.value">
                 {{option.viewValue}}

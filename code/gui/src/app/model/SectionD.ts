@@ -1,11 +1,10 @@
 export class SectionD {
-  preExistingPigmentedLesionAtTheSameSiteOfMelanoma: string;
+  preExistingPigmentedLesionAtTheSameSiteOfMelanoma: boolean;
   durationPreExistingPigmentedLesionAtTheSameSiteOfMelanoma: string;
   detectionOfMelanoma: string;
   selfSkinExam: string;
   skinExamByPhysician: string;
-  presenceOfMPM: string;
-  numberOfMPM: string;
+  presenceOfMPM: boolean;
   dateOfDiagnosis: string;
   primaryTumorKnown: boolean;
   site: string;
@@ -24,7 +23,6 @@ export class SectionD {
       this.selfSkinExam = form.value.selfSkinExam;
       this.skinExamByPhysician = form.value.skinExamByPhysician;
       this.presenceOfMPM = form.value.presenceOfMPM;
-      this.numberOfMPM = form.value.numberOfMPM;
       this.dateOfDiagnosis = form.value.dateOfDiagnosis;
       this.primaryTumorKnown = form.value.primaryTumorKnown;
       this.site = form.value.site;
@@ -35,13 +33,12 @@ export class SectionD {
       this.ajccStageAtDiagnosis = form.value.ajccStageAtDiagnosis;
       this.mutationalData = new MutationalData(form);
     } else {
-      this.preExistingPigmentedLesionAtTheSameSiteOfMelanoma =  '';
+      this.preExistingPigmentedLesionAtTheSameSiteOfMelanoma = false;
       this.durationPreExistingPigmentedLesionAtTheSameSiteOfMelanoma =  '';
       this.detectionOfMelanoma =  '';
       this.selfSkinExam =  '';
       this.skinExamByPhysician =  '';
-      this.presenceOfMPM =  '';
-      this.numberOfMPM =  '';
+      this.presenceOfMPM =  false;
       this.dateOfDiagnosis =  '';
       this.primaryTumorKnown = false;
       this.site =  '';

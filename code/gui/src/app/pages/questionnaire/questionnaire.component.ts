@@ -28,7 +28,7 @@ export class QuestionnaireComponent implements OnInit{
         this.Ds = this.createSectionD(0);
       }
       this.form = new FormGroup({
-        number: new FormControl('', Validators.required)
+        number: new FormControl(res, Validators.required)
       });
     });
   }

@@ -2,7 +2,10 @@ package com.univaq.disim.bioinfo.model.section;
 
 import com.univaq.disim.bioinfo.model.nested.*;
 import org.springframework.data.mongodb.core.mapping.Field;
+import org.springframework.lang.Nullable;
 
+import javax.validation.constraints.Null;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -10,11 +13,12 @@ public class C2 {
     // TODO Alcuni campi si devono trasformare in liste.
 
     @Field
-    private MedicalDiagnosis medicalDiagnoses;
+    private ArrayList<MedicalDiagnosis> medicalDiagnoses;
 
     //TODO: Optional
+    @Nullable
     @Field
-    private Treatment previousAndConcomitantTreatments;
+    private ArrayList<Treatment> previousAndConcomitantTreatments;
 
     @Field
     private PregnanciesInfo pregnancyHistory;
@@ -27,19 +31,20 @@ public class C2 {
 
     public C2(){ }
 
-    public MedicalDiagnosis getMedicalDiagnoses() {
+    public ArrayList<MedicalDiagnosis> getMedicalDiagnoses() {
         return medicalDiagnoses;
     }
 
-    public void setMedicalDiagnoses(MedicalDiagnosis medicalDiagnoses) {
+    public void setMedicalDiagnoses(ArrayList<MedicalDiagnosis> medicalDiagnoses) {
         this.medicalDiagnoses = medicalDiagnoses;
     }
 
-    public Treatment getPreviousAndConcomitantTreatments() {
+    @Nullable
+    public ArrayList<Treatment> getPreviousAndConcomitantTreatments() {
         return previousAndConcomitantTreatments;
     }
 
-    public void setPreviousAndConcomitantTreatments(Treatment previousAndConcomitantTreatments) {
+    public void setPreviousAndConcomitantTreatments(@Nullable ArrayList<Treatment> previousAndConcomitantTreatments) {
         this.previousAndConcomitantTreatments = previousAndConcomitantTreatments;
     }
 

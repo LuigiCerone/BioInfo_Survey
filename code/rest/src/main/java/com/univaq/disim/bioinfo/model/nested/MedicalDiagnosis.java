@@ -3,7 +3,7 @@ package com.univaq.disim.bioinfo.model.nested;
 public class MedicalDiagnosis {
     private String diagnosisName;
 
-    private String ICD10Code;
+    private String icd10Code;
 
     public MedicalDiagnosis(){ }
 
@@ -15,11 +15,11 @@ public class MedicalDiagnosis {
         this.diagnosisName = diagnosisName;
     }
 
-    public String getICD10Code() {
-        return ICD10Code;
+    public String getIcd10Code() {
+        return icd10Code;
     }
 
-    public void setICD10Code(String ICD10Code) {
-        this.ICD10Code = ICD10Code;
+    public void setIcd10Code(String icd10Code) {
+        this.icd10Code = icd10Code;
     }
 }

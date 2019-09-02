@@ -1,14 +1,14 @@
 class SectionC2 {
-  medicalDiagnoses: MedicalDiagnosis;
-  previousAndConcomitantTreatments: Treatment;
+  medicalDiagnoses: Array<MedicalDiagnosis>;
+  previousAndConcomitantTreatments: Array<Treatment>;
   pregnancyHistory: PregnancyHistory;
   lifetimeHistoryOfNonMelanomaSkinCancer: {};
   nonCutaneousNeoplasias: NonCutaneousNeoplasia;
 
-  constructor(form?) {
-    if (form) {
-      this.medicalDiagnoses = new MedicalDiagnosis(form.value);
-      this.previousAndConcomitantTreatments = new Treatment(form.value);
+  constructor(form?, medicalDiagnoses?, treatments?) {
+    if (form && medicalDiagnoses) {
+      this.medicalDiagnoses = medicalDiagnoses;
+      this.previousAndConcomitantTreatments = treatments;
       this.pregnancyHistory = new PregnancyHistory(form.value);
 
       this.lifetimeHistoryOfNonMelanomaSkinCancer = {};
@@ -18,8 +18,8 @@ class SectionC2 {
 
       this.nonCutaneousNeoplasias = new NonCutaneousNeoplasia(form.value);
     } else {
-      this.medicalDiagnoses = new MedicalDiagnosis();
-      this.previousAndConcomitantTreatments = new Treatment();
+      this.medicalDiagnoses = new Array<MedicalDiagnosis>();
+      this.previousAndConcomitantTreatments = new Array<Treatment>();
       this.pregnancyHistory = new PregnancyHistory();
 
       this.lifetimeHistoryOfNonMelanomaSkinCancer = {};
@@ -38,8 +38,8 @@ class MedicalDiagnosis {
 
   constructor(form?) {
     if (form) {
-      this.diagnosisName = form.diagnosisName;
-      this.icd10Code = form.icd10Code;
+      this.diagnosisName = form.value.diagnosisName;
+      this.icd10Code = form.value.icd10Code;
     } else {
       this.diagnosisName = '';
       this.icd10Code = '';
@@ -54,9 +54,9 @@ class Treatment {
 
   constructor(form?) {
     if (form) {
-      this.treatmentName = form.treatmentName;
-      this.treatmentStartingTime = form.treatmentStartingTime;
-      this.treatmentEndingTime = form.treatmentEndingTime;
+      this.treatmentName = form.value.treatmentName;
+      this.treatmentStartingTime = form.value.treatmentStartingTime;
+      this.treatmentEndingTime = form.value.treatmentEndingTime;
     } else {
       this.treatmentName = '';
       this.treatmentStartingTime = '';
@@ -163,4 +163,4 @@ class NonCutaneousNeoplasia {
   }
 }
 
-export { SectionC2, NonMelanomaSkinCancer };
+export { SectionC2, NonMelanomaSkinCancer, MedicalDiagnosis, PregnancyHistory, Treatment };

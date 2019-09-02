@@ -14,7 +14,7 @@ const routes: Routes = [
     canActivate: [NoAuthGuard]
   },
   {
-    path: 'questionnaire',
+    path: 'questionnaire/:username',
     component : QuestionnaireComponent
   },
   {

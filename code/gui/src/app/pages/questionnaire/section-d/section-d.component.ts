@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {Options} from '../section-a1/section-a1.component';
 import {AuthenticationService} from '../../../services/authentication.service';
-import {Router} from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import {QuestionnaireService} from '../../../services/questionnaire.service';
 import {SectionD} from '../../../model/SectionD';
 
@@ -129,12 +129,16 @@ export class SectionDComponent implements OnInit {
 
   private d: SectionD;
 
+  private username: string;
+
   constructor(private authenticationService: AuthenticationService,
-              private router: Router,
+              private route: ActivatedRoute,
               private questionnaireService: QuestionnaireService) {}
 
   ngOnInit() {
-    this.questionnaireService.getQuestionnaireForUser(this.authenticationService.currentUserValue.username, `d/${this.type}`).subscribe( (section: SectionD) => {
+    this.username = this.route.snapshot.params.username;
+    console.log(this.username);
+    this.questionnaireService.getQuestionnaireForUser(this.username, `d/${this.type}`).subscribe( (section: SectionD) => {
       console.log(section);
       if (section) {
         this.d = section;
@@ -188,7 +192,7 @@ export class SectionDComponent implements OnInit {
     this.d = new SectionD(this.form);
 
     console.log(this.d);
-    this.questionnaireService.insertSection(this.authenticationService.currentUserValue.username, `d/${this.type}`, this.d).subscribe( (res) => {
+    this.questionnaireService.insertSection(this.username, `d/${this.type}`, this.d).subscribe( (res) => {
       console.log(res);
     });
   }

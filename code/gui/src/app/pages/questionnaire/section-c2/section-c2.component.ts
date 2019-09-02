@@ -3,7 +3,7 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {Options} from '../section-a1/section-a1.component';
 import {SectionB3} from '../../../model/SectionB3';
 import {AuthenticationService} from '../../../services/authentication.service';
-import {Router} from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import {QuestionnaireService} from '../../../services/questionnaire.service';
 import { MedicalDiagnosis, NonMelanomaSkinCancer, PregnancyHistory, SectionC2, Treatment } from '../../../model/SectionC2';
 import { SectionC1 } from '../../../model/SectionC1';
@@ -36,13 +36,18 @@ export class SectionC2Component implements OnInit {
   displayedColumnsTreatments: string[] = ['name', 'start', 'end', 'actions'];
   @ViewChild('treatmentsDialog', {static: false}) treatmentsDialog: TemplateRef<any>;
 
+  private username: string;
+
   constructor(private authenticationService: AuthenticationService,
-              private router: Router,
+              private route: ActivatedRoute,
               private questionnaireService: QuestionnaireService,
               private dialog: MatDialog) {}
 
   ngOnInit() {
-    this.questionnaireService.getQuestionnaireForUser(this.authenticationService.currentUserValue.username, 'c2').subscribe( (section: SectionC2) => {
+    this.username = this.route.snapshot.params.username;
+    console.log(this.username);
+
+    this.questionnaireService.getQuestionnaireForUser(this.username, 'c2').subscribe( (section: SectionC2) => {
       console.log(section);
       if (section) {
         this.c2 = section;
@@ -105,7 +110,7 @@ export class SectionC2Component implements OnInit {
     this.c2 = new SectionC2(this.form, this.c2.medicalDiagnoses, this.c2.previousAndConcomitantTreatments);
 
     console.log(this.c2);
-    this.questionnaireService.insertSection(this.authenticationService.currentUserValue.username, 'c2', this.c2).subscribe( (res) => {
+    this.questionnaireService.insertSection(this.username, 'c2', this.c2).subscribe( (res) => {
       console.log(res);
     });
   }

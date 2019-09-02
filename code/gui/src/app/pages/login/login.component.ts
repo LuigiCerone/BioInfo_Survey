@@ -1,7 +1,7 @@
 import { Component, Input, OnInit, Output, EventEmitter, TemplateRef, ViewChild } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { AuthenticationService } from '../../services/authentication.service';
-import { Router } from '@angular/router';
+import { NavigationExtras, Router } from '@angular/router';
 import { MatDialog } from '@angular/material';
 import { User } from '../../model/User';
 import * as JsPDF from 'jspdf';
@@ -32,7 +32,13 @@ export class LoginComponent {
       if (this.authService.currentUserValue.role === 'DOCTOR') {
         this.router.navigate(['profile']);
       } else {
-        this.router.navigate(['questionnaire']);
+        const extras: NavigationExtras = {
+          state: {
+            username: this.authService.currentUserValue.username
+          }
+        };
+
+        this.router.navigate(['questionnaire', this.authService.currentUserValue.username] );
       }
     }, err => {
       console.error('Error:', err);

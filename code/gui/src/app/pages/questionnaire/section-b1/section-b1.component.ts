@@ -42,11 +42,11 @@ export class SectionB1Component implements OnInit {
   ];
 
   hairOpt: ImageOptions[] = [
-    {value: 'red', viewValue: 'Red', image: 'assets/images/hair/red_hair.jpg'},
-    {value: 'blond', viewValue: 'Blond', image: 'assets/images/hair/blond_hair.jpg'},
-    {value: 'light_brown', viewValue: 'Light brown', image: 'assets/images/hair/light_brown_hair.jpg'},
-    {value: 'dark', viewValue: 'Dark', image: 'assets/images/hair/dark_hair.jpg'},
-    {value: 'black', viewValue: 'Black', image: 'assets/images/hair/black_hair.jpg'},
+    {value: 'red', viewValue: 'Red', image: 'assets/images/hairs/red_hair.jpg'},
+    {value: 'blond', viewValue: 'Blond', image: 'assets/images/hairs/blond_hair.jpg'},
+    {value: 'light_brown', viewValue: 'Light brown', image: 'assets/images/hairs/light_brown_hair.jpg'},
+    {value: 'dark', viewValue: 'Dark', image: 'assets/images/hairs/dark_hair.jpg'},
+    {value: 'black', viewValue: 'Black', image: 'assets/images/hairs/black_hair.jpg'},
   ];
 
   freckleOpt: ImageOptions[] = [

@@ -15,6 +15,24 @@ export class QuestionnaireComponent implements OnInit{
   form: FormGroup;
   Ds: Array<number>;
 
+  // a1: SectionA1 = new SectionA1();
+  //
+  // formA1: FormGroup = new FormGroup({
+  //   subject: new FormControl(this.a1.subject , Validators.required),
+  //   dbCodeNumber: new FormControl(this.a1.dbCodeNumber, [
+  //     Validators.required,
+  //     Validators.pattern('[0-9]{4}[MC][0-9]{4}')
+  //   ]),
+  //   dateOfQuestionnaireAdministration: new FormControl(this.a1.dateOfQuestionnaireAdministration, [
+  //     Validators.required,
+  //     Validators.pattern('[0-9]{2}[/][A-Z]{1}[a-z]{2}[/][0-9]{4}')
+  //   ]),
+  //   typeOfMelanoma: new FormControl(this.a1.typeOfMelanoma, Validators.required),
+  //   otherSpecification: new FormControl(this.a1.otherSpecification)
+  // });
+  //
+  // formA2: FormGroup;
+
   constructor(private authenticationService: AuthenticationService,
               private questionnaireService: QuestionnaireService) {}
 

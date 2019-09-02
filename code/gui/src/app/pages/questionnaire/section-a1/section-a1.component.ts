@@ -1,9 +1,10 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { SectionA1 } from '../../../model/SectionA1';
 import { AuthenticationService } from '../../../services/authentication.service';
 import { Router } from '@angular/router';
 import { QuestionnaireService } from '../../../services/questionnaire.service';
+import { MatStepper } from '@angular/material';
 
 export interface Options {
   value: string;
@@ -17,6 +18,8 @@ export interface Options {
 })
 
 export class SectionA1Component implements OnInit {
+  @ViewChild('stepper', { static: false }) stepper: MatStepper;
+
   private form: FormGroup;
 
   subjectOpt: Options[] = [
@@ -79,5 +82,4 @@ export class SectionA1Component implements OnInit {
       console.log(res);
     });
   }
-
 }

@@ -233,64 +233,64 @@
 
 <!--Treatments-->
 <ng-template #treatmentsDialog class="mat-dialog-container">
-  <h2 matDialogTitle>Previous medical treatments/h2>
-  <form (ngSubmit)="addTreatment()" [formGroup]="formTreatments">
+  <h2 matDialogTitle>Previous medical treatments</h2>
+    <form (ngSubmit)="addTreatment()" [formGroup]="formTreatments">
 
-    <div matDialogContent>
-      <br>
-      <table mat-table [dataSource]="treatmentsTable" class="mat-elevation-z8">
+      <div matDialogContent>
+        <br>
+        <table mat-table [dataSource]="treatmentsTable" class="mat-elevation-z8">
 
-        <!-- Name Column -->
-        <ng-container matColumnDef="name">
-          <th mat-header-cell *matHeaderCellDef> Name </th>
-          <td mat-cell *matCellDef="let element"> {{element.treatmentName }} </td>
-        </ng-container>
+          <!-- Name Column -->
+          <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef> Name </th>
+            <td mat-cell *matCellDef="let element"> {{element.treatmentName }} </td>
+          </ng-container>
 
-        <!-- Start Column -->
-        <ng-container matColumnDef="start">
-          <th mat-header-cell *matHeaderCellDef> Start time </th>
-          <td mat-cell *matCellDef="let element"> {{element.treatmentStartingTime}} </td>
-        </ng-container>
+          <!-- Start Column -->
+          <ng-container matColumnDef="start">
+            <th mat-header-cell *matHeaderCellDef> Start time </th>
+            <td mat-cell *matCellDef="let element"> {{element.treatmentStartingTime}} </td>
+          </ng-container>
 
-        <!-- End Column -->
-        <ng-container matColumnDef="end">
-          <th mat-header-cell *matHeaderCellDef> End time </th>
-          <td mat-cell *matCellDef="let element"> {{element.treatmentEndingTime}} </td>
-        </ng-container>
+          <!-- End Column -->
+          <ng-container matColumnDef="end">
+            <th mat-header-cell *matHeaderCellDef> End time </th>
+            <td mat-cell *matCellDef="let element"> {{element.treatmentEndingTime}} </td>
+          </ng-container>
 
-        <!-- Buttons Column -->
-        <ng-container matColumnDef="actions">
-          <th mat-header-cell *matHeaderCellDef> Actions </th>
-          <td mat-cell *matCellDef="let element">
-            <button mat-button color="primary" matTooltip="Remove" (click)="removeTreatment(element)"><mat-icon>delete</mat-icon></button>
-          </td>
-        </ng-container>
+          <!-- Buttons Column -->
+          <ng-container matColumnDef="actions">
+            <th mat-header-cell *matHeaderCellDef> Actions </th>
+            <td mat-cell *matCellDef="let element">
+              <button mat-button color="primary" matTooltip="Remove" (click)="removeTreatment(element)"><mat-icon>delete</mat-icon></button>
+            </td>
+          </ng-container>
 
-        <tr mat-header-row *matHeaderRowDef="displayedColumnsTreatments"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumnsTreatments;"></tr>
-      </table>
-      <br><br>
-      <mat-form-field>
-        <mat-label>Insert name of the treatment</mat-label>
-        <input matInput formControlName="treatmentName" placeholder="Insert treatment name">
-      </mat-form-field>
-      <mat-form-field>
-        <mat-label>Insert starting time for the treatment</mat-label>
-        <input matInput formControlName="treatmentStartingTime" placeholder="Insert date of treatment's start">
-      </mat-form-field>
-      <mat-form-field>
-        <mat-label>Insert end time for the treatment</mat-label>
-        <input matInput formControlName="treatmentEndingTime" placeholder="Insert date of treatment's end">
-      </mat-form-field>
-    </div>
-    <mat-dialog-actions align="end">
-      <button type="submit" [disabled]="!formTreatments.valid" mat-raised-button color="primary" matStepperNext>
-        Add treatment
-      </button>
-      <button mat-raised-button color="primary" matDialogClose>
-        <mat-icon>close</mat-icon>
-        <span>Close</span>
-      </button>
-    </mat-dialog-actions>
-  </form>
+          <tr mat-header-row *matHeaderRowDef="displayedColumnsTreatments"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumnsTreatments;"></tr>
+        </table>
+        <br><br>
+        <mat-form-field>
+          <mat-label>Insert name of the treatment</mat-label>
+          <input matInput formControlName="treatmentName" placeholder="Insert treatment name">
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Insert starting time for the treatment</mat-label>
+          <input matInput formControlName="treatmentStartingTime" placeholder="Insert date of treatment's start">
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Insert end time for the treatment</mat-label>
+          <input matInput formControlName="treatmentEndingTime" placeholder="Insert date of treatment's end">
+        </mat-form-field>
+      </div>
+      <mat-dialog-actions align="end">
+        <button type="submit" [disabled]="!formTreatments.valid" mat-raised-button color="primary" matStepperNext>
+          Add treatment
+        </button>
+        <button mat-raised-button color="primary" matDialogClose>
+          <mat-icon>close</mat-icon>
+          <span>Close</span>
+        </button>
+      </mat-dialog-actions>
+    </form>
 </ng-template>

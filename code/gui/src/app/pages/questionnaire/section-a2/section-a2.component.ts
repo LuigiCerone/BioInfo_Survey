@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators} from '@angular/forms';
 import {Options} from '../section-a1/section-a1.component';
 import { AuthenticationService } from '../../../services/authentication.service';
@@ -12,6 +12,7 @@ import { SectionA2 } from '../../../model/SectionA2';
   styleUrls: ['./section-a2.component.css']
 })
 export class SectionA2Component implements OnInit {
+  @Input()
   form: FormGroup;
 
   sexOpt: Options[] = [

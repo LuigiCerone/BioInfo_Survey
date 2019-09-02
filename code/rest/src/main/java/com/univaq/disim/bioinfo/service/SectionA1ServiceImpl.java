@@ -53,9 +53,6 @@ public class SectionA1ServiceImpl implements SectionA1Service {
         if ( q == null){
             return null;
         }
-        if (q.getA1() == null){
-            throw new BusinessLayerException(HttpStatus.NOT_FOUND, ErrorMessage.SECTION_MISSING);
-        }
         return q.getA1();
     }
 

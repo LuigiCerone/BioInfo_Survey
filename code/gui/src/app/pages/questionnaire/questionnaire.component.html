@@ -1,48 +1,49 @@
 <mat-horizontal-stepper linear="true" #stepper>
-  <!--  <mat-step completed="true" editable="false">-->
-  <!--    <app-section-a1></app-section-a1>-->
-  <!--  </mat-step>-->
-  <!--  <mat-step>-->
-  <!--    <app-section-a2></app-section-a2>-->
-  <!--  </mat-step>-->
-  <!--  <mat-step>-->
-  <!--    <app-section-b1></app-section-b1>-->
-  <!--  </mat-step>-->
-  <!--  <mat-step>-->
-  <!--     <app-section-b2></app-section-b2>-->
-  <!--  </mat-step>-->
-  <!--  <mat-step>-->
-  <!--    <app-section-b3></app-section-b3>-->
-  <!--  </mat-step>-->
-  <!--  <mat-step>-->
-  <!--    <app-section-e></app-section-e>-->
-  <!--  </mat-step>-->
+
+  <mat-step>
+    <app-section-a1></app-section-a1>
+  </mat-step>
+  <mat-step>
+    <app-section-a2></app-section-a2>
+  </mat-step>
+  <mat-step>
+    <app-section-b1></app-section-b1>
+  </mat-step>
+  <mat-step>
+    <app-section-b2></app-section-b2>
+  </mat-step>
+  <mat-step>
+    <app-section-b3></app-section-b3>
+  </mat-step>
+  <mat-step>
+    <app-section-e></app-section-e>
+  </mat-step>
+  <!--  TODO Spostare le seguenti in dottori-->
   <!--<mat-step>-->
   <!--  <app-section-c1></app-section-c1>-->
   <!--</mat-step>-->
-    <mat-step>
-      <app-section-c2></app-section-c2>
-    </mat-step>
-<!--  <mat-step>-->
-<!--    <app-section-c3></app-section-c3>-->
-<!--  </mat-step>-->
+  <!--    <mat-step>-->
+  <!--      <app-section-c2></app-section-c2>-->
+  <!--    </mat-step>-->
+  <!--  <mat-step>-->
+  <!--    <app-section-c3></app-section-c3>-->
+  <!--  </mat-step>-->
   <!--  <mat-step>-->
   <!--    <app-section-e section="c"></app-section-e>-->
   <!--  </mat-step>-->
-<!--  <div >-->
-<!--    <mat-step *ngIf="form" >-->
-<!--      <form (ngSubmit)="save()" [formGroup]="form">-->
-<!--        <mat-form-field>-->
-<!--          <input matInput formControlName="number" placeholder="Insert number of primary melanoma">-->
-<!--        </mat-form-field>-->
-<!--        <div class="button">-->
-<!--          <button type="submit" [disabled]="!form.valid" mat-raised-button color="primary" matStepperNext>Next</button>-->
-<!--        </div>-->
-<!--      </form>-->
-<!--    </mat-step>-->
-<!--    <mat-step *ngFor="let i of Ds">-->
-<!--      <app-section-d [type]="i"></app-section-d>-->
-<!--    </mat-step>-->
-<!--  </div>-->
+  <!--  <div >-->
+  <!--    <mat-step *ngIf="form" >-->
+  <!--      <form (ngSubmit)="save()" [formGroup]="form">-->
+  <!--        <mat-form-field>-->
+  <!--          <input matInput formControlName="number" placeholder="Insert number of primary melanoma">-->
+  <!--        </mat-form-field>-->
+  <!--        <div class="button">-->
+  <!--          <button type="submit" [disabled]="!form.valid" mat-raised-button color="primary" matStepperNext>Next</button>-->
+  <!--        </div>-->
+  <!--      </form>-->
+  <!--    </mat-step>-->
+  <!--    <mat-step *ngFor="let i of Ds">-->
+  <!--      <app-section-d [type]="i"></app-section-d>-->
+  <!--    </mat-step>-->
+  <!--  </div>-->
 </mat-horizontal-stepper>
-<!--TODO Fix stepper problem. -->

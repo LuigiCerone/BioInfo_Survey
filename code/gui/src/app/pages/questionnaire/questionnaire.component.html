@@ -1,7 +1,7 @@
 
 <mat-horizontal-stepper linear="true" #stepper
-                        *ngIf="(authenticationService.currentUserSubject$ | async)?.role === 'CASE' ||
-                        (authenticationService.currentUserSubject$ | async)?.role === 'CONTROL'" >
+                        *ngIf="(authenticationService.currentUserSubject$ | async)?.role === 'ROLE_CASE' ||
+                        (authenticationService.currentUserSubject$ | async)?.role === 'ROLE_CONTROL'" >
   <mat-step>
     <app-section-a1></app-section-a1>
   </mat-step>
@@ -22,7 +22,7 @@
   </mat-step>
 </mat-horizontal-stepper>
 
-<mat-horizontal-stepper *ngIf="(authenticationService.currentUserSubject$ | async)?.role === 'DOCTOR' "  linear="true"
+<mat-horizontal-stepper *ngIf="(authenticationService.currentUserSubject$ | async)?.role === 'ROLE_DOCTOR' "  linear="true"
                         #stepper>
   <mat-step>
     <app-section-c1></app-section-c1>

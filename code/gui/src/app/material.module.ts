@@ -14,7 +14,10 @@ import {
   MatDialogModule,
   MatRadioModule,
   MatFormFieldModule,
-  MatGridListModule, MatTableModule, MatPaginatorModule, MatTooltipModule
+  MatGridListModule,
+  MatTableModule,
+  MatPaginatorModule,
+  MatTooltipModule
 } from '@angular/material';
 
 const modules = [

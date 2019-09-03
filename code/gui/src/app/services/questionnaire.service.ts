@@ -21,4 +21,8 @@ export class QuestionnaireService {
   insertSection(username: string, section: string, data: any): Observable<any>{
     return this.http.post(`${REST_API.QUESTIONNAIRE_USER}/${username}/${section}`, data);
   }
+
+  runQuery(username: string, query) {
+    return this.http.post(REST_API.QUERY, query);
+  }
 }

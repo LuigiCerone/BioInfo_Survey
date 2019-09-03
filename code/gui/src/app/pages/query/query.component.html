@@ -1,0 +1,7 @@
+<div class="container">
+  <br><br>
+  <query-builder [(ngModel)]='query' [config]='config' [allowRuleset]=false></query-builder>
+  <div class="output"><p>{{query | json}}</p></div>
+  <br>
+  <button mat-raised-button color="primary" (click)="runQuery()">Query</button>
+</div>

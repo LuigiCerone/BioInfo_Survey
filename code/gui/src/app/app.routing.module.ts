@@ -6,6 +6,7 @@ import { QuestionnaireComponent } from './pages/questionnaire/questionnaire.comp
 import { ProfileComponent } from './pages/profile/profile.component';
 import { NoAuthGuard } from './guards/no-auth.guard';
 import { RoleGuard } from './guards/role.guard';
+import { QueryComponent } from './pages/query/query.component';
 
 const routes: Routes = [
   {
@@ -24,6 +25,14 @@ const routes: Routes = [
   {
     path: 'profile',
     component : ProfileComponent,
+    canActivate: [RoleGuard],
+    data: {
+      expectedRole: 'ROLE_DOCTOR'
+    }
+  },
+  {
+    path: 'query',
+    component : QueryComponent,
     canActivate: [RoleGuard],
     data: {
       expectedRole: 'ROLE_DOCTOR'

@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './pages/login/login.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule} from './material.module';
 import { AppRoutingModule } from './app.routing.module';
@@ -16,6 +16,8 @@ import { NoAuthGuard } from './guards/no-auth.guard';
 import { RoleGuard } from './guards/role.guard';
 import { httpInterceptorProviders } from './interceptors';
 import { NgxJsonViewerModule } from 'ngx-json-viewer';
+import { QueryComponent } from './pages/query/query.component';
+import { QueryBuilderModule } from 'angular2-query-builder';
 
 @NgModule({
   declarations: [
@@ -23,7 +25,8 @@ import { NgxJsonViewerModule } from 'ngx-json-viewer';
     LoginComponent,
     HomeComponent,
     QuestionnaireComponent,
-    ProfileComponent
+    ProfileComponent,
+    QueryComponent
   ],
   imports: [
     BrowserModule,
@@ -33,7 +36,9 @@ import { NgxJsonViewerModule } from 'ngx-json-viewer';
     ReactiveFormsModule,
     BrowserAnimationsModule,
     AppRoutingModule,
-    NgxJsonViewerModule
+    NgxJsonViewerModule,
+    QueryBuilderModule,
+    FormsModule
   ],
   providers: [
     NoAuthGuard,

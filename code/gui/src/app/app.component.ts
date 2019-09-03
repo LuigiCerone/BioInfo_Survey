@@ -39,8 +39,9 @@ export class AppComponent implements OnInit {
     return language;
   }
 
-  onChange() {
-    console.log(this.selectedLanguage)
+  onChange(selection: string) {
+    this.selectedLanguage = selection;
+    console.log(this.selectedLanguage);
     this.translateService.setDefaultLang(this.selectedLanguage);
     this.translateService.use(this.selectedLanguage);
 

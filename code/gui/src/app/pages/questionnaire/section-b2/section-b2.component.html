@@ -1,74 +1,74 @@
 <div>
   <form *ngIf="form" [formGroup]="form" (ngSubmit)="save()">
     <mat-card>
-      <mat-card-title><h2>Section B.2</h2></mat-card-title>
+      <mat-card-title><h2>{{"SECTION" | translate}} B.2</h2></mat-card-title>
       <mat-card-content>
         <br>
-        <h3>1. Occupational sun exposure</h3>
-        <mat-label>Outdoor occupation with at least 4 hours/day spent outdoor in the sun</mat-label>
+        <h3>1. {{"SECTION_B2_1_TITLE" | translate}}</h3>
+        <mat-label>{{"SECTION_B2_1_LABEL" | translate}}</mat-label>
         <br>
         <mat-radio-group aria-label="Select yes or no" formControlName="occupationalSunExposure">
-          <mat-radio-button [value]=true>Yes</mat-radio-button>
-          <mat-radio-button [value]=false>No</mat-radio-button>
+          <mat-radio-button [value]=true>{{"YES_OPTION" | translate}}</mat-radio-button>
+          <mat-radio-button [value]=false>{{"NO_OPTION" | translate}}</mat-radio-button>
           <!--            TODO Center -->
         </mat-radio-group>
         <div *ngIf="form.value.occupationalSunExposure == 1">
           <mat-form-field>
-            <input matInput formControlName="occupationalSunExposureType" placeholder="Insert occupation">
+            <input matInput formControlName="occupationalSunExposureType" placeholder='{{"SECTION_B2_1_1_OCC_PLACEHOLDER" | translate}}'>
           </mat-form-field>
           <mat-form-field>
-            <input matInput formControlName="occupationalSunExposureHours" placeholder="How many hours per day?">
+            <input matInput formControlName="occupationalSunExposureHours" placeholder='{{"SECTION_B2_1_2_OCC_PLACEHOLDER" | translate}}'>
           </mat-form-field>
           <mat-form-field>
-            <input matInput formControlName="occupationalSunExposureDays" placeholder="How many days per month?">
+            <input matInput formControlName="occupationalSunExposureDays" placeholder='{{"SECTION_B2_1_3_OCC_PLACEHOLDER" | translate}}'>
           </mat-form-field>
           <mat-form-field>
-            <input matInput formControlName="occupationalSunExposureMonths" placeholder="How many months per year?">
+            <input matInput formControlName="occupationalSunExposureMonths" placeholder='{{"SECTION_B2_1_4_OCC_PLACEHOLDER" | translate}}'>
           </mat-form-field>
           <mat-form-field>
-            <input matInput formControlName="occupationalSunExposureYears" placeholder="How many years?">
+            <input matInput formControlName="occupationalSunExposureYears" placeholder='{{"SECTION_B2_1_5_OCC_PLACEHOLDER" | translate}}'>
           </mat-form-field>
         </div>
         <br>
-        <h3>2. Recreational sun exposure</h3>
+        <h3>2. {{"SECTION_B2_2_TITLE" | translate}}</h3>
         <mat-label>
-          Outdoor hobbies or physical activities–other than sunbathing–with at least 4 hours/day spent outdoor in the sun
+          {{"SECTION_B2_2_TITLE" | translate}}
         </mat-label>
         <br>
         <mat-radio-group aria-label="Select yes or no" formControlName="recreationalSunExposure">
-          <mat-radio-button [value]=true>Yes</mat-radio-button>
-          <mat-radio-button [value]=false>No</mat-radio-button>
+          <mat-radio-button [value]=true>{{"YES_OPTION" | translate}}</mat-radio-button>
+          <mat-radio-button [value]=false>{{"NO_OPTION" | translate}}</mat-radio-button>
           <!--            TODO Center -->
         </mat-radio-group>
         <div *ngIf="form.value.recreationalSunExposure == 1">
           <mat-form-field>
-            <input matInput formControlName="recreationalSunExposureType" placeholder="Insert recreation">
+            <input matInput formControlName="recreationalSunExposureType" placeholder='{{"SECTION_B2_2_1_REC_PLACEHOLDER" | translate}}'>
           </mat-form-field>
           <mat-form-field>
-            <input matInput formControlName="recreationalSunExposureHours" placeholder="How many hours per day?">
+            <input matInput formControlName="recreationalSunExposureHours" placeholder='{{"SECTION_B2_2_2_REC_PLACEHOLDER" | translate}}'>
           </mat-form-field>
           <mat-form-field>
-            <input matInput formControlName="recreationalSunExposureDays" placeholder="How many days per month?">
+            <input matInput formControlName="recreationalSunExposureDays" placeholder='{{"SECTION_B2_2_3_REC_PLACEHOLDER" | translate}}'>
           </mat-form-field>
           <mat-form-field>
-            <input matInput formControlName="recreationalSunExposureMonths" placeholder="How many months per year?">
+            <input matInput formControlName="recreationalSunExposureMonths" placeholder='{{"SECTION_B2_2_4_REC_PLACEHOLDER" | translate}}'>
           </mat-form-field>
           <mat-form-field>
-            <input matInput formControlName="recreationalSunExposureYears" placeholder="How many years?">
+            <input matInput formControlName="recreationalSunExposureYears" placeholder='{{"SECTION_B2_2_5_REC_PLACEHOLDER" | translate}}'>
           </mat-form-field>
         </div>
         <br>
 
-        <h3>3. Intermittent sun exposure</h3>
+        <h3>3. {{"SECTION_B2_3_TITLE" | translate}}</h3>
         <div>
           <p>
-            Sun exposure in spring and summer time, including vacation, during peak hours 11AM-4PM
+            {{"SECTION_B2_3_LABEL" | translate}}
           </p>
           <mat-grid-list cols="3" rowHeight="6:1">
-            <mat-grid-tile>Age period</mat-grid-tile>
-            <mat-grid-tile>Weeks of vacation</mat-grid-tile>
-            <mat-grid-tile>Hours spent between 11AM - 4PM</mat-grid-tile>
-            <mat-grid-tile>Childhood (up to age 10 yrs)</mat-grid-tile>
+            <mat-grid-tile>{{"SECTION_B2_3_COLUMN_1" | translate}}</mat-grid-tile>
+            <mat-grid-tile>{{"SECTION_B2_3_COLUMN_2" | translate}}</mat-grid-tile>
+            <mat-grid-tile>{{"SECTION_B2_3_COLUMN_3" | translate}}</mat-grid-tile>
+            <mat-grid-tile>{{"SECTION_B2_3_ROW_1" | translate}}</mat-grid-tile>
             <mat-grid-tile>
               <mat-form-field>
                 <input matInput formControlName="intermittentExposureChildhoodWeeks">
@@ -79,7 +79,7 @@
                 <input matInput formControlName="intermittentExposureChildhoodHours">
               </mat-form-field>
             </mat-grid-tile>
-            <mat-grid-tile>Adolescence (11-18 yrs)</mat-grid-tile>
+            <mat-grid-tile>{{"SECTION_B2_3_ROW_2" | translate}}</mat-grid-tile>
             <mat-grid-tile>
               <mat-form-field>
                 <input matInput formControlName="intermittentExposureAdolescenceWeeks">
@@ -90,7 +90,7 @@
                 <input matInput formControlName="intermittentExposureAdolescenceHours">
               </mat-form-field>
             </mat-grid-tile>
-            <mat-grid-tile>Adulthood (>=18 yrs)</mat-grid-tile>
+            <mat-grid-tile>{{"SECTION_B2_3_ROW_3" | translate}}</mat-grid-tile>
             <mat-grid-tile>
               <mat-form-field>
                 <input matInput formControlName="intermittentExposureAdulthoodWeeks">
@@ -102,7 +102,7 @@
               </mat-form-field>
             </mat-grid-tile>
             <!-- QUESTA È UNA DOMANDA CHE VA SPLITTATA FRA CASE E CONTROL -->
-            <mat-grid-tile class="padding">10 years before melanoma diagnosis (for cases) or last 10 years (for controls)</mat-grid-tile>
+            <mat-grid-tile class="padding">{{"SECTION_B2_3_ROW_4" | translate}}</mat-grid-tile>
             <mat-grid-tile>
               <mat-form-field>
                 <input matInput formControlName="intermittentExposureDiagnosisWeeks">
@@ -117,139 +117,133 @@
         </div>
         <br>
 
-        <h3>4. Most recent intense intermittent sun exposure</h3>
+        <h3>4. {{"SECTION_B2_4_TITLE" | translate}}</h3>
         <mat-form-field >
           <!-- Anche qui dividere fra case e control -->
           <mat-label>
-            Provide date or month of last time of intense intermittent sun exposure before
-            the diagnosis of melanoma (for cases)
-            or before this interview (for controls)
+            {{"SECTION_B2_4_LABEL" | translate}}
           </mat-label>
-          <input matInput placeholder ="Last intense sun exposure" formControlName="lastIntenseExposure">
-          <mat-hint>
-            Definition: Light brown small macules since childhood, on the face,
-            during summer time (disappear in winter)
-          </mat-hint>
+          <input matInput placeholder ='{{"SECTION_B2_4_PLACEHOLDER" | translate}}' formControlName="lastIntenseExposure">
         </mat-form-field>
         <br>
 
-        <h3>5. Severe sunburns</h3>
+        <h3>5. {{"SECTION_B2_5_TITLE" | translate}}/h3>
         <div>
-          Suburns with erythema and pain for more than 2 days or with blisters
+          {{"SECTION_B2_5_LABEL_1" | translate}}
         </div>
         <br>
-        <h4> At age < 18 years</h4>
+        <h4> {{"SECTION_B2_5_LABEL_2" | translate}}</h4>
         <mat-radio-group aria-label="At age <18 years" formControlName="sunburnsLess18">
-          <mat-radio-button value="1">Yes</mat-radio-button>
-          <mat-radio-button value="0">No</mat-radio-button>
-          <mat-radio-button value="2">Not known</mat-radio-button>
+          <mat-radio-button value="1">{{"YES_OPTION" | translate}}</mat-radio-button>
+          <mat-radio-button value="0">{{"NO_OPTION" | translate}}</mat-radio-button>
+          <mat-radio-button value="2">{{"NOT_KNOWN_OPTION" | translate}}</mat-radio-button>
           <!--            TODO Center -->
         </mat-radio-group>
         <br>
         <mat-form-field *ngIf="form.value.sunburnsLess18 == 1">
           <input matInput
-                 placeholder="Specify how many"
+                 placeholder='{{"SPECIFY_HOW_MANY" | translate}}'
                  formControlName="less18SunburnsNumber">
         </mat-form-field>
-        <h4> At age >= 18 years</h4>
+        <h4> {{"SECTION_B2_5_LABEL_3" | translate}}</h4>
         <mat-radio-group aria-label="At age >= 18 years" formControlName="sunburnsGreater18">
-          <mat-radio-button value="1">Yes</mat-radio-button>
-          <mat-radio-button value="0">No</mat-radio-button>
-          <mat-radio-button value="2">Not known</mat-radio-button>
+          <mat-radio-button value="1">{{"YES_OPTION" | translate}}</mat-radio-button>
+          <mat-radio-button value="0">{{"NO_OPTION" | translate}}</mat-radio-button>
+          <mat-radio-button value="2">{{"NOT_KNOWN_OPTION" | translate}}</mat-radio-button>
           <!--            TODO Center -->
         </mat-radio-group>
         <br>
         <mat-form-field  *ngIf="form.value.sunburnsGreater18 == 1">
           <input matInput
-                 placeholder="Specify how many"
+                 placeholder='{{"SPECIFY_HOW_MANY" | translate}}'
                  formControlName="greater18SunburnsNumber">
         </mat-form-field>
         <br>
-        <h4> At site of melanoma</h4>
+        <h4>{{"SECTION_B2_5_LABEL_4" | translate}}</h4>
         <mat-radio-group aria-label="At site of melanoma" formControlName="sunburnsMelanomaSite">
-          <mat-radio-button value="1">Yes</mat-radio-button>
-          <mat-radio-button value="0">No</mat-radio-button>
-          <mat-radio-button value="2">Not known</mat-radio-button>
+          <mat-radio-button value="1">{{"YES_OPTION" | translate}}</mat-radio-button>
+          <mat-radio-button value="0">{{"NO_OPTION" | translate}}</mat-radio-button>
+          <mat-radio-button value="2">{{"NOT_KNOWN_OPTION" | translate}}</mat-radio-button>
         </mat-radio-group>
         <br>
-        <h4> In the last 5 years</h4>
+        <h4> {{"SECTION_B2_5_LABEL_5" | translate}}</h4>
         <mat-radio-group aria-label="In the last 5 years" formControlName="sunburnsLast5">
-          <mat-radio-button value="1">Yes</mat-radio-button>
-          <mat-radio-button value="0">No</mat-radio-button>
-          <mat-radio-button value="2">Not known</mat-radio-button>
+          <mat-radio-button value="1">{{"YES_OPTION" | translate}}</mat-radio-button>
+          <mat-radio-button value="0">{{"NO_OPTION" | translate}}</mat-radio-button>
+          <mat-radio-button value="2">{{"NOT_KNOWN_OPTION" | translate}}</mat-radio-button>
         </mat-radio-group>
         <br>
         <mat-form-field *ngIf="form.value.sunburnsLast5 == 1">
           <input matInput
-                 placeholder="Specify how many"
+                 placeholder='{{"SPECIFY_HOW_MANY" | translate}}'
                  formControlName="last5SunburnsNumber">
           <br>
         </mat-form-field>
         <br>
-        <h3>6. Sunscreen use</h3>
+        <h3>6. {{"SECTION_B2_6_TITLE" | translate}}</h3>
         <div>
-          <p> Specify your sunscreen use during summer times</p>
+          <p> {{"SECTION_B2_6_LABEL" | translate}}</p>
           <mat-grid-list cols="3" rowHeight="6:1">
-            <mat-grid-tile>Age period</mat-grid-tile>
-            <mat-grid-tile>Did you use sunscreens during the summertime?</mat-grid-tile>
-            <mat-grid-tile>Type of sunscreen used:</mat-grid-tile>
-            <mat-grid-tile>Childhood (up to age 10 yrs)</mat-grid-tile>
+            <mat-grid-tile>{{"SECTION_B2_6_COLUMN_1" | translate}}</mat-grid-tile>
+            <mat-grid-tile>{{"SECTION_B2_6_COLUMN_2" | translate}}</mat-grid-tile>
+            <mat-grid-tile>{{"SECTION_B2_6_COLUMN_3" | translate}}</mat-grid-tile>
+            <mat-grid-tile>{{"SECTION_B2_6_ROW_1" | translate}}</mat-grid-tile>
             <mat-grid-tile>
 
-              <mat-select placeholder="Select a percentage" formControlName="sunscreenPercentageChildhood">
+              <mat-select placeholder='{{"PERCENTAGE" | translate}}' formControlName="sunscreenPercentageChildhood">
                 <mat-option *ngFor="let option of sunscreenPercentageOpt" [value]="option.value">
                   {{option.viewValue}}
                 </mat-option>
               </mat-select>
             </mat-grid-tile>
             <mat-grid-tile>
-              <mat-select placeholder="Select a percentage" formControlName="sunscreenTypeChildhood">
+              <mat-select placeholder='{{"PERCENTAGE" | translate}}' formControlName="sunscreenTypeChildhood">
                 <mat-option *ngFor="let option of sunscreenTypeOpt" [value]="option.value">
                   {{option.viewValue}}
                 </mat-option>
               </mat-select>
             </mat-grid-tile>
-            <mat-grid-tile>Adolescence (11-18 yrs)</mat-grid-tile>
+            <mat-grid-tile>{{"SECTION_B2_6_ROW_2" | translate}}</mat-grid-tile>
             <mat-grid-tile>
-              <mat-select placeholder="Select a percentage" formControlName="sunscreenPercentageAdolescence">
+              <mat-select placeholder='{{"PERCENTAGE" | translate}}' formControlName="sunscreenPercentageAdolescence">
                 <mat-option *ngFor="let option of sunscreenPercentageOpt" [value]="option.value">
                   {{option.viewValue}}
                 </mat-option>
               </mat-select>
             </mat-grid-tile>
             <mat-grid-tile>
-              <mat-select placeholder="Select a percentage" formControlName="sunscreenTypeAdolescence">
+              <mat-select placeholder='{{"PERCENTAGE" | translate}}' formControlName="sunscreenTypeAdolescence">
                 <mat-option *ngFor="let option of sunscreenTypeOpt" [value]="option.value">
                   {{option.viewValue}}
                 </mat-option>
               </mat-select>
             </mat-grid-tile>
-            <mat-grid-tile>Adulthood (>=18 yrs)</mat-grid-tile>
+            <mat-grid-tile>{{"SECTION_B2_6_ROW_3" | translate}}</mat-grid-tile>
             <mat-grid-tile>
-              <mat-select placeholder="Select a percentage" formControlName="sunscreenPercentageAdulthood">
+              <mat-select placeholder='{{"PERCENTAGE" | translate}}' formControlName="sunscreenPercentageAdulthood">
                 <mat-option *ngFor="let option of sunscreenPercentageOpt" [value]="option.value">
                   {{option.viewValue}}
                 </mat-option>
               </mat-select>
             </mat-grid-tile>
             <mat-grid-tile>
-              <mat-select placeholder="Select a percentage" formControlName="sunscreenTypeAdulthood">
+              <mat-select placeholder='{{"PERCENTAGE" | translate}}' formControlName="sunscreenTypeAdulthood">
                 <mat-option *ngFor="let option of sunscreenTypeOpt" [value]="option.value">
                   {{option.viewValue}}
                 </mat-option>
               </mat-select>
             </mat-grid-tile>
             <!-- QUESTA È UNA DOMANDA CHE VA SPLITTATA FRA CASE E CONTROL -->
-            <mat-grid-tile class="padding">10 years before melanoma diagnosis (for cases) or last 10 years (for controls)</mat-grid-tile>
+            <mat-grid-tile class="padding">{{"SECTION_B2_6_ROW_4" | translate}}</mat-grid-tile>
             <mat-grid-tile>
-              <mat-select placeholder="Select a percentage" formControlName="sunscreenPercentageMelanoma">
+              <mat-select placeholder='{{"PERCENTAGE" | translate}}' formControlName="sunscreenPercentageMelanoma">
                 <mat-option *ngFor="let option of sunscreenPercentageOpt" [value]="option.value">
                   {{option.viewValue}}
                 </mat-option>
               </mat-select>
             </mat-grid-tile>
             <mat-grid-tile>
-              <mat-select placeholder="Select a percentage" formControlName="sunscreenTypeMelanoma">
+              <mat-select placeholder='{{"PERCENTAGE" | translate}}' formControlName="sunscreenTypeMelanoma">
                 <mat-option *ngFor="let option of sunscreenTypeOpt" [value]="option.value">
                   {{option.viewValue}}
                 </mat-option>
@@ -260,27 +254,24 @@
         </div>
         <br>
 
-        <h3>7. Sunlamps/sunbeds</h3>
-        <mat-label>
-          Sunlamps/sunbeds
-        </mat-label>
+        <h3>7. {{"SECTION_B2_7_TITLE" | translate}}</h3>
         <mat-radio-group aria-label="Select yes or no" formControlName="sunlamps">
-          <mat-radio-button [value]=true>Yes</mat-radio-button>
-          <mat-radio-button [value]=false>No</mat-radio-button>
+          <mat-radio-button [value]=true>{{"YES_OPTION" | translate}}</mat-radio-button>
+          <mat-radio-button [value]=false>{{"NO_OPTION" | translate}}</mat-radio-button>
         </mat-radio-group>
         <div *ngIf="form.value.sunlamps == 1">
           <mat-form-field>
-            <input matInput formControlName="numberSunlamps" placeholder="Lifetime number of sessions">
+            <input matInput formControlName="numberSunlamps" placeholder='{{"SECTION_B2_7_PLACEHOLDER_1" | translate}}'>
           </mat-form-field>
           <mat-form-field>
-            <input matInput formControlName="ageFirstSunlamps" placeholder="Age at first exposure">
+            <input matInput formControlName="ageFirstSunlamps" placeholder='{{"SECTION_B2_7_PLACEHOLDER_2" | translate}}'>
           </mat-form-field>
           <mat-form-field>
-            <input matInput formControlName="ageLastSunlamps" placeholder="Age at last exposure">
+            <input matInput formControlName="ageLastSunlamps" placeholder='{{"SECTION_B2_7_PLACEHOLDER_3" | translate}}'>
           </mat-form-field>
         </div>
         <div class="button">
-          <button type="submit" [disabled]="!form.valid" mat-raised-button color="primary" matStepperNext>Next</button>
+          <button type="submit" [disabled]="!form.valid" mat-raised-button color="primary" matStepperNext>{{"BUTTON_NEXT" | translate}}</button>
         </div>
       </mat-card-content>
     </mat-card>

@@ -16,16 +16,16 @@ export class SectionB2Component implements OnInit {
   form: FormGroup;
 
   sunscreenPercentageOpt: Options[] = [
-    { value: 'never', viewValue: 'Never' },
-    { value: 'less-50', viewValue: '< 50% of time exposure' },
-    { value: 'more-50', viewValue: '> 50% of time exposure' },
-    { value: 'always', viewValue: 'Always' },
-    { value: '0', viewValue: 'Not know' },
+    { value: 'never', viewValue: 'SECTION_B2_SUNSCR_OPT_1' },
+    { value: 'less-50', viewValue: 'SECTION_B2_SUNSCR_OPT_2' },
+    { value: 'more-50', viewValue: 'SECTION_B2_SUNSCR_OPT_3' },
+    { value: 'always', viewValue: 'SECTION_B2_SUNSCR_OPT_4' },
+    { value: '0', viewValue: 'SECTION_B2_SUNSCR_OPT_5' },
   ];
   sunscreenTypeOpt: Options[] = [
-    { value: 'less-20', viewValue: 'SPF<20' },
-    { value: 'more-20', viewValue: 'SPF>20' },
-    { value: '0', viewValue: 'Not know' },
+    { value: 'less-20', viewValue: 'SECTION_B2_SUNSCR_TYPE_OPT_1' },
+    { value: 'more-20', viewValue: 'SECTION_B2_SUNSCR_TYPE_OPT_2' },
+    { value: '0', viewValue: 'SECTION_B2_SUNSCR_TYPE_OPT_3' },
   ];
 
   private b2: SectionB2;

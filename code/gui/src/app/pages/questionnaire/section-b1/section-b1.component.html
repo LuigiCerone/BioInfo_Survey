@@ -1,16 +1,14 @@
 <div>
   <form *ngIf="form" [formGroup]="form" (ngSubmit)="save()">
     <mat-card>
-      <mat-card-title><h2>Section B.1</h2></mat-card-title>
+      <mat-card-title><h2>{{"SECTION" | translate}} B.1</h2></mat-card-title>
       <mat-card-content>
         <br>
-        <h3>1. Specify you skin type</h3>
+        <h3>1. {{"SECTION_B1_1_TITLE" | translate}}</h3>
         <div>
 
           <p>
-            Which of the following sentences does better describe your skin response
-            to sun exposure at noon for 30 minutes in the first days of the summer without
-            sunscreen/clothing protection?
+            {{"SECTION_B1_1_LABEL_1" | translate}}
           </p>
           <mat-radio-group aria-label="Select an option" formControlName="skinType1">
             <mat-radio-button *ngFor="let option of burnOpt" [value]="option.value" >
@@ -20,9 +18,7 @@
         </div>
         <div>
           <h4>
-            Does your skin tan after a prolonged and repeated sun exposure
-            (e.g. after several days as at the end of the summer)
-            without protecting it with sunscreen or clothing?
+            {{"SECTION_B1_1_LABEL_2" | translate}}
           </h4>
           <mat-radio-group aria-label="Select an option" formControlName="skinType2">
             <mat-radio-button *ngFor="let option of tanOpt" [value]="option.value" >
@@ -38,10 +34,10 @@
         <br>
 
 
-        <h3>2. Specify your eye color</h3>
+        <h3>2. {{"SECTION_B1_2_TITLE" | translate}}</h3>
         <div>
           <p>
-            Eye color
+            {{"SECTION_B1_2_LABEL" | translate}}
           </p>
           <mat-radio-group aria-label="Select an option" formControlName="eyeColor">
             <mat-radio-button *ngFor="let option of eyeOpt" [value]="option.value" >
@@ -54,10 +50,10 @@
         </div>
         <br>
 
-        <h3>3. Specify your hair color (at age of 18 yrs)</h3>
+        <h3>3. {{"SECTION_B1_3_TITLE" | translate}}</h3>
         <div>
           <p>
-            Hair color
+            {{"SECTION_B1_3_LABEL" | translate}}
           </p>
             <mat-radio-group aria-label="Select an option" formControlName="hairColor">
               <mat-radio-button *ngFor="let option of hairOpt" [value]="option.value" >
@@ -70,11 +66,10 @@
         </div>
         <br>
 
-        <h3>4. Specify your freckles situation</h3>
+        <h3>4. {{"SECTION_B1_4_TITLE" | translate}}</h3>
         <div>
           <p>
-            Definition: Light brown small macules since childhood, on the face,
-            during summer time (disappear in winter)
+            {{"SECTION_B1_4_LABEL" | translate}}
           </p>
           <mat-radio-group aria-label="Select an option" formControlName="freckles">
             <mat-radio-button *ngFor="let option of freckleOpt" [value]="option.value" >
@@ -87,7 +82,7 @@
         </div>
         <br>
 
-        <h3>5. Specify your nevi situation</h3>
+        <h3>5. {{"SECTION_B1_5_TITLE" | translate}}</h3>
         <div>
           <mat-radio-group aria-label="Select an option" formControlName="neviInChildhoodAdolescence">
             <mat-radio-button *ngFor="let option of neviOpt" [value]="option.value" >
@@ -101,7 +96,7 @@
         <br>
 
         <div class="button">
-          <button type="submit" [disabled]="!form.valid" mat-raised-button color="primary" matStepperNext>Next</button>
+          <button type="submit" [disabled]="!form.valid" mat-raised-button color="primary" matStepperNext>{{"BUTTON_NEXT" | translate}}</button>
         </div>
       </mat-card-content>
     </mat-card>

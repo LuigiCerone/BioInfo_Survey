@@ -1,5 +1,4 @@
 <mat-toolbar color="primary">
-  <span class="fill-remaining-space">
     <button mat-icon-button [matMenuTriggerFor]="menu">
       <mat-icon>menu</mat-icon>
     </button>
@@ -35,12 +34,12 @@
         <span>Logout</span>
       </button>
     </mat-menu>
-  </span>
   <span class="fill-remaining-space">MelaNostrum</span>
-  <mat-select (selectionChange)="onChange()" [(value)]="selectedLanguage">
-    <mat-option value="it">it</mat-option>
-    <mat-option value="en" selected>en</mat-option>
-  </mat-select>
+  <div>
+    <span class="language" [class.selected-language]="selectedLanguage==='it' " (click)="onChange('it')">IT</span>
+    <span> | </span>
+    <span class="language" [class.selected-language]="selectedLanguage==='en' " (click)="onChange('en')">EN</span>
+  </div>
 </mat-toolbar>
 <router-outlet class="container"></router-outlet>
 

@@ -8,12 +8,15 @@ import { TranslateService} from '@ngx-translate/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-
+  selectedLanguage = localStorage.getItem('language') || 'en';
 
   constructor(private auth: AuthenticationService,
-              private translate: TranslateService) {
-    this.translate.setDefaultLang('en');
-    this.translate.use(this.translate.getDefaultLang());
+              private translateService: TranslateService) {
+
+    const language = this.getActualLanguage();
+    // console.log(language);
+    this.translateService.setDefaultLang(language);
+    this.translateService.use(language);
   }
 
   ngOnInit() {
@@ -21,5 +24,26 @@ export class AppComponent implements OnInit {
 
   logout() {
     this.auth.logout();
+  }
+
+  getActualLanguage(): string {
+    let language: string;
+    try {
+      language = localStorage.getItem('language');
+      if (!language) {
+        language = 'en';
+      }
+    } catch (error) {
+      console.error(error);
+    }
+    return language;
+  }
+
+  onChange() {
+    console.log(this.selectedLanguage)
+    this.translateService.setDefaultLang(this.selectedLanguage);
+    this.translateService.use(this.selectedLanguage);
+
+    localStorage.setItem('language', this.selectedLanguage);
   }
 }

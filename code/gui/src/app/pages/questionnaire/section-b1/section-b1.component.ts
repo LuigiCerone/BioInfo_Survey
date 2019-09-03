@@ -95,7 +95,7 @@ export class SectionB1Component implements OnInit {
   private username: string;
 
   constructor(private authenticationService: AuthenticationService,
-              private router: Router,
+              private route: ActivatedRoute,
               private questionnaireService: QuestionnaireService,
               private translateService: TranslateService) { }
 

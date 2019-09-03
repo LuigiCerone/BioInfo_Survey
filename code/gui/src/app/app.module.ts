@@ -49,7 +49,7 @@ import { QueryBuilderModule } from 'angular2-query-builder';
         useFactory: (HttpLoaderFactory),
         deps: [HttpClient]
       }
-    })
+    }),
     QueryBuilderModule,
     FormsModule
   ],

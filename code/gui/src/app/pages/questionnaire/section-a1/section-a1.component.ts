@@ -33,26 +33,28 @@ export class SectionA1Component implements OnInit {
   private form: FormGroup;
 
   subjectOpt: Options[] = [
-    {value: 'case', viewValue: this.subjectOpt1},
-    {value: 'control', viewValue: this.subjectOpt2},
+    {value: 'case', viewValue: 'SECTION_A1_1_SUBJECT_OPTION_1'},
+    {value: 'control', viewValue: 'SECTION_A1_1_SUBJECT_OPTION_2'},
   ];
 
   melanomaOpt: Options[] = [
-    {value: 'sporadic', viewValue: this.melanomaType1},
-    {value: 'familial', viewValue: this.melanomaType2},
-    {value: 'dont_know', viewValue: this.melanomaType3},
-    {value: 'other', viewValue: this.melanomaType4},
+    {value: 'sporadic', viewValue: 'SECTION_A1_4_MELANOMA_OPTION_1'},
+    {value: 'familial', viewValue: 'SECTION_A1_4_MELANOMA_OPTION_2'},
+    {value: 'dont_know', viewValue: 'SECTION_A1_4_MELANOMA_OPTION_3'},
+    {value: 'other', viewValue: 'SECTION_A1_4_MELANOMA_OPTION_4'},
   ];
 
   private a1: SectionA1;
   private username: string;
 
   constructor(private authenticationService: AuthenticationService,
-              private router: Router,
+              private route: ActivatedRoute,
               private questionnaireService: QuestionnaireService,
               private translateService: TranslateService) { }
 
   async ngOnInit() {
+    // this.getTranslation();
+
     this.username = this.route.snapshot.params.username;
     console.log(this.username);
     
@@ -65,37 +67,6 @@ export class SectionA1Component implements OnInit {
         this.a1 = new SectionA1();
       }
       this.buildForm();
-    });
-    this.subscribeToEvents();
-    await this.getTranslation();
-  }
-
-  subscribeToEvents() {
-    // When the language is changed all the translated
-    // varibles need to be translated again
-    this.languageChanged = this.translateService.onLangChange.subscribe(() => {
-      this.getTranslation();
-    });
-  }
-
-  async getTranslation() {
-    this.translateService.get('SECTION_A1_1_SUBJECT_OPTION_1').subscribe((data: string) => {
-      this.subjectOpt1 = data;
-    });
-    this.translateService.get('SECTION_A1_1_SUBJECT_OPTION_2').subscribe((data: string) => {
-      this.subjectOpt2 = data;
-    });
-    this.translateService.get('SECTION_A1_4_MELANOMA_OPTION_1').subscribe((data: string) => {
-      this.melanomaType1 = data;
-    });
-    this.translateService.get('SECTION_A1_4_MELANOMA_OPTION_2').subscribe((data: string) => {
-      this.melanomaType2 = data;
-    });
-    this.translateService.get('SECTION_A1_4_MELANOMA_OPTION_3').subscribe((data: string) => {
-      this.melanomaType3 = data;
-    });
-    await this.translateService.get('SECTION_A1_4_MELANOMA_OPTION_4').subscribe((data: string) => {
-      this.melanomaType4 = data;
     });
   }
 

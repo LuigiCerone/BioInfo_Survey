@@ -37,6 +37,10 @@
     </mat-menu>
   </span>
   <span class="fill-remaining-space">MelaNostrum</span>
+  <mat-select (selectionChange)="onChange()" [(value)]="selectedLanguage">
+    <mat-option value="it">it</mat-option>
+    <mat-option value="en" selected>en</mat-option>
+  </mat-select>
 </mat-toolbar>
 <router-outlet></router-outlet>
 

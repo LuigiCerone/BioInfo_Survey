@@ -7,7 +7,7 @@
         <mat-label>{{'SECTION_A1_1_LABEL' | translate}}</mat-label>
         <mat-select formControlName="subject" [compareWith]="subjectSelected">
           <mat-option *ngFor="let option of subjectOpt" [value]="option.value">
-            {{option.viewValue}}
+            {{option.viewValue | translate }}
           </mat-option>
         </mat-select>
       </mat-form-field>
@@ -36,7 +36,7 @@
         <mat-label>{{'SECTION_A1_4_LABEL' | translate}}</mat-label>
         <mat-select formControlName="typeOfMelanoma">
           <mat-option *ngFor="let option of melanomaOpt" [value]="option.value">
-            {{option.viewValue}}
+            {{option.viewValue | translate }}
           </mat-option>
         </mat-select>
         <mat-hint>

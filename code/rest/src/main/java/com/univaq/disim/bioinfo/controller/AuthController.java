@@ -53,22 +53,11 @@ public class AuthController {
         SecurityContextHolder.getContext().setAuthentication(authentication);
 
         String jwt = jwtProvider.generateJwtToken(authentication);
-        return ResponseEntity.ok(new JwtResponse(jwt, appUserDetailsService.findOneByUsername(loginRequest.getUsername())));
+        return ResponseEntity.ok(new JwtResponse(jwt));
     }
 
     @PostMapping("/signup")
     public ResponseEntity<?> registerUser(@RequestBody JsonNode json) throws BusinessLayerException {
-        LOGGER.debug(json.asText());
-//        if(userRepository.existsByUsername(signUpRequest.getUsername())) {
-//            return new ResponseEntity<String>("Fail -> Username is already taken!",
-//                    HttpStatus.BAD_REQUEST);
-//        }
-
-//        if(userRepository.existsByEmail(signUpRequest.getEmail())) {
-//            return new ResponseEntity<String>("Fail -> Email is already in use!",
-//                    HttpStatus.BAD_REQUEST);
-//        }
-
         User user = appUserDetailsService.generateAndSaveUser(json.get("role").textValue());
 
         return new ResponseEntity<>(user, HttpStatus.CREATED);

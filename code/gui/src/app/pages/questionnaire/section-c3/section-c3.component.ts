@@ -2,7 +2,7 @@ import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {Options} from '../section-a1/section-a1.component';
 import {AuthenticationService} from '../../../services/authentication.service';
-import {Router} from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import {QuestionnaireService} from '../../../services/questionnaire.service';
 import { FamilyHistory, SectionC3 } from '../../../model/SectionC3';
 import { Questionnaire } from '../../../model/Questionnaire';
@@ -46,13 +46,17 @@ export class SectionC3Component implements OnInit {
   @ViewChild('melanomaDialog', {static: false}) melanomaDialog: TemplateRef<any>;
   @ViewChild('cancerDialog', {static: false}) cancerDialog: TemplateRef<any>;
 
+  private username: string;
+
   constructor(private authenticationService: AuthenticationService,
-              private router: Router,
+              private route: ActivatedRoute,
               private questionnaireService: QuestionnaireService,
               private dialog: MatDialog) {}
 
   ngOnInit() {
-    this.questionnaireService.getQuestionnaireForUser(this.authenticationService.currentUserValue.username, 'c3').subscribe( (section: SectionC3) => {
+    this.username = this.route.snapshot.params.username;
+    console.log(this.username);
+    this.questionnaireService.getQuestionnaireForUser(this.username, 'c3').subscribe( (section: SectionC3) => {
       console.log(section);
       if (section) {
         this.c3 = section;
@@ -77,7 +81,7 @@ export class SectionC3Component implements OnInit {
     this.c3 = new SectionC3(this.form, this.c3.familyHistoryOfMelanomaList, this.c3.familyHistoryOfOtherCancer);
 
     console.log(this.c3);
-    this.questionnaireService.insertSection(this.authenticationService.currentUserValue.username, 'c3', this.c3).subscribe( (res) => {
+    this.questionnaireService.insertSection(this.username, 'c3', this.c3).subscribe( (res) => {
       console.log(res);
     });
   }

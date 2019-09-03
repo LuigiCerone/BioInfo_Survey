@@ -1,3 +1,5 @@
+import * as jwt_decode from 'jwt-decode';
+
 export class User {
   username: string;
   password: string;
@@ -7,10 +9,14 @@ export class User {
 
   constructor(jwtResponse: any) {
     this.accessToken = jwtResponse.accessToken;
-    this.username = jwtResponse.user.username;
-    this.password = jwtResponse.user.password;
-    this.role = jwtResponse.user.role;
-    if (this.role !== 'DOCTOR'){
+
+    const decode = jwt_decode(this.accessToken);
+
+    console.log(decode);
+
+    this.username = decode.username;
+    this.role = decode.role[0].authority;
+    if (this.role !== 'ROLE_DOCTOR') {
       this.patient = true;
     }
   }

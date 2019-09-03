@@ -3,7 +3,7 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {Options} from '../section-a1/section-a1.component';
 import { SectionB1 } from '../../../model/SectionB1';
 import { AuthenticationService } from '../../../services/authentication.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { QuestionnaireService } from '../../../services/questionnaire.service';
 import { TranslateService } from '@ngx-translate/core';
 
@@ -92,6 +92,7 @@ export class SectionB1Component implements OnInit {
   ];
 
   private b1: SectionB1;
+  private username: string;
 
   constructor(private authenticationService: AuthenticationService,
               private router: Router,
@@ -99,8 +100,11 @@ export class SectionB1Component implements OnInit {
               private translateService: TranslateService) { }
 
   ngOnInit() {
+    this.username = this.route.snapshot.params.username;
+    console.log(this.username);
+
     // Get current logged in user and retrieve his/her questionnaire.
-    this.questionnaireService.getQuestionnaireForUser(this.authenticationService.currentUserValue.username, 'b1').subscribe( (section: SectionB1) => {
+    this.questionnaireService.getQuestionnaireForUser(this.username, 'b1').subscribe( (section: SectionB1) => {
       console.log(section);
       if (section) {
         this.b1 = section;
@@ -212,7 +216,7 @@ export class SectionB1Component implements OnInit {
     this.b1 = new SectionB1(this.form);
 
     console.log(this.b1);
-    this.questionnaireService.insertSection(this.authenticationService.currentUserValue.username, 'b1', this.b1).subscribe( (res) => {
+    this.questionnaireService.insertSection(this.username, 'b1', this.b1).subscribe( (res) => {
       console.log(res);
     });
   }

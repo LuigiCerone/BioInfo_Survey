@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './pages/login/login.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule} from './material.module';
 import { AppRoutingModule } from './app.routing.module';
@@ -22,6 +22,8 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
+import { QueryComponent } from './pages/query/query.component';
+import { QueryBuilderModule } from 'angular2-query-builder';
 
 @NgModule({
   declarations: [
@@ -29,7 +31,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     LoginComponent,
     HomeComponent,
     QuestionnaireComponent,
-    ProfileComponent
+    ProfileComponent,
+    QueryComponent
   ],
   imports: [
     BrowserModule,
@@ -47,6 +50,8 @@ export function HttpLoaderFactory(http: HttpClient) {
         deps: [HttpClient]
       }
     })
+    QueryBuilderModule,
+    FormsModule
   ],
   providers: [
     NoAuthGuard,

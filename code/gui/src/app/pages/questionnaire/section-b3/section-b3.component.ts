@@ -3,7 +3,7 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {Options} from '../section-a1/section-a1.component';
 import { SectionB3, Vitamin } from '../../../model/SectionB3';
 import {AuthenticationService} from "../../../services/authentication.service";
-import {Router} from "@angular/router";
+import { ActivatedRoute, Router } from '@angular/router';
 import {QuestionnaireService} from "../../../services/questionnaire.service";
 
 @Component({
@@ -60,13 +60,17 @@ export class SectionB3Component implements OnInit {
 
 
   private b3: SectionB3;
+  private username: string;
 
   constructor(private authenticationService: AuthenticationService,
-              private router: Router,
+              private route: ActivatedRoute,
               private questionnaireService: QuestionnaireService) {}
 
   ngOnInit() {
-    this.questionnaireService.getQuestionnaireForUser(this.authenticationService.currentUserValue.username, 'b3').subscribe( (section: SectionB3) => {
+    this.username = this.route.snapshot.params.username;
+    console.log(this.username);
+
+    this.questionnaireService.getQuestionnaireForUser(this.username, 'b3').subscribe( (section: SectionB3) => {
       console.log(section);
       if (section) {
         this.b3 = section;
@@ -111,7 +115,7 @@ export class SectionB3Component implements OnInit {
     this.b3 = new SectionB3(this.form);
 
     console.log(this.b3);
-    this.questionnaireService.insertSection(this.authenticationService.currentUserValue.username, 'b3', this.b3).subscribe( (res) => {
+    this.questionnaireService.insertSection(this.username, 'b3', this.b3).subscribe( (res) => {
       console.log(res);
     });
   }

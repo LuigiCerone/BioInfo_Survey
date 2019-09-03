@@ -10,7 +10,7 @@ import { User } from '../model/User';
 })
 export class AuthenticationService {
 
-    public currentUserSubject$: BehaviorSubject<User>;
+  public currentUserSubject$: BehaviorSubject<User>;
   public currentUser: Observable<User>;
 
   constructor(private http: HttpClient) {

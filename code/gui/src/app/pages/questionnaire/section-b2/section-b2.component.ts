@@ -3,7 +3,7 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {Options} from '../section-a1/section-a1.component';
 import { IntermittentSunExposure, SectionB2, SevereSunBurns, SunscreenUse } from '../../../model/SectionB2';
 import {AuthenticationService} from '../../../services/authentication.service';
-import {Router} from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import {QuestionnaireService} from '../../../services/questionnaire.service';
 
 
@@ -30,13 +30,18 @@ export class SectionB2Component implements OnInit {
 
   private b2: SectionB2;
 
+  private username: string;
+
   constructor(private authenticationService: AuthenticationService,
-              private router: Router,
+              private route: ActivatedRoute,
               private questionnaireService: QuestionnaireService) {
   }
 
   ngOnInit() {
-    this.questionnaireService.getQuestionnaireForUser(this.authenticationService.currentUserValue.username, 'b2').subscribe((section: SectionB2) => {
+    this.username = this.route.snapshot.params.username;
+    console.log(this.username);
+
+    this.questionnaireService.getQuestionnaireForUser(this.username, 'b2').subscribe((section: SectionB2) => {
       console.log(section);
       if (section) {
         this.b2 = section;
@@ -126,14 +131,8 @@ export class SectionB2Component implements OnInit {
     this.b2 = new SectionB2(this.form);
 
     console.log(this.b2);
-    // this.b2.intermittentSunExposure = this.transformMap(this.b2.intermittentSunExposure);
-    // this.b2.severeSunBurns = this.transformMap(this.b2.severeSunBurns);
-    // this.b2.sunscreenUses = this.transformMap(this.b2.sunscreenUses);
 
-    // console.log('after');
-    // console.log(this.b2);
-
-    this.questionnaireService.insertSection(this.authenticationService.currentUserValue.username, 'b2', this.b2).subscribe((res) => {
+    this.questionnaireService.insertSection(this.username, 'b2', this.b2).subscribe((res) => {
       console.log(res);
     });
   }

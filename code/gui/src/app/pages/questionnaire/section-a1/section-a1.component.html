@@ -2,52 +2,78 @@
   <mat-card>
     <mat-card-title><h2>{{'SECTION' | translate}} A.1</h2></mat-card-title>
     <mat-card-content>
-      <h3>1. {{'SECTION_A1_1_TITLE' | translate}}</h3>
-      <mat-form-field>
-        <mat-label>{{'SECTION_A1_1_LABEL' | translate}}</mat-label>
-        <mat-select formControlName="subject" [compareWith]="subjectSelected">
-          <mat-option *ngFor="let option of subjectOpt" [value]="option.value">
-            {{option.viewValue | translate }}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
-      <br><br><br>
-      <h3>2. {{'SECTION_A1_2_TITLE' | translate}}</h3>
-      <mat-form-field>
-        <mat-label>{{'SECTION_A1_2_LABEL' | translate}}</mat-label>
-        <input matInput formControlName="dbCodeNumber">
-        <mat-hint>
-          {{'SECTION_A1_2_HINT' | translate}}
-
-        </mat-hint>
-      </mat-form-field>
-      <br><br><br>
-      <h3>3. {{'SECTION_A1_3_TITLE' | translate}}</h3>
-      <mat-form-field>
-        <mat-label>{{'SECTION_A1_3_LABEL' | translate}}</mat-label>
-        <input matInput formControlName="dateOfQuestionnaireAdministration">
-        <mat-hint>
-          {{'SECTION_A1_3_HINT' | translate}}
-        </mat-hint>
-      </mat-form-field>
-      <br><br><br>
-      <h3>4. {{'SECTION_A1_4_TITLE' | translate}}</h3>
-      <mat-form-field>
-        <mat-label>{{'SECTION_A1_4_LABEL' | translate}}</mat-label>
-        <mat-select formControlName="typeOfMelanoma">
-          <mat-option *ngFor="let option of melanomaOpt" [value]="option.value">
-            {{option.viewValue | translate }}
-          </mat-option>
-        </mat-select>
-        <mat-hint>
-          {{'SECTION_A1_4_HINT' | translate}}
-        </mat-hint>
-        <br><br>
-        <div *ngIf="form.value.typeMelanoma === 'other'">
-          <mat-label>{{'SECTION_A1_4_OTHER_PLACEHOLDER' | translate}}</mat-label>
-          <input matInput formControlName="otherSpecification">
-        </div>
-      </mat-form-field>
+      <mat-grid-list cols="2" rowHeight="2:1">
+        <mat-grid-tile>
+          <mat-grid-tile-header>
+            <h3>1. {{'SECTION_A1_1_TITLE' | translate}}</h3><br>
+          </mat-grid-tile-header>
+          <mat-card-content class="container">
+            <br>
+            <mat-form-field class="container">
+              <mat-label>{{'SECTION_A1_1_LABEL' | translate}}</mat-label>
+              <mat-select formControlName="subject">
+                <mat-option *ngFor="let option of subjectOpt" [value]="option.value">
+                  {{option.viewValue | translate }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </mat-card-content>
+        </mat-grid-tile>
+        <mat-grid-tile>
+          <mat-grid-tile-header>
+            <h3>2. {{'SECTION_A1_2_TITLE' | translate}}</h3><br>
+          </mat-grid-tile-header>
+          <mat-card-content class="container">
+            <br>
+            <mat-form-field class="container">
+              <mat-label>{{'SECTION_A1_2_LABEL' | translate}}</mat-label>
+              <input matInput formControlName="dbCodeNumber">
+              <mat-hint>
+                {{'SECTION_A1_2_HINT' | translate}}
+              </mat-hint>
+            </mat-form-field>
+          </mat-card-content>
+        </mat-grid-tile>
+        <mat-grid-tile>
+          <mat-grid-tile-header>
+            <h3>3. {{'SECTION_A1_3_TITLE' | translate}}</h3><br>
+          </mat-grid-tile-header>
+          <mat-card-content class="container">
+            <br>
+            <mat-form-field class="container">
+              <mat-label>{{'SECTION_A1_3_LABEL' | translate}}</mat-label>
+              <input matInput formControlName="dateOfQuestionnaireAdministration">
+              <mat-hint>
+                {{'SECTION_A1_3_HINT' | translate}}
+              </mat-hint>
+            </mat-form-field>
+          </mat-card-content>
+        </mat-grid-tile>
+        <mat-grid-tile>
+          <mat-grid-tile-header>
+            <h3>4. {{'SECTION_A1_4_TITLE' | translate}}</h3><br>
+          </mat-grid-tile-header>
+          <mat-card-content class="container">
+            <br><br><br>
+            <mat-form-field class="container">
+              <mat-label>{{'SECTION_A1_4_LABEL' | translate}}</mat-label>
+              <mat-select formControlName="typeOfMelanoma">
+                <mat-option *ngFor="let option of melanomaOpt" [value]="option.value">
+                  {{option.viewValue | translate }}
+                </mat-option>
+              </mat-select>
+              <mat-hint>
+                {{'SECTION_A1_4_HINT' | translate}}
+              </mat-hint>
+            </mat-form-field>
+            <br><br>
+            <mat-form-field *ngIf="form.value.typeOfMelanoma === 'other'" class="container">
+              <mat-label>{{'SECTION_A1_4_OTHER_PLACEHOLDER' | translate}}</mat-label>
+              <input matInput formControlName="otherSpecification">
+            </mat-form-field>
+          </mat-card-content>
+        </mat-grid-tile>
+      </mat-grid-list>
       <br>
       <div class="button">
         <button type="submit" [disabled]="!form.valid" mat-raised-button color="primary" matStepperNext>{{'BUTTON_NEXT' | translate}}</button>

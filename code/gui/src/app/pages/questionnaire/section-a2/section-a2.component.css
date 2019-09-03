@@ -23,3 +23,11 @@
   display: flex;
   justify-content: flex-end;
 }
+
+.container {
+  width: 100%;
+}
+
+::ng-deep mat-form-field {
+  width: 100% !important;
+}

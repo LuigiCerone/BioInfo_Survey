@@ -1,11 +1,9 @@
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { SectionA1 } from '../../../model/SectionA1';
 import { AuthenticationService } from '../../../services/authentication.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { QuestionnaireService } from '../../../services/questionnaire.service';
-import { MatStepper } from '@angular/material';
-import { TranslateService } from '@ngx-translate/core';
 
 export interface Options {
   value: string;
@@ -19,17 +17,6 @@ export interface Options {
 })
 
 export class SectionA1Component implements OnInit {
-  @ViewChild('stepper', { static: false }) stepper: MatStepper;
-
-  private subjectOpt1: string;
-  private subjectOpt2: string;
-  private melanomaType1: string;
-  private melanomaType2: string;
-  private melanomaType3: string;
-  private melanomaType4: string;
-
-  private languageChanged: any;
-
   private form: FormGroup;
 
   subjectOpt: Options[] = [
@@ -49,18 +36,15 @@ export class SectionA1Component implements OnInit {
 
   constructor(private authenticationService: AuthenticationService,
               private route: ActivatedRoute,
-              private questionnaireService: QuestionnaireService,
-              private translateService: TranslateService) { }
+              private questionnaireService: QuestionnaireService) { }
 
   async ngOnInit() {
-    // this.getTranslation();
-
     this.username = this.route.snapshot.params.username;
-    console.log(this.username);
+    // console.log(this.username);
     
     // Get current logged in user and retrieve his/her questionnaire.
     this.questionnaireService.getQuestionnaireForUser(this.username, 'a1').subscribe( (section: SectionA1) => {
-      console.log(section);
+      // console.log(section);
       if (section) {
         this.a1 = section;
       } else {
@@ -86,15 +70,11 @@ export class SectionA1Component implements OnInit {
     });
   }
 
-  /* This method is used to select ion-select item according to model status. */
-  subjectSelected(o1: string, o2: string) {
-    return o1 && o2 ? o1.toLowerCase() === o2.toLowerCase() : o1 === o2;
-  }
 
   save() {
     this.a1 = new SectionA1(this.form);
 
-    console.log(this.a1);
+    // console.log(this.a1);
     this.questionnaireService.insertSection(this.username, 'a1', this.a1).subscribe( (res) => {
       console.log(res);
     });

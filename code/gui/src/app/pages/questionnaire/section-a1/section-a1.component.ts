@@ -5,6 +5,7 @@ import { AuthenticationService } from '../../../services/authentication.service'
 import { Router } from '@angular/router';
 import { QuestionnaireService } from '../../../services/questionnaire.service';
 import { MatStepper } from '@angular/material';
+import { TranslateService } from '@ngx-translate/core';
 
 export interface Options {
   value: string;
@@ -20,27 +21,37 @@ export interface Options {
 export class SectionA1Component implements OnInit {
   @ViewChild('stepper', { static: false }) stepper: MatStepper;
 
+  private subjectOpt1: string;
+  private subjectOpt2: string;
+  private melanomaType1: string;
+  private melanomaType2: string;
+  private melanomaType3: string;
+  private melanomaType4: string;
+
+  private languageChanged: any;
+
   private form: FormGroup;
 
   subjectOpt: Options[] = [
-    {value: 'case', viewValue: 'Case'},
-    {value: 'control', viewValue: 'Control'},
+    {value: 'case', viewValue: this.subjectOpt1},
+    {value: 'control', viewValue: this.subjectOpt2},
   ];
 
   melanomaOpt: Options[] = [
-    {value: 'sporadic', viewValue: 'Sporadic'},
-    {value: 'familial', viewValue: 'Familial'},
-    {value: 'dont_know', viewValue: 'Don\'t know'},
-    {value: 'other', viewValue: 'Other'},
+    {value: 'sporadic', viewValue: this.melanomaType1},
+    {value: 'familial', viewValue: this.melanomaType2},
+    {value: 'dont_know', viewValue: this.melanomaType3},
+    {value: 'other', viewValue: this.melanomaType4},
   ];
 
   private a1: SectionA1;
 
   constructor(private authenticationService: AuthenticationService,
               private router: Router,
-              private questionnaireService: QuestionnaireService) { }
+              private questionnaireService: QuestionnaireService,
+              private translateService: TranslateService) { }
 
-  ngOnInit() {
+  async ngOnInit() {
     // Get current logged in user and retrieve his/her questionnaire.
     this.questionnaireService.getQuestionnaireForUser(this.authenticationService.currentUserValue.username, 'a1').subscribe( (section: SectionA1) => {
       console.log(section);
@@ -50,6 +61,37 @@ export class SectionA1Component implements OnInit {
         this.a1 = new SectionA1();
       }
       this.buildForm();
+    });
+    this.subscribeToEvents();
+    await this.getTranslation();
+  }
+
+  subscribeToEvents() {
+    // When the language is changed all the translated
+    // varibles need to be translated again
+    this.languageChanged = this.translateService.onLangChange.subscribe(() => {
+      this.getTranslation();
+    });
+  }
+
+  async getTranslation() {
+    this.translateService.get('SECTION_A1_1_SUBJECT_OPTION_1').subscribe((data: string) => {
+      this.subjectOpt1 = data;
+    });
+    this.translateService.get('SECTION_A1_1_SUBJECT_OPTION_2').subscribe((data: string) => {
+      this.subjectOpt2 = data;
+    });
+    this.translateService.get('SECTION_A1_4_MELANOMA_OPTION_1').subscribe((data: string) => {
+      this.melanomaType1 = data;
+    });
+    this.translateService.get('SECTION_A1_4_MELANOMA_OPTION_2').subscribe((data: string) => {
+      this.melanomaType2 = data;
+    });
+    this.translateService.get('SECTION_A1_4_MELANOMA_OPTION_3').subscribe((data: string) => {
+      this.melanomaType3 = data;
+    });
+    await this.translateService.get('SECTION_A1_4_MELANOMA_OPTION_4').subscribe((data: string) => {
+      this.melanomaType4 = data;
     });
   }
 

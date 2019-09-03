@@ -12,6 +12,7 @@ import { SectionEComponent } from './section-e/section-e.component';
 import { SectionC2Component } from './section-c2/section-c2.component';
 import { SectionC3Component } from './section-c3/section-c3.component';
 import { SectionDComponent } from './section-d/section-d.component';
+import {TranslateModule} from '@ngx-translate/core';
 
 
 
@@ -20,7 +21,8 @@ import { SectionDComponent } from './section-d/section-d.component';
     CommonModule,
     MaterialModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    TranslateModule.forChild()
   ],
   exports: [
     SectionA1Component,

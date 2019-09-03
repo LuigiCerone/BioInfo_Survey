@@ -1,5 +1,4 @@
-
-<mat-horizontal-stepper linear="true" #stepper
+<mat-horizontal-stepper linear="true" #stepper labelPosition="bottom" 
                         *ngIf="(authenticationService.currentUserSubject$ | async)?.role === 'ROLE_CASE' ||
                         (authenticationService.currentUserSubject$ | async)?.role === 'ROLE_CONTROL'" >
   <mat-step>

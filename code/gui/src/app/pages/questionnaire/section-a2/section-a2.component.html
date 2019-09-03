@@ -1,12 +1,12 @@
 <div>
   <form *ngIf="form" [formGroup]="form" (ngSubmit)="save()">
     <mat-card>
-      <mat-card-title><h2>Section A.2</h2></mat-card-title>
+      <mat-card-title><h2>{{"SECTION" | translate}} A.2</h2></mat-card-title>
       <mat-card-content>
         <br>
-        <h3>1. Sex</h3>
+        <h3>1. {{"SECTION_A2_1_TITLE" | translate}}</h3>
         <mat-form-field >
-          <mat-label>Sex defined at birth</mat-label>
+          <mat-label>{{"SECTION_A2_1_LABEL" | translate}}</mat-label>
           <mat-select formControlName="sex" [compareWith]="sexSelected">
             <mat-option *ngFor="let option of sexOpt" [value]="option.value">
               {{option.viewValue}}
@@ -14,38 +14,38 @@
           </mat-select>
         </mat-form-field>
         <br>
-        <h3>2. Enter the place of birth and date</h3>
+        <h3>2. {{"SECTION_A2_2_TITLE" | translate}}</h3>
         <mat-form-field>
-          <input matInput placeholder="City" formControlName="cityOfBirth">
+          <input matInput placeholder='{{"SECTION_A2_2_CITY_PLACEHOLDER" | translate}}' formControlName="cityOfBirth">
         </mat-form-field>
         <mat-form-field>
-          <input matInput placeholder="Province" formControlName="provinceOfBirth">
+          <input matInput placeholder='{{"SECTION_A2_2_PROVINCE_PLACEHOLDER" | translate}}' formControlName="provinceOfBirth">
         </mat-form-field>
         <mat-form-field>
-          <input matInput placeholder="Country" formControlName="countryOfBirth">
+          <input matInput placeholder='{{"SECTION_A2_2_COUNTRY_PLACEHOLDER" | translate}}' formControlName="countryOfBirth">
         </mat-form-field>
         <mat-form-field>
-          <input placeholder="Date"
+          <input placeholder='{{"SECTION_A2_2_DATE_PLACEHOLDER" | translate}}'
                  matInput
                  formControlName="dateOfBirth">
           <mat-hint>
-            Format DD/MMM/YYYY. Use a 3-letter abbreviation for month to avoid misinterpretation (US vs. European style)
+            {{"SECTION_A2_2_DATE_PLACEHOLDER_HINT" | translate}}
           </mat-hint>
         </mat-form-field>
         <br><br>
-        <h3>3. Enter the weight and height</h3>
+        <h3>3. {{"SECTION_A2_3_TITLE" | translate}}</h3>
         <mat-form-field>
-          <input placeholder="Height" matInput formControlName="height">
+          <input placeholder='{{"SECTION_A2_3_HEIGHT_PLACEHOLDER" | translate}}' matInput formControlName="height">
           <mat-hint>Cm</mat-hint>
         </mat-form-field>
         <mat-form-field>
-          <input placeholder="Weight" matInput formControlName="weight">
+          <input placeholder='{{"SECTION_A2_3_WEIGHT_PLACEHOLDER" | translate}}' matInput formControlName="weight">
           <mat-hint>Kg</mat-hint>
         </mat-form-field>
         <br>
-        <h3>4. Select your ethnicity</h3>
+        <h3>4. {{"SECTION_A2_4_TITLE" | translate}}</h3>
         <mat-form-field>
-          <mat-label>Ethnicity</mat-label>
+          <mat-label>{{"SECTION_A2_4_LABEL" | translate}}</mat-label>
           <mat-select formControlName="ethnicity">
             <mat-option *ngFor="let option of ethnicityOpt" [value]="option.value">
               {{option.viewValue}}
@@ -54,24 +54,24 @@
 
         </mat-form-field>
         <div *ngIf="form.value.ethnicity === 'other'">
-            <mat-label>Specify</mat-label>
+            <mat-label>{{"SECTION_A2_4_OTHER_PLACEHOLDER" | translate}}</mat-label>
             <input matInput formControlName="otherEthnicity">
           </div>
         <br><br>
-        <h3>5. Enter your residency</h3>
+        <h3>5. {{"SECTION_A2_5_TITLE" | translate}}</h3>
         <mat-form-field>
-          <input matInput placeholder="City" formControlName="cityOfResidence" required>
+          <input matInput placeholder='{{"SECTION_A2_5_CITY_PLACEHOLDER" | translate}}' formControlName="cityOfResidence" required>
         </mat-form-field>
         <mat-form-field>
-          <input matInput placeholder="Provence" formControlName="provinceOfResidence" required>
+          <input matInput placeholder='{{"SECTION_A2_5_PROVINE_PLACEHOLDER" | translate}}' formControlName="provinceOfResidence" required>
         </mat-form-field>
         <mat-form-field>
-          <input matInput placeholder="Country" formControlName="countryOfResidence" required>
+          <input matInput placeholder='{{"SECTION_A2_5_COUNTRY_PLACEHOLDER" | translate}}' formControlName="countryOfResidence" required>
         </mat-form-field>
         <br>
-        <h3>6. Specify your level of education</h3>
+        <h3>6. {{"SECTION_A2_6_TITLE" | translate}}</h3>
         <mat-form-field>
-          <mat-label>Education</mat-label>
+          <mat-label>{{"SECTION_A2_6_LABEL" | translate}}</mat-label>
           <mat-select formControlName="education">
             <mat-option *ngFor="let option of educationOpt" [value]="option.value">
               {{option.viewValue}}
@@ -79,9 +79,9 @@
           </mat-select>
         </mat-form-field>
         <br>
-        <h3>7. Specify your current occupational status</h3>
+        <h3>7. {{"SECTION_A2_7_TITLE" | translate}}</h3>
         <mat-form-field>
-          <mat-label>Occupation</mat-label>
+          <mat-label>{{"SECTION_A2_7_LABEL" | translate}}</mat-label>
           <mat-select formControlName="currentOccupationalStatus" required>
             <mat-option *ngFor="let option of occupationOpt" [value]="option.value">
               {{option.viewValue}}
@@ -89,7 +89,7 @@
           </mat-select>
         </mat-form-field>
         <div class="button">
-          <button type="submit" [disabled]="!form.valid" mat-raised-button color="primary" matStepperNext>Next</button>
+          <button type="submit" [disabled]="!form.valid" mat-raised-button color="primary" matStepperNext> {{"BUTTON_NEXT" | translate}}</button>
         </div>
       </mat-card-content>
     </mat-card>

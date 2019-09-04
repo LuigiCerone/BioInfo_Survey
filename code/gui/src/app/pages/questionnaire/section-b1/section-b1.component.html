@@ -1,100 +1,122 @@
 <div>
   <form *ngIf="form" [formGroup]="form" (ngSubmit)="save()">
     <mat-card>
-      <mat-card-title><h2>{{"SECTION" | translate}} B.1</h2></mat-card-title>
+      <mat-card-title><h2>{{ "SECTION" | translate }} B.1</h2></mat-card-title>
       <mat-card-content>
-        <br>
-        <h3>1. {{"SECTION_B1_1_TITLE" | translate}}</h3>
-        <div>
+        <mat-grid-list cols="1" rowHeight="2:1">
+          <mat-grid-tile>
+            <mat-grid-tile-header>
+              <h3>1. {{ "SECTION_B1_1_TITLE" | translate }}</h3>
+            </mat-grid-tile-header>
+            <mat-card-content class="container">
+              <div>
+                <p>
+                  {{ "SECTION_B1_1_LABEL_1" | translate }}
+                </p>
+                <mat-radio-group aria-label="Select an option" formControlName="skinType1">
+                  <mat-radio-button *ngFor="let option of burnOpt" [value]="option.value" >
+                    {{option.viewValue | translate }}
+                  </mat-radio-button>
+                </mat-radio-group>
+              </div>
+            </mat-card-content>
+          </mat-grid-tile>
+          <mat-grid-tile rowspan="2">
+            <mat-grid-tile-header>
+              <h4> {{"SECTION_B1_1_LABEL_2" | translate}} </h4>
+            </mat-grid-tile-header>
+            <mat-card-content class="container">
+              <div>
+                <mat-radio-group aria-label="Select an option" formControlName="skinType2">
+                  <mat-radio-button *ngFor="let option of tanOpt" [value]="option.value" >
+                    <mat-card>
+                      <mat-card-title>{{option.viewValue | translate }}</mat-card-title>
+                      <img src="{{option.image}}" alt="{{option.viewValue}}"/>
+                    </mat-card>
+                  </mat-radio-button>
+                </mat-radio-group>
+              </div>
+            </mat-card-content>
+          </mat-grid-tile>
 
-          <p>
-            {{"SECTION_B1_1_LABEL_1" | translate}}
-          </p>
-          <mat-radio-group aria-label="Select an option" formControlName="skinType1">
-            <mat-radio-button *ngFor="let option of burnOpt" [value]="option.value" >
-              {{option.viewValue}}
-            </mat-radio-button>
-          </mat-radio-group>
-        </div>
-        <div>
-          <h4>
-            {{"SECTION_B1_1_LABEL_2" | translate}}
-          </h4>
-          <mat-radio-group aria-label="Select an option" formControlName="skinType2">
-            <mat-radio-button *ngFor="let option of tanOpt" [value]="option.value" >
-              <mat-card>
-                <mat-card-title>{{option.viewValue}}</mat-card-title>
-                <img src="{{option.image}}" alt="{{option.viewValue}}"/>
-<!--                TODO Check images -->
-              </mat-card>
-            </mat-radio-button>
-          </mat-radio-group>
-        </div>
-        <br>
-        <br>
+          <mat-grid-tile rowspan="1">
+            <mat-grid-tile-header>
+              <h3>2. {{"SECTION_B1_2_TITLE" | translate}}</h3>
+            </mat-grid-tile-header>
+            <mat-card-content class="container">
+              <div>
+                <p>
+                  {{"SECTION_B1_2_LABEL" | translate}}
+                </p>
+                <mat-radio-group aria-label="Select an option" formControlName="eyeColor">
+                  <mat-radio-button *ngFor="let option of eyeOpt" [value]="option.value" >
+                    <mat-card>
+                      <mat-card-title>{{option.viewValue | translate }}</mat-card-title>
+                      <img src="{{option.image}}" alt="{{option.viewValue}}"/>
+                    </mat-card>
+                  </mat-radio-button>
+                </mat-radio-group>
+              </div>
+            </mat-card-content>
+          </mat-grid-tile>
 
-
-        <h3>2. {{"SECTION_B1_2_TITLE" | translate}}</h3>
-        <div>
-          <p>
-            {{"SECTION_B1_2_LABEL" | translate}}
-          </p>
-          <mat-radio-group aria-label="Select an option" formControlName="eyeColor">
-            <mat-radio-button *ngFor="let option of eyeOpt" [value]="option.value" >
-              <mat-card>
-                <mat-card-title>{{option.viewValue}}</mat-card-title>
-                <img src="{{option.image}}" alt="{{option.viewValue}}"/>
-              </mat-card>
-            </mat-radio-button>
-          </mat-radio-group>
-        </div>
+          <mat-grid-tile rowspan="2">
+            <mat-grid-tile-header>
+              <h4> {{"SECTION_B1_3_TITLE" | translate}} </h4>
+            </mat-grid-tile-header>
+            <mat-card-content class="container">
+              <div>
+                <p>{{"SECTION_B1_3_LABEL" | translate}}</p>
+                <mat-radio-group aria-label="Select an option" formControlName="hairColor">
+                  <mat-radio-button *ngFor="let option of hairOpt" [value]="option.value" >
+                    <mat-card>
+                      <mat-card-title>{{option.viewValue | translate }}</mat-card-title>
+                      <img src="{{option.image}}" alt="{{option.viewValue}}"/>
+                    </mat-card>
+                  </mat-radio-button>
+                </mat-radio-group>
+              </div>
+            </mat-card-content>
+          </mat-grid-tile>
+          <mat-grid-tile rowspan="2">
+            <mat-grid-tile-header>
+              <h3>4. {{"SECTION_B1_4_TITLE" | translate}}</h3>
+            </mat-grid-tile-header>
+            <mat-card-content class="container">
+              <div>
+                <p>
+                  {{"SECTION_B1_4_LABEL" | translate}}
+                </p>
+                <mat-radio-group aria-label="Select an option" formControlName="freckles">
+                  <mat-radio-button *ngFor="let option of freckleOpt" [value]="option.value" >
+                    <mat-card>
+                      <mat-card-title>{{option.viewValue | translate }}</mat-card-title>
+                      <img src="{{option.image}}" alt="{{option.viewValue}}"/>
+                    </mat-card>
+                  </mat-radio-button>
+                </mat-radio-group>
+              </div>
+            </mat-card-content>
+          </mat-grid-tile>
+          <mat-grid-tile rowspan="2">
+            <mat-grid-tile-header>
+              <h3>5. {{"SECTION_B1_5_TITLE" | translate}}</h3>
+            </mat-grid-tile-header>
+            <mat-card-content class="container">
+              <div>
+                <mat-radio-group aria-label="Select an option" formControlName="neviInChildhoodAdolescence">
+                  <mat-radio-button *ngFor="let option of neviOpt" [value]="option.value" >
+                    <mat-card>
+                      <mat-card-title>{{option.viewValue | translate }}</mat-card-title>
+                      <img src="{{option.image}}" alt="{{option.viewValue}}"/>
+                    </mat-card>
+                  </mat-radio-button>
+                </mat-radio-group>
+              </div>
+            </mat-card-content>
+          </mat-grid-tile>
+        </mat-grid-list>
         <br>
-
-        <h3>3. {{"SECTION_B1_3_TITLE" | translate}}</h3>
-        <div>
-          <p>
-            {{"SECTION_B1_3_LABEL" | translate}}
-          </p>
-            <mat-radio-group aria-label="Select an option" formControlName="hairColor">
-              <mat-radio-button *ngFor="let option of hairOpt" [value]="option.value" >
-                <mat-card>
-                  <mat-card-title>{{option.viewValue}}</mat-card-title>
-                  <img src="{{option.image}}" alt="{{option.viewValue}}"/>
-                </mat-card>
-              </mat-radio-button>
-            </mat-radio-group>
-        </div>
-        <br>
-
-        <h3>4. {{"SECTION_B1_4_TITLE" | translate}}</h3>
-        <div>
-          <p>
-            {{"SECTION_B1_4_LABEL" | translate}}
-          </p>
-          <mat-radio-group aria-label="Select an option" formControlName="freckles">
-            <mat-radio-button *ngFor="let option of freckleOpt" [value]="option.value" >
-              <mat-card>
-                <mat-card-title>{{option.viewValue}}</mat-card-title>
-                <img src="{{option.image}}" alt="{{option.viewValue}}"/>
-              </mat-card>
-            </mat-radio-button>
-          </mat-radio-group>
-        </div>
-        <br>
-
-        <h3>5. {{"SECTION_B1_5_TITLE" | translate}}</h3>
-        <div>
-          <mat-radio-group aria-label="Select an option" formControlName="neviInChildhoodAdolescence">
-            <mat-radio-button *ngFor="let option of neviOpt" [value]="option.value" >
-              <mat-card>
-                <mat-card-title>{{option.viewValue}}</mat-card-title>
-                <img src="{{option.image}}" alt="{{option.viewValue}}"/>
-              </mat-card>
-            </mat-radio-button>
-          </mat-radio-group>
-        </div>
-        <br>
-
         <div class="button">
           <button type="submit" [disabled]="!form.valid" mat-raised-button color="primary" matStepperNext>{{"BUTTON_NEXT" | translate}}</button>
         </div>

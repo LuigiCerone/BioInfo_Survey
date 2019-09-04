@@ -15,47 +15,47 @@ export class SectionB3Component implements OnInit {
   form: FormGroup;
 
   smokerOpt: Options[] = [
-    {value: '0', viewValue: 'Never'},
-    {value: '1', viewValue: 'Former smoker (quit one year before diagnosis or earlier)'},
-    {value: '2', viewValue: 'Current smoker'},
+    {value: '0', viewValue: 'SECTION_B3_SMOKER_OPT_1'},
+    {value: '1', viewValue: 'SECTION_B3_SMOKER_OPT_2'},
+    {value: '2', viewValue: 'SECTION_B3_SMOKER_OPT_3'},
   ];
 
   smokeQuantityOpt: Options[] = [
-    {value: 'pack', viewValue: 'One pack/day or more'},
-    {value: 'half', viewValue: 'Up to half pack/day'},
-    {value: 'occasionally', viewValue: 'Only occasionally'},
+    {value: 'pack', viewValue: 'SECTION_B3_SMOKER_QUANT_OPT_1'},
+    {value: 'half', viewValue: 'SECTION_B3_SMOKER_QUANT_OPT_2'},
+    {value: 'occasionally', viewValue: 'SECTION_B3_SMOKER_QUANT_OPT_3'},
   ];
 
   vitaminPeriodOpt: Options[] = [
-    {value: 'never', viewValue: 'Never'},
-    {value: '1_3_day/months', viewValue: '1-2 days / month'},
-    {value: '1_3_days/week', viewValue: '1-3 days/week'},
-    {value: '4_6_days/week', viewValue: '4-6 days/week'},
-    {value: 'everyday', viewValue: 'everyday'},
+    {value: 'never', viewValue: 'SECTION_B3_VITAMIN_PER_OPT_1'},
+    {value: '1_3_day/months', viewValue: 'SECTION_B3_VITAMIN_PER_OPT_2'},
+    {value: '1_3_days/week', viewValue: 'SECTION_B3_VITAMIN_PER_OPT_3'},
+    {value: '4_6_days/week', viewValue: 'SECTION_B3_VITAMIN_PER_OPT_4'},
+    {value: 'everyday', viewValue: 'SECTION_B3_VITAMIN_PER_OPT_5'},
   ];
 
   vitaminType1: Options[] = [
-    {value: 'howOftenBetaCarotene', viewValue: 'Beta-Carotene'},
-    {value: 'howOftenVitaminA', viewValue: 'Vitamin A'},
-    {value: 'howOftenVitaminC', viewValue: 'Vitamin C'},
-    {value: 'howOftenVitaminE', viewValue: 'Vitamin E'},
-    {value: 'howOftenVitaminD', viewValue: 'Vitamin D'},
-    {value: 'howOftenMultivitamins', viewValue: 'Multivitamins'},
+    {value: 'howOftenBetaCarotene', viewValue: 'SECTION_B3_VITAMIN_OPT_1'},
+    {value: 'howOftenVitaminA', viewValue: 'SECTION_B3_VITAMIN_OPT_2'},
+    {value: 'howOftenVitaminC', viewValue: 'SECTION_B3_VITAMIN_OPT_3'},
+    {value: 'howOftenVitaminE', viewValue: 'SECTION_B3_VITAMIN_OPT_4'},
+    {value: 'howOftenVitaminD', viewValue: 'SECTION_B3_VITAMIN_OPT_5'},
+    {value: 'howOftenMultivitamins', viewValue: 'SECTION_B3_VITAMIN_OPT_6'},
   ];
   vitaminType2: Options[] = [
-    {value: 'howLongBetaCarotene', viewValue: 'Beta-Carotene'},
-    {value: 'howLongVitaminA', viewValue: 'Vitamin A'},
-    {value: 'howLongVitaminC', viewValue: 'Vitamin C'},
-    {value: 'howLongVitaminE', viewValue: 'Vitamin E'},
-    {value: 'howLongVitaminD', viewValue: 'Vitamin D'},
-    {value: 'howLongMultivitamins', viewValue: 'Multivitamins'},
+    {value: 'howLongBetaCarotene', viewValue: 'SECTION_B3_VITAMIN_OPT_1'},
+    {value: 'howLongVitaminA', viewValue: 'SECTION_B3_VITAMIN_OPT_2'},
+    {value: 'howLongVitaminC', viewValue: 'SECTION_B3_VITAMIN_OPT_3'},
+    {value: 'howLongVitaminE', viewValue: 'SECTION_B3_VITAMIN_OPT_4'},
+    {value: 'howLongVitaminD', viewValue: 'SECTION_B3_VITAMIN_OPT_5'},
+    {value: 'howLongMultivitamins', viewValue: 'SECTION_B3_VITAMIN_OPT_6'},
   ];
 
   vitaminFrequenceOpt: Options[] = [
-    {value: 'less_year', viewValue: '< 1 year'},
-    {value: '1_4_years', viewValue: '1/4 years'},
-    {value: '5_9_years', viewValue: '5/9 years'},
-    {value: '10_years', viewValue: 'Equal or more than 10 years'},
+    {value: 'less_year', viewValue: 'SECTION_B3_VITAMIN_FREQ_OPT_1'},
+    {value: '1_4_years', viewValue: 'SECTION_B3_VITAMIN_FREQ_OPT_2'},
+    {value: '5_9_years', viewValue: 'SECTION_B3_VITAMIN_FREQ_OPT_3'},
+    {value: '10_years', viewValue: 'SECTION_B3_VITAMIN_FREQ_OPT_4'},
   ];
 
 

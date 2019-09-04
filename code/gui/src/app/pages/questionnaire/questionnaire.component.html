@@ -1,20 +1,9 @@
-<mat-horizontal-stepper linear="true" #stepper labelPosition="bottom" 
+<mat-horizontal-stepper linear="true" #stepper labelPosition="bottom"
                         *ngIf="(authenticationService.currentUserSubject$ | async)?.role === 'ROLE_CASE' ||
                         (authenticationService.currentUserSubject$ | async)?.role === 'ROLE_CONTROL'" >
-  <mat-step>
-    <app-section-a1></app-section-a1>
-  </mat-step>
-  <mat-step>
-    <app-section-a2></app-section-a2>
-  </mat-step>
-  <mat-step>
-    <app-section-b1></app-section-b1>
-  </mat-step>
+
   <mat-step>
     <app-section-b2></app-section-b2>
-  </mat-step>
-  <mat-step>
-    <app-section-b3></app-section-b3>
   </mat-step>
   <mat-step>
     <app-section-e section="b"></app-section-e>

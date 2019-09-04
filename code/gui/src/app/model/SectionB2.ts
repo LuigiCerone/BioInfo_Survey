@@ -6,10 +6,10 @@ class SectionB2 {
   severeSunBurns: object;
   sunscreenUses: object;
   sunlampsSunbeds: SunlampsSunbeds;
-  // sunProtectionOtherThanSunscreenUseHat: string; // Opt.
-  // sunProtectionOtherThanSunscreenUseClothing: string; // Opt.
-  // seekTheShadeDuringUVRHours: string; // Opt.
-  // phototherapyUVBPUVA: string; // Opt.
+  sunProtectionOtherThanSunscreenUseHat: string; // Opt.
+  sunProtectionOtherThanSunscreenUseClothing: string; // Opt.
+  seekTheShadeDuringUVRHours: string; // Opt.
+  phototherapyUvpuva: string; // Opt.
   // TODO Mancano gli opzionali.
 
   constructor(form?) {
@@ -38,6 +38,12 @@ class SectionB2 {
       this.sunscreenUses[SunscreenUse.KEY_TEN_YEARS] = new SunscreenUse(SunscreenUse.KEY_TEN_YEARS, form.value);
 
       this.sunlampsSunbeds = new SunlampsSunbeds(form.value);
+
+      // Opt.
+      this.sunProtectionOtherThanSunscreenUseHat = form.value.sunProtectionOtherThanSunscreenUseHat;
+      this.sunProtectionOtherThanSunscreenUseClothing = form.value.sunProtectionOtherThanSunscreenUseClothing;
+      this.seekTheShadeDuringUVRHours = form.value.seekTheShadeDuringUVRHours;
+      this.phototherapyUvpuva = form.value.phototherapyUvpuva;
     } else {
       this.occupationalSunExposure = new OccupationalSunExposure();
       this.recreationalSunExposure = new RecreationalSunExposure();
@@ -64,6 +70,11 @@ class SectionB2 {
 
       this.sunlampsSunbeds = new SunlampsSunbeds();
 
+      // Opt.
+      this.sunProtectionOtherThanSunscreenUseHat = '';
+      this.sunProtectionOtherThanSunscreenUseClothing = '';
+      this.seekTheShadeDuringUVRHours = '';
+      this.phototherapyUvpuva = '';
     }
   }
 }

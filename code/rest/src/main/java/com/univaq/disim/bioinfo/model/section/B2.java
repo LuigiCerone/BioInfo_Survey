@@ -2,6 +2,7 @@ package com.univaq.disim.bioinfo.model.section;
 
 import com.univaq.disim.bioinfo.model.nested.*;
 import org.springframework.data.mongodb.core.mapping.Field;
+import org.springframework.lang.Nullable;
 
 import java.util.HashMap;
 import java.util.List;
@@ -47,11 +48,12 @@ public class B2 {
     private SunlampsSunbeds sunlampsSunbeds;
 
     // It can be ever or never
-    //TODO: it's an optional answer
     @Field
-    private String phototherapyUVBPUVA;
+    @Nullable
+    private String phototherapyUvbpuva;
 
     public B2(){ }
+
 
     public OccupationalSunExposure getOccupationalSunExposure() {
         return occupationalSunExposure;
@@ -85,11 +87,11 @@ public class B2 {
         this.mostRecentIntermittentSunExposure = mostRecentIntermittentSunExposure;
     }
 
-    public HashMap<String,SevereSunBurns> getSevereSunBurns() {
+    public HashMap<String, SevereSunBurns> getSevereSunBurns() {
         return severeSunBurns;
     }
 
-    public void setSevereSunBurns(HashMap<String,SevereSunBurns> severeSunBurns) {
+    public void setSevereSunBurns(HashMap<String, SevereSunBurns> severeSunBurns) {
         this.severeSunBurns = severeSunBurns;
     }
 
@@ -133,11 +135,12 @@ public class B2 {
         this.sunlampsSunbeds = sunlampsSunbeds;
     }
 
-    public String getPhototherapyUVBPUVA() {
-        return phototherapyUVBPUVA;
+    @Nullable
+    public String getPhototherapyUvbpuva() {
+        return phototherapyUvbpuva;
     }
 
-    public void setPhototherapyUVBPUVA(String phototherapyUVBPUVA) {
-        this.phototherapyUVBPUVA = phototherapyUVBPUVA;
+    public void setPhototherapyUvbpuva(@Nullable String phototherapyUvbpuva) {
+        this.phototherapyUvbpuva = phototherapyUvbpuva;
     }
 }

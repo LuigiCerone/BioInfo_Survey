@@ -28,6 +28,18 @@ export class SectionB2Component implements OnInit {
     { value: '0', viewValue: 'SECTION_B2_SUNSCR_TYPE_OPT_3' },
   ];
 
+  uvrOpt: Options[] = [
+    { value: 'rarely', viewValue: 'SECTION_B2_UVR_OPT_1' },
+    { value: 'sometimes', viewValue: 'SECTION_B2_UVR_OPT_2' },
+    { value: 'always', viewValue: 'SECTION_B2_UVR_OPT_3' },
+    { value: '0', viewValue: 'SECTION_B2_UVR_OPT_4' },
+  ];
+
+  uvpuvaOpt: Options[] = [
+    { value: 'never', viewValue: 'SECTION_B2_UVP_OPT_1' },
+    { value: 'ever', viewValue: 'SECTION_B2_UVP_OPT_2' },
+  ];
+
   private b2: SectionB2;
 
   private username: string;
@@ -122,6 +134,10 @@ export class SectionB2Component implements OnInit {
       numberSunlamps: new FormControl(this.b2.sunlampsSunbeds.lifetimeNumberOfSession, Validators.pattern('[0-9]{1,3}')),
       ageFirstSunlamps: new FormControl(this.b2.sunlampsSunbeds.ageAtFirstExposure, Validators.pattern('[0-9]{1,3}')),
       ageLastSunlamps: new FormControl(this.b2.sunlampsSunbeds.ageAtLastExposure, Validators.pattern('[0-9]{1,3}')),
+      sunProtectionOtherThanSunscreenUseHat: new FormControl(this.b2.sunProtectionOtherThanSunscreenUseHat),
+      sunProtectionOtherThanSunscreenUseClothing: new FormControl(this.b2.sunProtectionOtherThanSunscreenUseClothing),
+      seekTheShadeDuringUVRHours: new FormControl(this.b2.seekTheShadeDuringUVRHours),
+      phototherapyUvpuva: new FormControl(this.b2.phototherapyUvpuva)
     });
   }
 

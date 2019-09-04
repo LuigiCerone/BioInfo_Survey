@@ -7,6 +7,8 @@ public class ActinicKeratoses {
     // It can be: isolated/scattered, clustered, confluent
     private String typeOfDistribution;
 
+    private boolean presence;
+
 
     public ActinicKeratoses(){ }
 
@@ -24,5 +26,13 @@ public class ActinicKeratoses {
 
     public void setTypeOfDistribution(String typeOfDistribution) {
         this.typeOfDistribution = typeOfDistribution;
+    }
+
+    public boolean isPresence() {
+        return presence;
+    }
+
+    public void setPresence(boolean presence) {
+        this.presence = presence;
     }
 }

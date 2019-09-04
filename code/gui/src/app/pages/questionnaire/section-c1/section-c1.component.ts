@@ -117,7 +117,7 @@ export class SectionC1Component implements OnInit {
        presenceOfLargeSizedNevi: new FormControl(this.c1.congenitalNevi.presenceOfLargeSizedNevi, [Validators.required]),
        siteOfLargeSizedNevi: new FormControl(this.c1.congenitalNevi.siteOfLargeSizedNevi,
          [Validators.pattern('[a-zA-Z]*')]),
-       presenceOfGiantNevi: new FormControl(this.c1.congenitalNevi.presenceOfGiantNevi, [Validators.required]),
+       presenceOfGiantSizedNevi: new FormControl(this.c1.congenitalNevi.presenceOfGiantSizedNevi, [Validators.required]),
        siteOfGiantSizedNevi: new FormControl(this.c1.congenitalNevi.siteOfGiantSizedNevi,
          [Validators.pattern('[a-zA-Z]*')]),
        blueNeviPresence: new FormControl(this.c1.blueNevi.presence, [Validators.required]),

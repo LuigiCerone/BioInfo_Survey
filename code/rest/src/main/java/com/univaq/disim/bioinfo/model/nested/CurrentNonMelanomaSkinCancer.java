@@ -4,9 +4,11 @@ public class CurrentNonMelanomaSkinCancer {
     // It can be BCC, SCC or in situ SCC
     private String type;
 
-    private int number;
+    private boolean presence;
 
     private String site;
+
+    private int number;
 
 
     public CurrentNonMelanomaSkinCancer(){ }
@@ -19,12 +21,12 @@ public class CurrentNonMelanomaSkinCancer {
         this.type = type;
     }
 
-    public int getNumber() {
-        return number;
+    public boolean isPresence() {
+        return presence;
     }
 
-    public void setNumber(int number) {
-        this.number = number;
+    public void setPresence(boolean presence) {
+        this.presence = presence;
     }
 
     public String getSite() {
@@ -33,5 +35,13 @@ public class CurrentNonMelanomaSkinCancer {
 
     public void setSite(String site) {
         this.site = site;
+    }
+
+    public int getNumber() {
+        return number;
+    }
+
+    public void setNumber(int number) {
+        this.number = number;
     }
 }

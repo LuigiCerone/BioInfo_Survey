@@ -10,7 +10,6 @@ class SectionB2 {
   sunProtectionOtherThanSunscreenUseClothing: string; // Opt.
   seekTheShadeDuringUVRHours: string; // Opt.
   phototherapyUvpuva: string; // Opt.
-  // TODO Mancano gli opzionali.
 
   constructor(form?) {
     if (form) {

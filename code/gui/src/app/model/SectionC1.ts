@@ -161,7 +161,7 @@ class CongenitalNevi {
   siteOfMediumSizedNevi: string;
   presenceOfLargeSizedNevi: boolean;
   siteOfLargeSizedNevi: string;
-  presenceOfGiantNevi: boolean;
+  presenceOfGiantSizedNevi: boolean;
   siteOfGiantSizedNevi: string;
 
   constructor(form?) {
@@ -170,14 +170,14 @@ class CongenitalNevi {
       this.siteOfMediumSizedNevi = form.siteOfMediumSizedNevi;
       this.presenceOfLargeSizedNevi = form.presenceOfLargeSizedNevi;
       this.siteOfLargeSizedNevi = form.siteOfLargeSizedNevi;
-      this.presenceOfGiantNevi = form.presenceOfGiantNevi;
+      this.presenceOfGiantSizedNevi = form.presenceOfGiantSizedNevi;
       this.siteOfGiantSizedNevi = form.siteOfGiantSizedNevi;
     } else {
       this.presenceOfMediumSizedNevi = false;
       this.siteOfMediumSizedNevi = '';
       this.presenceOfLargeSizedNevi = false;
       this.siteOfLargeSizedNevi = '';
-      this.presenceOfGiantNevi = false;
+      this.presenceOfGiantSizedNevi = false;
       this.siteOfGiantSizedNevi = '';
     }
   }
@@ -190,7 +190,7 @@ class BlueNevi {
   constructor(form?) {
     if (form) {
       this.presence = form.blueNeviPresence;
-      this.number = form.blueNeviNumber;
+      this.number = form.numberOfBlueNevi;
     } else {
       this.presence = false;
       this.number = 0;
@@ -236,7 +236,7 @@ class CurrentNonMelanomaSkinCancers {
           this.site = form.bCCSite;
           break;
         case CurrentNonMelanomaSkinCancers.KEY_ISCC:
-          this.presence = form.iSSCPresence;
+          this.presence = form.iSCCPresence;
           this.number = form.iSCCNumber;
           this.site = form.iSCCSite;
           break;

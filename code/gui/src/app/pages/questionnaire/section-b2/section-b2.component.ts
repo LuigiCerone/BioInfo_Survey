@@ -152,16 +152,4 @@ export class SectionB2Component implements OnInit {
       console.log(res);
     });
   }
-
-  transformMap(map) {
-    const out = Object.create(null);
-    map.forEach((value, key) => {
-      if (value instanceof Map) {
-        out[ key ] = this.transformMap(value);
-      } else {
-        out[ key ] = value;
-      }
-    });
-    return out;
-  }
 }

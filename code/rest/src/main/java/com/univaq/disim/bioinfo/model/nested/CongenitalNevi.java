@@ -1,69 +1,74 @@
 package com.univaq.disim.bioinfo.model.nested;
 
+import org.springframework.lang.Nullable;
+
 public class CongenitalNevi {
 
-    private int numberOfMediumSizedNevi;
+    private boolean presenceOfMediumSizedNevi;
 
-    // TODO: to fill only if the preavious one attribute has a value grather than 0
+    @Nullable
     private String siteOfMediumSizedNevi;
 
-    private int numberOfLargeSizedNevi;
+    private boolean presenceOfLargeSizedNevi;
 
-    // TODO: to fill only if the preavious one attribute has a value grather than 0
+    @Nullable
     private String siteOfLargeSizedNevi;
 
-    private int numberOfGiantNevi;
+    private boolean presenceOfGiantSizedNevi;
 
-    // TODO: to fill only if the preavious attribute has a value grather than 0
+    @Nullable
     private String siteOfGiantSizedNevi;
 
     public CongenitalNevi(){ }
 
-    public int getNumberOfMediumSizedNevi() {
-        return numberOfMediumSizedNevi;
+    public boolean isPresenceOfMediumSizedNevi() {
+        return presenceOfMediumSizedNevi;
     }
 
-    public void setNumberOfMediumSizedNevi(int numberOfMediumSizedNevi) {
-        this.numberOfMediumSizedNevi = numberOfMediumSizedNevi;
+    public void setPresenceOfMediumSizedNevi(boolean presenceOfMediumSizedNevi) {
+        this.presenceOfMediumSizedNevi = presenceOfMediumSizedNevi;
     }
 
+    @Nullable
     public String getSiteOfMediumSizedNevi() {
         return siteOfMediumSizedNevi;
     }
 
-    public void setSiteOfMediumSizedNevi(String siteOfMediumSizedNevi) {
+    public void setSiteOfMediumSizedNevi(@Nullable String siteOfMediumSizedNevi) {
         this.siteOfMediumSizedNevi = siteOfMediumSizedNevi;
     }
 
-    public int getNumberOfLargeSizedNevi() {
-        return numberOfLargeSizedNevi;
+    public boolean isPresenceOfLargeSizedNevi() {
+        return presenceOfLargeSizedNevi;
     }
 
-    public void setNumberOfLargeSizedNevi(int numberOfLargeSizedNevi) {
-        this.numberOfLargeSizedNevi = numberOfLargeSizedNevi;
+    public void setPresenceOfLargeSizedNevi(boolean presenceOfLargeSizedNevi) {
+        this.presenceOfLargeSizedNevi = presenceOfLargeSizedNevi;
     }
 
+    @Nullable
     public String getSiteOfLargeSizedNevi() {
         return siteOfLargeSizedNevi;
     }
 
-    public void setSiteOfLargeSizedNevi(String siteOfLargeSizedNevi) {
+    public void setSiteOfLargeSizedNevi(@Nullable String siteOfLargeSizedNevi) {
         this.siteOfLargeSizedNevi = siteOfLargeSizedNevi;
     }
 
-    public int getNumberOfGiantNevi() {
-        return numberOfGiantNevi;
+    public boolean isPresenceOfGiantSizedNevi() {
+        return presenceOfGiantSizedNevi;
     }
 
-    public void setNumberOfGiantNevi(int numberOfGiantNevi) {
-        this.numberOfGiantNevi = numberOfGiantNevi;
+    public void setPresenceOfGiantSizedNevi(boolean presenceOfGiantSizedNevi) {
+        this.presenceOfGiantSizedNevi = presenceOfGiantSizedNevi;
     }
 
-    public String getSiteOfGiantNevi() {
+    @Nullable
+    public String getSiteOfGiantSizedNevi() {
         return siteOfGiantSizedNevi;
     }
 
-    public void setSiteOfGiantNevi(String siteOfGiantSizedNevi) {
+    public void setSiteOfGiantSizedNevi(@Nullable String siteOfGiantSizedNevi) {
         this.siteOfGiantSizedNevi = siteOfGiantSizedNevi;
     }
 }

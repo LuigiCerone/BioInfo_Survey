@@ -2,7 +2,7 @@ package com.univaq.disim.bioinfo.model.nested;
 
 public class Occupation {
 
-    private String SICCode;
+    private String sicCode;
 
     //TODO: check if the duration of the occupation is at least 1 year
     private String occupationStartingTime;
@@ -11,12 +11,12 @@ public class Occupation {
 
     public Occupation(){ }
 
-    public String getSICCode() {
-        return SICCode;
+    public String getSicCode() {
+        return sicCode;
     }
 
-    public void setSICCode(String SICCode) {
-        this.SICCode = SICCode;
+    public void setSicCode(String sicCode) {
+        this.sicCode = sicCode;
     }
 
     public String getOccupationStartingTime() {

@@ -1,11 +1,13 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators} from '@angular/forms';
 import {Options} from '../section-a1/section-a1.component';
 import { AuthenticationService } from '../../../services/authentication.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { QuestionnaireService } from '../../../services/questionnaire.service';
-import { SectionA2 } from '../../../model/SectionA2';
+import { Occupation, SectionA2 } from '../../../model/SectionA2';
 import { TranslateService } from '@ngx-translate/core';
+import { MatDialog, MatTableDataSource } from '@angular/material';
+import { MedicalDiagnosis } from '../../../model/SectionC2';
 
 @Component({
   selector: 'app-section-a2',
@@ -14,6 +16,7 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class SectionA2Component implements OnInit {
   form: FormGroup;
+  formHistory: FormGroup;
 
   sexOpt: Options[] = [
     {value: 'male', viewValue: 'SECTION_A2_2_SEX_OPTION_1'},
@@ -47,9 +50,15 @@ export class SectionA2Component implements OnInit {
   private a2: SectionA2;
   private username: string;
 
+  private historyTable = new MatTableDataSource(new Array<Occupation>());
+  displayedColumns: string[] = ['code', 'start', 'end', 'actions'];
+  @ViewChild('occupationDialog', {static: false}) occupationDialog: TemplateRef<any>;
+
+
   constructor(private authenticationService: AuthenticationService,
               private route: ActivatedRoute,
-              private questionnaireService: QuestionnaireService) { }
+              private questionnaireService: QuestionnaireService,
+              private dialog: MatDialog ) { }
 
   ngOnInit() {
     this.username = this.route.snapshot.params.username;
@@ -63,6 +72,7 @@ export class SectionA2Component implements OnInit {
         this.a2 = new SectionA2();
       }
       this.buildForm();
+      this.buildFormOccupation();
     });
   }
 
@@ -89,11 +99,57 @@ export class SectionA2Component implements OnInit {
   }
 
   save() {
-    this.a2 = new SectionA2(this.form);
+    this.a2 = new SectionA2(this.form, this.a2.historyOfOccupations);
 
     console.log(this.a2);
     this.questionnaireService.insertSection(this.username, 'a2', this.a2).subscribe( (res) => {
       console.log(res);
     });
+  }
+
+
+  // History of occupations modal.
+  buildFormOccupation() {
+    // Init table for melanoma.
+    if (this.a2 && this.a2.historyOfOccupations) {
+      this.historyTable.data = this.a2.historyOfOccupations;
+    } else {
+      this.a2.historyOfOccupations = new Array<Occupation>();
+      this.historyTable.data = this.a2.historyOfOccupations;
+    }
+
+    this.formHistory = new FormGroup({
+      sicCode: new FormControl('', [ Validators.required ]),
+      occupationStartingTime: new FormControl('',
+        [ Validators.required, Validators.pattern('[0-9]{4}') ]),
+      occupationEndingTime: new FormControl('',
+        [ Validators.required, Validators.pattern('[0-9]{4}') ])
+    });
+  }
+
+  removeHistory(element) {
+    const index = this.a2.historyOfOccupations.indexOf(element);
+    if (index > -1) {
+      // Remove element.
+      this.a2.historyOfOccupations.splice(index, 1);
+      // Update table content.
+      this.historyTable.data = this.a2.historyOfOccupations;
+    }
+  }
+
+  openHisotryModal() {
+    this.dialog.open(this.occupationDialog);
+  }
+
+  addHistory() {
+    const newHistory: Occupation = new Occupation(this.formHistory);
+    this.a2.historyOfOccupations.push(newHistory);
+
+    // Update table data.
+    this.historyTable.data = this.a2.historyOfOccupations;
+
+    console.log(this.a2.historyOfOccupations);
+    // Clear form inputs.
+    this.formHistory.reset();
   }
 }

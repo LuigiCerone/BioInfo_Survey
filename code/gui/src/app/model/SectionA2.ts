@@ -1,4 +1,4 @@
-export class SectionA2{
+class SectionA2 {
   sex: string;
   dateOfBirth: string;
   cityOfBirth: string;
@@ -14,10 +14,10 @@ export class SectionA2{
   education: string;
   currentOccupationalStatus: string;
   // TODO Handle this field.
-  // historyOfOccupations: Array<Occupation>;
+  historyOfOccupations: Array<Occupation>;
 
-  constructor(form?) {
-    if (form) {
+  constructor(form?, history?) {
+    if (form && history) {
       this.sex = form.value.sex;
       this.dateOfBirth = form.value.dateOfBirth;
       this.cityOfBirth = form.value.cityOfBirth;
@@ -32,6 +32,7 @@ export class SectionA2{
       this.countryOfResidence = form.value.countryOfResidence;
       this.education = form.value.education;
       this.currentOccupationalStatus = form.value.currentOccupationalStatus;
+      this.historyOfOccupations = history;
     } else {
       this.sex = '';
       this.dateOfBirth = '';
@@ -47,6 +48,29 @@ export class SectionA2{
       this.countryOfResidence = '';
       this.education = '';
       this.currentOccupationalStatus = '';
+      this.historyOfOccupations = new Array<Occupation>();
     }
   }
 }
+
+class Occupation {
+  sicCode: string;
+  occupationStartingTime: string;
+  occupationEndingTime: string;
+
+  constructor(form?) {
+    if (form) {
+      this.sicCode = form.value.sicCode;
+      this.occupationStartingTime = form.value.occupationStartingTime;
+      this.occupationEndingTime = form.value.occupationEndingTime;
+    } else {
+      this.sicCode = '';
+      this.occupationStartingTime = '';
+      this.occupationEndingTime = '';
+    }
+  }
+}
+
+
+
+export { SectionA2, Occupation };

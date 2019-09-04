@@ -5,6 +5,7 @@ import com.univaq.disim.bioinfo.model.nested.Occupation;
 import com.univaq.disim.bioinfo.model.nested.Residency;
 import org.springframework.data.mongodb.core.mapping.Field;
 
+import javax.validation.constraints.Null;
 import java.util.List;
 
 public class A2 {
@@ -34,6 +35,10 @@ public class A2 {
 
     @Field
     private String ethnicity;
+
+    @Field
+    @Nullable
+    private String otherEthnicity;
 
     @Field
     private String cityOfResidence;
@@ -166,5 +171,14 @@ public class A2 {
 
     public void setHistoryOfOccupations(List<Occupation> historyOfOccupations) {
         this.historyOfOccupations = historyOfOccupations;
+    }
+
+    @Nullable
+    public String getOtherEthnicity() {
+        return otherEthnicity;
+    }
+
+    public void setOtherEthnicity(@Nullable String otherEthnicity) {
+        this.otherEthnicity = otherEthnicity;
     }
 }

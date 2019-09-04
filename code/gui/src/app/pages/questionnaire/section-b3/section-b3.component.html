@@ -1,81 +1,90 @@
-<div>
+<mat-card-content>
   <form *ngIf="form" [formGroup]="form" (ngSubmit)="save()">
     <mat-card>
       <mat-card-title><h2>{{"SECTION" | translate}} B.3</h2></mat-card-title>
       <mat-card-content>
-        <br>
-        <h3>1. {{"SECTION_B3_1_TITLE" | translate}}</h3>
-        <mat-form-field>
-          <mat-label>{{"SECTION_B3_1_LABEL_1" | translate}}</mat-label>
-          <mat-select formControlName="smoker">
-            <mat-option *ngFor="let option of smokerOpt" [value]="option.value">
-              {{option.viewValue}}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
-
-        <div *ngIf="form.value.smoker && form.value.smoker !== '0'">
-          <mat-form-field>
-            <input matInput formControlName="ageWhenStartedSmoking" placeholder='{{"SECTION_B3_1_PLACEHOLDER_1" | translate}}'>
-          </mat-form-field>
-          <mat-form-field>
-            <input matInput formControlName="howLongHaveYouBeenSmoking" placeholder='{{"SECTION_B3_1_PLACEHOLDER_2" | translate}}'>
-          </mat-form-field>
-          <h4>{{"SECTION_B3_1_LABEL_2" | translate}} </h4>
-          <mat-select placeholder='{{"SECTION_B3_1_PLACEHOLDER_3" | translate}}' formControlName="howMuchTipicallySmoke">
-            <mat-option *ngFor="let option of smokeQuantityOpt" [value]="option.value">
-              {{option.viewValue}}
-            </mat-option>
-          </mat-select>
-        </div>
-
-        <br>
-
-        <h3>2. {{"SECTION_B3_2_TITLE" | translate}}</h3>
-        <mat-radio-group aria-label="Select yes or no" formControlName="intakeOfVitaminesDuringLastYears">
-          <mat-radio-button [value]=true>{{"YES_OPTION" | translate}}</mat-radio-button>
-          <mat-radio-button [value]=false>{{"NO_OPTION" | translate}}</mat-radio-button>
-        </mat-radio-group>
-        <mat-form-field *ngIf="form.value.intakeOfVitaminesDuringLastYears">
-          <mat-select formControlName="frequencyOfVitaminsDuringLastYears">
-            <mat-option *ngFor="let option of vitaminPeriodOpt" [value]="option.value">
-              {{option.viewValue}}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
-        <br>
-
-        <h3>3. {{"SECTION_B3_3_TITLE" | translate}}</h3>
-        <mat-form-field *ngFor="let vitamin of vitaminType1">
-          <mat-label>
-            {{vitamin.viewValue}}
-          </mat-label>
-          <mat-select formControlName="{{vitamin.value}}">
-            <mat-option *ngFor="let option of vitaminPeriodOpt" [value]="option.value">
-              {{option.viewValue}}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
-        <br>
-
-        <h3>4. {{"SECTION_B3_4_TITLE" | translate}}</h3>
-        <mat-form-field *ngFor="let vitamin of vitaminType2">
-          <mat-label>
-            {{vitamin.viewValue}}
-          </mat-label>
-          <mat-select formControlName="{{vitamin.value}}">
-            <mat-option *ngFor="let option of vitaminFrequenceOpt" [value]="option.value">
-              {{option.viewValue}}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
-        <br>
-
+        <mat-grid-list cols="2" rowHeight="2:1">
+          <mat-grid-tile rowspan="2">
+            <mat-grid-tile-header>
+              <h3>1. {{"SECTION_B3_1_TITLE" | translate}}</h3>
+            </mat-grid-tile-header>
+            <mat-form-field>
+              <mat-label>{{"SECTION_B3_1_LABEL_1" | translate}}</mat-label>
+              <mat-select formControlName="smoker">
+                <mat-option *ngFor="let option of smokerOpt" [value]="option.value">
+                  {{option.viewValue | translate }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+            <br>
+            <mat-card-content class="container" *ngIf="form.value.smoker && form.value.smoker !== '0'">
+              <mat-form-field>
+                <input matInput formControlName="ageWhenStartedSmoking" placeholder='{{"SECTION_B3_1_PLACEHOLDER_1" | translate}}'>
+              </mat-form-field>
+              <mat-form-field>
+                <input matInput formControlName="howLongHaveYouBeenSmoking" placeholder='{{"SECTION_B3_1_PLACEHOLDER_2" | translate}}'>
+              </mat-form-field>
+              <h4>{{"SECTION_B3_1_LABEL_2" | translate}} </h4>
+              <mat-select placeholder='{{"SECTION_B3_1_PLACEHOLDER_3" | translate}}' formControlName="howMuchTipicallySmoke">
+                <mat-option *ngFor="let option of smokeQuantityOpt" [value]="option.value">
+                  {{option.viewValue | translate }}
+                </mat-option>
+              </mat-select>
+            </mat-card-content>
+          </mat-grid-tile>
+          <mat-grid-tile rowspan="2">
+            <mat-grid-tile-header>
+              <h3>2. {{"SECTION_B3_2_TITLE" | translate}}</h3>
+            </mat-grid-tile-header>
+            <mat-card-content class="container">
+              <mat-radio-group aria-label="Select yes or no" formControlName="intakeOfVitaminesDuringLastYears">
+                <mat-radio-button [value]=true>{{"YES_OPTION" | translate}}</mat-radio-button>
+                <mat-radio-button [value]=false>{{"NO_OPTION" | translate}}</mat-radio-button>
+              </mat-radio-group>
+              <mat-form-field *ngIf="form.value.intakeOfVitaminesDuringLastYears">
+                <mat-select formControlName="frequencyOfVitaminsDuringLastYears">
+                  <mat-option *ngFor="let option of vitaminPeriodOpt" [value]="option.value">
+                    {{option.viewValue | translate }}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </mat-card-content>
+          </mat-grid-tile>
+          <mat-grid-tile rowspan="2">
+            <mat-grid-tile-header>
+              <h3>3. {{"SECTION_B3_3_TITLE" | translate}}</h3>
+            </mat-grid-tile-header>
+            <mat-form-field class="container" *ngFor="let vitamin of vitaminType1">
+              <mat-label>
+                {{vitamin.viewValue | translate }}
+              </mat-label>
+              <mat-select formControlName="{{vitamin.value}}">
+                <mat-option *ngFor="let option of vitaminPeriodOpt" [value]="option.value">
+                  {{option.viewValue | translate }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </mat-grid-tile>
+          <mat-grid-tile rowspan="2">
+            <mat-grid-tile-header>
+              <h3>4. {{"SECTION_B3_4_TITLE" | translate}}</h3>
+            </mat-grid-tile-header>
+            <mat-form-field class="container" *ngFor="let vitamin of vitaminType2">
+              <mat-label>
+                {{vitamin.viewValue | translate }}
+              </mat-label>
+              <mat-select formControlName="{{vitamin.value}}">
+              <mat-option *ngFor="let option of vitaminFrequenceOpt" [value]="option.value">
+                {{option.viewValue | translate }}
+              </mat-option>
+            </mat-select>
+            </mat-form-field>
+          </mat-grid-tile>
+        </mat-grid-list>
         <div class="button">
           <button type="submit" [disabled]="form.valid" mat-raised-button color="primary" matStepperNext>{{"BUTTON_NEXT" | translate}}</button>
         </div>
       </mat-card-content>
     </mat-card>
   </form>
-</div>
-
+</mat-card-content>

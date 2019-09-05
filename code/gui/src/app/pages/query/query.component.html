@@ -1,7 +1,77 @@
 <div class="container">
   <br><br>
   <query-builder [(ngModel)]='query' [config]='config' [allowRuleset]=false></query-builder>
-  <div class="output"><p>{{query | json}}</p></div>
   <br>
-  <button mat-raised-button color="primary" (click)="runQuery()">Query</button>
+  <mat-divider></mat-divider>
+  <div class="output"><br>
+    <h4>Current query:</h4>
+    <p>{{query | json}}</p>
+  </div>
+  <mat-divider></mat-divider><br>
+  <div class="button">
+    <button mat-raised-button color="primary" (click)="runQuery()">Run query</button>
+  </div>
 </div>
+<br><br>
+<div class="container mat-elevation-z8">
+  <table *ngIf="dataSource" mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+    <!-- Subject Column -->
+    <ng-container matColumnDef="subject">
+      <th mat-header-cell *matHeaderCellDef> Subject </th>
+      <td mat-cell *matCellDef="let element"> {{element.a1.subject}} </td>
+    </ng-container>
+
+    <!-- dbCodeNumber Column -->
+    <ng-container matColumnDef="dbCodeNumber">
+      <th mat-header-cell *matHeaderCellDef> Code number </th>
+      <td mat-cell *matCellDef="let element"> {{element.a1.dbCodeNumber}} </td>
+    </ng-container>
+
+    <!-- username Column -->
+    <ng-container matColumnDef="username">
+      <th mat-header-cell *matHeaderCellDef> Username </th>
+      <td mat-cell *matCellDef="let element"> {{element.ownerUsername}} </td>
+    </ng-container>
+
+    <!-- completed Column -->
+    <ng-container matColumnDef="completed">
+      <th mat-header-cell *matHeaderCellDef> Completed </th>
+      <td mat-cell *matCellDef="let element"> #todo </td>
+    </ng-container>
+
+    <!-- buttons-->
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef> Actions </th>
+      <td mat-cell *matCellDef="let element">
+        <button mat-button color="primary" matTooltip="Edit current questionnaire"
+                [routerLink]="['/questionnaire/', element.ownerUsername]" ><mat-icon>edit</mat-icon></button>
+        <button mat-button color="secondary" matTooltip="View current questionnaire"
+                (click)="showQuestionnare(element)"><mat-icon>remove_red_eye</mat-icon></button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+  <ng-container *ngIf="dataSource.data.length == 0">
+    <p>There is no data for this filter</p>
+  </ng-container>
+  <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+</div>
+
+<!--<div *ngIf="!dataSource.data.length">Niente</div>-->
+
+<ng-template #viewerDialog class="mat-dialog-container custom-width-800">
+  <h2 matDialogTitle>Questionnaire visualization</h2>
+  <div matDialogContent>
+    <ngx-json-viewer [json]="selectedQuestionnaire" [expanded]="true"></ngx-json-viewer>
+  </div>
+  <mat-dialog-actions align="end">
+    <button mat-raised-button color="primary" matDialogClose>
+      <mat-icon>close</mat-icon>
+      <span>Close</span>
+    </button>
+  </mat-dialog-actions>
+</ng-template>
+

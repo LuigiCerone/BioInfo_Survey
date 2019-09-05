@@ -2,12 +2,21 @@
                         *ngIf="(authenticationService.currentUserSubject$ | async)?.role === 'ROLE_CASE' ||
                         (authenticationService.currentUserSubject$ | async)?.role === 'ROLE_CONTROL'" >
 
-<!--  <mat-step>-->
-<!--    <app-section-b2></app-section-b2>-->
-<!--  </mat-step>-->
-<!--  <mat-step>
+  <mat-step>
+    <app-section-a1></app-section-a1>
+  </mat-step>
+  <mat-step>
+    <app-section-a2></app-section-a2>
+  </mat-step>
+  <mat-step>
+    <app-section-b1></app-section-b1>
+  </mat-step>
+  <mat-step>
+    <app-section-b2></app-section-b2>-->
+  </mat-step>
+  <mat-step>
     <app-section-b3></app-section-b3>
-  </mat-step>-->
+  </mat-step>
   <mat-step>
     <app-section-e section="b"></app-section-e>
   </mat-step>
@@ -15,18 +24,18 @@
 
 <mat-horizontal-stepper *ngIf="(authenticationService.currentUserSubject$ | async)?.role === 'ROLE_DOCTOR' "  linear="true"
                         #stepper>
-<!--  <mat-step>-->
-<!--    <app-section-c1></app-section-c1>-->
-<!--  </mat-step>-->
-<!--  <mat-step>-->
-<!--    <app-section-c2></app-section-c2>-->
-<!--  </mat-step>-->
-<!--  <mat-step>-->
-<!--    <app-section-c3></app-section-c3>-->
-<!--  </mat-step>-->
-<!--  <mat-step>-->
-<!--    <app-section-e section="c"></app-section-e>-->
-<!--  </mat-step>-->
+  <mat-step>
+    <app-section-c1></app-section-c1>
+  </mat-step>
+  <mat-step>
+    <app-section-c2></app-section-c2>
+  </mat-step>
+  <mat-step>
+    <app-section-c3></app-section-c3>
+  </mat-step>
+  <mat-step>
+    <app-section-e section="c"></app-section-e>
+  </mat-step>
   <div>
     <mat-step *ngIf="form">
       <form (ngSubmit)="save()" [formGroup]="form">

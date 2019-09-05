@@ -66,6 +66,7 @@ public class QuestionnaireServiceImpl implements QuestionnaireService {
         ArrayList<Criteria> list = new ArrayList<>();
 
         JsonNode rules = jsonQuery.get("rules");
+        String operator = jsonQuery.get("condition").asText();
         for ( JsonNode node : rules) {
 
             switch (node.get("operator").asText()){
@@ -81,16 +82,24 @@ public class QuestionnaireServiceImpl implements QuestionnaireService {
                     list.add(Criteria.where(node.get("field").asText()).lte(node.get("value").asText()));
                     break;
                 }
+                case "!=": {
+                    list.add(Criteria.where(node.get("field").asText()).ne(node.get("value").asText()));
+                    break;
+                }
                 default: {
                     System.out.println("Could not translate");
                 }
             }
         }
 
-        if (list.size() == 1){
-            query.addCriteria(list.get(0));
-        } else {
-//            query.addCriteria(list.get(0).andOperator(Criteria.(list.subList(1,list.size()).toArray())));
+        if (list.size() > 0 ){
+            Criteria c1 = list.get(0);
+            if (operator.equals("and")){
+                c1.andOperator(list.toArray(new Criteria[list.size()]));
+            } else {
+                c1.orOperator(list.toArray(new Criteria[list.size()]));
+            }
+            query.addCriteria(c1);
         }
 
         return mongoTemplate.find(query, Questionnaire.class);

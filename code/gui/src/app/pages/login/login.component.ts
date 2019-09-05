@@ -29,7 +29,7 @@ export class LoginComponent {
   submit() {
     this.authService.login(this.form.value.username, this.form.value.password).subscribe( (res) => {
       console.log(this.authService.currentUserValue);
-      if (this.authService.currentUserValue.role === 'DOCTOR') {
+      if (this.authService.currentUserValue.role === 'ROLE_DOCTOR') {
         this.router.navigate(['profile']);
       } else {
         this.router.navigate(['questionnaire', this.authService.currentUserValue.username] );
@@ -48,7 +48,6 @@ export class LoginComponent {
       this.newUser = user;
       this.form.controls.username.setValue(this.newUser.username);
       this.form.controls.password.setValue(this.newUser.password);
-
 
       // Open dialog box with generated information.
       this.dialog.open(this.successDialog);

@@ -2,8 +2,11 @@
                         *ngIf="(authenticationService.currentUserSubject$ | async)?.role === 'ROLE_CASE' ||
                         (authenticationService.currentUserSubject$ | async)?.role === 'ROLE_CONTROL'" >
 
+<!--  <mat-step>-->
+<!--    <app-section-b2></app-section-b2>-->
+<!--  </mat-step>-->
   <mat-step>
-    <app-section-b2></app-section-b2>
+    <app-section-b3></app-section-b3>
   </mat-step>
   <mat-step>
     <app-section-e section="b"></app-section-e>

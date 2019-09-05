@@ -81,7 +81,7 @@ export class SectionC2Component implements OnInit {
       siteBcc: new FormControl(this.c2.lifetimeHistoryOfNonMelanomaSkinCancer[NonMelanomaSkinCancer.KEY_BCC].site,
         Validators.pattern('[a-zA-Z]*')),
       dateOfDiagnosisBcc: new FormControl(this.c2.lifetimeHistoryOfNonMelanomaSkinCancer[NonMelanomaSkinCancer.KEY_BCC].dateOfDiagnosis,
-        Validators.pattern('[0-9]{2}/[A-Z][a-z]{3}/[0-9]{4}')),
+        Validators.pattern('[0-9]{2}[/][A-Z]{1}[a-z]{2}[/][0-9]{4}')),
 
       numberScc: new FormControl(this.c2.lifetimeHistoryOfNonMelanomaSkinCancer[NonMelanomaSkinCancer.KEY_SCC].number,
         [Validators.required, Validators.pattern('[0-9]{1,2}')]),
@@ -89,7 +89,7 @@ export class SectionC2Component implements OnInit {
       siteScc: new FormControl(this.c2.lifetimeHistoryOfNonMelanomaSkinCancer[NonMelanomaSkinCancer.KEY_SCC].site,
         Validators.pattern('[a-zA-Z]*')),
       dateOfDiagnosisScc: new FormControl(this.c2.lifetimeHistoryOfNonMelanomaSkinCancer[NonMelanomaSkinCancer.KEY_SCC].dateOfDiagnosis,
-        Validators.pattern('[0-9]{2}/[A-Z][a-z]{3}/[0-9]{4}')),
+        Validators.pattern('[0-9]{2}[/][A-Z]{1}[a-z]{2}[/][0-9]{4}')),
 
       numberInScc: new FormControl(this.c2.lifetimeHistoryOfNonMelanomaSkinCancer[NonMelanomaSkinCancer.KEY_IN_SITU_SCC].number,
         [Validators.required, Validators.pattern('[0-9]{1,2}')]),
@@ -98,7 +98,7 @@ export class SectionC2Component implements OnInit {
       siteInScc: new FormControl(this.c2.lifetimeHistoryOfNonMelanomaSkinCancer[NonMelanomaSkinCancer.KEY_IN_SITU_SCC].site,
         Validators.pattern('[a-zA-Z]*')),
       dateOfDiagnosisInScc: new FormControl(this.c2.lifetimeHistoryOfNonMelanomaSkinCancer[NonMelanomaSkinCancer.KEY_IN_SITU_SCC].dateOfDiagnosis,
-        Validators.pattern('[0-9]{2}/[A-Z][a-z]{3}/[0-9]{4}')),
+        Validators.pattern('[0-9]{2}[/][A-Z]{1}[a-z]{2}[/][0-9]{4}')),
 
       typeNonCutaneous: new FormControl(this.c2.nonCutaneousNeoplasias.type),
       ageOfDiagnosis: new FormControl(this.c2.nonCutaneousNeoplasias.ageOfDiagnosis, Validators.pattern('[0-9]{1,3}')),

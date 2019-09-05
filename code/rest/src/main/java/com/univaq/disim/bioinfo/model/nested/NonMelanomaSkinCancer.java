@@ -1,8 +1,6 @@
 package com.univaq.disim.bioinfo.model.nested;
 
 public class NonMelanomaSkinCancer {
-    // It can be BCC, SCC, in situ SCC
-    private String type;
 
     private int number;
 
@@ -14,15 +12,7 @@ public class NonMelanomaSkinCancer {
     private String dateOfDiagnosis;
 
     public NonMelanomaSkinCancer(){ }
-
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
-
+    
     public int getNumber() {
         return number;
     }
@@ -39,12 +29,12 @@ public class NonMelanomaSkinCancer {
         this.when = when;
     }
 
-    public String getsite() {
+    public String getSite() {
         return site;
     }
 
-    public void setsite(String site) {
-        site = site;
+    public void setSite(String site) {
+        this.site = site;
     }
 
     public String getDateOfDiagnosis() {

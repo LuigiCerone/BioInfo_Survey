@@ -42,3 +42,12 @@ table {
   width: 800px !important;
 }
 
+.container {
+  width: 90%;
+}
+
+::ng-deep mat-form-field {
+  width: 80% !important;
+}
+
+

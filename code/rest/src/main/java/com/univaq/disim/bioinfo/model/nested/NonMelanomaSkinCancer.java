@@ -12,7 +12,7 @@ public class NonMelanomaSkinCancer {
     private String dateOfDiagnosis;
 
     public NonMelanomaSkinCancer(){ }
-    
+
     public int getNumber() {
         return number;
     }

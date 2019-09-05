@@ -8,12 +8,13 @@
             <mat-grid-tile-header>
               <h3>1. Pre-existing pigmented lesion at the same site of melanoma</h3>
             </mat-grid-tile-header>
-            <mat-card-content>
+            <mat-card-content class="container">
               <mat-radio-group aria-label="Select yes or no" formControlName="preExistingPigmentedLesionAtTheSameSiteOfMelanoma">
                 <mat-radio-button [value]=true>Yes</mat-radio-button>
                 <mat-radio-button [value]=false>No</mat-radio-button>
-              </mat-radio-group>
+              </mat-radio-group><br>
               <mat-form-field *ngIf="form.value.preExistingPigmentedLesionAtTheSameSiteOfMelanoma">
+                <mat-label>Insert number of year</mat-label>
                 <input matInput
                        placeholder="How long (No. of yrs) was the pre-existing pigmented lesion present?"
                        formControlName="durationPreExistingPigmentedLesionAtTheSameSiteOfMelanoma">
@@ -24,7 +25,7 @@
             <mat-grid-tile-header>
               <h3>2. Detection of melanoma</h3>
             </mat-grid-tile-header>
-            <mat-card-content>
+            <mat-card-content class="container">
               <mat-form-field>
                 <mat-label>
                   Detection of melanoma
@@ -41,7 +42,7 @@
             <mat-grid-tile-header>
               <h3>3. Self-skin exam</h3>
             </mat-grid-tile-header>
-            <mat-card-content>
+            <mat-card-content class="container">
               <mat-form-field>
                 <mat-label>
                   How often did you check your skin in the past 3 yrs?
@@ -58,11 +59,11 @@
             <mat-grid-tile-header>
               <h3>4. Skin exam by physician</h3>
             </mat-grid-tile-header>
-            <mat-card-content>
-              <mat-label>
-                How often did a physician examine your skin in the past 3 yrs?
-              </mat-label>
+            <mat-card-content class="container">
               <mat-form-field>
+                <mat-label>
+                  How often did a physician examine your skin in the past 3 yrs?
+                </mat-label>
                 <mat-select formControlName="skinExamByPhysician">
                   <mat-option *ngFor="let option of skinExamPhysicianOpt" [value]="option.value">
                     {{option.viewValue}}
@@ -75,7 +76,7 @@
             <mat-grid-tile-header>
               <h3>5. Multiple primary melanoma (MPM) – concurrent or previous</h3>
             </mat-grid-tile-header>
-            <mat-card-content>
+            <mat-card-content class="container">
               <mat-radio-group aria-label="Select yes or no" formControlName="presenceOfMPM">
                 <mat-radio-button [value]=true>Yes</mat-radio-button>
                 <mat-radio-button [value]=false>No</mat-radio-button>
@@ -86,8 +87,9 @@
             <mat-grid-tile-header>
               <h3>6. Date of diagnosis</h3>
             </mat-grid-tile-header>
-            <mat-card-content>
+            <mat-card-content class="container">
               <mat-form-field>
+                <mat-label>Insert the date</mat-label>
                 <input matInput placeholder="Specify the date DD/MMM/YYYY" formControlName="dateOfDiagnosis">
               </mat-form-field>
             </mat-card-content>
@@ -96,7 +98,7 @@
             <mat-grid-tile-header>
               <h3>7. Is the primary tumor known?</h3>
             </mat-grid-tile-header>
-            <mat-card-content>
+            <mat-card-content class="container">
               <mat-radio-group aria-label="Select yes or no" formControlName="primaryTumorKnown">
                 <mat-radio-button [value]=true>Yes</mat-radio-button>
                 <mat-radio-button [value]=false>No</mat-radio-button>
@@ -104,148 +106,163 @@
             </mat-card-content>
           </mat-grid-tile>
           <div *ngIf="form.value.primaryTumorKnown">
-          <mat-grid-tile>
-            <mat-grid-tile-header>
-              <h3>8. Site</h3>
-            </mat-grid-tile-header>
-            <mat-card-content>
-              <mat-form-field>
-                <mat-label>
-                  Specify the site
-                </mat-label>
-                <mat-select formControlName="site">
-                  <mat-option *ngFor="let option of siteOpt" [value]="option.value">
-                    {{option.viewValue}}
-                  </mat-option>
-                </mat-select>
-              </mat-form-field>
-            </mat-card-content>
-          </mat-grid-tile>
-          <mat-grid-tile rowspan="2">
-            <mat-grid-tile-header>
-              <h3>9. Breslow thickness </h3>
-            </mat-grid-tile-header>
-            <mat-card-content>
-              <mat-form-field>
-                <input matInput formControlName="breslowThinkness" placeholder="Express in mm">
-              </mat-form-field>
-            </mat-card-content>
-          </mat-grid-tile>
-          <mat-grid-tile>
-            <mat-grid-tile-header>
-              <h3>10. Other main histopathologic features</h3>
-            </mat-grid-tile-header>
-            <mat-card-content>
-              <mat-form-field>
-                <mat-label>
-                  Other main histopathologic features
-                </mat-label>
-                <mat-select formControlName="site">
-                  <mat-option *ngFor="let option of subtypeHistoOpt" [value]="option.value">
-                    {{option.viewValue}}
-                  </mat-option>
-                </mat-select>
-              </mat-form-field>
-              <mat-form-field>
-                <input matInput placeholder="Mitotic rate" formControlName="mitoticRate">
-              </mat-form-field>
-              <h4>Ulceration</h4>
-              <mat-radio-group aria-label="Select yes or no" formControlName="ulceration">
-                <mat-radio-button value="present">Present</mat-radio-button>
-                <mat-radio-button value="absent">Absent</mat-radio-button>
-              </mat-radio-group>
-              <h4>Tumor growth phase</h4>
-              <mat-radio-group aria-label="Select yes or no" formControlName="tumorGrowthPhase">
-                <mat-radio-button value="radical">Radical</mat-radio-button>
-                <mat-radio-button value="vertical">Vertical</mat-radio-button>
-              </mat-radio-group>
-              <h4>Regression</h4>
-              <mat-radio-group aria-label="Select yes or no" formControlName="regression">
-                <mat-radio-button [value]="true" value="present">Present</mat-radio-button>
-                <mat-radio-button [value]="false" value="absent">Absent</mat-radio-button>
-              </mat-radio-group>
-              <mat-form-field *ngIf="form.value.regression">
-                <input matInput type="number" placeholder="Specify percentage of regression" formControlName="regressionPercentage">
-              </mat-form-field>
-              <br>
-              <h4>Tumor Infiltrating Lymphocytes</h4>
-              <mat-radio-group aria-label="Select yes or no" formControlName="tumorInfiltratingLymphocytes">
-                <mat-radio-button value="absent">Absent</mat-radio-button>
-                <mat-radio-button value="non_brisk">Non brisk</mat-radio-button>
-                <mat-radio-button value="brisk">Brisk</mat-radio-button>
-              </mat-radio-group>
-              <br>
-              <h4>Associated nevus</h4>
-              <mat-radio-group aria-label="Select yes or no" formControlName="associatedNevus">
-                <mat-radio-button [value]="false" value="absent">Absent</mat-radio-button>
-                <mat-radio-button [value]="true" value="present">Present</mat-radio-button>
-              </mat-radio-group>
-              <mat-form-field *ngIf="form.value.associatedNevus">
-                <input matInput placeholder="Specify type" formControlName="associatedNevusType">
-              </mat-form-field>
-              <br>
-              <h4>Vascular invasion</h4>
-              <mat-radio-group aria-label="Select yes or no" formControlName="vascularInvasion">
-                <mat-radio-button value="absent">Absent</mat-radio-button>
-                <mat-radio-button value="present">Present</mat-radio-button>
-              </mat-radio-group>
-              <br>
-              <h4>Microsatellitosis</h4>
-              <mat-radio-group aria-label="Select yes or no" formControlName="microsatellitosis">
-                <mat-radio-button value="absent">Absent</mat-radio-button>
-                <mat-radio-button value="present">Present</mat-radio-button>
-              </mat-radio-group>
-              <br>
-              <h4>Pigmentation</h4>
-              <mat-radio-group aria-label="Select yes or no" formControlName="pigmentation">
-                <mat-radio-button value="absent">Absent</mat-radio-button>
-                <mat-radio-button value="partially">Partially pigmented</mat-radio-button>
-                <mat-radio-button value="fully">Fully pigmented</mat-radio-button>
-              </mat-radio-group>
-              <br>
-              <h4>Solar elastosis</h4>
-              <mat-radio-group aria-label="Select yes or no" formControlName="solarElastosis">
-                <mat-radio-button value="absent">Absent</mat-radio-button>
-                <mat-radio-button value="mild">Mild</mat-radio-button>
-                <mat-radio-button value="moderate">Moderate</mat-radio-button>
-                <mat-radio-button value="severe">Severe</mat-radio-button>
-              </mat-radio-group>
-              <br>
-              <h4>Lateral margin status</h4>
-              <mat-radio-group aria-label="Select yes or no" formControlName="lateralMarginStatus">
-                <mat-radio-button value="free">Disease-free</mat-radio-button>
-                <mat-radio-button value="not">Not disease-free</mat-radio-button>
-              </mat-radio-group>
-              <br>
-              <h4>Deep margin status</h4>
-              <mat-radio-group aria-label="Select yes or no" formControlName="deepMarginStatus">
-                <mat-radio-button value="free">Disease-free</mat-radio-button>
-                <mat-radio-button value="not">Not disease-free</mat-radio-button>
-              </mat-radio-group>
-            </mat-card-content>
-          </mat-grid-tile>
-          <mat-grid-tile>
-            <mat-grid-tile-header>
-              <h3>11. Sentinel Lymph Node (SLN) biopsy</h3>
-            </mat-grid-tile-header>
-            <mat-card-content>
-              <mat-radio-group aria-label="Select yes or no" formControlName="sentinelLymphNodebiopsyDone">
-                <mat-radio-button [value]=true value="yes">Yes</mat-radio-button>
-                <mat-radio-button [value]=false value="no">No</mat-radio-button>
-                <mat-radio-button [value]=false value="not_done">Not done</mat-radio-button>
-                <mat-radio-button [value]=false value="not_known">Not known</mat-radio-button>
-              </mat-radio-group>
-              <br>
-              <div *ngIf="form.value.sentinelLymphNodebiopsyDone">
-                <h4>Specify if positive or negative</h4>
-                <mat-radio-group aria-label="Select yes or no" formControlName="sentinelLymphNodebiopsyResult">
-                  <mat-radio-button value="positive">Positive</mat-radio-button>
-                  <mat-radio-button value="negative">Negative</mat-radio-button>
+            <mat-grid-tile>
+              <mat-grid-tile-header>
+                <h3>8. Site</h3>
+              </mat-grid-tile-header>
+              <mat-card-content class="container">
+                <mat-form-field>
+                  <mat-label>
+                    Specify the site
+                  </mat-label>
+                  <mat-select formControlName="site">
+                    <mat-option *ngFor="let option of siteOpt" [value]="option.value">
+                      {{option.viewValue}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </mat-card-content>
+            </mat-grid-tile>
+            <mat-grid-tile rowspan="1">
+              <mat-grid-tile-header>
+                <h3>9. Breslow thickness </h3>
+              </mat-grid-tile-header>
+              <mat-card-content class="container">
+                <mat-form-field>
+                  <mat-label>Insert thickness</mat-label>
+                  <input matInput formControlName="breslowThinkness" placeholder="Express in mm">
+                </mat-form-field>
+              </mat-card-content>
+            </mat-grid-tile>
+            <mat-grid-tile rowspan="3">
+              <mat-grid-tile-header>
+                <h3>10. Other main histopathologic features</h3>
+              </mat-grid-tile-header>
+              <mat-card-content>
+                <mat-form-field>
+                  <mat-label>
+                    Other main histopathologic features
+                  </mat-label>
+                  <mat-select formControlName="subtype">
+                    <mat-option *ngFor="let option of subtypeHistoOpt" [value]="option.value">
+                      {{option.viewValue}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+                <mat-form-field>
+                  <mat-label>Insert mitotic rate</mat-label>
+                  <input matInput placeholder="Mitotic rate" formControlName="mitoticRate">
+                </mat-form-field>
+                <h4>Ulceration</h4>
+                <mat-radio-group aria-label="Select yes or no" formControlName="ulceration">
+                  <mat-radio-button value="present">Present</mat-radio-button>
+                  <mat-radio-button value="absent">Absent</mat-radio-button>
                 </mat-radio-group>
-              </div>
-            </mat-card-content>
-          </mat-grid-tile>
-        </div>
+                <h4>Tumor growth phase</h4>
+                <mat-radio-group aria-label="Select yes or no" formControlName="tumorGrowthPhase">
+                  <mat-radio-button value="radical">Radical</mat-radio-button>
+                  <mat-radio-button value="vertical">Vertical</mat-radio-button>
+                </mat-radio-group>
+                <h4>Regression</h4>
+                <mat-radio-group aria-label="Select yes or no" formControlName="regression">
+                  <mat-radio-button [value]="true" value="present">Present</mat-radio-button>
+                  <mat-radio-button [value]="false" value="absent">Absent</mat-radio-button>
+                </mat-radio-group>
+                <mat-form-field *ngIf="form.value.regression">
+                  <mat-label>Insert regression</mat-label>
+                  <input matInput type="number" placeholder="Specify percentage of regression" formControlName="regressionPercentage">
+                </mat-form-field>
+                <br>
+                <h4>Tumor Infiltrating Lymphocytes</h4>
+                <mat-radio-group aria-label="Select yes or no" formControlName="tumorInfiltratingLymphocytes">
+                  <mat-radio-button value="absent">Absent</mat-radio-button>
+                  <mat-radio-button value="non_brisk">Non brisk</mat-radio-button>
+                  <mat-radio-button value="brisk">Brisk</mat-radio-button>
+                </mat-radio-group>
+              </mat-card-content>
+            </mat-grid-tile>
+
+
+            <mat-grid-tile rowspan="3">
+              <mat-grid-tile-header>
+                <h3>10. Other main histopathologic features</h3>
+              </mat-grid-tile-header>
+              <mat-card-content>
+                <br>
+                <h4>Associated nevus</h4>
+                <mat-radio-group aria-label="Select yes or no" formControlName="associatedNevus">
+                  <mat-radio-button [value]="false" value="absent">Absent</mat-radio-button>
+                  <mat-radio-button [value]="true" value="present">Present</mat-radio-button>
+                </mat-radio-group>
+                <mat-form-field *ngIf="form.value.associatedNevus">
+                  <mat-label>Insert type</mat-label>
+                  <input matInput placeholder="Specify type" formControlName="associatedNevusType">
+                </mat-form-field>
+                <br>
+                <h4>Vascular invasion</h4>
+                <mat-radio-group aria-label="Select yes or no" formControlName="vascularInvasion">
+                  <mat-radio-button value="absent">Absent</mat-radio-button>
+                  <mat-radio-button value="present">Present</mat-radio-button>
+                </mat-radio-group>
+                <br>
+                <h4>Microsatellitosis</h4>
+                <mat-radio-group aria-label="Select yes or no" formControlName="microsatellitosis">
+                  <mat-radio-button value="absent">Absent</mat-radio-button>
+                  <mat-radio-button value="present">Present</mat-radio-button>
+                </mat-radio-group>
+                <br>
+                <h4>Pigmentation</h4>
+                <mat-radio-group aria-label="Select yes or no" formControlName="pigmentation">
+                  <mat-radio-button value="absent">Absent</mat-radio-button>
+                  <mat-radio-button value="partially">Partially pigmented</mat-radio-button>
+                  <mat-radio-button value="fully">Fully pigmented</mat-radio-button>
+                </mat-radio-group>
+                <br>
+                <h4>Solar elastosis</h4>
+                <mat-radio-group aria-label="Select yes or no" formControlName="solarElastosis">
+                  <mat-radio-button value="absent">Absent</mat-radio-button>
+                  <mat-radio-button value="mild">Mild</mat-radio-button>
+                  <mat-radio-button value="moderate">Moderate</mat-radio-button>
+                  <mat-radio-button value="severe">Severe</mat-radio-button>
+                </mat-radio-group>
+                <br>
+                <h4>Lateral margin status</h4>
+                <mat-radio-group aria-label="Select yes or no" formControlName="lateralMarginStatus">
+                  <mat-radio-button value="free">Disease-free</mat-radio-button>
+                  <mat-radio-button value="not">Not disease-free</mat-radio-button>
+                </mat-radio-group>
+                <br>
+                <h4>Deep margin status</h4>
+                <mat-radio-group aria-label="Select yes or no" formControlName="deepMarginStatus">
+                  <mat-radio-button value="free">Disease-free</mat-radio-button>
+                  <mat-radio-button value="not">Not disease-free</mat-radio-button>
+                </mat-radio-group>
+              </mat-card-content>
+            </mat-grid-tile>
+
+
+            <mat-grid-tile>
+              <mat-grid-tile-header>
+                <h3>11. Sentinel Lymph Node (SLN) biopsy</h3>
+              </mat-grid-tile-header>
+              <mat-card-content class="container">
+                <mat-radio-group aria-label="Select yes or no" formControlName="sentinelLymphNodebiopsyDone">
+                  <mat-radio-button [value]=true value="yes">Yes</mat-radio-button>
+                  <mat-radio-button [value]=false value="no">No</mat-radio-button>
+                  <mat-radio-button [value]=false value="not_done">Not done</mat-radio-button>
+                  <mat-radio-button [value]=false value="not_known">Not known</mat-radio-button>
+                </mat-radio-group>
+                <br>
+                <div *ngIf="form.value.sentinelLymphNodebiopsyDone">
+                  <h4>Specify if positive or negative</h4>
+                  <mat-radio-group aria-label="Select yes or no" formControlName="sentinelLymphNodebiopsyResult">
+                    <mat-radio-button value="positive">Positive</mat-radio-button>
+                    <mat-radio-button value="negative">Negative</mat-radio-button>
+                  </mat-radio-group>
+                </div>
+              </mat-card-content>
+            </mat-grid-tile>
+          </div>
         </mat-grid-list>
         <div>
           <button type="submit" [disabled]="!form.valid" mat-raised-button color="primary" matStepperNext>Next</button>

@@ -8,7 +8,7 @@
             <mat-grid-tile-header>
               <h3>1. Family history of melanoma</h3>
             </mat-grid-tile-header>
-            <mat-card-content>
+            <mat-card-content class="container">
               <h4>
                 Is there a component of patient's family (up to third degree relatives) whom a melanoma has been diagnosed?
               </h4>
@@ -27,10 +27,10 @@
             <mat-grid-tile-header>
               <h3>2. Germline status</h3>
             </mat-grid-tile-header>
-            <mat-card-content>
-              <mat-form-field>
+            <mat-card-content class="container">
+              <mat-form-field class="container">
                 <mat-label>Select germline</mat-label>
-                <mat-select formControlName="germlineStatus">
+                <mat-select formControlName="germlineStatus" class="container">
                   <mat-option *ngFor="let option of germlineStatusOpt" [value]="option.value">
                     {{option.viewValue}}
                   </mat-option>
@@ -42,7 +42,7 @@
             <mat-grid-tile-header>
               <h3>3. Family history of other cancers</h3>
             </mat-grid-tile-header>
-            <mat-card-content>
+            <mat-card-content class="container">
               <h4>
                 Is there a component of patient's family (up to third degree relatives) whom a cancer has been diagnosed?
               </h4>
@@ -66,11 +66,11 @@
   </form>
 </div>
 
-<ng-template #melanomaDialog class="mat-dialog-container custom-width-800">
+<ng-template #melanomaDialog>
   <h2 matDialogTitle>Parents with melanoma</h2>
   <form (ngSubmit)="addMelanomaParent()" [formGroup]="formMelanoma">
 
-    <div matDialogContent class="custom-width-800">
+    <div matDialogContent>
       <br>
       <table mat-table [dataSource]="melanomaFamily" class="mat-elevation-z8">
 
@@ -132,7 +132,7 @@
       </mat-form-field>
     </div>
     <mat-dialog-actions align="end">
-      <button type="submit" [disabled]="!formMelanoma.valid" mat-raised-button color="primary" matStepperNext>
+      <button type="submit" [disabled]="!formMelanoma.valid" mat-raised-button color="primary">
         Add relative
       </button>
       <button mat-raised-button color="primary" matDialogClose>
@@ -144,10 +144,10 @@
 </ng-template>
 
 
-<ng-template #cancerDialog class="mat-dialog-container custom-width-800">
+<ng-template #cancerDialog>
   <h2 matDialogTitle>Parents with cancer</h2>
   <form id="1" (ngSubmit)="addCancerParent()" [formGroup]="formCancer">
-    <div matDialogContent class="custom-width-800">
+    <div matDialogContent>
       <br>
       <table mat-table [dataSource]="cancerFamily" class="mat-elevation-z8">
 
@@ -207,7 +207,7 @@
       </mat-form-field>
     </div>
     <mat-dialog-actions align="end">
-      <button type="submit" [disabled]="!formCancer.valid" mat-raised-button color="primary" matStepperNext>
+      <button type="submit" [disabled]="!formCancer.valid" mat-raised-button color="primary">
         Add relative
       </button>
       <button mat-raised-button color="primary" matDialogClose>

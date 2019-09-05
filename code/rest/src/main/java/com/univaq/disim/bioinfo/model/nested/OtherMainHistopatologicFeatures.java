@@ -5,9 +5,11 @@ public class OtherMainHistopatologicFeatures {
     private String mitoticRate;
     private String ulceration;
     private String tumorGrowthPhase;
-    private String regression;
+    private boolean regression;
+    private int regressionPercentage;
     private String tumorInfiltratingLymphocytes;
-    private String associatedNevus;
+    private boolean associatedNevus;
+    private String associatedNevusType;
     private String vascularInvasion;
     private String microsatellitosis;
     private String pigmentation;
@@ -17,21 +19,6 @@ public class OtherMainHistopatologicFeatures {
 
     public OtherMainHistopatologicFeatures(){
 
-    }
-
-    public OtherMainHistopatologicFeatures(String subtype, String mitoticRate, String tumorGrowthPhase, String regression, String tumorInfiltratingLymphocytes, String associatedNevus, String vascularInvasion, String microsatellitosis, String pigmentation, String solarElastosis, String lateralMarginStatus, String deepMarginStatus) {
-        this.subtype = subtype;
-        this.mitoticRate = mitoticRate;
-        this.tumorGrowthPhase = tumorGrowthPhase;
-        this.regression = regression;
-        this.tumorInfiltratingLymphocytes = tumorInfiltratingLymphocytes;
-        this.associatedNevus = associatedNevus;
-        this.vascularInvasion = vascularInvasion;
-        this.microsatellitosis = microsatellitosis;
-        this.pigmentation = pigmentation;
-        this.solarElastosis = solarElastosis;
-        this.lateralMarginStatus = lateralMarginStatus;
-        this.deepMarginStatus = deepMarginStatus;
     }
 
     public String getSubtype() {
@@ -58,20 +45,28 @@ public class OtherMainHistopatologicFeatures {
         this.ulceration = ulceration;
     }
 
-    public String getTumorGrowthRate() {
+    public String getTumorGrowthPhase() {
         return tumorGrowthPhase;
     }
 
-    public void setTumorGrowthRate(String tumorGrowthPhase) {
+    public void setTumorGrowthPhase(String tumorGrowthPhase) {
         this.tumorGrowthPhase = tumorGrowthPhase;
     }
 
-    public String getRegression() {
+    public boolean isRegression() {
         return regression;
     }
 
-    public void setRegression(String regression) {
+    public void setRegression(boolean regression) {
         this.regression = regression;
+    }
+
+    public int getRegressionPercentage() {
+        return regressionPercentage;
+    }
+
+    public void setRegressionPercentage(int regressionPercentage) {
+        this.regressionPercentage = regressionPercentage;
     }
 
     public String getTumorInfiltratingLymphocytes() {
@@ -82,12 +77,20 @@ public class OtherMainHistopatologicFeatures {
         this.tumorInfiltratingLymphocytes = tumorInfiltratingLymphocytes;
     }
 
-    public String getAssociatedNevus() {
+    public boolean isAssociatedNevus() {
         return associatedNevus;
     }
 
-    public void setAssociatedNevus(String associatedNevus) {
+    public void setAssociatedNevus(boolean associatedNevus) {
         this.associatedNevus = associatedNevus;
+    }
+
+    public String getAssociatedNevusType() {
+        return associatedNevusType;
+    }
+
+    public void setAssociatedNevusType(String associatedNevusType) {
+        this.associatedNevusType = associatedNevusType;
     }
 
     public String getVascularInvasion() {

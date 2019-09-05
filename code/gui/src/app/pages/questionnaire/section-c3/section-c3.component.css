@@ -41,15 +41,10 @@ table {
   width: 800px !important;
 }
 
-
 .container {
-  width: 100%;
+  width: 90%;
 }
 
 ::ng-deep mat-form-field {
-  width: 100% !important;
-}
-
-.mat-select {
-  width: 70%;
+  width: 90% !important;
 }

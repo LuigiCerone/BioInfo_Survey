@@ -48,7 +48,7 @@ public class D {
 
     // It can be: YES, NO, Not done, Not known
     @Field
-    private String sentinelLymphNodebiopsyDone;
+    private boolean sentinelLymphNodebiopsyDone;
 
     // It can be: Positive or negative or empty
     @Field
@@ -152,11 +152,11 @@ public class D {
         this.otherMainHistopatologicFeatures = otherMainHistopatologicFeatures;
     }
 
-    public String getSentinelLymphNodebiopsyDone() {
+    public boolean isSentinelLymphNodebiopsyDone() {
         return sentinelLymphNodebiopsyDone;
     }
 
-    public void setSentinelLymphNodebiopsyDone(String sentinelLymphNodebiopsyDone) {
+    public void setSentinelLymphNodebiopsyDone(boolean sentinelLymphNodebiopsyDone) {
         this.sentinelLymphNodebiopsyDone = sentinelLymphNodebiopsyDone;
     }
 

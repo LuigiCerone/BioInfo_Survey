@@ -30,7 +30,7 @@ export class LoginComponent {
     this.authService.login(this.form.value.username, this.form.value.password).subscribe( (res) => {
       console.log(this.authService.currentUserValue);
       if (this.authService.currentUserValue.role === 'ROLE_DOCTOR') {
-        this.router.navigate(['profile']);
+        this.router.navigate(['query']);
       } else {
         this.router.navigate(['questionnaire', this.authService.currentUserValue.username] );
       }

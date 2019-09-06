@@ -33,6 +33,9 @@ public class SectionDServiceImpl implements SectionDService {
 
             q.addD(type, d);
 
+            // Set completed status.
+            q.setCompleted(true);
+
             return questionnaireRepository.insert(q).getD().get(type);
         }
     }
@@ -56,6 +59,8 @@ public class SectionDServiceImpl implements SectionDService {
             throw new BusinessLayerException(HttpStatus.NOT_FOUND, ErrorMessage.SECTION_MISSING);
         }
         q.addD(type, d);
+        // Set completed status.
+        q.setCompleted(true);
 
         return questionnaireRepository.save(q).getD().get(type);
     }

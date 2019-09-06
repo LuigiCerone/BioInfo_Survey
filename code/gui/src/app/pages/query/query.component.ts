@@ -62,19 +62,20 @@ export class QueryComponent implements OnInit {
         name: 'a2.cityOfBirth',
         type: 'string',
         operators: ['=', '!=']
+      },
+      'a2.provinceOfBirth': {
+        name: 'a2.provinceOfBirth',
+        type: 'string',
+        operators: ['=', '!=']
+      },
+      'a2.countryOfBirth': {
+        name: 'a2.countryOfBirth',
+        type: 'string',
+        operators: ['=', '!=']
       }
     }
   };
 
-
-  // sex: "male"
-  // dateOfBirth: "11/Jun/1978"
-  // cityOfBirth: "Avezzano"
-  // provinceOfBirth: "AQ"
-  // countryOfBirth: "Italia"
-  // weight: "80"
-  // height: "180"
-  // ethnicity: "other"
 
   constructor(private authenticationService: AuthenticationService,
               private questionnaireService: QuestionnaireService,
@@ -82,7 +83,6 @@ export class QueryComponent implements OnInit {
 
   ngOnInit(): void {
     // Get all questionnaires.
-    // TODO Pagination.
     this.questionnaireService.getAllQuestionnaire().subscribe( (result: Array<Questionnaire>) => {
       console.log(result);
       this.dataSource.data = result;
@@ -101,7 +101,7 @@ export class QueryComponent implements OnInit {
       console.log(result);
       this.dataSource.data = result;
       this.dataSource.paginator = this.paginator;
-    }, (err) => { console.log('erroreee')});
+    });
   }
 
 }

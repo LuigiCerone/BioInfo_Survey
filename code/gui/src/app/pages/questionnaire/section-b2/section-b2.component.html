@@ -14,7 +14,6 @@
               <mat-radio-group aria-label="Select yes or no" formControlName="occupationalSunExposure">
                 <mat-radio-button [value]=true>{{"YES_OPTION" | translate}}</mat-radio-button>
                 <mat-radio-button [value]=false>{{"NO_OPTION" | translate}}</mat-radio-button>
-                <!--            TODO Center -->
               </mat-radio-group>
               <div *ngIf="form.value.occupationalSunExposure == 1">
                 <mat-form-field class="container">
@@ -46,7 +45,6 @@
               <mat-radio-group aria-label="Select yes or no" formControlName="recreationalSunExposure">
                 <mat-radio-button [value]=true>{{"YES_OPTION" | translate}}</mat-radio-button>
                 <mat-radio-button [value]=false>{{"NO_OPTION" | translate}}</mat-radio-button>
-                <!--            TODO Center -->
               </mat-radio-group>
               <div *ngIf="form.value.recreationalSunExposure == 1">
                 <mat-form-field class="container">
@@ -150,7 +148,6 @@
                 <mat-radio-button value="1">{{"YES_OPTION" | translate}}</mat-radio-button>
                 <mat-radio-button value="0">{{"NO_OPTION" | translate}}</mat-radio-button>
                 <mat-radio-button value="2">{{"NOT_KNOWN_OPTION" | translate}}</mat-radio-button>
-                <!--            TODO Center -->
               </mat-radio-group>
               <mat-form-field class="container" *ngIf="form.value.sunburnsLess18 == 1">
                 <input matInput
@@ -162,7 +159,6 @@
                 <mat-radio-button value="1">{{"YES_OPTION" | translate}}</mat-radio-button>
                 <mat-radio-button value="0">{{"NO_OPTION" | translate}}</mat-radio-button>
                 <mat-radio-button value="2">{{"NOT_KNOWN_OPTION" | translate}}</mat-radio-button>
-                <!--            TODO Center -->
               </mat-radio-group>
               <mat-form-field class="container" *ngIf="form.value.sunburnsGreater18 == 1">
                 <input matInput

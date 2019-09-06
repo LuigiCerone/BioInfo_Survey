@@ -20,6 +20,13 @@
   <mat-step>
     <app-section-e section="b"></app-section-e>
   </mat-step>
+  <mat-step>
+    <ng-template matStepLabel>{{ "DONE" | translate }}</ng-template>
+    {{ "DONE_MSG" | translate }}
+    <div>
+      <button mat-raised-button color="primary" (click)="goHome()">{{ "DONE_BUTTON" | translate }}</button>
+    </div>
+  </mat-step>
 </mat-horizontal-stepper>
 
 <mat-horizontal-stepper *ngIf="(authenticationService.currentUserSubject$ | async)?.role === 'ROLE_DOCTOR' "  linear="true"
@@ -51,4 +58,11 @@
       <app-section-d [type]="i"></app-section-d>
     </mat-step>
   </div>
+  <mat-step>
+    <ng-template matStepLabel>Done</ng-template>
+    You are now done.
+    <div>
+      <button mat-raised-button color="primary" (click)="goHome()">Back home</button>
+    </div>
+  </mat-step>
 </mat-horizontal-stepper>

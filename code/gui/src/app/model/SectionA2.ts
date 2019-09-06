@@ -13,7 +13,6 @@ class SectionA2 {
   countryOfResidence: string;
   education: string;
   currentOccupationalStatus: string;
-  // TODO Handle this field.
   historyOfOccupations: Array<Occupation>;
 
   constructor(form?, history?) {

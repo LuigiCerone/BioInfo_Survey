@@ -15,11 +15,6 @@
         <span>Questionnaire</span>
       </button>
 
-      <button mat-menu-item *ngIf="(auth.currentUserSubject$ | async)?.role === 'ROLE_DOCTOR' " routerLink="profile">
-        <mat-icon>list</mat-icon>
-        <span>Profile</span>
-      </button>
-
       <button mat-menu-item *ngIf="(auth.currentUserSubject$ | async)?.role === 'ROLE_DOCTOR' " routerLink="query">
         <mat-icon>query_builder</mat-icon>
         <span>Query</span>

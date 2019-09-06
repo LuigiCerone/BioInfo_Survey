@@ -18,7 +18,8 @@ export class QuestionnaireComponent implements OnInit{
 
   constructor(private authenticationService: AuthenticationService,
               private questionnaireService: QuestionnaireService,
-              private route: ActivatedRoute) {}
+              private route: ActivatedRoute,
+              private router: Router) {}
 
   ngOnInit(): void {
     this.username = this.route.snapshot.params.username;
@@ -54,5 +55,9 @@ export class QuestionnaireComponent implements OnInit{
     }
     console.log(res);
     return res;
+  }
+
+  goHome() {
+    this.router.navigate(['home']);
   }
 }

@@ -60,6 +60,9 @@ public class Questionnaire {
     @Field
     private int numberOfMPM;
 
+    @Field
+    private boolean completed;
+
     public Questionnaire(){
 
     }
@@ -190,5 +193,13 @@ public class Questionnaire {
 
     public void setNumberOfMPM(int numberOfMPM) {
         this.numberOfMPM = numberOfMPM;
+    }
+
+    public boolean isCompleted() {
+        return completed;
+    }
+
+    public void setCompleted(boolean completed) {
+        this.completed = completed;
     }
 }

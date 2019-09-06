@@ -26,3 +26,8 @@ mat-card-content {
   display: flex;
   justify-content: flex-end;
 }
+
+.mat-raised-button.mat-primary {
+  background-color: #3b7e92 !important;
+}
+

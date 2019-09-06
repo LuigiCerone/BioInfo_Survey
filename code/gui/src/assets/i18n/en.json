@@ -214,5 +214,9 @@
   "SECTION_B3_VITAMIN_FREQ_OPT_1": "< 1 year",
   "SECTION_B3_VITAMIN_FREQ_OPT_2": "1/4 years",
   "SECTION_B3_VITAMIN_FREQ_OPT_3": "5/9 years",
-  "SECTION_B3_VITAMIN_FREQ_OPT_4": "Equal or more than 10 years"
+  "SECTION_B3_VITAMIN_FREQ_OPT_4": "Equal or more than 10 years",
+
+  "DONE": "Done",
+  "DONE_MSG": "You've completed the questionnaire!",
+  "DONE_BUTTON": "Return to home"
 }

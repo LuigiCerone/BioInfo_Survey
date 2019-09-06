@@ -22,3 +22,7 @@
   background-color:#3b7e92 !important;
   color: white;
 }
+
+.mat-raised-button.mat-primary {
+  background-color: #3b7e92 !important;
+}

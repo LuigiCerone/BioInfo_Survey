@@ -1,0 +1,12 @@
+.home-header{
+  padding: 10px 50px 47px 50px;
+  text-align: center;
+  background: #3b7e92;
+  color: white;
+  font-size: 21px;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.home-header > p {
+  font-size: 19.2px;
+}

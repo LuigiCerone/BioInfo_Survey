@@ -17,3 +17,8 @@
 .selected-language{
   color: #fffc00;
 }
+
+.mat-toolbar {
+  background-color:#3b7e92 !important;
+  color: white;
+}

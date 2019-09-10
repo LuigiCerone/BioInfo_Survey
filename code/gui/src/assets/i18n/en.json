@@ -68,7 +68,7 @@
   "SECTION_A2_6_OCC_OPTION_4" : "Student",
   "SECTION_A2_6_OCC_OPTION_5" : "Retired",
   "SECTION_A2_8_TITLE" : "Previous works history",
-  "SECTION_A2_8_BODY": "History of occupation (starting from most recent and going backwards in time; record duration from YYYY to YYYY) <b>(Optional)</b>",
+  "SECTION_A2_8_BODY": "History of occupation (starting from most recent and going backwards in time; record duration from YYYY to YYYY) (Optional)",
   "SECTION_A2_8_HISTORY_MODAL_OPEN": "Open",
   "SECTION_A2_8_HISTORY_MODAL_TITLE": "Previous works history",
   "SECTION_A2_8_HISTORY_TABLE_COLUMN_SIC": "SIC code",
@@ -218,5 +218,18 @@
 
   "DONE": "Done",
   "DONE_MSG": "You've completed the questionnaire!",
-  "DONE_BUTTON": "Return to home"
+  "DONE_BUTTON": "Return to home",
+
+  "LOGIN": "Login",
+  "SIGNUP_MSG": "Not registered? Click here and get an account now!",
+  "SIGNUP": "Signup",
+  "SIGNUP_USER_TYPE": "Select type of user",
+  "TYPE": "User type",
+  "CASE": "Case",
+  "CONTROL": "Control",
+  "DOCTOR": "Doctor",
+  "SIGNUP_OK_TITLE": "Registration successful!",
+  "SIGNUP_OK_BODY_1": "Your data are:",
+  "SIGNUP_OK_BODY_2": "You should write them down or download and store them with the following button.",
+  "SINGUP_BUTTON_DOWNLOAD": "Download as PDF"
 }

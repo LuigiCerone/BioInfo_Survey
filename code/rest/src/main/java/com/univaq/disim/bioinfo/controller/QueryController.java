@@ -31,7 +31,7 @@ public class QueryController<QuestionnaireServiceImpl> {
 
     @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity runQuery(HttpServletRequest request,
-                               @RequestBody JsonNode jsonQuery){
+                                   @RequestBody JsonNode jsonQuery){
         List<Questionnaire> result = questionnaireService.runQuery(jsonQuery);
         return new ResponseEntity<>(result, HttpStatus.OK);
     }

@@ -31,3 +31,8 @@ mat-card-content {
   background-color: #3b7e92 !important;
 }
 
+.signup:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
+

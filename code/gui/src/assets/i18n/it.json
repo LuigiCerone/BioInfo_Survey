@@ -68,7 +68,7 @@
   "SECTION_A2_6_OCC_OPTION_4" : "Studente",
   "SECTION_A2_6_OCC_OPTION_5" : "Pensionato",
   "SECTION_A2_8_TITLE" : "Cronologia dei lavori precedenti",
-  "SECTION_A2_8_BODY": "Fornire la cronologia partendo dal più recente (specificare durata da YYYY a YYYY) <b>(Opzionale)</b>",
+  "SECTION_A2_8_BODY": "Fornire la cronologia partendo dal più recente (specificare durata da YYYY a YYYY) (Opzionale)",
   "SECTION_A2_8_HISTORY_MODAL_OPEN": "Apri",
   "SECTION_A2_8_HISTORY_MODAL_TITLE": "Cronologia dei lavori precedenti",
   "SECTION_A2_8_HISTORY_TABLE_COLUMN_SIC": "Codice SIC",
@@ -205,5 +205,18 @@
 
   "DONE": "Fatto",
   "DONE_MSG": "Hai completato il questionario!",
-  "DONE_BUTTON": "Torna alla home"
+  "DONE_BUTTON": "Torna alla home",
+
+  "LOGIN": "Accedi",
+  "SIGNUP_MSG": "Non sei registrato? Clicca qui e ottieni un account subito!",
+  "SIGNUP": "Registrati",
+  "SIGNUP_USER_TYPE": "Seleziona un tipo di utente",
+  "TYPE": "Tipo utente",
+  "CASE": "Paziente",
+  "CONTROL": "Controllo",
+  "DOCTOR": "Dottore",
+  "SIGNUP_OK_TITLE": "Registrato con successo!",
+  "SIGNUP_OK_BODY_1": "I tuoi dati sono:",
+  "SIGNUP_OK_BODY_2": "Dovresti scriverli oppure scaricarli e stamparli con il seguente pulsante.",
+  "SINGUP_BUTTON_DOWNLOAD": "Scarica come PDF"
 }

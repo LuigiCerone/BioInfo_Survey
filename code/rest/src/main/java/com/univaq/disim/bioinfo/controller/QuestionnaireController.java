@@ -6,13 +6,10 @@ import com.univaq.disim.bioinfo.BusinessLayerException;
 import com.univaq.disim.bioinfo.configuration.JwtProvider;
 import com.univaq.disim.bioinfo.model.Questionnaire;
 import com.univaq.disim.bioinfo.model.section.*;
-import com.univaq.disim.bioinfo.repository.QuestionnaireRepository;
 import com.univaq.disim.bioinfo.service.interfaces.*;
-import org.bson.types.ObjectId;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.security.oauth2.resource.OAuth2ResourceServerProperties;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -62,11 +59,6 @@ public class QuestionnaireController<QuestionnaireServiceImpl> {
     @Autowired
     private JwtProvider jwtProvider;
 
-    @GetMapping("/{codeNumber}")
-    public ResponseEntity<Questionnaire> getQuestionnaire(HttpServletRequest request, @PathVariable(value="codeNumber") String codeNumber){
-        Questionnaire q = questionnaireService.findOneByCodeNumber(codeNumber);
-        return new ResponseEntity<Questionnaire>(q, HttpStatus.OK);
-    }
 
     @RequestMapping(method = RequestMethod.GET)
     public ResponseEntity getAllQuestionnaires(HttpServletRequest request){

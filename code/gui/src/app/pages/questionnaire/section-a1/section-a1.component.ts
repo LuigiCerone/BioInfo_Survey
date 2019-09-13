@@ -4,6 +4,8 @@ import { SectionA1 } from '../../../model/SectionA1';
 import { AuthenticationService } from '../../../services/authentication.service';
 import { ActivatedRoute } from '@angular/router';
 import { QuestionnaireService } from '../../../services/questionnaire.service';
+import * as moment from 'moment';
+
 
 export interface Options {
   value: string;
@@ -46,6 +48,7 @@ export class SectionA1Component implements OnInit {
     this.questionnaireService.getQuestionnaireForUser(this.username, 'a1').subscribe( (section: SectionA1) => {
       // console.log(section);
       if (section) {
+        section.dateOfQuestionnaireAdministration = moment(section.dateOfQuestionnaireAdministration).format('DD/MMM/YYYY');
         this.a1 = section;
       } else {
         this.a1 = new SectionA1();

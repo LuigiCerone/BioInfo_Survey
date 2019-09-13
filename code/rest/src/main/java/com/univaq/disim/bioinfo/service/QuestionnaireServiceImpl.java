@@ -1,21 +1,18 @@
 package com.univaq.disim.bioinfo.service;
 
 import com.fasterxml.jackson.databind.JsonNode;
-import com.mongodb.BasicDBObject;
-import com.mongodb.DBObject;
-import com.mongodb.QueryBuilder;
 import com.univaq.disim.bioinfo.model.Questionnaire;
 import com.univaq.disim.bioinfo.repository.QuestionnaireRepository;
 import com.univaq.disim.bioinfo.service.interfaces.QuestionnaireService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
-import org.springframework.data.mongodb.core.query.BasicQuery;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import sun.rmi.runtime.Log;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -67,6 +64,8 @@ public class QuestionnaireServiceImpl implements QuestionnaireService {
 
         JsonNode rules = jsonQuery.get("rules");
         String operator = jsonQuery.get("condition").asText();
+
+
         for ( JsonNode node : rules) {
 
             switch (node.get("operator").asText()){
@@ -75,11 +74,23 @@ public class QuestionnaireServiceImpl implements QuestionnaireService {
                     break;
                 }
                 case ">=": {
-                    list.add(Criteria.where(node.get("field").asText()).gte(node.get("value").asText()));
+                    if (node.get("serverType").asText().equals("date")){
+                        // Transform date as string into date obj.
+                        Long millis = trasformDate(node);
+                        list.add(Criteria.where(node.get("field").asText()).gte(millis));
+                    } else {
+                        list.add(Criteria.where(node.get("field").asText()).gte(node.get("value").asText()));
+                    }
                     break;
                 }
                 case "<=": {
-                    list.add(Criteria.where(node.get("field").asText()).lte(node.get("value").asText()));
+                    if (node.get("serverType").asText().equals("date")){
+                        // Transform date as string into date obj.
+                        Long millis = trasformDate(node);
+                        list.add(Criteria.where(node.get("field").asText()).lte(millis));
+                    } else {
+                        list.add(Criteria.where(node.get("field").asText()).lte(node.get("value").asText()));
+                    }
                     break;
                 }
                 case "!=": {
@@ -103,5 +114,15 @@ public class QuestionnaireServiceImpl implements QuestionnaireService {
         }
 
         return mongoTemplate.find(query, Questionnaire.class);
+    }
+
+    private Long trasformDate(JsonNode node){
+        Long millis = null;
+        try {
+            millis = new SimpleDateFormat("yyyy-MM-dd").parse(node.get("value").asText()).toInstant().toEpochMilli();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return millis;
     }
 }

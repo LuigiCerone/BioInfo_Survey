@@ -36,7 +36,7 @@ public class SectionA1ServiceImpl implements SectionA1Service {
             q.setOwnerUsername(username);
 
             if( a1.getDatesOfUpdateQuestionnaire() == null){
-                ArrayList<String> list = new ArrayList<String>(Collections.singleton(a1.getDateOfQuestionnaireAdministration()));
+                ArrayList<Long> list = new ArrayList<Long>(Collections.singleton(a1.getDateOfQuestionnaireAdministration()));
                 a1.setDatesOfUpdateQuestionnaire(list);
             }
             q.setA1(a1);
@@ -66,8 +66,8 @@ public class SectionA1ServiceImpl implements SectionA1Service {
             throw new BusinessLayerException(HttpStatus.NOT_FOUND, ErrorMessage.SECTION_MISSING);
         }
 
-        String updateDate = DateTimeFormatter.ofPattern("dd/MMM/yyyy").format(LocalDate.now());
-        
+        Long updateDate = System.currentTimeMillis();
+
         a1.setDatesOfUpdateQuestionnaire(q.getA1().getDatesOfUpdateQuestionnaire());
         a1.getDatesOfUpdateQuestionnaire().add(updateDate);
         q.setA1(a1);

@@ -4,6 +4,11 @@ import org.springframework.data.mongodb.core.mapping.Field;
 import org.springframework.lang.Nullable;
 
 import javax.validation.constraints.Null;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import java.util.List;
 
 public class A1 {
@@ -15,10 +20,10 @@ public class A1 {
     private String dbCodeNumber;
 
     @Field
-    private String dateOfQuestionnaireAdministration;
+    private Long dateOfQuestionnaireAdministration;
 
     @Field
-    private List<String> datesOfUpdateQuestionnaire;
+    private List<Long> datesOfUpdateQuestionnaire;
 
     @Field
     private String typeOfMelanoma;
@@ -46,19 +51,25 @@ public class A1 {
         this.dbCodeNumber = dbCodeNumber;
     }
 
-    public String getDateOfQuestionnaireAdministration() {
+    public Long getDateOfQuestionnaireAdministration() {
         return dateOfQuestionnaireAdministration;
     }
 
     public void setDateOfQuestionnaireAdministration(String dateOfQuestionnaireAdministration) {
-        this.dateOfQuestionnaireAdministration = dateOfQuestionnaireAdministration;
+        Long millis = null;
+        try {
+            millis = new SimpleDateFormat("dd/MMM/yyyy").parse(dateOfQuestionnaireAdministration).getTime();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        this.dateOfQuestionnaireAdministration = millis;
     }
 
-    public List<String> getDatesOfUpdateQuestionnaire() {
+    public List<Long> getDatesOfUpdateQuestionnaire() {
         return datesOfUpdateQuestionnaire;
     }
 
-    public void setDatesOfUpdateQuestionnaire(List<String> datesOfUpdateQuestionnaire) {
+    public void setDatesOfUpdateQuestionnaire(List<Long> datesOfUpdateQuestionnaire) {
         this.datesOfUpdateQuestionnaire = datesOfUpdateQuestionnaire;
     }
 

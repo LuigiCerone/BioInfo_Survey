@@ -1,3 +1,5 @@
+import * as moment from 'moment';
+
 export class SectionA1{
   subject: string;
   dbCodeNumber: string;
@@ -18,7 +20,7 @@ export class SectionA1{
     } else {
       this.subject = '';
       this.dbCodeNumber = '';
-      this.dateOfQuestionnaireAdministration = '';
+      this.dateOfQuestionnaireAdministration = moment().format('DD/MMM/YYYY');
       this.datesOfUpdateQuestionnaire = new Array<string>('');
       this.typeOfMelanoma = '';
       this.otherSpecification = '';

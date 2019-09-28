@@ -14,7 +14,7 @@
 </div>
 <br><br>
 <div class="container mat-elevation-z8">
-  <table *ngIf="dataSource" mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+  <table matTableExporter #exporter="matTableExporter" *ngIf="dataSource" mat-table [dataSource]="dataSource" class="mat-elevation-z8" >
 
     <!-- Subject Column -->
     <ng-container matColumnDef="subject">
@@ -58,6 +58,9 @@
     <p>There is no data for this filter</p>
   </ng-container>
   <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+</div>
+<div class="button">
+  <button mat-raised-button (click)="exporter.exportTable('csv')">Export</button>
 </div>
 
 <!--<div *ngIf="!dataSource.data.length">Niente</div>-->

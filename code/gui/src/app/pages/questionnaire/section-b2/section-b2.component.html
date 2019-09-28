@@ -280,7 +280,54 @@
               </mat-form-field>
             </mat-card-content>
           </mat-grid-tile>
+          <mat-grid-tile rowspan="2">
+            <mat-grid-tile-header>
+              <h3>8.{{"SECTION_B2_8_TITLE" | translate}}</h3>
+            </mat-grid-tile-header>
+            <mat-card-content class="container">
+              <mat-form-field class="container">
+                <mat-label>{{ "SECTION_B2_8_Q1" | translate }}</mat-label>
+                <mat-select placeholder='{{"SELECT" | translate}}' formControlName="sunProtectionOtherThanSunscreenUseHat">
+                  <mat-option *ngFor="let option of sunscreenPercentageOpt" [value]="option.value">
+                    {{option.viewValue | translate }}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+              <mat-form-field>
+                <mat-label>{{ "SECTION_B2_8_Q2" | translate }}</mat-label>
+                <mat-select placeholder='{{"SELECT" | translate}}' formControlName="sunProtectionOtherThanSunscreenUseClothing">
+                  <mat-option *ngFor="let option of sunscreenPercentageOpt" [value]="option.value">
+                    {{option.viewValue | translate }}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+              <mat-form-field>
+                <mat-label>{{ "SECTION_B2_8_Q3" | translate }}</mat-label>
+                <mat-select placeholder='{{"SELECT" | translate}}' formControlName="seekTheShadeDuringUVRHours">
+                  <mat-option *ngFor="let option of uvrOpt" [value]="option.value">
+                    {{option.viewValue | translate }}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </mat-card-content>
+          </mat-grid-tile>
+          <mat-grid-tile rowspan="2">
+            <mat-grid-tile-header>
+              <h3>8.{{"SECTION_B2_9_TITLE" | translate}}</h3>
+            </mat-grid-tile-header>
+            <mat-card-content class="container">
+              <mat-form-field class="container">
+                <mat-label>{{ "SECTION_B2_9_Q1" | translate }}</mat-label>
+                <mat-select placeholder='{{"SELECT" | translate}}' formControlName="phototherapyUvpuva">
+                  <mat-option *ngFor="let option of uvpuvaOpt" [value]="option.value">
+                    {{option.viewValue | translate }}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </mat-card-content>
+          </mat-grid-tile>
         </mat-grid-list>
+
         <div class="button">
           <button type="submit" [disabled]="!form.valid" mat-raised-button color="primary" matStepperNext>
             {{"BUTTON_NEXT" | translate}}

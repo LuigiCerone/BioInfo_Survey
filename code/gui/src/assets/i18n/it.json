@@ -172,6 +172,18 @@
   "SECTION_B2_SUNSCR_TYPE_OPT_1": "SPF<20",
   "SECTION_B2_SUNSCR_TYPE_OPT_2": "SPF>20",
   "SECTION_B2_SUNSCR_TYPE_OPT_3": "Non disponibile",
+  "SECTION_B2_8_TITLE": "Protezione dal sole oltre la crema",
+  "SECTION_B2_8_Q1": "Indossi un cappello?",
+  "SECTION_B2_8_Q2": "Indossi abiti protettivi?",
+  "SECTION_B2_8_Q3": "Durante le ore con raggi UVR maggiore cerchi di stare all'ombra o in casa?",
+  "SECTION_B2_UVR_OPT_1": "Raramente",
+  "SECTION_B2_UVR_OPT_2": "Qualche volta",
+  "SECTION_B2_UVR_OPT_3": "Sempre",
+  "SECTION_B2_UVR_OPT_4": "Non so",
+  "SECTION_B2_9_TITLE": "Fototerapia",
+  "SECTION_B2_9_Q1": "Utilizzo di UVB-PUVA",
+  "SECTION_B2_UVP_OPT_1": "Mai",
+  "SECTION_B2_UVP_OPT_2": "Sempre",
   "SECTION_B3_1_TITLE": "Fumatore",
   "SECTION_B3_1_LABEL_1": "Selezionare il proprio stato di fumatore",
   "SECTION_B3_1_PLACEHOLDER_1": "A che età ha iniziato a fumare?",
@@ -218,5 +230,6 @@
   "SIGNUP_OK_TITLE": "Registrato con successo!",
   "SIGNUP_OK_BODY_1": "I tuoi dati sono:",
   "SIGNUP_OK_BODY_2": "Dovresti scriverli oppure scaricarli e stamparli con il seguente pulsante.",
-  "SINGUP_BUTTON_DOWNLOAD": "Scarica come PDF"
+  "SINGUP_BUTTON_DOWNLOAD": "Scarica come PDF",
+  "SELECT": "Seleziona un'opzione"
 }

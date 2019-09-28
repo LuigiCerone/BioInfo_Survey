@@ -24,6 +24,8 @@ export function HttpLoaderFactory(http: HttpClient) {
 import { QueryComponent } from './pages/query/query.component';
 import { QueryBuilderModule } from 'angular2-query-builder';
 
+import { MatTableExporterModule } from 'mat-table-exporter';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -45,11 +47,12 @@ import { QueryBuilderModule } from 'angular2-query-builder';
       loader: {
         provide: TranslateLoader,
         useFactory: (HttpLoaderFactory),
-        deps: [HttpClient]
+        deps: [ HttpClient ]
       }
     }),
     QueryBuilderModule,
-    FormsModule
+    FormsModule,
+    MatTableExporterModule
   ],
   providers: [
     NoAuthGuard,

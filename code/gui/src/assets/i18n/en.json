@@ -231,5 +231,6 @@
   "SIGNUP_OK_TITLE": "Registration successful!",
   "SIGNUP_OK_BODY_1": "Your data are:",
   "SIGNUP_OK_BODY_2": "You should write them down or download and store them with the following button.",
-  "SINGUP_BUTTON_DOWNLOAD": "Download as PDF"
+  "SINGUP_BUTTON_DOWNLOAD": "Download as PDF",
+  "SELECT": "Select one option"
 }

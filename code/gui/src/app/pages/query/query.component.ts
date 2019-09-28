@@ -1,7 +1,6 @@
 import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { QueryBuilderConfig } from 'angular2-query-builder';
 import { AuthenticationService } from '../../services/authentication.service';
-import { ActivatedRoute } from '@angular/router';
 import { QuestionnaireService } from '../../services/questionnaire.service';
 import { Questionnaire } from '../../model/Questionnaire';
 import { MatDialog, MatPaginator, MatTableDataSource } from '@angular/material';
@@ -46,6 +45,7 @@ export class QueryComponent implements OnInit {
         name: 'a1.subject',
         type: 'category',
         operators: ['='],
+        defaultValue: 'case',
         options: [
           {name: 'Case', value: 'case'},
           {name: 'Control', value: 'control'}
@@ -54,7 +54,6 @@ export class QueryComponent implements OnInit {
       'a1.dateOfQuestionnaireAdministration': {
         name: 'a1.dateOfQuestionnaireAdministration',
         type: 'date',
-        defaultValue: moment().format('DD/MMM/YYYY'),
         operators: ['>=', '<='],
       },
       'a2.sex': {
@@ -139,8 +138,116 @@ export class QueryComponent implements OnInit {
           {name: 'University', value: 'university'}
         ]
       },
+      'b1.skinType1': {
+        name: 'b1.skinType1',
+        type: 'category',
+        defaultValue: 'not_burn',
+        operators: ['=', '!='],
+        options: [
+          {name: 'Not burn', value: 'not_burn'},
+          {name: 'Light', value: 'light'},
+          {name: 'Moderate', value: 'moderate'},
+          {name: 'Severe', value: 'severe'}
+        ]
+      },
+      'b1.skinType2': {
+        name: 'b1.skinType2',
+        type: 'category',
+        defaultValue: 'not_tan',
+        operators: ['=', '!='],
+        options: [
+          {name: 'Not tan', value: 'not_tan'},
+          {name: 'Light', value: 'light'},
+          {name: 'Moderate', value: 'moderate'},
+          {name: 'Severe', value: 'severe'}
+        ]
+      },
+      'b1.eyeColor': {
+        name: 'b1.eyeColor',
+        type: 'category',
+        defaultValue: 'light',
+        operators: ['=', '!='],
+        options: [
+          {name: 'Light', value: 'light'},
+          {name: 'Medium', value: 'medium'},
+          {name: 'Dark', value: 'dark'}
+        ]
+      },
+      'b1.hairColor': {
+        name: 'b1.hairColor',
+        type: 'category',
+        defaultValue: 'red',
+        operators: ['=', '!='],
+        options: [
+          {name: 'Red', value: 'red'},
+          {name: 'Blond', value: 'blond'},
+          {name: 'Light brown', value: 'light_brown'},
+          {name: 'Dark', value: 'dark'},
+          {name: 'Black', value: 'black'}
+        ]
+      },
+      'b1.freckles': {
+        name: 'b1.freckles',
+        type: 'category',
+        defaultValue: 'none',
+        operators: ['=', '!='],
+        options: [
+          {name: 'None', value: 'none'},
+          {name: 'Few', value: 'few'},
+          {name: 'Some', value: 'some'},
+          {name: 'Many', value: 'many'}
+        ]
+      },
+      'b1.neviInChildhoodAdolescence': {
+        name: 'b1.neviInChildhoodAdolescence',
+        type: 'category',
+        defaultValue: 'none',
+        operators: ['=', '!='],
+        options: [
+          {name: 'None', value: 'none'},
+          {name: 'Few', value: 'few'},
+          {name: 'Some', value: 'some'},
+          {name: 'Many', value: 'many'}
+        ]
+      },
+      'b2.occupationalSunExposure.isTrue': {
+        name: 'b2.occupationalSunExposure.isTrue',
+        type: 'category',
+        defaultValue: 'true',
+        operators: ['=', '!='],
+        options: [
+          {name: 'True', value: 'true'},
+          {name: 'False', value: 'false'}
+        ]
+      },
+      'b2.recreationalSunExposure.isTrue': {
+        name: 'b2.recreationalSunExposure.isTrue',
+        type: 'category',
+        defaultValue: 'true',
+        operators: ['=', '!='],
+        options: [
+          {name: 'True', value: 'true'},
+          {name: 'False', value: 'false'}
+        ]
+      },
+      'b2.mostRecentIntermittentSunExposure': {
+        name: 'b2.mostRecentIntermittentSunExposure',
+        type: 'date',
+        operators: ['>=', '<=']
+      },
+      'b2.sunlampsSunbeds.isTrue': {
+        name: 'b2.sunlampsSunbeds.isTrue',
+        type: 'category',
+        defaultValue: 'true',
+        operators: ['=', '!='],
+        options: [
+          {name: 'True', value: 'true'},
+          {name: 'False', value: 'false'}
+        ]
+      }
     }
   };
+
 
   constructor(private authenticationService: AuthenticationService,
               private questionnaireService: QuestionnaireService,
@@ -162,7 +269,7 @@ export class QueryComponent implements OnInit {
 
   runQuery() {
     // We need to trasform the date into long epoch millis.
-    this.transformDate();
+    this.transform();
     console.log(this.query);
 
     this.questionnaireService.runQuery(this.authenticationService.currentUserValue.username, this.query).subscribe( (result: Array<Questionnaire>) => {
@@ -172,7 +279,7 @@ export class QueryComponent implements OnInit {
     });
   }
 
-  transformDate() {
+  transform() {
     if (!this.query.rules) { return; }
     for (const field of this.query.rules) {
       // console.log(field);
@@ -180,6 +287,8 @@ export class QueryComponent implements OnInit {
       if (field.value && this.isDate(field.value)) {
         // field.value = moment(field.value, 'YYYY/MM/DD').valueOf();
         field.serverType = 'date';
+      } else if (field.value && this.isBoolean(field.value)) {
+        field.serverType = 'boolean';
       }
     }
   }
@@ -194,4 +303,11 @@ export class QueryComponent implements OnInit {
     }
   }
 
+  isBoolean(str: string) {
+    if (str === 'true' || str === 'false') {
+      return true;
+    } else {
+      return false;
+    }
+  }
 }

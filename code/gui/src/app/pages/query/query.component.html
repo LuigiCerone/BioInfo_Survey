@@ -3,9 +3,34 @@
   <query-builder [(ngModel)]='query' [config]='config' [allowRuleset]=false></query-builder>
   <br>
   <mat-divider></mat-divider>
-  <div class="output"><br>
-    <h4>Current query:</h4>
-    <p>{{query | json}}</p>
+<!--  <div class="output"><br>-->
+<!--    <h4>Current query:</h4>-->
+<!--    <p>{{query | json}}</p>-->
+<!--  </div>-->
+  <div>
+    <mat-grid-list cols="2" rowHeight="5:1">
+      <mat-grid-tile>
+        <mat-radio-group aria-label="Select an option" [(ngModel)]="query.otherConditionType">
+          <mat-radio-button value="default" checked>Normal</mat-radio-button> <br>
+          <mat-radio-button value="min">MIN</mat-radio-button> <br>
+          <mat-radio-button value="max">MAX</mat-radio-button> <br>
+          <mat-radio-button value="count">COUNT</mat-radio-button> <br>
+        </mat-radio-group>
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <!--        Solo campi numerici. -->
+        <mat-form-field *ngIf="query.otherConditionType === 'min' || query.otherConditionType === 'max'">
+          <mat-label>Insert the name of the field</mat-label>
+          <mat-select placeholder="Select one field" [(ngModel)]="query.otherConditionField">
+            <mat-option value="a1.dateOfQuestionnaireAdministration">a1.dateOfQuestionnaireAdministration</mat-option>
+            <mat-option value="a2.dateOfBirth">a2.dateOfBirth</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </mat-grid-tile>
+    </mat-grid-list>
+    <br>
+    <br>
+    <br>
   </div>
   <mat-divider></mat-divider><br>
   <div class="button">
@@ -13,54 +38,57 @@
   </div>
 </div>
 <br><br>
-<div class="container mat-elevation-z8">
-  <table matTableExporter #exporter="matTableExporter" *ngIf="dataSource" mat-table [dataSource]="dataSource" class="mat-elevation-z8" >
+<div>
+  <div class="container mat-elevation-z8">
+    <table matTableExporter [exporter]= "customExporter" #exportDirective="matTableExporter"
+           *ngIf="dataSource" mat-table [dataSource]="dataSource" class="mat-elevation-z8" >
 
-    <!-- Subject Column -->
-    <ng-container matColumnDef="subject">
-      <th mat-header-cell *matHeaderCellDef> Subject </th>
-      <td mat-cell *matCellDef="let element"> {{element.a1.subject}} </td>
+      <!-- Subject Column -->
+      <ng-container matColumnDef="subject">
+        <th mat-header-cell *matHeaderCellDef> Subject </th>
+        <td mat-cell *matCellDef="let element"> {{element.a1.subject}} </td>
+      </ng-container>
+
+      <!-- dbCodeNumber Column -->
+      <ng-container matColumnDef="dbCodeNumber">
+        <th mat-header-cell *matHeaderCellDef> Code number </th>
+        <td mat-cell *matCellDef="let element"> {{element.a1.dbCodeNumber}} </td>
+      </ng-container>
+
+      <!-- username Column -->
+      <ng-container matColumnDef="username">
+        <th mat-header-cell *matHeaderCellDef> Username </th>
+        <td mat-cell *matCellDef="let element"> {{element.ownerUsername}} </td>
+      </ng-container>
+
+      <!-- completed Column -->
+      <ng-container matColumnDef="completed">
+        <th mat-header-cell *matHeaderCellDef> Completed </th>
+        <td mat-cell *matCellDef="let element">  {{element.completed}} </td>
+      </ng-container>
+
+      <!-- buttons-->
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef> Actions </th>
+        <td mat-cell *matCellDef="let element">
+          <button mat-button color="primary" matTooltip="Edit current questionnaire"
+                  [routerLink]="['/questionnaire/', element.ownerUsername]" ><mat-icon>edit</mat-icon></button>
+          <button mat-button color="secondary" matTooltip="View current questionnaire"
+                  (click)="showQuestionnare(element)"><mat-icon>remove_red_eye</mat-icon></button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+    <ng-container *ngIf="dataSource.data.length == 0">
+      <p>There is no data for this filter</p>
     </ng-container>
-
-    <!-- dbCodeNumber Column -->
-    <ng-container matColumnDef="dbCodeNumber">
-      <th mat-header-cell *matHeaderCellDef> Code number </th>
-      <td mat-cell *matCellDef="let element"> {{element.a1.dbCodeNumber}} </td>
-    </ng-container>
-
-    <!-- username Column -->
-    <ng-container matColumnDef="username">
-      <th mat-header-cell *matHeaderCellDef> Username </th>
-      <td mat-cell *matCellDef="let element"> {{element.ownerUsername}} </td>
-    </ng-container>
-
-    <!-- completed Column -->
-    <ng-container matColumnDef="completed">
-      <th mat-header-cell *matHeaderCellDef> Completed </th>
-      <td mat-cell *matCellDef="let element">  {{element.completed}} </td>
-    </ng-container>
-
-    <!-- buttons-->
-    <ng-container matColumnDef="actions">
-      <th mat-header-cell *matHeaderCellDef> Actions </th>
-      <td mat-cell *matCellDef="let element">
-        <button mat-button color="primary" matTooltip="Edit current questionnaire"
-                [routerLink]="['/questionnaire/', element.ownerUsername]" ><mat-icon>edit</mat-icon></button>
-        <button mat-button color="secondary" matTooltip="View current questionnaire"
-                (click)="showQuestionnare(element)"><mat-icon>remove_red_eye</mat-icon></button>
-      </td>
-    </ng-container>
-
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-  </table>
-  <ng-container *ngIf="dataSource.data.length == 0">
-    <p>There is no data for this filter</p>
-  </ng-container>
-  <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
-</div>
-<div class="button">
-  <button mat-raised-button (click)="exporter.exportTable('csv')">Export</button>
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+  </div>
+  <div class="button">
+    <button mat-raised-button (click)="export()">Export</button>
+  </div>
 </div>
 
 <!--<div *ngIf="!dataSource.data.length">Niente</div>-->

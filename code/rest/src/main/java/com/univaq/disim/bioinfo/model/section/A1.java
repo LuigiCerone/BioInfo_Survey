@@ -1,5 +1,6 @@
 package com.univaq.disim.bioinfo.model.section;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.data.mongodb.core.mapping.Field;
 import org.springframework.lang.Nullable;
 
@@ -23,6 +24,7 @@ public class A1 {
     private Long dateOfQuestionnaireAdministration;
 
     @Field
+    @JsonIgnore
     private List<Long> datesOfUpdateQuestionnaire;
 
     @Field
@@ -51,8 +53,8 @@ public class A1 {
         this.dbCodeNumber = dbCodeNumber;
     }
 
-    public Long getDateOfQuestionnaireAdministration() {
-        return dateOfQuestionnaireAdministration;
+    public String getDateOfQuestionnaireAdministration() {
+        return new SimpleDateFormat("dd/MMM/yyyy").format(this.dateOfQuestionnaireAdministration);
     }
 
     public void setDateOfQuestionnaireAdministration(String dateOfQuestionnaireAdministration) {

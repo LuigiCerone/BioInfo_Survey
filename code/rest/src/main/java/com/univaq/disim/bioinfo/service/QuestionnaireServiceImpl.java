@@ -5,6 +5,7 @@ import com.univaq.disim.bioinfo.model.Questionnaire;
 import com.univaq.disim.bioinfo.repository.QuestionnaireRepository;
 import com.univaq.disim.bioinfo.service.interfaces.QuestionnaireService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
@@ -70,11 +71,15 @@ public class QuestionnaireServiceImpl implements QuestionnaireService {
 
             switch (node.get("operator").asText()){
                 case "=": {
-                    list.add(Criteria.where(node.get("field").asText()).is(node.get("value").asText()));
+                    if (node.get("serverType") != null && node.get("serverType").asText().equals("boolean")){
+                        list.add(Criteria.where(node.get("field").asText()).is(node.get("value").asBoolean()));
+                    } else {
+                        list.add(Criteria.where(node.get("field").asText()).is(node.get("value").asText()));
+                    }
                     break;
                 }
                 case ">=": {
-                    if (node.get("serverType").asText().equals("date")){
+                    if (node.get("serverType") != null && node.get("serverType").asText().equals("date")){
                         // Transform date as string into date obj.
                         Long millis = trasformDate(node);
                         list.add(Criteria.where(node.get("field").asText()).gte(millis));
@@ -94,7 +99,11 @@ public class QuestionnaireServiceImpl implements QuestionnaireService {
                     break;
                 }
                 case "!=": {
-                    list.add(Criteria.where(node.get("field").asText()).ne(node.get("value").asText()));
+                    if (node.get("serverType").asText().equals("boolean")){
+                        list.add(Criteria.where(node.get("field").asText()).ne(node.get("value").asBoolean()));
+                    } else {
+                        list.add(Criteria.where(node.get("field").asText()).ne(node.get("value").asText()));
+                    }
                     break;
                 }
                 default: {
@@ -113,6 +122,26 @@ public class QuestionnaireServiceImpl implements QuestionnaireService {
             query.addCriteria(c1);
         }
 
+        String otherConditionType = jsonQuery.get("otherConditionType").asText();
+
+        if (otherConditionType.equals("normal")) {
+            // Do nothing.
+        } else if (otherConditionType.equals("min")) {
+            query.with(new Sort(Sort.Direction.ASC, jsonQuery.get("otherConditionField").asText()));
+            query.limit(1);
+        } else if (otherConditionType.equals("max")) {
+            query.with(new Sort(Sort.Direction.DESC, jsonQuery.get("otherConditionField").asText()));
+            query.limit(1);
+        } else if (otherConditionType.equals("count")) {
+            // TODO
+
+            // Count number of total.
+
+
+            // Count number of instances in the result query.
+            int size = mongoTemplate.find(query, Questionnaire.class).size();
+        }
+
         return mongoTemplate.find(query, Questionnaire.class);
     }
 
@@ -126,3 +155,8 @@ public class QuestionnaireServiceImpl implements QuestionnaireService {
         return millis;
     }
 }
+
+//
+//    Query query = new Query();
+//query.with(new Sort(Sort.Direction.DESC, "idField"));
+//        query.limit(1);

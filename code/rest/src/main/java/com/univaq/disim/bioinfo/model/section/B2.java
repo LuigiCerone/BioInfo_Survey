@@ -4,6 +4,9 @@ import com.univaq.disim.bioinfo.model.nested.*;
 import org.springframework.data.mongodb.core.mapping.Field;
 import org.springframework.lang.Nullable;
 
+import javax.validation.constraints.Null;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.List;
 
@@ -19,9 +22,8 @@ public class B2 {
     @Field
     private HashMap<String, Object> intermittentSunExposure;
 
-    //It should be a date
     @Field
-    private String mostRecentIntermittentSunExposure;
+    private Long mostRecentIntermittentSunExposure;
 
     @Field
     private HashMap<String, SevereSunBurns> severeSunBurns;
@@ -31,16 +33,18 @@ public class B2 {
 
     // It can be Never, <50% of time exposure, >50% of time exposure, Always, Not known
     //TODO: it's an optional answer
+    @Nullable
     @Field
     private String sunProtectionOtherThanSunscreenUseHat;
 
     // It can be Never, <50% of time exposure, >50% of time exposure, Always, Not known
     //TODO: it's an optional answer
+    @Nullable
     @Field
     private String sunProtectionOtherThanSunscreenUseClothing;
 
     // It can be Rarely, Sometimes, Always, Not known
-    //TODO: it's an optional answer
+    @Nullable
     @Field
     private String seekTheShadeDuringUVRHours;
 
@@ -80,11 +84,17 @@ public class B2 {
     }
 
     public String getMostRecentIntermittentSunExposure() {
-        return mostRecentIntermittentSunExposure;
+        return new SimpleDateFormat("dd/MMM/yyyy").format(this.mostRecentIntermittentSunExposure);
     }
 
-    public void setMostRecentIntermittentSunExposure(String mostRecentIntermittentSunExposure) {
-        this.mostRecentIntermittentSunExposure = mostRecentIntermittentSunExposure;
+    public void setMostRecentIntermittentSunExposure(String dateOfBirth) {
+        Long millis = null;
+        try {
+            millis = new SimpleDateFormat("dd/MMM/yyyy").parse(dateOfBirth).getTime();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        this.mostRecentIntermittentSunExposure = millis;
     }
 
     public HashMap<String, SevereSunBurns> getSevereSunBurns() {

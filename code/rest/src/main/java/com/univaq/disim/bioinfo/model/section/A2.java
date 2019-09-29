@@ -6,6 +6,8 @@ import com.univaq.disim.bioinfo.model.nested.Residency;
 import org.springframework.data.mongodb.core.mapping.Field;
 
 import javax.validation.constraints.Null;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 public class A2 {
@@ -14,7 +16,7 @@ public class A2 {
     private String sex;
 
     @Field
-    private String dateOfBirth;
+    private Long dateOfBirth;
 
     @Field
     private String cityOfBirth;
@@ -70,11 +72,17 @@ public class A2 {
     }
 
     public String getDateOfBirth() {
-        return dateOfBirth;
+        return new SimpleDateFormat("dd/MMM/yyyy").format(this.dateOfBirth);
     }
 
     public void setDateOfBirth(String dateOfBirth) {
-        this.dateOfBirth = dateOfBirth;
+        Long millis = null;
+        try {
+            millis = new SimpleDateFormat("dd/MMM/yyyy").parse(dateOfBirth).getTime();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        this.dateOfBirth = millis;
     }
 
     public String getCityOfBirth() {

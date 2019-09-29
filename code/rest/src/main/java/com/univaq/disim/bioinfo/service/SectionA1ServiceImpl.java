@@ -36,7 +36,7 @@ public class SectionA1ServiceImpl implements SectionA1Service {
             q.setOwnerUsername(username);
 
             if( a1.getDatesOfUpdateQuestionnaire() == null){
-                ArrayList<Long> list = new ArrayList<Long>(Collections.singleton(a1.getDateOfQuestionnaireAdministration()));
+                ArrayList<Long> list = new ArrayList<Long>(Collections.singleton(System.currentTimeMillis()));
                 a1.setDatesOfUpdateQuestionnaire(list);
             }
             q.setA1(a1);
@@ -47,7 +47,7 @@ public class SectionA1ServiceImpl implements SectionA1Service {
     }
 
     @Override
-    public A1 get(String username) throws BusinessLayerException{
+    public A1 get(String username) throws BusinessLayerException {
         Questionnaire q = questionnaireRepository.findOneByOwnerUsername(username);
 
         if ( q == null){

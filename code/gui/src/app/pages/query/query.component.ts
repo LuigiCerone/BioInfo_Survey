@@ -5,6 +5,8 @@ import { QuestionnaireService } from '../../services/questionnaire.service';
 import { Questionnaire } from '../../model/Questionnaire';
 import { MatDialog, MatPaginator, MatTableDataSource } from '@angular/material';
 import * as moment from 'moment';
+import { CustomExporter } from './CustomExporter';
+import { MatTableExporterDirective } from 'mat-table-exporter';
 
 @Component({
   selector: 'app-query',
@@ -20,12 +22,19 @@ export class QueryComponent implements OnInit {
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
 
   @ViewChild('viewerDialog', {static: false}) viewerDialog: TemplateRef<any>;
+
+  @ViewChild('exportDirective', {static: false}) exportDirective: MatTableExporterDirective;
+  customExporter: CustomExporter;
+
   private selectedQuestionnaire: Questionnaire;
 
   query = {
     condition: 'and',
-    rules: []
-  };
+    rules: [],
+    otherConditionType: 'default',
+    otherConditionField: ''
+};
+
 
   config: QueryBuilderConfig = {
     fields: {
@@ -310,4 +319,18 @@ export class QueryComponent implements OnInit {
       return false;
     }
   }
+
+  export() {
+    this.exportDirective.exporter = new CustomExporter(this.dataSource.data);
+    this.exportDirective.exportTable(ExportType.OTHER);
+  }
+}
+
+export enum ExportType {
+  XLS = 'xls',
+  XLSX = 'xlsx',
+  CSV = 'csv',
+  TXT = 'txt',
+  JSON = 'json',
+  OTHER = 'other'
 }

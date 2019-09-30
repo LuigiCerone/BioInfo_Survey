@@ -285,6 +285,14 @@ export class QueryComponent implements OnInit {
       console.log(result);
       this.dataSource.data = result;
       this.dataSource.paginator = this.paginator;
+
+      if (this.query.otherConditionType === 'count') {
+          this.questionnaireService.getAllQuestionnaire().subscribe( (r: Array<Questionnaire>) => {
+            const res = result.length / r.length;
+            console.log(Math.round(res * 100) / 100);
+          });
+      }
+
     });
   }
 

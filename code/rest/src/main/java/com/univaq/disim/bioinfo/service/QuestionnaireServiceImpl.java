@@ -16,6 +16,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Vector;
 
 @Service
 @Transactional
@@ -133,13 +134,7 @@ public class QuestionnaireServiceImpl implements QuestionnaireService {
             query.with(new Sort(Sort.Direction.DESC, jsonQuery.get("otherConditionField").asText()));
             query.limit(1);
         } else if (otherConditionType.equals("count")) {
-            // TODO
-
-            // Count number of total.
-
-
-            // Count number of instances in the result query.
-            int size = mongoTemplate.find(query, Questionnaire.class).size();
+            // Nothing.
         }
 
         return mongoTemplate.find(query, Questionnaire.class);

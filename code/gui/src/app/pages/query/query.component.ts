@@ -22,6 +22,7 @@ export class QueryComponent implements OnInit {
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
 
   @ViewChild('viewerDialog', {static: false}) viewerDialog: TemplateRef<any>;
+  @ViewChild('percentageDialog', {static: false}) percentageDialog: TemplateRef<any>;
 
   @ViewChild('exportDirective', {static: false}) exportDirective: MatTableExporterDirective;
   customExporter: CustomExporter;
@@ -256,6 +257,7 @@ export class QueryComponent implements OnInit {
       }
     }
   };
+  private percentage: number;
 
 
   constructor(private authenticationService: AuthenticationService,
@@ -276,20 +278,25 @@ export class QueryComponent implements OnInit {
     this.dialog.open(this.viewerDialog);
   }
 
+  showPercentageResult(percentage: number) {
+    this.percentage = percentage;
+    this.dialog.open(this.percentageDialog);
+  }
+
   runQuery() {
-    // We need to trasform the date into long epoch millis.
+    // We need to transform the date into long epoch millis.
     this.transform();
     console.log(this.query);
 
     this.questionnaireService.runQuery(this.authenticationService.currentUserValue.username, this.query).subscribe( (result: Array<Questionnaire>) => {
-      console.log(result);
+      // console.log(result);
       this.dataSource.data = result;
       this.dataSource.paginator = this.paginator;
 
       if (this.query.otherConditionType === 'count') {
           this.questionnaireService.getAllQuestionnaire().subscribe( (r: Array<Questionnaire>) => {
             const res = result.length / r.length;
-            console.log(Math.round(res * 100) / 100);
+            this.showPercentageResult(Math.round(res * 100));
           });
       }
 

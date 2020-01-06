@@ -26,3 +26,7 @@
 .mat-raised-button.mat-primary {
   background-color: #3b7e92 !important;
 }
+
+body {
+  margin:0
+}

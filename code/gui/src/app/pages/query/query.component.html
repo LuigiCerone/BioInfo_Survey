@@ -12,13 +12,13 @@
       <mat-grid-tile>
         <mat-radio-group aria-label="Select an option" [(ngModel)]="query.otherConditionType">
           <mat-radio-button value="default" checked>Normal</mat-radio-button> <br>
-          <mat-radio-button value="min">MIN</mat-radio-button> <br>
-          <mat-radio-button value="max">MAX</mat-radio-button> <br>
-          <mat-radio-button value="count">COUNT</mat-radio-button> <br>
+          <mat-radio-button value="min">Minimum</mat-radio-button> <br>
+          <mat-radio-button value="max">Maximum</mat-radio-button> <br>
+          <mat-radio-button value="count">Percentage</mat-radio-button> <br>
         </mat-radio-group>
       </mat-grid-tile>
       <mat-grid-tile>
-        <!--        Solo campi numerici. -->
+        <!-- Solo campi numerici. -->
         <mat-form-field *ngIf="query.otherConditionType === 'min' || query.otherConditionType === 'max'">
           <mat-label>Insert the name of the field</mat-label>
           <mat-select placeholder="Select one field" [(ngModel)]="query.otherConditionField">
@@ -31,14 +31,14 @@
     <br>
     <br>
     <br>
-  </div>
-  <mat-divider></mat-divider><br>
+  </div><br>
   <div class="button">
     <button mat-raised-button color="primary" (click)="runQuery()">Run query</button>
   </div>
+  <mat-divider></mat-divider>
 </div>
-<br><br>
 <div>
+  <h2 class="mat-headline">Query results</h2>
   <div class="container mat-elevation-z8">
     <table matTableExporter [exporter]= "customExporter" #exportDirective="matTableExporter"
            *ngIf="dataSource" mat-table [dataSource]="dataSource" class="mat-elevation-z8" >
@@ -87,7 +87,7 @@
     <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
   </div>
   <div class="button">
-    <button mat-raised-button (click)="export()">Export</button>
+    <button mat-raised-button (click)="export()">Export query results</button>
   </div>
 </div>
 
@@ -106,3 +106,15 @@
   </mat-dialog-actions>
 </ng-template>
 
+<ng-template #percentageDialog class="mat-dialog-container custom-width-800">
+  <h2 matDialogTitle>Query results</h2>
+  <div matDialogContent>
+    <span class="mat-body">The percentage of rows in the database that satisfy your query with respect to the total is: {{ percentage }}%.</span>
+  </div>
+  <mat-dialog-actions align="end">
+    <button mat-raised-button color="primary" matDialogClose>
+      <mat-icon>close</mat-icon>
+      <span>Close</span>
+    </button>
+  </mat-dialog-actions>
+</ng-template>

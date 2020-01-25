@@ -84,6 +84,8 @@ public class QuestionnaireServiceImpl implements QuestionnaireService {
                         // Transform date as string into date obj.
                         Long millis = trasformDate(node);
                         list.add(Criteria.where(node.get("field").asText()).gte(millis));
+                    } else if (node.get("serverType").asText().equals("number")) {
+                        list.add(Criteria.where(node.get("field").asText()).gte(node.get("value").asInt()));
                     } else {
                         list.add(Criteria.where(node.get("field").asText()).gte(node.get("value").asText()));
                     }
@@ -94,6 +96,8 @@ public class QuestionnaireServiceImpl implements QuestionnaireService {
                         // Transform date as string into date obj.
                         Long millis = trasformDate(node);
                         list.add(Criteria.where(node.get("field").asText()).lte(millis));
+                    } else if (node.get("serverType").asText().equals("number")) {
+                        list.add(Criteria.where(node.get("field").asText()).lte(node.get("value").asInt()));
                     } else {
                         list.add(Criteria.where(node.get("field").asText()).lte(node.get("value").asText()));
                     }

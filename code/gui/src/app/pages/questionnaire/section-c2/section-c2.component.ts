@@ -65,7 +65,7 @@ export class SectionC2Component implements OnInit {
       numberOfFullTermPregnancies: new FormControl(this.c2.pregnancyHistory.numberOfFullTermPregnancies,
         [Validators.required, Validators.pattern('[0-9]{1,2}')]),
       dateOfBirthOfChildren: new FormControl(this.c2.pregnancyHistory.dateOfBirthOfChildren,
-        [Validators.required, Validators.pattern('[0-9]{2}[/][A-Z]{1}[a-z]{2}[/][0-9]{4}')]),
+        [Validators.pattern('[0-9]{2}[/][A-Z]{1}[a-z]{2}[/][0-9]{4}')]),
       numberOfMiscarriages: new FormControl(this.c2.pregnancyHistory.numberOfMiscarriages,
         [Validators.required, Validators.pattern('[0-9]{1,2}')]),
       melanomaOccurDuringPregnancy: new FormControl(this.c2.pregnancyHistory.melanomaOccurDuringPregnancy, [Validators.required]),
